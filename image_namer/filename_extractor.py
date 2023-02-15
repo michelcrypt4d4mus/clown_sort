@@ -75,7 +75,7 @@ class FilenameExtractor:
         author: str = reddit_match.group('user')
         subreddit: str = reddit_match.group('sub')
         body: str = reddit_match.group('body')
-        filename_text: str = "Reddit post by {author} in {subreddit}"
+        filename_text: str = f"Reddit post by {author} in {subreddit}"
         return self._build_filename(filename_text, body)
 
     def _build_filename(self, filename_text: str, body: str) -> str:

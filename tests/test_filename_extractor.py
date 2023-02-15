@@ -118,4 +118,4 @@ def test_filename(do_kwon_tweet):
     assert FilenameExtractor(image_file).filename() == 'do_kwon_debate_the_poor Tweet by @gaborgurbacs: "I think this Coinbase media campaign will have the opposite effect. USDC users will learn about USDT and convert to USDT as they question the motivations and rationale of this c.jpeg'
 
     image_file._ocr_text = REDDIT_POST
-    assert FilenameExtractor(image_file).filename() == 'do_kwon_debate_the_poor Tweet by @gaborgurbacs: "I think this Coinbase media campaign will have the opposite effect. USDC users will learn about USDT and convert to USDT as they question the motivations and rationale of this c.jpeg'
+    assert FilenameExtractor(image_file).filename() == 'do_kwon_debate_the_poor Reddit post by TheLostWander_er in binance: "send cash feature is temporarily disable. I was trying to withdraw cash since last week and I am seeing this message every time I try the send cash feature..jpeg'
