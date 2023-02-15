@@ -6,11 +6,14 @@ from typing import Optional
 
 from rich.text import Text
 
-from image_namer.util.logging import console
+from image_namer.util.logging import console, log
 
 MAX_FILENAME_LENGTH = 255
-TWEET_REGEX = re.compile('(@[a-zA-Z0-9]{3,15}(\\.\\.\\.)?)\\s{1,2}-\\s{1,2}(\\d{1,2}[smhd]|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)')
-TWEET_REPLY_REGEX = re.compile('Replying to (@[a-zA-Z0-9]{3,15})')
+TWEET_REPLY_REGEX = re.compile('Replying to (@[a-zA-Z0-9]{3,15}).*?\\n(?P<body>.*)', re.DOTALL | re.MULTILINE)
+
+TWEET_REGEX = re.compile(
+    '(@[a-zA-Z0-9]{3,15}(\\.\\.\\.)?)\\s{1,2}-\\s{1,2}(\\d{1,2}[smhd]|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec).*?\\n(?P<body>.*)',
+    re.DOTALL | re.MULTILINE)
 
 
 class FilenameExtractor:
@@ -40,14 +43,23 @@ class FilenameExtractor:
     def _filename_str_for_tweet(self) -> str:
         tweet_match = TWEET_REGEX.search(self.text)
         author = tweet_match.group(1)
+        #import pdb;pdb.set_trace()
+        body = tweet_match.group('body')
+
         filename_text = f"Tweet by {author}"
         log_txt = Text("YES it's a tweet by ", style='color(82)').append(author, style='color(178)')
         reply_to = TWEET_REPLY_REGEX.search(self.text)
 
         if reply_to is not None:
             filename_text += f" replying to {reply_to.group(1)}"
+            body = reply_to.group('body')
             log_txt.append("\n    -> Replying to ", style='color(23)')
             log_txt.append(reply_to.group(1), style='color(178)')
 
         console.print(log_txt)
-        return filename_text
+        log.debug(f"\nBody:\n{body}\n")
+        body = ' '.join(body.splitlines()).replace('\\s+', ' ')
+        log.debug(f"\nBody flattened:\n{body}\n")
+        body = re.sub('’', "'", body)
+        body = re.sub('[^0-9a-zA-Z@.?_\'" ]+', '_', body)
+        return filename_text + ' ' + body
