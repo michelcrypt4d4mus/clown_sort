@@ -69,7 +69,7 @@ class ImageFile:
             destination_subdir: Optional[Union[Path, str]] = None
         ) -> Path:
         """
-        Copies to a new file and injects the ImageDescription tag.
+        Copies to a new file and injects the ImageDescription exif tag.
         If :destination_subdir is given new file will be in :destination_subdir off of configured :destination_dir.
         Returns new file path.
         """

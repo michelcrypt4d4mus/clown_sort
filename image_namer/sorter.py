@@ -1,9 +1,20 @@
-# Sort images based on the extracted contents
-
+"""
+Sort images based on the extracted contents.
+"""
+import shutil
 from re import compile, IGNORECASE
 from typing import List, Optional
 
+from rich.text import Text
+
+from image_namer.config import DEFAULT_SCREENSHOTS_DIR, Config
+from image_namer.image_file import ImageFile
+from image_namer.util.rich_helper import console
+from image_namer.util.string_helper import comma_join
+
 JUSTIN_SUN = 'Justin Sun'
+SORTED_DIR = DEFAULT_SCREENSHOTS_DIR.joinpath('Sorted')
+PROCESSED_DIR = DEFAULT_SCREENSHOTS_DIR.joinpath('Processed')
 
 # If these strings are found, move the screenshot to that directory
 SORT_SEARCH_STRINGS = [
@@ -71,3 +82,35 @@ def get_sort_folders(search_string: Optional[str]) -> List[str]:
         return [JUSTIN_SUN]
     else:
         return folders
+
+
+def sort_file(image_file: ImageFile, dry_run: bool = True) -> None:
+    """Sort the file to destination_dir subdir"""
+    console.print(image_file)
+    console.print(f"RAW EXIF: {image_file.raw_exif_dict()}", style='color(145)')
+    console.print(f"EXIF: {image_file.exif_dict()}", style='color(147)')
+    sort_folders = get_sort_folders(image_file.ocr_text())
+    console.print(Text('FOLDERS: ', style='magenta') + comma_join(sort_folders))
+
+    if len(sort_folders) == 0:
+        console.print("  WARNING: No :sort_folders found!", style='bright_yellow')
+        image_file.set_image_description_exif_as_ocr_text()
+    else:
+        possible_old_file = SORTED_DIR.joinpath(image_file.basename)
+
+        if possible_old_file.is_file():
+            console.print(Text(f"WARNING: Deleting unsorted file '{possible_old_file}'...", style='red'))
+            possible_old_file.unlink()
+
+        for sort_folder in sort_folders:
+            image_file.set_image_description_exif_as_ocr_text(sort_folder)
+
+    processed_file_path = Config.processed_screenshots_dir.joinpath(image_file.basename)
+
+    if dry_run:
+        console.print("Not moving file because it's a dry run...", style='dim')
+    elif image_file.file_path == processed_file_path:
+        console.print("Not moving file because it's the same location...", style='dim')
+    else:
+        console.print(f"Move '{image_file.file_path}' to '{processed_file_path}'", style='dim')
+        shutil.move(image_file.file_path, processed_file_path)

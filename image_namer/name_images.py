@@ -19,14 +19,15 @@ DELETE = 'Delete'
 OK = 'OK'
 OPEN = 'Open'
 
-Config.set_directories(SORTED_DIR, DEFAULT_SCREENSHOTS_DIR)
-
 
 def subdir_radio_select_columns():
     dirs = Config.get_sort_dirs()
 
     for i in range(0, len(dirs), RADIO_COLS):
-        yield [sg.Radio(path.basename(dir), "SORTDIR_RADIO", default=False, key=dir) for dir in dirs[i: i + RADIO_COLS]]
+        yield [
+            sg.Radio(path.basename(dir), "SORTDIR_RADIO", default=False, key=dir)
+            for dir in dirs[i: i + RADIO_COLS]
+        ]
 
 
 def process_file(image: ImageFile) -> None:

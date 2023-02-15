@@ -30,3 +30,7 @@ addopts = [
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry.scripts]
+sort_screenshots = 'image_namer:sort_screenshots'

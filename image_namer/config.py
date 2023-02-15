@@ -1,3 +1,6 @@
+"""
+Global configuration.
+"""
 import logging
 from pathlib import Path
 from typing import List, Optional, Union
