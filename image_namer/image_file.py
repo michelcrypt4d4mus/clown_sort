@@ -25,7 +25,8 @@ from image_namer.util.rich_helper import console
 
 IMAGE_DESCRIPTION = 'ImageDescription'
 THUMBNAIL_DIMENSIONS = (400, 400)
-TWEET_REGEX = re.compile('@[a-zA-Z0-9]{3,15}(\\.\\.\\.)?\\s{1,2}-\\s{1,2}(\\d{1,2}[smhd]|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)')
+TWEET_REGEX = re.compile('(@[a-zA-Z0-9]{3,15}(\\.\\.\\.)?)\\s{1,2}-\\s{1,2}(\\d{1,2}[smhd]|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)')
+TWEET_REPLY_REGEX = re.compile('Replying to (@[a-zA-Z0-9]{3,15})')
 
 EXIF_CODES = {
     IMAGE_DESCRIPTION: 270,
@@ -98,7 +99,7 @@ class ImageFile:
         self._is_tweet()
 
         if dry_run:
-            console.print(Text("Dry run so no copy to '").append(str(new_file), style='color(221)').append("'"))
+            console.print(Text("Dry run so no copy to '").append(str(new_file), style='color(221)').append("'"), style='dim')
             return new_file
 
         try:
@@ -129,11 +130,21 @@ class ImageFile:
         if self.ocr_text() is None:
             return False
 
-        if TWEET_REGEX.search(self.ocr_text()) is None:
+        match = TWEET_REGEX.search(self.ocr_text())
+
+        if match is None:
             console.print("NOT a tweet", style='color(158)')
             return False
         else:
-            console.print("YES it's a tweet", style='color(82)')
+            author = match.group(1)
+            txt = Text("YES it's a tweet by ", style='color(82)').append(author, style='color(178)')
+            reply_to = TWEET_REPLY_REGEX.search(self.ocr_text())
+
+            if reply_to is not None:
+                txt.append("\n    -> Replying to ", style='color(23)')
+                txt.append(reply_to.group(1), style='color(178)')
+
+            console.print(txt)
             return True
 
     def __str__(self) -> str:
