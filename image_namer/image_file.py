@@ -39,6 +39,7 @@ class ImageFile:
         self.extension: str = self.file_path.suffix
         self.ocr_attempted: bool = False
         self._ocr_text: Optional[str] = None
+        self.__new_basename: Optional[str] = None
 
     @classmethod
     def screenshot_paths(cls) -> List['ImageFile']:
@@ -66,7 +67,6 @@ class ImageFile:
         self._ocr_text = pytesseract.image_to_string(Image.open(self.file_path))
         self.ocr_attempted = True
         return self._ocr_text
-
 
     def set_image_description_exif_as_ocr_text(
             self,
@@ -123,10 +123,15 @@ class ImageFile:
 
     def _new_basename(self) -> str:
         """Return a descriptive string usable in a filename."""
-        if self.ocr_text() is None:
-            return self.basename
+        if self.__new_basename is not None:
+            return self.__new_basename
 
-        return FilenameExtractor(self).filename()
+        if self.ocr_text() is None:
+            self.__new_basename = self.basename
+        else:
+            self.__new_basename = FilenameExtractor(self).filename()
+
+        return self.__new_basename
 
     def __str__(self) -> str:
         return str(self.file_path)
