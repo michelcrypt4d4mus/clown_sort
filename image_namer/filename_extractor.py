@@ -50,7 +50,11 @@ class FilenameExtractor:
         reply_to = TWEET_REPLY_REGEX.search(self.text)
 
         if reply_to is not None:
-            filename_text += f" replying to {reply_to.group(1)}"
+            reply_to_account = reply_to.group(1)
+
+            if reply_to_account != author:
+                filename_text += f" replying to {reply_to_account}"
+
             body = reply_to.group('body')
             log_txt.append("\n    -> Replying to ", style='color(23)')
             log_txt.append(reply_to.group(1), style='color(178)')

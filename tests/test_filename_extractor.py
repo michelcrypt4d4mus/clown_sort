@@ -103,4 +103,4 @@ def test_filename(do_kwon_tweet):
     assert FilenameExtractor(image_file).filename() == 'do_kwon_debate_the_poor Tweet by @gedaominas replying to @tier10k: "The same thing happened with their SEPA transfers a couple of years ago. Just because Binance isn\'t licensed for money institution activities_ they have to re.jpeg'
 
     image_file._ocr_text = GABOR_TWEET_TEXT
-    assert FilenameExtractor(image_file).filename() == 'do_kwon_debate_the_poor Tweet by @gaborgurbacs replying to @gaborgurbacs: "I think this Coinbase media campaign will have the opposite effect. USDC users will learn about USDT and convert to USDT as they question the motivatio.jpeg'
+    assert FilenameExtractor(image_file).filename() == 'do_kwon_debate_the_poor Tweet by @gaborgurbacs: "I think this Coinbase media campaign will have the opposite effect. USDC users will learn about USDT and convert to USDT as they question the motivations and rationale of this c.jpeg'
