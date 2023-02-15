@@ -201,4 +201,3 @@ def test_reddit_filenames(ocr_image):
     assert FilenameExtractor(ocr_image).filename() == 'Reddit post by Fluffyhobbit: "Option 4. 80_ of us send crypto to cold storage and binance doesn\'t skip a beat Edit: forgot to put in doesn\'t_ _ 22 tb _" do_kwon_debate_the_poor.jpeg'
     ocr_image._ocr_text = REDDIT_R_CRYPTOCURRENCY_REPLY
     assert FilenameExtractor(ocr_image).filename() == 'Reddit post by Roberto9410: "Wow the downfall of BUSD is something to see _p. 1_4" do_kwon_debate_the_poor.jpeg'
-

@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from image_namer.config import Config
 from image_namer.image_file import ImageFile
 from image_namer.sorter import sort_file
+from image_namer.util.argument_parser import parse_arguments
 
 
 # load_dotenv() should be called as soon as possible (before parsing local classes) but not for pytest
@@ -19,5 +20,7 @@ Config.set_directories()
 
 
 def sort_screenshots():
+    args = parse_arguments()
+
     for image in ImageFile.screenshot_paths():
-        sort_file(image)
+        sort_file(image, args.dry_run)

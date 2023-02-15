@@ -94,7 +94,7 @@ def sort_file(image_file: ImageFile, dry_run: bool = True) -> None:
 
     if len(sort_folders) == 0:
         console.print('No sort folders! ', style='magenta dim')
-        image_file.set_image_description_exif_as_ocr_text()
+        image_file.set_image_description_exif_as_ocr_text(dry_run=dry_run)
     else:
         console.print(Text('FOLDERS: ', style='magenta') + comma_join(sort_folders))
         possible_old_file = SORTED_DIR.joinpath(image_file.basename)
@@ -104,7 +104,7 @@ def sort_file(image_file: ImageFile, dry_run: bool = True) -> None:
             possible_old_file.unlink()
 
         for sort_folder in sort_folders:
-            image_file.set_image_description_exif_as_ocr_text(sort_folder)
+            image_file.set_image_description_exif_as_ocr_text(sort_folder, dry_run=dry_run)
 
     console.print(Text("DESTINATION BASENAME: ").append(image_file._new_basename(), style='magenta'))
     processed_file_path = Config.processed_screenshots_dir.joinpath(image_file.basename)
