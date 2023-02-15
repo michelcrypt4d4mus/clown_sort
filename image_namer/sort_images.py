@@ -1,24 +1,17 @@
 #!/usr/bin/env python
 
 import shutil
-from os import path, remove
-from pathlib import Path
 
 from rich.text import Text
 
 from image_namer.config import DEFAULT_SCREENSHOTS_DIR, Config
 from image_namer.image_file import ImageFile
 from image_namer.sorter import get_sort_folders
-from image_namer.util.filesystem_helper import files_in_dir
 from image_namer.util.rich_helper import console
 from image_namer.util.string_helper import comma_join
 
 SORTED_DIR = DEFAULT_SCREENSHOTS_DIR.joinpath('Sorted')
 PROCESSED_DIR = DEFAULT_SCREENSHOTS_DIR.joinpath('Processed')
-
-
-Config.set_directories(PROCESSED_DIR, DEFAULT_SCREENSHOTS_DIR)
-
 
 
 for image in ImageFile.screenshot_paths():

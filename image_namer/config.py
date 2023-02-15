@@ -1,5 +1,4 @@
 import logging
-import os
 from pathlib import Path
 from typing import List, Optional, Union
 
@@ -30,4 +29,5 @@ class Config:
 
     @classmethod
     def get_sort_dirs(cls) -> List[str]:
+        """Returns a list of the subdirectories already created for sorted images."""
         return sorted(subdirs_of_dir(cls.sorted_screenshots_dir), key=lambda d: d.lower())

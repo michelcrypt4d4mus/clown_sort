@@ -9,7 +9,7 @@ import io
 import logging
 from os import path
 from pathlib import Path
-from typing import Optional, Union
+from typing import List, Optional, Union
 
 import pytesseract
 from PIL import Image
@@ -38,7 +38,8 @@ class ImageFile:
         self._ocr_text: Optional[str] = None
 
     @classmethod
-    def screenshot_paths(cls):
+    def screenshot_paths(cls) -> List['ImageFile']:
+        """Returns a list of ImageFiles for all the screenshots to be sorted."""
         screenshots = [
             ImageFile(f) for f in files_in_dir(Config.screenshots_dir)
             if path.basename(f).startswith('Screen Shot')
@@ -47,6 +48,7 @@ class ImageFile:
         return sorted(screenshots, key=lambda f: f.basename)
 
     def image_bytes(self) -> bytes:
+        """Return bytes for a thumbnail."""
         image = Image.open(self.file_path)
         image.thumbnail(THUMBNAIL_DIMENSIONS)
         _image_bytes = io.BytesIO()
@@ -54,6 +56,7 @@ class ImageFile:
         return _image_bytes.getvalue()
 
     def ocr_text(self) -> Optional[str]:
+        """Use Tesseract to OCR the text in the image, which is returned as a string."""
         if self.ocr_attempted:
             return self._ocr_text
 
@@ -61,7 +64,10 @@ class ImageFile:
         self.ocr_attempted = True
         return self._ocr_text
 
-    def set_image_description_exif_as_ocr_text(self, destination_subdir: Optional[Union[Path, str]] = None) -> Path:
+    def set_image_description_exif_as_ocr_text(
+            self,
+            destination_subdir: Optional[Union[Path, str]] = None
+        ) -> Path:
         """
         Copies to a new file and injects the ImageDescription tag.
         If :destination_subdir is given new file will be in :destination_subdir off of configured :destination_dir.
