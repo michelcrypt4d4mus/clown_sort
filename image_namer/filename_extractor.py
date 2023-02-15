@@ -15,6 +15,8 @@ TWEET_REGEX = re.compile(
     '(@[a-zA-Z0-9]{3,15}(\\.\\.\\.)?)(\\s{1,2}-\\s{1,2}(\\d{1,2}[smhd]|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec).*?)?\\n(?P<body>.*)',
     re.DOTALL | re.MULTILINE)
 
+REDDIT_REGEX = re.compile('r/(?P<sub>\\w{3,30}) - Posted by u/(?P<user>\\w{3,30}) \\d+.*?\\n(?P<body>.*)', re.DOTALL | re.MULTILINE)
+
 
 class FilenameExtractor:
     def __init__(self, image_file: 'ImageFile') -> None:
@@ -28,8 +30,11 @@ class FilenameExtractor:
 
         if self.text is None:
             filename = self.image_file.basename
-        if self._is_tweet():
+        elif self._is_tweet():
             filename = f"{self.image_file.basename_without_ext} {self._filename_str_for_tweet()}"
+            filename = filename[0:self.available_char_count].rstrip() + self.image_file.extension
+        elif self._is_reddit():
+            filename = f"{self.image_file.basename_without_ext} {self._filename_str_for_reddit()}"
             filename = filename[0:self.available_char_count].rstrip() + self.image_file.extension
         else:
             filename = self.image_file.basename
@@ -39,6 +44,9 @@ class FilenameExtractor:
     def _is_tweet(self) -> bool:
         """Return true if the text looks like a tweet."""
         return TWEET_REGEX.search(self.text) is not None
+
+    def _is_reddit(self) -> bool:
+        return REDDIT_REGEX.search(self.text) is not None
 
     def _filename_str_for_tweet(self) -> str:
         tweet_match = TWEET_REGEX.search(self.text)
@@ -60,6 +68,17 @@ class FilenameExtractor:
             log_txt.append(reply_to.group(1), style='color(178)')
 
         console.print(log_txt)
+        return self._build_filename(filename_text, body)
+
+    def _filename_str_for_reddit(self) -> str:
+        reddit_match = REDDIT_REGEX.search(self.text)
+        author: str = reddit_match.group('user')
+        subreddit: str = reddit_match.group('sub')
+        body: str = reddit_match.group('body')
+        filename_text: str = "Reddit post by {author} in {subreddit}"
+        return self._build_filename(filename_text, body)
+
+    def _build_filename(self, filename_text: str, body: str) -> str:
         body = ' '.join(body.splitlines()).replace('\\s+', ' ')
         log.debug(f"\nBody flattened:\n{body}\n")
         body = re.sub('’', "'", body).replace('|', 'I')

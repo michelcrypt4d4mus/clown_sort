@@ -92,6 +92,15 @@ Tether team work and act like professionals. Tether works with both
 partners and competitors in a respectful and collaborative manner. Tether
 cares about the industry. After all: Rising tides lift all boats."""
 
+REDDIT_POST = """© r/binance - Posted by u/TheLostWander_er 13 hours ago
+
+send cash feature is temporarily disable.
+
+I was trying to withdraw cash since last week and I am seeing this message every time I try the send
+cash feature. Am I the only one getting this? What else can I do to send cash?
+
+i) 5 Comments Award Vad Share im Save"""
+
 
 def test_filename(do_kwon_tweet):
     image_file = ImageFile(do_kwon_tweet)
@@ -106,4 +115,7 @@ def test_filename(do_kwon_tweet):
     assert FilenameExtractor(image_file).filename() == 'do_kwon_debate_the_poor Tweet by @tier10k: "_DB_ SEC Probe Into Kraken at an Advanced Stage and Could Lead to a Settlement in Coming Days: Bloomberg 3:55 PM _ Feb 8_ 2023 _ 77.3K Views".jpeg'
 
     image_file._ocr_text = GABOR_TWEET_TEXT
+    assert FilenameExtractor(image_file).filename() == 'do_kwon_debate_the_poor Tweet by @gaborgurbacs: "I think this Coinbase media campaign will have the opposite effect. USDC users will learn about USDT and convert to USDT as they question the motivations and rationale of this c.jpeg'
+
+    image_file._ocr_text = REDDIT_POST
     assert FilenameExtractor(image_file).filename() == 'do_kwon_debate_the_poor Tweet by @gaborgurbacs: "I think this Coinbase media campaign will have the opposite effect. USDC users will learn about USDT and convert to USDT as they question the motivations and rationale of this c.jpeg'
