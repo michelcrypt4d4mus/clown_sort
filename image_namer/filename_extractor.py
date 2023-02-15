@@ -12,7 +12,7 @@ MAX_FILENAME_LENGTH = 255
 TWEET_REPLY_REGEX = re.compile('Replying to (@[a-zA-Z0-9]{3,15}).*?\\n(?P<body>.*)', re.DOTALL | re.MULTILINE)
 
 TWEET_REGEX = re.compile(
-    '(@[a-zA-Z0-9]{3,15}(\\.\\.\\.)?)\\s{1,2}-\\s{1,2}(\\d{1,2}[smhd]|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec).*?\\n(?P<body>.*)',
+    '(@[a-zA-Z0-9]{3,15}(\\.\\.\\.)?)(\\s{1,2}-\\s{1,2}(\\d{1,2}[smhd]|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec).*?)?\\n(?P<body>.*)',
     re.DOTALL | re.MULTILINE)
 
 
@@ -61,5 +61,5 @@ class FilenameExtractor:
         body = ' '.join(body.splitlines()).replace('\\s+', ' ')
         log.debug(f"\nBody flattened:\n{body}\n")
         body = re.sub('’', "'", body)
-        body = re.sub('[^0-9a-zA-Z@.?_\'" ]+', '_', body)
+        body = re.sub('[^0-9a-zA-Z@.?_$\'" ]+', '_', body).rstrip()
         return filename_text + ' ' + body

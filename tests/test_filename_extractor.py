@@ -51,7 +51,7 @@ def test_filename(do_kwon_tweet):
     image_file = ImageFile(do_kwon_tweet)
     image_file._ocr_text = WUBLOCKCHAIN_TWEET_TEXT
     image_file.ocr_attempted = True
-    assert FilenameExtractor(image_file).filename() == 'do_kwon_debate_the_poor Tweet by @WuBlockchain.jpeg'
+    assert FilenameExtractor(image_file).filename() == 'do_kwon_debate_the_poor Tweet by @WuBlockchain a16z voted 15 million UNI against the final proposal to deploy Uniswap V3 on BNB Chain proposed by OxPlasma Labs. The proposal uses Wormhole as a cross_chain bridge. a16z opposes .jpeg'
 
     image_file._ocr_text = REPLY_TWEET_TEXT
-    assert FilenameExtractor(image_file).filename() == 'do_kwon_debate_the_poor Tweet by @gedaominas replying to @tier10k.jpeg'
+    assert FilenameExtractor(image_file).filename() == 'do_kwon_debate_the_poor Tweet by @gedaominas replying to @tier10k  The same thing happened with their SEPA transfers a couple of years ago. Just because Binance isn\'t licensed for money institution activities_ they have to rel.jpeg'
