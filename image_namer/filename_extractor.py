@@ -113,6 +113,6 @@ class FilenameExtractor:
         body = ' '.join(body.splitlines()).replace('\\s+', ' ')
         log.debug(f"\nBody flattened:\n{body}\n")
         body = re.sub('’', "'", body).replace('|', 'I').replace(',', ',')
-        body = re.sub('[^0-9a-zA-Z@.?_$:\'" ]+', '_', body)
+        body = re.sub('[^0-9a-zA-Z@.?_:\'" ]+', '_', body)
         body = body[0:self.available_char_count - len(filename_text) - 2].strip()
         return f'{filename_text}: "{body}"'.replace('  ', ' ')

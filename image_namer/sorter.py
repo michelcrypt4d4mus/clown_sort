@@ -88,8 +88,6 @@ def get_sort_folders(search_string: Optional[str]) -> List[str]:
 def sort_file(image_file: ImageFile, dry_run: bool = True) -> None:
     """Sort the file to destination_dir subdir"""
     console.print(image_file)
-    log.debug(f"RAW EXIF: {image_file.raw_exif_dict()}")
-    log.debug(f"EXIF: {image_file.exif_dict()}")
     sort_folders = get_sort_folders(image_file.ocr_text())
 
     if len(sort_folders) == 0:
@@ -106,7 +104,6 @@ def sort_file(image_file: ImageFile, dry_run: bool = True) -> None:
         for sort_folder in sort_folders:
             image_file.set_image_description_exif_as_ocr_text(sort_folder, dry_run=dry_run)
 
-    console.print(Text("DESTINATION BASENAME: ").append(image_file._new_basename(), style='magenta'))
     processed_file_path = Config.processed_screenshots_dir.joinpath(image_file.basename)
 
     if dry_run:

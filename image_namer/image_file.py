@@ -21,7 +21,7 @@ from rich.text import Text
 from image_namer.config import Config
 from image_namer.filename_extractor import FilenameExtractor
 from image_namer.util.filesystem_helper import copy_file_creation_time, files_in_dir
-from image_namer.util.logging import console
+from image_namer.util.logging import console, log
 
 IMAGE_DESCRIPTION = 'ImageDescription'
 THUMBNAIL_DIMENSIONS = (400, 400)
@@ -131,6 +131,7 @@ class ImageFile:
         else:
             self.__new_basename = FilenameExtractor(self).filename()
 
+        self.__new_basename = self.__new_basename.replace('""', '"')
         return self.__new_basename
 
     def __str__(self) -> str:
@@ -148,3 +149,6 @@ class ImageFile:
         else:
             yield Text(self.ocr_text(), style='dim')
 
+        yield Text("DESTINATION BASENAME: ").append(self._new_basename(), style='cyan dim')
+        log.debug(f"RAW EXIF: {self.raw_exif_dict()}")
+        log.debug(f"EXIF: {self.exif_dict()}")
