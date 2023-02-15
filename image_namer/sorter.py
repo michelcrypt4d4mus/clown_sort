@@ -24,6 +24,7 @@ SORT_SEARCH_STRINGS = [
     [compile('aax', IGNORECASE), 'AAX'],
     [compile('Avax|avalanche', IGNORECASE), 'Avalanche'],
     [compile('\\$CUBI|Customers Ban(k|corp)|SEBA[^a-z]|Cross\\s?River', IGNORECASE), 'Banks'],
+    [compile('Bankless', IGNORECASE), 'Bankless'],
     [compile('binance|bnb|cz|bifinity|binaryx|billance|paysafe', IGNORECASE), 'Binance'],
     [compile('Blockchain8|tom ?emmer|ritchie ?torres|repritchie', IGNORECASE), 'Blockchain8'],
     [compile('BlockFi', IGNORECASE), 'BlockFi'],
