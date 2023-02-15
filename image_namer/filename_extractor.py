@@ -30,7 +30,7 @@ class FilenameExtractor:
             filename = self.image_file.basename
         if self._is_tweet():
             filename = f"{self.image_file.basename_without_ext} {self._filename_str_for_tweet()}"
-            filename = filename[0:self.available_char_count] + self.image_file.extension
+            filename = filename[0:self.available_char_count].rstrip() + self.image_file.extension
         else:
             filename = self.image_file.basename
 
@@ -43,7 +43,6 @@ class FilenameExtractor:
     def _filename_str_for_tweet(self) -> str:
         tweet_match = TWEET_REGEX.search(self.text)
         author = tweet_match.group(1)
-        #import pdb;pdb.set_trace()
         body = tweet_match.group('body')
 
         filename_text = f"Tweet by {author}"
@@ -57,9 +56,8 @@ class FilenameExtractor:
             log_txt.append(reply_to.group(1), style='color(178)')
 
         console.print(log_txt)
-        log.debug(f"\nBody:\n{body}\n")
         body = ' '.join(body.splitlines()).replace('\\s+', ' ')
         log.debug(f"\nBody flattened:\n{body}\n")
-        body = re.sub('’', "'", body)
-        body = re.sub('[^0-9a-zA-Z@.?_$\'" ]+', '_', body).rstrip()
-        return filename_text + ' ' + body
+        body = re.sub('’', "'", body).replace('|', 'I')
+        body = re.sub('[^0-9a-zA-Z@.?_$:\'" ]+', '_', body).strip()
+        return f'{filename_text}: "{body}"'.replace('  ', ' ')

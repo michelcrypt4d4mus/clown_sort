@@ -9,7 +9,7 @@ from rich.text import Text
 
 from image_namer.config import DEFAULT_SCREENSHOTS_DIR, Config
 from image_namer.image_file import ImageFile
-from image_namer.util.rich_helper import console
+from image_namer.util.logging import console, log
 from image_namer.util.string_helper import comma_join
 
 JUSTIN_SUN = 'Justin Sun'
@@ -87,15 +87,15 @@ def get_sort_folders(search_string: Optional[str]) -> List[str]:
 def sort_file(image_file: ImageFile, dry_run: bool = True) -> None:
     """Sort the file to destination_dir subdir"""
     console.print(image_file)
-    console.print(f"RAW EXIF: {image_file.raw_exif_dict()}", style='color(145)')
-    console.print(f"EXIF: {image_file.exif_dict()}", style='color(147)')
+    log.debug(f"RAW EXIF: {image_file.raw_exif_dict()}")
+    log.debug(f"EXIF: {image_file.exif_dict()}")
     sort_folders = get_sort_folders(image_file.ocr_text())
-    console.print(Text('FOLDERS: ', style='magenta') + comma_join(sort_folders))
 
     if len(sort_folders) == 0:
-        console.print("  WARNING: No :sort_folders found!", style='bright_yellow')
+        console.print('No sort folders! ', style='magenta dim')
         image_file.set_image_description_exif_as_ocr_text()
     else:
+        console.print(Text('FOLDERS: ', style='magenta') + comma_join(sort_folders))
         possible_old_file = SORTED_DIR.joinpath(image_file.basename)
 
         if possible_old_file.is_file():

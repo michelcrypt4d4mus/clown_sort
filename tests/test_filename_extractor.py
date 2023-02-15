@@ -46,12 +46,61 @@ Bloomberg
 
 3:55 PM - Feb 8, 2023 - 77.3K Views"""
 
+GABOR_TWEET_TEXT = """fee) Gabor Gurbacs @
+
+@gaborgurbacs
+
+Looking at the facts, Tether (USDT) is the most
+trusted stablecoin globally since it continues to be
+the #1 stablecoin by market cap and trades 10x the
+daily volume of USDC. Sad to see Coinbase behave
+like this when an exchange is supposed to remain
+impartial.
+
+© Coinbase % @coinbase - Feb 3
+Stability = Confidence
+
+Make the switch to the digital dollar, and experience zero fees when you
+convert from USDT to USDC.
+coinbase.com/blog/switch-to...
+
+6:47 AM - Feb 4, 2023 - 48K Views
+
+20 Retweets 7QuoteTweets 107 Likes
+
+Oo v wv)
+
+o>
+
+Tweet your reply
+
+Replying to @gaborgurbacs
+
+| think this Coinbase media campaign will have the opposite effect. USDC
+users will learn about USDT and convert to USDT as they question the
+motivations and rationale of this campaign. After-all, if Coinbase and
+Coinbase users don’t like USDT why did they list USDT? ;)
+
+fee} Gabor Gurbacs @ @gaborgurbacs - Feb 4
+
+O 5 Td 3 QO 2 tht 2,884 &
+
+Gabor Gurbacs @ @gaborgurbacs - Feb 4 oe
+On professionalism: It’s good to see @paoloardoino, @bitcoinlawyer & the
+Tether team work and act like professionals. Tether works with both
+
+partners and competitors in a respectful and collaborative manner. Tether
+cares about the industry. After all: Rising tides lift all boats."""
+
 
 def test_filename(do_kwon_tweet):
     image_file = ImageFile(do_kwon_tweet)
     image_file._ocr_text = WUBLOCKCHAIN_TWEET_TEXT
     image_file.ocr_attempted = True
-    assert FilenameExtractor(image_file).filename() == 'do_kwon_debate_the_poor Tweet by @WuBlockchain a16z voted 15 million UNI against the final proposal to deploy Uniswap V3 on BNB Chain proposed by OxPlasma Labs. The proposal uses Wormhole as a cross_chain bridge. a16z opposes .jpeg'
+    assert FilenameExtractor(image_file).filename() == 'do_kwon_debate_the_poor Tweet by @WuBlockchain: "a16z voted 15 million UNI against the final proposal to deploy Uniswap V3 on BNB Chain proposed by OxPlasma Labs. The proposal uses Wormhole as a cross_chain bridge. a16z oppose.jpeg'
 
     image_file._ocr_text = REPLY_TWEET_TEXT
-    assert FilenameExtractor(image_file).filename() == 'do_kwon_debate_the_poor Tweet by @gedaominas replying to @tier10k  The same thing happened with their SEPA transfers a couple of years ago. Just because Binance isn\'t licensed for money institution activities_ they have to rel.jpeg'
+    assert FilenameExtractor(image_file).filename() == 'do_kwon_debate_the_poor Tweet by @gedaominas replying to @tier10k: "The same thing happened with their SEPA transfers a couple of years ago. Just because Binance isn\'t licensed for money institution activities_ they have to re.jpeg'
+
+    image_file._ocr_text = GABOR_TWEET_TEXT
+    assert FilenameExtractor(image_file).filename() == 'do_kwon_debate_the_poor Tweet by @gaborgurbacs replying to @gaborgurbacs: "I think this Coinbase media campaign will have the opposite effect. USDC users will learn about USDT and convert to USDT as they question the motivatio.jpeg'

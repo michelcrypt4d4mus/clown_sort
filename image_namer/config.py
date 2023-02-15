@@ -11,7 +11,7 @@ DEFAULT_SCREENSHOTS_DIR = Path.home().joinpath('Pictures', 'Screenshots')
 
 
 class Config:
-    debug = True
+    debug = False
 
     @classmethod
     def set_directories(

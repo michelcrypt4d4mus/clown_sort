@@ -7,7 +7,6 @@ Tags: https://exiftool.org/TagNames/EXIF.html
 """
 import io
 import logging
-import re
 from os import path
 from pathlib import Path
 from typing import List, Optional, Union
@@ -22,7 +21,7 @@ from rich.text import Text
 from image_namer.config import Config
 from image_namer.filename_extractor import FilenameExtractor
 from image_namer.util.filesystem_helper import copy_file_creation_time, files_in_dir
-from image_namer.util.rich_helper import console
+from image_namer.util.logging import console
 
 IMAGE_DESCRIPTION = 'ImageDescription'
 THUMBNAIL_DIMENSIONS = (400, 400)
@@ -99,7 +98,10 @@ class ImageFile:
         exif_data.update([(EXIF_CODES[IMAGE_DESCRIPTION], self.ocr_text())])
 
         if dry_run:
-            console.print(Text("Dry run so no copy to '").append(str(new_file), style='color(221)').append("'"), style='dim')
+            console.print(
+                Text("Dry run so no copy to '").append(str(new_file), style='color(221)').append("'"),
+                style='dim')
+
             return new_file
 
         try:
@@ -131,7 +133,8 @@ class ImageFile:
     def __repr__(self) -> str:
         return f"ImageFile('{self.file_path}')"
 
-    def __rich_console__(self, _console: Console, options: ConsoleOptions) -> RenderResult:
+    def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
+        console.line(2)
         yield Panel(path.basename(self.file_path), expand=False, style='cyan')
 
         if self.ocr_text() is None:
