@@ -102,5 +102,8 @@ def test_filename(do_kwon_tweet):
     image_file._ocr_text = REPLY_TWEET_TEXT
     assert FilenameExtractor(image_file).filename() == 'do_kwon_debate_the_poor Tweet by @gedaominas replying to @tier10k: "The same thing happened with their SEPA transfers a couple of years ago. Just because Binance isn\'t licensed for money institution activities_ they have to re.jpeg'
 
+    image_file._ocr_text = TIMESTAMPED_TWEET_TEXT
+    assert FilenameExtractor(image_file).filename() == 'do_kwon_debate_the_poor Tweet by @tier10k: "_DB_ SEC Probe Into Kraken at an Advanced Stage and Could Lead to a Settlement in Coming Days: Bloomberg 3:55 PM _ Feb 8_ 2023 _ 77.3K Views".jpeg'
+
     image_file._ocr_text = GABOR_TWEET_TEXT
     assert FilenameExtractor(image_file).filename() == 'do_kwon_debate_the_poor Tweet by @gaborgurbacs: "I think this Coinbase media campaign will have the opposite effect. USDC users will learn about USDT and convert to USDT as they question the motivations and rationale of this c.jpeg'
