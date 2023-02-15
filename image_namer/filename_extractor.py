@@ -8,7 +8,7 @@ from rich.text import Text
 
 from image_namer.util.logging import console, log
 
-MAX_FILENAME_LENGTH = 255
+MAX_FILENAME_LENGTH = 225
 TWEET_REPLY_REGEX = re.compile('Replying to (@[a-zA-Z0-9]{3,15}).*?\\n(?P<body>.*)', re.DOTALL | re.MULTILINE)
 
 TWEET_REGEX = re.compile(
@@ -38,6 +38,7 @@ class FilenameExtractor:
 
             filename = f"{self.image_file.basename_without_ext} {filename_str}"
             filename = filename[0:self.available_char_count].rstrip()
+            filename = filename[0:-1] if filename.endswith('.') else filename
             filename = filename + self.image_file.extension
         else:
             filename = self.image_file.basename
