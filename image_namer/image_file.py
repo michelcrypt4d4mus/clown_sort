@@ -67,12 +67,6 @@ class ImageFile:
         self.ocr_attempted = True
         return self._ocr_text
 
-    def filename_str(self) -> str:
-        """Return a descriptive string usable in a filename."""
-        if self.ocr_text() is None:
-            return self.basename
-
-        return FilenameExtractor(self).filename()
 
     def set_image_description_exif_as_ocr_text(
             self,
@@ -93,7 +87,7 @@ class ImageFile:
                 logging.warning(f"Creating subdirectory '{destination_dir}'...")
                 destination_dir.mkdir()
 
-        new_file = destination_dir.joinpath(self.basename)
+        new_file = destination_dir.joinpath(self._new_basename())
         exif_data = self.raw_exif_dict()
         exif_data.update([(EXIF_CODES[IMAGE_DESCRIPTION], self.ocr_text())])
 
@@ -127,6 +121,13 @@ class ImageFile:
         """Return a key/value list of exif tags where keys are integers."""
         return Image.open(self.file_path).getexif()
 
+    def _new_basename(self) -> str:
+        """Return a descriptive string usable in a filename."""
+        if self.ocr_text() is None:
+            return self.basename
+
+        return FilenameExtractor(self).filename()
+
     def __str__(self) -> str:
         return str(self.file_path)
 
@@ -141,3 +142,4 @@ class ImageFile:
             yield Text("<None>", style='dim')
         else:
             yield Text(self.ocr_text(), style='dim')
+

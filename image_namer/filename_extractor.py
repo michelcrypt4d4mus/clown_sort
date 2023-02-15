@@ -20,8 +20,8 @@ REDDIT_POST_REGEX = re.compile(
     re.DOTALL | re.MULTILINE)
 
 REDDIT_REPLY_REGEX = re.compile(
-    '(?P<author>\\w{3,30})\\s+-\\s+\\d+\\s+(seconds|minutes|hours|days|months|years)\\s+ago\\s*(.*?)\\n(?P<body>.*?)Reply\\s+Give\\s+Award\\s+Share\\s+Report',
-    re.DOTALL | re.MULTILINE)
+    '(?P<author>\\w{3,30})\\s+(.*?)-\\s+\\d+\\s+(seconds|minutes|hours|hr\\.|days|months|years)\\s+ago\\s*(.*?)\\n(?P<body>.*?)(Reply\\s+)?Give\\s?Award\\s+Share\\s+Report',
+    re.DOTALL | re.MULTILINE | re.IGNORECASE)
 
 
 class FilenameExtractor:

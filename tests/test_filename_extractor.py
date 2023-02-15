@@ -147,6 +147,31 @@ People withdrew over 6B in days on Binance with zero impact.
 > adh ) Reply Give Award Share Report Save Follow"""
 
 
+REDDIT_R_CRYPTOCURRENCY_REPLY = """Si Roberto9410 i} 17.8k - 13 hr. ago
+Platinum | QC: CC 831.
+Wow the downfall of BUSD is something to see
+
+<p. 1<4 Giveaward Share Report Save Follow
+
+@ FacundoGabrielGuzman © 0-12hr. ago
+
+Platinum | QC: CC 29, BTC 21
+It won't be good. It would send bitcoin to the Mariana Trench
+<p.0 <> Giveaward Share Report Save Follow
+
+'S) Bunnywabbit13 i} 1.8k - 9 hr. ago
+
+Platinum | QC: CC 170 | ADA 10 | r/AMD 20
+
+Nothing bad will really happen as long as the peg is secured and everyone gets their
+money back.
+
+People will just change from BUSD to other stables.
+
+<p. 1<4 Giveaward Share Report Save Follow
+"""
+
+
 def test_filename(do_kwon_tweet):
     image_file = ImageFile(do_kwon_tweet)
     image_file._ocr_text = WUBLOCKCHAIN_TWEET_TEXT
@@ -170,3 +195,6 @@ def test_filename(do_kwon_tweet):
 
     image_file._ocr_text = REDDIT_REPLIES
     assert FilenameExtractor(image_file).filename() == 'do_kwon_debate_the_poor Reddit post by Fluffyhobbit: "Option 4. 80_ of us send crypto to cold storage and binance doesn\'t skip a beat Edit: forgot to put in doesn\'t_ _ 22 tb _".jpeg'
+
+    image_file._ocr_text = REDDIT_R_CRYPTOCURRENCY_REPLY
+    assert FilenameExtractor(image_file).filename() == 'do_kwon_debate_the_poor Reddit post by Roberto9410: "Wow the downfall of BUSD is something to see _p. 1_4".jpeg'
