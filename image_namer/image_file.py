@@ -7,6 +7,7 @@ Tags: https://exiftool.org/TagNames/EXIF.html
 """
 import io
 import logging
+import re
 from os import path
 from pathlib import Path
 from typing import List, Optional, Union
@@ -24,6 +25,7 @@ from image_namer.util.rich_helper import console
 
 IMAGE_DESCRIPTION = 'ImageDescription'
 THUMBNAIL_DIMENSIONS = (400, 400)
+TWEET_REGEX = re.compile('@[a-zA-Z0-9]{3,15}(\\.\\.\\.)?\\s{1,2}-\\s{1,2}(\\d{1,2}[smhd]|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)')
 
 EXIF_CODES = {
     IMAGE_DESCRIPTION: 270,
@@ -64,9 +66,17 @@ class ImageFile:
         self.ocr_attempted = True
         return self._ocr_text
 
+    def filename_text(self) -> Optional[str]:
+        """Return a descriptive string usable in a filename."""
+        if self.ocr_text() is None:
+            return None
+
+        self._ocr_text
+
     def set_image_description_exif_as_ocr_text(
             self,
-            destination_subdir: Optional[Union[Path, str]] = None
+            destination_subdir: Optional[Union[Path, str]] = None,
+            dry_run: bool = True
         ) -> Path:
         """
         Copies to a new file and injects the ImageDescription exif tag.
@@ -82,9 +92,14 @@ class ImageFile:
                 logging.warning(f"Creating subdirectory '{destination_dir}'...")
                 destination_dir.mkdir()
 
+        new_file = destination_dir.joinpath(self.basename)
         exif_data = self.raw_exif_dict()
         exif_data.update([(EXIF_CODES[IMAGE_DESCRIPTION], self.ocr_text())])
-        new_file = destination_dir.joinpath(self.basename)
+        self._is_tweet()
+
+        if dry_run:
+            console.print(Text("Dry run so no copy to '").append(str(new_file), style='color(221)').append("'"))
+            return new_file
 
         try:
             img = Image.open(self.file_path)
@@ -108,6 +123,18 @@ class ImageFile:
     def raw_exif_dict(self) -> Image.Exif:
         """Return a key/value list of exif tags where keys are integers."""
         return Image.open(self.file_path).getexif()
+
+    def _is_tweet(self) -> bool:
+        """Check if it's a screenshot of a tweet."""
+        if self.ocr_text() is None:
+            return False
+
+        if TWEET_REGEX.search(self.ocr_text()) is None:
+            console.print("NOT a tweet", style='color(158)')
+            return False
+        else:
+            console.print("YES it's a tweet", style='color(82)')
+            return True
 
     def __str__(self) -> str:
         return str(self.file_path)
