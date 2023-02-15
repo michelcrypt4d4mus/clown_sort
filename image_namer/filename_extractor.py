@@ -15,7 +15,9 @@ TWEET_REGEX = re.compile(
     '(@[a-zA-Z0-9]{3,15}(\\.\\.\\.)?)(\\s{1,2}-\\s{1,2}(\\d{1,2}[smhd]|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec).*?)?\\n(?P<body>.*)',
     re.DOTALL | re.MULTILINE)
 
-REDDIT_REGEX = re.compile('r/(?P<sub>\\w{3,30}) - Posted by u/(?P<user>\\w{3,30}) \\d+.*?\\n(?P<body>.*)', re.DOTALL | re.MULTILINE)
+REDDIT_REGEX = re.compile(
+    'r/(?P<sub>\\w{3,30}) - Posted by u/(?P<user>\\w{3,30}) \\d+.*?\\n(?P<body>.*)',
+    re.DOTALL | re.MULTILINE)
 
 
 class FilenameExtractor:
