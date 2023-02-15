@@ -30,12 +30,15 @@ class FilenameExtractor:
 
         if self.text is None:
             filename = self.image_file.basename
-        elif self._is_tweet():
-            filename = f"{self.image_file.basename_without_ext} {self._filename_str_for_tweet()}"
-            filename = filename[0:self.available_char_count].rstrip() + self.image_file.extension
-        elif self._is_reddit():
-            filename = f"{self.image_file.basename_without_ext} {self._filename_str_for_reddit()}"
-            filename = filename[0:self.available_char_count].rstrip() + self.image_file.extension
+        elif self._is_tweet() or self._is_reddit():
+            if self._is_tweet():
+                filename_str = self._filename_str_for_tweet()
+            else:
+                filename_str = self._filename_str_for_reddit()
+
+            filename = f"{self.image_file.basename_without_ext} {filename_str}"
+            filename = filename[0:self.available_char_count].rstrip()
+            filename = filename + self.image_file.extension
         else:
             filename = self.image_file.basename
 
