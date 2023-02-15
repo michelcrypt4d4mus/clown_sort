@@ -4,10 +4,7 @@ from pathlib import Path
 from image_namer.config import Config
 
 TESTS_DIR = Path(getcwd()).joinpath('tests')
-FIXTURES_DIR = TESTS_DIR.joinpath('fixtures')
-TMP_DIR = TESTS_DIR.joinpath('tmp')
-SORTED_DIR = TMP_DIR.joinpath('Sorted')
-PROCESSED_DIR = TMP_DIR.joinpath('Processed')
+
 
 
 def test_config_folders():

@@ -4,6 +4,7 @@ SIGNATURE = """Signature
 
 Bank"""
 
+
 def test_get_sort_folder():
     assert get_sort_folder('fuck crypto.com it sucks') == 'Crypto.com'
     assert get_sort_folder('fuck $cro it sucks') == 'Crypto.com'

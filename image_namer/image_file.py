@@ -20,13 +20,12 @@ from rich.panel import Panel
 from rich.text import Text
 
 from image_namer.config import Config
+from image_namer.filename_extractor import FilenameExtractor
 from image_namer.util.filesystem_helper import copy_file_creation_time, files_in_dir
 from image_namer.util.rich_helper import console
 
 IMAGE_DESCRIPTION = 'ImageDescription'
 THUMBNAIL_DIMENSIONS = (400, 400)
-TWEET_REGEX = re.compile('(@[a-zA-Z0-9]{3,15}(\\.\\.\\.)?)\\s{1,2}-\\s{1,2}(\\d{1,2}[smhd]|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)')
-TWEET_REPLY_REGEX = re.compile('Replying to (@[a-zA-Z0-9]{3,15})')
 
 EXIF_CODES = {
     IMAGE_DESCRIPTION: 270,
@@ -69,28 +68,12 @@ class ImageFile:
         self.ocr_attempted = True
         return self._ocr_text
 
-    def filename_str(self) -> Optional[str]:
+    def filename_str(self) -> str:
         """Return a descriptive string usable in a filename."""
-        if self._is_tweet():
-            return f"{self.basename_without_ext} {self._filename_str_for_tweet()}{self.extension}"
-        else:
-            console.print("NOT a tweet", style='color(158)')
+        if self.ocr_text() is None:
             return self.basename
 
-    def _filename_str_for_tweet(self) -> str:
-        tweet_match = self._is_tweet()
-        author = tweet_match.group(1)
-        filename_text = f"Tweet by {author}"
-        log_txt = Text("YES it's a tweet by ", style='color(82)').append(author, style='color(178)')
-        reply_to = TWEET_REPLY_REGEX.search(self.ocr_text())
-
-        if reply_to is not None:
-            filename_text += f" replying to {reply_to.group(1)}"
-            log_txt.append("\n    -> Replying to ", style='color(23)')
-            log_txt.append(reply_to.group(1), style='color(178)')
-
-        console.print(log_txt)
-        return filename_text
+        return FilenameExtractor(self.ocr_text(), self).filename()
 
     def set_image_description_exif_as_ocr_text(
             self,
@@ -141,13 +124,6 @@ class ImageFile:
     def raw_exif_dict(self) -> Image.Exif:
         """Return a key/value list of exif tags where keys are integers."""
         return Image.open(self.file_path).getexif()
-
-    def _is_tweet(self) -> Optional[re.Match]:
-        """Check if it's a screenshot of a tweet."""
-        if self.ocr_text() is None:
-            return None
-
-        return TWEET_REGEX.search(self.ocr_text())
 
     def __str__(self) -> str:
         return str(self.file_path)
