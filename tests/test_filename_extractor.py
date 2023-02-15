@@ -175,6 +175,7 @@ People will just change from BUSD to other stables.
 
 @pytest.fixture(scope='session')
 def ocr_image(do_kwon_tweet):
+    """Requires the private varibale _ocr_text to be set manually."""
     image_file = ImageFile(do_kwon_tweet)
     image_file.ocr_attempted = True
     return image_file
