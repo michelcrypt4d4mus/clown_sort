@@ -92,6 +92,7 @@ Tether team work and act like professionals. Tether works with both
 partners and competitors in a respectful and collaborative manner. Tether
 cares about the industry. After all: Rising tides lift all boats."""
 
+
 REDDIT_POST = """© r/binance - Posted by u/TheLostWander_er 13 hours ago
 
 send cash feature is temporarily disable.
@@ -100,6 +101,38 @@ I was trying to withdraw cash since last week and I am seeing this message every
 cash feature. Am I the only one getting this? What else can I do to send cash?
 
 i) 5 Comments Award Vad Share im Save"""
+
+
+REDDIT_REPLIES = """3 Fluffyhobbit - 5 days ago - edited 5 days ago
+
+Option 4. 80% of us send crypto to cold storage and binance doesn't skip a beat
+Edit: forgot to put in doesn't*
+
+> 22 tb ) Reply Give Award Share Report Save Follow
+
+2 LeftAct8968 OP - 5 days ago
+
+I love it. That’s my plan! Haha
+
+> adh i) Reply Give Award Share Report Save Follow
+
+BS Fluffyhobbit - 5 days ago
+
+I feel confident binance can handle our $$ moving out all at once since they just had some
+billion dollar transfer days & didn't pause transfers @ @
+
+> 6 ib i) Reply Give Award Share Report Save Follow
+
+a ry DisIsGoodForBitcoin - 5 days ago
+
+& MatrixName - 4 days ago
+
+Exactly!
+OP believes that little 1B worth of Voyager assets would impact Binance lol
+
+People withdrew over 6B in days on Binance with zero impact.
+
+> adh ) Reply Give Award Share Report Save Follow"""
 
 
 def test_filename(do_kwon_tweet):
@@ -119,3 +152,6 @@ def test_filename(do_kwon_tweet):
 
     image_file._ocr_text = REDDIT_POST
     assert FilenameExtractor(image_file).filename() == 'do_kwon_debate_the_poor Reddit post by TheLostWander_er in binance: "send cash feature is temporarily disable. I was trying to withdraw cash since last week and I am seeing this message every time.jpeg'
+
+    image_file._ocr_text = REDDIT_REPLIES
+    assert FilenameExtractor(image_file).filename() == 'do_kwon_debate_the_poor Reddit post by Fluffyhobbit: "Option 4. 80_ of us send crypto to cold storage and binance doesn\'t skip a beat Edit: forgot to put in doesn\'t_ _ 22 tb _".jpeg'
