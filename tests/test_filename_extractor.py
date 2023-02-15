@@ -1,3 +1,5 @@
+import pytest
+
 from image_namer.filename_extractor import FilenameExtractor
 from image_namer.image_file import ImageFile
 
@@ -171,27 +173,31 @@ People will just change from BUSD to other stables.
 <p. 1<4 Giveaward Share Report Save Follow
 """
 
-
-def test_filename(do_kwon_tweet):
+@pytest.fixture(scope='session')
+def ocr_image(do_kwon_tweet):
     image_file = ImageFile(do_kwon_tweet)
     image_file.ocr_attempted = True
-    image_file._ocr_text = WUBLOCKCHAIN_TWEET_TEXT
+    return image_file
 
-    # Tweets
-    assert FilenameExtractor(image_file).filename() == 'Tweet by @WuBlockchain: "a16z voted 15 million UNI against the final proposal to deploy Uniswap V3 on BNB Chain proposed by OxPlasma Labs. The proposal uses Wormhole as a cross_chain bridge. a16z o" do_kwon_debate_the_poor.jpeg'
-    image_file._ocr_text = REPLY_TWEET_TEXT
-    assert FilenameExtractor(image_file).filename() == 'Tweet by @gedaominas replying to @tier10k: "The same thing happened with their SEPA transfers a couple of years ago. Just because Binance isn\'t licensed for money institution activities_ they have" do_kwon_debate_the_poor.jpeg'
-    image_file._ocr_text = TIMESTAMPED_TWEET_TEXT
-    assert FilenameExtractor(image_file).filename() == 'Tweet by @tier10k: "_DB_ SEC Probe Into Kraken at an Advanced Stage and Could Lead to a Settlement in Coming Days: Bloomberg 3:55 PM _ Feb 8_ 2023 _ 77.3K Views" do_kwon_debate_the_poor.jpeg'
-    image_file._ocr_text = GABOR_TWEET_TEXT
-    assert FilenameExtractor(image_file).filename() == 'Tweet by @gaborgurbacs: "I think this Coinbase media campaign will have the opposite effect. USDC users will learn about USDT and convert to USDT as they question the motivations and rationale of" do_kwon_debate_the_poor.jpeg'
-    image_file._ocr_text = BAD_OCR_TWEET
-    assert FilenameExtractor(image_file).filename() == 'Tweet by @ASYB111: "Replying to @cz_binance Any updates on send cash feature? It is temporarily disabled. 1o_ td iv_ ily 399 a_" do_kwon_debate_the_poor.jpeg'
 
-    # Reddit
-    image_file._ocr_text = REDDIT_POST
-    assert FilenameExtractor(image_file).filename() == 'Reddit post by TheLostWander_er in binance: "send cash feature is temporarily disable. I was trying to withdraw cash since last week and I am seeing this message every time I try the send cash fe" do_kwon_debate_the_poor.jpeg'
-    image_file._ocr_text = REDDIT_REPLIES
-    assert FilenameExtractor(image_file).filename() == 'Reddit post by Fluffyhobbit: "Option 4. 80_ of us send crypto to cold storage and binance doesn\'t skip a beat Edit: forgot to put in doesn\'t_ _ 22 tb _" do_kwon_debate_the_poor.jpeg'
-    image_file._ocr_text = REDDIT_R_CRYPTOCURRENCY_REPLY
-    assert FilenameExtractor(image_file).filename() == 'Reddit post by Roberto9410: "Wow the downfall of BUSD is something to see _p. 1_4" do_kwon_debate_the_poor.jpeg'
+def test_tweet_filenames(ocr_image):
+    ocr_image._ocr_text = WUBLOCKCHAIN_TWEET_TEXT
+    assert FilenameExtractor(ocr_image).filename() == 'Tweet by @WuBlockchain: "a16z voted 15 million UNI against the final proposal to deploy Uniswap V3 on BNB Chain proposed by OxPlasma Labs. The proposal uses Wormhole as a cross_chain bridge. a16z o" do_kwon_debate_the_poor.jpeg'
+    ocr_image._ocr_text = REPLY_TWEET_TEXT
+    assert FilenameExtractor(ocr_image).filename() == 'Tweet by @gedaominas replying to @tier10k: "The same thing happened with their SEPA transfers a couple of years ago. Just because Binance isn\'t licensed for money institution activities_ they have" do_kwon_debate_the_poor.jpeg'
+    ocr_image._ocr_text = TIMESTAMPED_TWEET_TEXT
+    assert FilenameExtractor(ocr_image).filename() == 'Tweet by @tier10k: "_DB_ SEC Probe Into Kraken at an Advanced Stage and Could Lead to a Settlement in Coming Days: Bloomberg 3:55 PM _ Feb 8_ 2023 _ 77.3K Views" do_kwon_debate_the_poor.jpeg'
+    ocr_image._ocr_text = GABOR_TWEET_TEXT
+    assert FilenameExtractor(ocr_image).filename() == 'Tweet by @gaborgurbacs: "I think this Coinbase media campaign will have the opposite effect. USDC users will learn about USDT and convert to USDT as they question the motivations and rationale of" do_kwon_debate_the_poor.jpeg'
+    ocr_image._ocr_text = BAD_OCR_TWEET
+    assert FilenameExtractor(ocr_image).filename() == 'Tweet by @ASYB111: "Replying to @cz_binance Any updates on send cash feature? It is temporarily disabled. 1o_ td iv_ ily 399 a_" do_kwon_debate_the_poor.jpeg'
+
+
+def test_reddit_filenames(ocr_image):
+    ocr_image._ocr_text = REDDIT_POST
+    assert FilenameExtractor(ocr_image).filename() == 'Reddit post by TheLostWander_er in binance: "send cash feature is temporarily disable. I was trying to withdraw cash since last week and I am seeing this message every time I try the send cash fe" do_kwon_debate_the_poor.jpeg'
+    ocr_image._ocr_text = REDDIT_REPLIES
+    assert FilenameExtractor(ocr_image).filename() == 'Reddit post by Fluffyhobbit: "Option 4. 80_ of us send crypto to cold storage and binance doesn\'t skip a beat Edit: forgot to put in doesn\'t_ _ 22 tb _" do_kwon_debate_the_poor.jpeg'
+    ocr_image._ocr_text = REDDIT_R_CRYPTOCURRENCY_REPLY
+    assert FilenameExtractor(ocr_image).filename() == 'Reddit post by Roberto9410: "Wow the downfall of BUSD is something to see _p. 1_4" do_kwon_debate_the_poor.jpeg'
+
