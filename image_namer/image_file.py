@@ -37,6 +37,8 @@ class ImageFile:
     def __init__(self, file_path: Union[str, Path]) -> None:
         self.file_path: Path = Path(file_path)
         self.basename: str = path.basename(file_path)
+        self.basename_without_ext: str = str(Path(self.basename).with_suffix(''))
+        self.extension: str = self.file_path.suffix
         self.ocr_attempted: bool = False
         self._ocr_text: Optional[str] = None
 
@@ -67,12 +69,28 @@ class ImageFile:
         self.ocr_attempted = True
         return self._ocr_text
 
-    def filename_text(self) -> Optional[str]:
+    def filename_str(self) -> Optional[str]:
         """Return a descriptive string usable in a filename."""
-        if self.ocr_text() is None:
-            return None
+        if self._is_tweet():
+            return f"{self.basename_without_ext} {self._filename_str_for_tweet()}{self.extension}"
+        else:
+            console.print("NOT a tweet", style='color(158)')
+            return self.basename
 
-        self._ocr_text
+    def _filename_str_for_tweet(self) -> str:
+        tweet_match = self._is_tweet()
+        author = tweet_match.group(1)
+        filename_text = f"Tweet by {author}"
+        log_txt = Text("YES it's a tweet by ", style='color(82)').append(author, style='color(178)')
+        reply_to = TWEET_REPLY_REGEX.search(self.ocr_text())
+
+        if reply_to is not None:
+            filename_text += f" replying to {reply_to.group(1)}"
+            log_txt.append("\n    -> Replying to ", style='color(23)')
+            log_txt.append(reply_to.group(1), style='color(178)')
+
+        console.print(log_txt)
+        return filename_text
 
     def set_image_description_exif_as_ocr_text(
             self,
@@ -96,7 +114,6 @@ class ImageFile:
         new_file = destination_dir.joinpath(self.basename)
         exif_data = self.raw_exif_dict()
         exif_data.update([(EXIF_CODES[IMAGE_DESCRIPTION], self.ocr_text())])
-        self._is_tweet()
 
         if dry_run:
             console.print(Text("Dry run so no copy to '").append(str(new_file), style='color(221)').append("'"), style='dim')
@@ -125,27 +142,12 @@ class ImageFile:
         """Return a key/value list of exif tags where keys are integers."""
         return Image.open(self.file_path).getexif()
 
-    def _is_tweet(self) -> bool:
+    def _is_tweet(self) -> Optional[re.Match]:
         """Check if it's a screenshot of a tweet."""
         if self.ocr_text() is None:
-            return False
+            return None
 
-        match = TWEET_REGEX.search(self.ocr_text())
-
-        if match is None:
-            console.print("NOT a tweet", style='color(158)')
-            return False
-        else:
-            author = match.group(1)
-            txt = Text("YES it's a tweet by ", style='color(82)').append(author, style='color(178)')
-            reply_to = TWEET_REPLY_REGEX.search(self.ocr_text())
-
-            if reply_to is not None:
-                txt.append("\n    -> Replying to ", style='color(23)')
-                txt.append(reply_to.group(1), style='color(178)')
-
-            console.print(txt)
-            return True
+        return TWEET_REGEX.search(self.ocr_text())
 
     def __str__(self) -> str:
         return str(self.file_path)

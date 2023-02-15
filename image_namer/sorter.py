@@ -105,6 +105,7 @@ def sort_file(image_file: ImageFile, dry_run: bool = True) -> None:
         for sort_folder in sort_folders:
             image_file.set_image_description_exif_as_ocr_text(sort_folder)
 
+    console.print(Text("DESTINATION BASENAME: ").append(image_file.filename_str(), style='magenta'))
     processed_file_path = Config.processed_screenshots_dir.joinpath(image_file.basename)
 
     if dry_run:
