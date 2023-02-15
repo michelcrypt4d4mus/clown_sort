@@ -9,19 +9,26 @@ from rich.text import Text
 from image_namer.util.logging import console, log
 
 MAX_FILENAME_LENGTH = 225
-TWEET_REPLY_REGEX = re.compile('Replying to (@[a-zA-Z0-9]{3,15}).*?\\n(?P<body>.*)', re.DOTALL | re.MULTILINE)
+
+TWEET_REPLY_REGEX = re.compile(
+    'Replying to (@[a-zA-Z0-9]{3,15}).*?\\n(?P<body>.*)',
+    re.DOTALL | re.MULTILINE
+)
 
 TWEET_REGEX = re.compile(
     '(@[a-zA-Z0-9]{3,15}(\\.\\.\\.)?)(\\s{1,2}-\\s{1,2}([\\dti]{1,2}[smhd]|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec).*?)?\\n(?P<body>.*)',
-    re.DOTALL | re.MULTILINE)
+    re.DOTALL | re.MULTILINE
+)
 
 REDDIT_POST_REGEX = re.compile(
     'r/(?P<sub>\\w{3,30}) - Posted by u/(?P<author>\\w{3,30}) \\d+.*?\\n(?P<body>.*)',
-    re.DOTALL | re.MULTILINE)
+    re.DOTALL | re.MULTILINE
+)
 
 REDDIT_REPLY_REGEX = re.compile(
     '(?P<author>\\w{3,30})\\s+(.*?)-\\s+\\d+\\s+(seconds|minutes|hours|hr\\.|days|months|years)\\s+ago\\s*(.*?)\\n(?P<body>.*?)(Reply\\s+)?Give\\s?Award\\s+Share\\s+Report',
-    re.DOTALL | re.MULTILINE | re.IGNORECASE)
+    re.DOTALL | re.MULTILINE | re.IGNORECASE
+)
 
 
 class FilenameExtractor:
@@ -42,8 +49,7 @@ class FilenameExtractor:
             else:
                 filename_str = self._filename_str_for_reddit()
 
-            filename = f"{self.image_file.basename_without_ext} {filename_str}"
-            filename = filename[0:self.available_char_count].rstrip()
+            filename = f"{filename_str} {self.image_file.basename_without_ext}"
             filename = filename[0:-1] if filename.endswith('.') else filename
             filename = filename + self.image_file.extension
         else:
@@ -107,5 +113,6 @@ class FilenameExtractor:
         body = ' '.join(body.splitlines()).replace('\\s+', ' ')
         log.debug(f"\nBody flattened:\n{body}\n")
         body = re.sub('’', "'", body).replace('|', 'I').replace(',', ',')
-        body = re.sub('[^0-9a-zA-Z@.?_$:\'" ]+', '_', body).strip()
+        body = re.sub('[^0-9a-zA-Z@.?_$:\'" ]+', '_', body)
+        body = body[0:self.available_char_count - len(filename_text) - 2].strip()
         return f'{filename_text}: "{body}"'.replace('  ', ' ')
