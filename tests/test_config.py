@@ -1,15 +1,6 @@
-from os import getcwd
-from pathlib import Path
-
-from image_namer.config import Config
-
-TESTS_DIR = Path(getcwd()).joinpath('tests')
+from tests.conftest import PROCESSED_DIR, SORTED_DIR
 
 
-
-def test_config_folders():
-    Config.set_directories(FIXTURES_DIR, TMP_DIR)
+def test_config_folders(test_config):
     assert SORTED_DIR.is_dir()
     assert PROCESSED_DIR.is_dir()
-    SORTED_DIR.rmdir()
-    PROCESSED_DIR.rmdir()

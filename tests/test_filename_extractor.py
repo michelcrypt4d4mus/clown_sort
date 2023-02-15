@@ -5,4 +5,4 @@ TEXT = 'foo'
 
 
 def test_filename(do_kwon_tweet):
-    filename = FilenameExtractor(ImageFile(do_kwon_tweet()))
+    filename = FilenameExtractor(ImageFile(do_kwon_tweet))

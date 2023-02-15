@@ -73,7 +73,7 @@ class ImageFile:
         if self.ocr_text() is None:
             return self.basename
 
-        return FilenameExtractor(self.ocr_text(), self).filename()
+        return FilenameExtractor(self).filename()
 
     def set_image_description_exif_as_ocr_text(
             self,
