@@ -1,5 +1,5 @@
 import importlib.resources
-from os import environ, path, pardir, remove
+from os import path, pardir
 from pathlib import Path
 #environ['INVOKED_BY_PYTEST'] = 'True'
 

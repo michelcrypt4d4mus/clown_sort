@@ -1,39 +1,17 @@
 """
 Sort images based on the extracted contents.
 """
-import csv
-import re
 import shutil
-from collections import namedtuple
 from pathlib import Path
 from typing import List, Optional, Union
 
 from rich.panel import Panel
 from rich.text import Text
 
-from image_namer.config import DEFAULT_SCREENSHOTS_DIR, CRYPTO_RULES_PATH, Config
+from image_namer.config import Config
 from image_namer.util.filesystem_helper import copy_file_creation_time
 from image_namer.util.logging import console, copied_file_log_message, log
 from image_namer.util.string_helper import comma_join
-
-from image_namer.util.argument_parser import PACKAGE_NAME
-
-SortRule = namedtuple('SortRule', ['folder', 'regex'])
-
-JUSTIN_SUN = 'Justin Sun'
-SORTED_DIR = DEFAULT_SCREENSHOTS_DIR.joinpath('Sorted')
-PROCESSED_DIR = DEFAULT_SCREENSHOTS_DIR.joinpath('Processed')
-
-
-def load_rules_csv(file_path: Union[Path, str]) -> List[SortRule]:
-    with open(Path(file_path), mode='r') as csvfile:
-        return [
-            SortRule(row['folder'], re.compile(row['regex'], re.IGNORECASE | re.MULTILINE))
-            for row in csv.DictReader(csvfile, delimiter=',')
-        ]
-
-
-SORT_RULES = load_rules_csv(str(CRYPTO_RULES_PATH))
 
 
 def get_sort_folders(search_string: Optional[str]) -> List[str]:
@@ -41,7 +19,7 @@ def get_sort_folders(search_string: Optional[str]) -> List[str]:
     if search_string is None:
         return []
 
-    return [sr.folder for sr in SORT_RULES if sr.regex.search(search_string)]
+    return [sr.folder for sr in Config.sort_rules if sr.regex.search(search_string)]
 
 
 def sort_file_by_ocr(image_file: 'ImageFile', dry_run: bool = True) -> None:
@@ -54,7 +32,7 @@ def sort_file_by_ocr(image_file: 'ImageFile', dry_run: bool = True) -> None:
         image_file.set_image_description_exif_as_ocr_text(dry_run=dry_run)
     else:
         console.print(Text('FOLDERS: ', style='magenta') + comma_join(sort_folders))
-        possible_old_file = SORTED_DIR.joinpath(image_file.basename)
+        possible_old_file = Config.sorted_screenshots_dir.joinpath(image_file.basename)
 
         if possible_old_file.is_file():
             console.print(Text(f"WARNING: Deleting unsorted file '{possible_old_file}'...", style='red'))

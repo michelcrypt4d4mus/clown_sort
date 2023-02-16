@@ -1,18 +1,23 @@
 """
 Global configuration.
 """
+import csv
 import importlib.resources
 import logging
-from os import pardir, path
+import re
+from collections import namedtuple
+from os import environ
 from pathlib import Path
 from typing import List, Optional, Union
 
 from image_namer.util.filesystem_helper import subdirs_of_dir
 
+SortRule = namedtuple('SortRule', ['folder', 'regex'])
+
 PACKAGE_NAME = 'image_namer'
 DEFAULT_SCREENSHOTS_DIR = Path.home().joinpath('Pictures', 'Screenshots')
 SORTING_RULES_DIR = importlib.resources.files(PACKAGE_NAME).joinpath('sorting_rules')
-CRYPTO_RULES_PATH = SORTING_RULES_DIR.joinpath('crypto.csv')
+CRYPTO_RULES_PATH = environ.get('SCREENSHOT_SORTER_RULES_CSV_PATH', SORTING_RULES_DIR.joinpath('crypto.csv'))
 
 
 class Config:
@@ -25,6 +30,7 @@ class Config:
             destination_dir: Optional[Union[str, Path]] = None
     ) -> None:
         """Set the directories to find screenshots in and sort screenshots to."""
+        cls.sort_rules = cls._load_rules_csv(str(CRYPTO_RULES_PATH))
         cls.screenshots_dir: Path = Path(screenshots_dir)
         cls.destination_dir: Path = Path(destination_dir or screenshots_dir)
         cls.sorted_screenshots_dir = cls.destination_dir.joinpath('Sorted')
@@ -39,3 +45,11 @@ class Config:
     def get_sort_dirs(cls) -> List[str]:
         """Returns a list of the subdirectories already created for sorted images."""
         return sorted(subdirs_of_dir(cls.sorted_screenshots_dir), key=lambda d: d.lower())
+
+    @classmethod
+    def _load_rules_csv(cls, file_path: Union[Path, str]) -> List[SortRule]:
+        with open(Path(file_path), mode='r') as csvfile:
+            return [
+                SortRule(row['folder'], re.compile(row['regex'], re.IGNORECASE | re.MULTILINE))
+                for row in csv.DictReader(csvfile, delimiter=',')
+            ]
