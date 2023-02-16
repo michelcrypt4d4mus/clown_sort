@@ -1,0 +1,64 @@
+folder,regex
+3ac,3ac|Three ?Arrows? Capital
+A16Z,a16z|andreessen|packym
+Aave,aave
+AAX,aax
+Avalanche,Avax|avalanche
+Banks,\$CUBI|Customers Ban(k|corp)|SEBA[^a-z]|Cross\s?River
+Bankless,Bankless
+Binance,binance|biconomy|bnb|cz|bifinity|binaryx|billance|changpeng|joselito|paysafe|SwipeIO|Swipe\s?Wallet|keyway|key\s?vision\s?dev
+Bitstamp,Bitstamp
+Bitzlato,Bitzlato
+Blockchain8,Blockchain8|tom ?emmer|ritchie ?torres|repritchie
+BlockFi,BlockFi
+Bros,cryptomanran|100trillionUSD|nic[_ ]?carter|bitboy|basedkarbon|thecryptolark|adam\s?back
+Cardano,Cardano|\$ADA
+Celsius,celsius|mashinsky|levity\s?and\s?love
+Circle,[@#]circle|usdc
+Coinbase,Coinbase|\$COIN|brian[_ ]?armstrong
+Crypto.com,crypto[._]?com|CDC|[$#]CRO|\sCRO\s
+DCG,DCG|digital\s*currency\s*group|sh?ill?bert|Grayscale|GBTC
+El Salvador,El Salvador|Bukele
+FTX,FTX|FTT|SBF|Trabucco|Bankman|Ellison|Nishad|Alameda|Moonstone|friedberg
+Gemini,Gemini|winklev
+Genesis,Genesis|Michael\s?Moro
+Hex,Hex\s|[#$]Hex|Pulsechain|Richard\s?Heart
+Hoo,Hoo\s?Exchange|#Hoo\s|Rexy\s?(Hoo|Wang)
+Huobi,huobi
+Justin Sun,justin\s*sun|pgala|sunswap
+Kinesis,kinesis|kvt|ABX|KAG
+Kraken,kraken|payward
+KuCoin,kucoin
+North Korea,lazarus|North\sKorea
+Paul LeRoux,leroux
+TerraLuna,luna\s|do kwon|stablekwon
+MakerDAO,makerdao
+Marathon,\$MARA|marathon
+Mario Nawfal,marionawfal
+Memes,\smeme
+Miners,bitcoin ?min(ing|er)|\$(CORZ|IRIS|ARGO|HUT|HIVE|CAN|BLOK|BTCM)|Core ?Scientific|Iris\s?Energy|Blockstream
+MSTR,Saylor|MSTR
+Nexo,Nexo
+OKX,oke?[cx]|star xu
+OpenPayd,openpayd|CFD\s?Team
+OpenSea,OpenSea
+Paxos,paxos
+Payrnet,payrnet|railsr|railsbank
+Pi,\$PI|PiNetwork
+Prime Trust,Prime[-\s]?Trust
+PVBC,PVBC|BankProv
+Revolut,revolut\s
+RIOT,riot
+Safemoon,Safemoon
+SBNY,SBNY|Signature[-\s]*Bank|Signet
+Silvergate,\$SI|Silvergate|Alan\s?Lane|Eisele|[\s#]SEN\s
+Solana,Solana|Serum
+Tether,tether|usdt|paolo|friedberg|hoegner|Noble\s?Bank|Deltec[^\']|bitfinex[^e]
+Transactive Systems UAB,Transactive
+TrueUSD,TUSD|TrueUSD
+Tron,\stron\s|tron(block| )?chain|trondao
+TUSD,tusd
+Vauld,Vauld
+Voyager,voyager
+wintermute,wintermute
+Wirecard,wirecard

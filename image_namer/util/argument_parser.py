@@ -1,18 +1,13 @@
 import sys
 from argparse import ArgumentError, ArgumentParser
-from collections import namedtuple
-from functools import partial, update_wrapper
 from importlib.metadata import version
-from os import environ, getcwd, path
-from typing import List
 
 from rich_argparse_plus import RichHelpFormatterPlus
 
-from image_namer.config import Config
+from image_namer.config import Config, PACKAGE_NAME
 
 DESCRIPTION = "Sort screenshots according to rules."
 EPILOG = "Currently focused on crypto related screenshots."
-PACKAGE_NAME = 'image_namer'
 
 RichHelpFormatterPlus.choose_theme('prince')
 

@@ -1,13 +1,18 @@
 """
 Global configuration.
 """
+import importlib.resources
 import logging
+from os import pardir, path
 from pathlib import Path
 from typing import List, Optional, Union
 
 from image_namer.util.filesystem_helper import subdirs_of_dir
 
+PACKAGE_NAME = 'image_namer'
 DEFAULT_SCREENSHOTS_DIR = Path.home().joinpath('Pictures', 'Screenshots')
+SORTING_RULES_DIR = importlib.resources.files(PACKAGE_NAME).joinpath('sorting_rules')
+CRYPTO_RULES_PATH = SORTING_RULES_DIR.joinpath('crypto.csv')
 
 
 class Config:

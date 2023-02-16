@@ -1,90 +1,38 @@
 """
 Sort images based on the extracted contents.
 """
+import csv
+import re
 import shutil
+from collections import namedtuple
 from pathlib import Path
-from re import compile, IGNORECASE, MULTILINE
 from typing import List, Optional, Union
 
 from rich.panel import Panel
 from rich.text import Text
 
-from image_namer.config import DEFAULT_SCREENSHOTS_DIR, Config
+from image_namer.config import DEFAULT_SCREENSHOTS_DIR, CRYPTO_RULES_PATH, Config
 from image_namer.util.filesystem_helper import copy_file_creation_time
 from image_namer.util.logging import console, copied_file_log_message, log
 from image_namer.util.string_helper import comma_join
 
+from image_namer.util.argument_parser import PACKAGE_NAME
+
+SortRule = namedtuple('SortRule', ['folder', 'regex'])
+
+
+def load_rules_csv(file_path: Union[Path, str]) -> List[SortRule]:
+    with open(Path(file_path), mode='r') as csvfile:
+        return [
+            SortRule(row['folder'], re.compile(row['regex'], re.IGNORECASE | re.MULTILINE))
+            for row in csv.DictReader(csvfile, delimiter=',')
+        ]
+
+
 JUSTIN_SUN = 'Justin Sun'
 SORTED_DIR = DEFAULT_SCREENSHOTS_DIR.joinpath('Sorted')
 PROCESSED_DIR = DEFAULT_SCREENSHOTS_DIR.joinpath('Processed')
-MEMES = 'Memes'
-
-# If these strings are found, move the screenshot to that directory
-SORT_SEARCH_STRINGS = [
-    [compile('3ac|Three ?Arrows? Capital', IGNORECASE), '3ac'],
-    [compile('a16z|andreessen|packym', IGNORECASE), 'A16Z'],
-    [compile('aave', IGNORECASE), 'Aave'],
-    [compile('aax', IGNORECASE), 'AAX'],
-    [compile('Avax|avalanche', IGNORECASE), 'Avalanche'],
-    [compile('\\$CUBI|Customers Ban(k|corp)|SEBA[^a-z]|Cross\\s?River', IGNORECASE), 'Banks'],
-    [compile('Bankless', IGNORECASE), 'Bankless'],
-    [compile('binance|biconomy|bnb|cz|bifinity|binaryx|billance|changpeng|joselito|paysafe|SwipeIO|Swipe\\s?Wallet|keyway|key\\s?vision\\s?dev', IGNORECASE), 'Binance'],
-    [compile('Bitstamp', IGNORECASE), 'Bitstamp'],
-    [compile('Bitzlato', IGNORECASE), 'Bitzlato'],
-    [compile('Blockchain8|tom ?emmer|ritchie ?torres|repritchie', IGNORECASE), 'Blockchain8'],
-    [compile('BlockFi', IGNORECASE), 'BlockFi'],
-    [compile('cryptomanran|100trillionUSD|nic[_ ]?carter|bitboy|basedkarbon|thecryptolark|adam\\s?back', IGNORECASE), 'Bros'],
-    [compile('Cardano|\\$ADA', IGNORECASE), 'Cardano'],
-    [compile('celsius|mashinsky|levity\\s?and\\s?love', IGNORECASE), 'Celsius'],
-    [compile('[@#]circle|usdc', IGNORECASE), 'Circle'],
-    [compile('Coinbase|\\$COIN|brian[_ ]?armstrong', IGNORECASE), 'Coinbase'],
-    [compile('crypto[._]?com|CDC|[$#]CRO|\\sCRO\\s', IGNORECASE), 'Crypto.com'],
-    [compile('DCG|digital\\s*currency\\s*group|sh?ill?bert|Grayscale|GBTC', IGNORECASE), 'DCG'],
-    [compile('El Salvador|Bukele', IGNORECASE), 'El Salvador'],
-    [compile('FTX|FTT|SBF|Trabucco|Bankman|Ellison|Nishad|Alameda|Moonstone|friedberg', IGNORECASE), 'FTX'],
-    [compile('Gemini|winklev', IGNORECASE), 'Gemini'],
-    [compile('Genesis|Michael\\s?Moro', IGNORECASE), 'Genesis'],
-    [compile('Hex\\s|[#$]Hex|Pulsechain|Richard\\s?Heart', IGNORECASE), 'Hex'],
-    [compile('Hoo\\s?Exchange|#Hoo\\s|Rexy\\s?(Hoo|Wang)', IGNORECASE), 'Hoo'],
-    [compile('huobi', IGNORECASE), 'Huobi'],
-    [compile('justin\\s*sun|pgala|sunswap', IGNORECASE), JUSTIN_SUN],
-    [compile('kinesis|kvt|ABX|KAG', IGNORECASE), 'Kinesis'],
-    [compile('kraken|payward', IGNORECASE), 'Kraken'],
-    [compile('kucoin', IGNORECASE), 'KuCoin'],
-    [compile('lazarus|North\\sKorea', IGNORECASE), 'North Korea'],
-    [compile('leroux', IGNORECASE), 'Paul LeRoux'],
-    [compile('luna\\s|do kwon|stablekwon', IGNORECASE), 'TerraLuna'],
-    [compile('makerdao', IGNORECASE), 'MakerDAO'],
-    [compile('\\$MARA|marathon', IGNORECASE), 'Marathon'],
-    [compile('marionawfal', IGNORECASE), 'Mario Nawfal'],
-    [compile('\\smeme', IGNORECASE), 'Memes'],
-    [compile('bitcoin ?min(ing|er)|\\$(CORZ|IRIS|ARGO|HUT|HIVE|CAN|BLOK|BTCM)|Core ?Scientific|Iris\\s?Energy|Blockstream', IGNORECASE), 'Miners'],
-    [compile('Saylor|MSTR', IGNORECASE), 'MSTR'],
-    [compile('Nexo', IGNORECASE), 'Nexo'],
-    [compile('oke?[cx]|star xu', IGNORECASE), 'OKX'],
-    [compile('openpayd|CFD\\s?Team', IGNORECASE), 'OpenPayd'],
-    [compile('OpenSea', IGNORECASE), 'OpenSea'],
-    [compile('paxos', IGNORECASE), 'Paxos'],
-    [compile('payrnet|railsr|railsbank', IGNORECASE), 'Payrnet'],
-    [compile('\\$PI|PiNetwork', IGNORECASE), 'Pi'],
-    [compile('Prime[-\\s]?Trust', IGNORECASE), 'Prime Trust'],
-    [compile('PVBC|BankProv', IGNORECASE), 'PVBC'],
-    [compile('revolut\\s', IGNORECASE), 'Revolut'],
-    [compile('riot', IGNORECASE), 'RIOT'],
-    [compile('Safemoon', IGNORECASE), 'Safemoon'],
-    [compile('SBNY|Signature[-\\s]*Bank|Signet', IGNORECASE), 'SBNY'],
-    [compile('\\$SI|Silvergate|Alan\\s?Lane|Eisele|[\\s#]SEN\\s', IGNORECASE), 'Silvergate'],
-    [compile('Solana|Serum', IGNORECASE), 'Solana'],
-    [compile('tether|usdt|paolo|friedberg|hoegner|Noble\\s?Bank|Deltec[^\']|bitfinex[^e]', IGNORECASE), 'Tether'],
-    [compile('Transactive', IGNORECASE), 'Transactive Systems UAB'],
-    [compile('TUSD|TrueUSD', IGNORECASE), 'TrueUSD'],
-    [compile('\\stron\\s|tron(block| )?chain|trondao', IGNORECASE), 'Tron'],
-    [compile('tusd', IGNORECASE), 'TUSD'],
-    [compile('Vauld', IGNORECASE), 'Vauld'],
-    [compile('voyager', IGNORECASE), 'Voyager'],
-    [compile('wintermute', IGNORECASE), 'wintermute'],
-    [compile('wirecard', IGNORECASE), 'Wirecard'],
-]
+SORT_RULES = load_rules_csv(str(CRYPTO_RULES_PATH))
 
 
 def get_sort_folders(search_string: Optional[str]) -> List[str]:
@@ -92,12 +40,7 @@ def get_sort_folders(search_string: Optional[str]) -> List[str]:
     if search_string is None:
         return []
 
-    folders = [sss[1] for sss in SORT_SEARCH_STRINGS if sss[0].search(search_string)]
-
-    if folders == ['Huobi', JUSTIN_SUN]:
-        return [JUSTIN_SUN]
-    else:
-        return folders
+    return [sr.folder for sr in SORT_RULES if sr.regex.search(search_string)]
 
 
 def sort_file_by_ocr(image_file: 'ImageFile', dry_run: bool = True) -> None:
