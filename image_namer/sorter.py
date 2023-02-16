@@ -33,10 +33,10 @@ SORT_SEARCH_STRINGS = [
     [compile('[@#]circle|usdc', IGNORECASE), 'Circle'],
     [compile('Coinbase|\\$COIN|brian[_ ]?armstrong', IGNORECASE), 'Coinbase'],
     [compile('crypto\\.?com|CDC|[$#]CRO|\\sCRO\\s', IGNORECASE), 'Crypto.com'],
-    [compile('cryptomanran', IGNORECASE), 'CryptoManRan'],
+    [compile('cryptomanran|100trillionUSD|bitboy', IGNORECASE), 'Bros'],
     [compile('DCG|digital\\s*currency\\s*group|sh?ill?bert|Grayscale|GBTC', IGNORECASE), 'DCG'],
     [compile('El Salvador|Bukele', IGNORECASE), 'El Salvador'],
-    [compile('FTX|SBF|Trabucco|Bankman|Ellison|Nishad|Alameda|Moonstone|friedberg', IGNORECASE), 'FTX'],
+    [compile('FTX|FTT|SBF|Trabucco|Bankman|Ellison|Nishad|Alameda|Moonstone|friedberg', IGNORECASE), 'FTX'],
     [compile('Gemini|winklev', IGNORECASE), 'Gemini'],
     [compile('Genesis', IGNORECASE), 'Genesis'],
     [compile('huobi', IGNORECASE), 'Huobi'],
@@ -66,10 +66,6 @@ SORT_SEARCH_STRINGS = [
     [compile('voyager', IGNORECASE), 'Voyager'],
     [compile('wirecard', IGNORECASE), 'Wirecard'],
 ]
-
-
-def get_sort_folder(search_string: str) -> Optional[str]:
-    return next((sss[1] for sss in SORT_SEARCH_STRINGS if sss[0].search(search_string)), None)
 
 
 def get_sort_folders(search_string: Optional[str]) -> List[str]:
