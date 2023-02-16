@@ -20,6 +20,10 @@ from image_namer.util.argument_parser import PACKAGE_NAME
 
 SortRule = namedtuple('SortRule', ['folder', 'regex'])
 
+JUSTIN_SUN = 'Justin Sun'
+SORTED_DIR = DEFAULT_SCREENSHOTS_DIR.joinpath('Sorted')
+PROCESSED_DIR = DEFAULT_SCREENSHOTS_DIR.joinpath('Processed')
+
 
 def load_rules_csv(file_path: Union[Path, str]) -> List[SortRule]:
     with open(Path(file_path), mode='r') as csvfile:
@@ -29,9 +33,6 @@ def load_rules_csv(file_path: Union[Path, str]) -> List[SortRule]:
         ]
 
 
-JUSTIN_SUN = 'Justin Sun'
-SORTED_DIR = DEFAULT_SCREENSHOTS_DIR.joinpath('Sorted')
-PROCESSED_DIR = DEFAULT_SCREENSHOTS_DIR.joinpath('Processed')
 SORT_RULES = load_rules_csv(str(CRYPTO_RULES_PATH))
 
 

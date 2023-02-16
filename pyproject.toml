@@ -2,9 +2,17 @@
 name = "image-namer"
 version = "0.1.0"
 description = "Show images and give option to name them"
-authors = ["ashariyar <ashariyar@users.noreply.github.com>"]
+authors = ["Michel de Cryptadamus <michel@cryptadamus.com>"]
 readme = "README.md"
 packages = [{include = "image_namer"}]
+homepage = "https://github.com/michelcrypt4d4mus/screenshot_sorter"
+
+include = [
+    "CHANGELOG.md",
+    "LICENSE",
+    { path = "sorting_rules/crypto.csv" }
+]
+
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -17,6 +25,7 @@ pillow = "^9.4.0"
 filedate = "^2.0"
 python-dotenv = "^0.21.1"
 rich-argparse-plus = "^0.3.1.4"
+
 
 
 [tool.poetry.group.dev.dependencies]
