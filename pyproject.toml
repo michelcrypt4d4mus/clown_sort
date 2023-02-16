@@ -35,3 +35,4 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 sort_screenshots = 'image_namer:sort_screenshots'
+sort_non_screenshots = 'image_namer:sort_non_screenshots'

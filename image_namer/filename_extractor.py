@@ -51,7 +51,7 @@ class FilenameExtractor:
 
             filename = f"{filename_str} {self.image_file.basename_without_ext}"
             filename = filename[0:-1] if filename.endswith('.') else filename
-            filename = filename + self.image_file.extension
+            filename = filename + self.image_file.extname
         else:
             filename = self.image_file.basename
 

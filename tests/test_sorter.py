@@ -7,12 +7,14 @@ Bank"""
 
 def test_get_sort_folder():
     assert get_sort_folders('fuck crypto.com it sucks') == ['Crypto.com']
+    assert get_sort_folders('fuck crypto_com it sucks') == ['Crypto.com']
     assert get_sort_folders('fuck $cro it sucks') == ['Crypto.com']
     assert get_sort_folders('fuck #cro it sucks') == ['Crypto.com']
     assert get_sort_folders('fuck justinsuntron it sucks') == ['Justin Sun']
     assert get_sort_folders('fuck paoloardoino it sucks') == ['Tether']
     assert get_sort_folders('fuck bitfinex it sucks') == ['Tether']
-    assert get_sort_folders('fuck bitfinexed it sucks') == []
+    assert get_sort_folders('fuck paolo it sucks') == ['Tether']
+    assert get_sort_folders('fuck Deltec it sucks') == ['Tether']
     assert get_sort_folders('fuck $SI it sucks') == ['Silvergate']
     assert get_sort_folders('fuck okx it sucks') == ['OKX']
     assert get_sort_folders('fuck okcoin it sucks') == ['OKX']
@@ -30,3 +32,12 @@ def test_get_sort_folder():
     assert get_sort_folders('fuck Seba Bank') == ['Banks']
     assert get_sort_folders('fuck $CUBI') == ['Banks']
     assert get_sort_folders(SIGNATURE) == ['SBNY']
+    assert get_sort_folders('fuck #SEN ') == ['Silvergate']
+    assert get_sort_folders('fuck Swipe Wallet ') == ['Binance']
+
+    for hoo in ['Rexy Wang', 'Rexy Hoo', '#Hoo', 'Hoo Exchange', 'HooExchange']:
+        assert get_sort_folders(f"fuck {hoo} yo") == ['Hoo']
+
+    # Non-matches
+    assert get_sort_folders("fuck Deltec'ed it sucks") == []
+    assert get_sort_folders('fuck bitfinexed it sucks') == []

@@ -2,6 +2,7 @@
 Logging and printing, for now.
 """
 import logging
+from pathlib import Path
 from sys import exit
 
 from rich.console import Console
@@ -85,3 +86,9 @@ def ask_for_confirmation(msg: Text) -> None:
 
 def indent_whitespace(indent_level: int = 1):
     return ' ' * INDENT_SPACES * indent_level
+
+
+def copied_file_log_message(basename: str, new_file: Path) -> Text:
+    txt = Text("  ➤ Copied ").append(basename, style='color(221)')
+    txt.append(' to ').append(str(new_file), style='cyan')
+    return txt

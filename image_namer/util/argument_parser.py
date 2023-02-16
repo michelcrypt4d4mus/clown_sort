@@ -8,6 +8,8 @@ from typing import List
 
 from rich_argparse_plus import RichHelpFormatterPlus
 
+from image_namer.config import Config
+
 DESCRIPTION = "Sort screenshots according to rules."
 EPILOG = "Currently focused on crypto related screenshots."
 PACKAGE_NAME = 'image_namer'
@@ -25,6 +27,8 @@ parser.add_argument('-e', '--execute', action='store_true',
 
 # The Parsening Begins
 def parse_arguments():
+    Config.set_directories()
+
     """Parse command line args."""
     if '--version' in sys.argv:
         print(f"{PACKAGE_NAME} {version(PACKAGE_NAME)}")

@@ -3,7 +3,6 @@ Functions and constants having to do with the filesystem.
 importlib explanation: https://fossies.org/linux/Python/Lib/importlib/resources.py
 """
 import gzip
-import logging
 import os
 import stat
 from datetime import datetime
@@ -13,7 +12,9 @@ from typing import List, Optional, Union
 
 from filedate.Utils import Copy
 
+PDF_EXTENSION = '.pdf'
 GZIP_EXTENSION = '.gz'
+IMAGE_FILE_EXTENSIONS = [f".{ext}" for ext in 'tiff jpg jpeg png heic'.split()]
 
 
 def files_in_dir(dir: Union[os.PathLike, str], with_extname: Optional[str] = None) -> List[str]:
@@ -49,6 +50,14 @@ def get_lines(file_path: str, comment_char: Optional[str] = '#') -> List[str]:
 def timestamp_for_filename() -> str:
     """Returns a string showing current time in a file name friendly format."""
     return datetime.now().strftime("%Y-%m-%dT%H.%M.%S")
+
+
+def is_image(file_path: Union[str, Path]) -> bool:
+    return Path(file_path).suffix in IMAGE_FILE_EXTENSIONS
+
+
+def is_sortable(file_path: Union[str, Path]) -> bool:
+    return is_image(file_path) or Path(file_path).suffix in [PDF_EXTENSION, '.mov']
 
 
 def copy_file_creation_time(source_file: Path, destination_file: Path) -> None:
