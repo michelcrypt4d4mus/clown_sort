@@ -19,8 +19,8 @@ PROCESSED_DIR = TMP_DIR.joinpath('Processed')
 @pytest.fixture(scope='session', autouse=True)
 def test_config():
     yield Config.set_directories(FIXTURES_DIR, TMP_DIR)
-    SORTED_DIR.rmdir()
-    PROCESSED_DIR.rmdir()
+    #SORTED_DIR.rmdir()
+    #PROCESSED_DIR.rmdir()
 
 
 @pytest.fixture(scope='session')

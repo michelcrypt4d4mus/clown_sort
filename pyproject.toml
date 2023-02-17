@@ -25,8 +25,8 @@ pillow = "^9.4.0"
 filedate = "^2.0"
 python-dotenv = "^0.21.1"
 rich-argparse-plus = "^0.3.1.4"
-pypdf2 = "^3.0.1"
 pyexiftool = "^0.5.5"
+pypdf = "^3.4.1"
 
 
 

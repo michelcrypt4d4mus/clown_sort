@@ -30,11 +30,7 @@ EXIF_CODES = {
 
 
 class ImageFile(SortableFile):
-    def move_file_to_sorted_dir(
-            self,
-            destination_subdir: Optional[Union[Path, str]] = None,
-            dry_run: bool = True
-        ) -> Path:
+    def move_file_to_sorted_dir(self, destination_subdir: Optional[Union[Path, str]] = None) -> Path:
         """
         Copies to a new file and injects the ImageDescription exif tag.
         If :destination_subdir is given new file will be in :destination_subdir off
@@ -44,7 +40,7 @@ class ImageFile(SortableFile):
         exif_data = self.raw_exif_dict()
         exif_data.update([(EXIF_CODES[IMAGE_DESCRIPTION], self.extracted_text())])
 
-        if dry_run:
+        if Config.dry_run:
             log_msg = Text("Dry run so no copy to '").append(str(new_file), style='color(221)').append("'")
             console.print(log_msg, style='dim')
             return new_file
@@ -59,7 +55,10 @@ class ImageFile(SortableFile):
             raise e
 
         console.print(copied_file_log_message(self.basename, new_file))
-        self._move_to_processed_dir()
+
+        if not Config.leave_in_place:
+            self._move_to_processed_dir()
+
         return new_file
 
     def new_basename(self) -> str:

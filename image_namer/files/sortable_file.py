@@ -41,6 +41,13 @@ class SortableFile:
             console.print(Text('FOLDERS: ', style='magenta') + comma_join(sort_folders))
 
         for folder in sort_folders:
+            if folder is not None:
+                destination_dir = Config.sorted_screenshots_dir.joinpath(folder)
+
+                if not destination_dir.is_dir() and not Config.dry_run:
+                    log.warning(f"Creating subdirectory '{destination_dir}'...")
+                    destination_dir.mkdir()
+
             log.info(f"Sorting {self.file_path} to {folder}")
             self.move_file_to_sorted_dir(folder)
 
@@ -61,19 +68,8 @@ class SortableFile:
             log.warning("ExifTool not found; EXIF data ignored. 'brew install exiftool' may solve this.")
             return {}
 
-    def move_file_to_sorted_dir(
-            self,
-            destination_subdir: Optional[Union[Path, str]] = None,
-            dry_run: bool = True
-        ) -> Path:
-        destination_path = self.sort_destination_path(destination_subdir)
-        destination_dir = destination_path.parent
-
-        if not destination_dir.is_dir():
-            log.warning(f"Creating subdirectory '{destination_dir}'...")
-            destination_dir.mkdir()
-
-        if dry_run:
+    def move_file_to_sorted_dir(self, destination_subdir: Optional[Union[Path, str]] = None) -> Path:
+        if Config.dry_run:
             console.print(f"Dry run so not moving...", style='dim')
         else:
             shutil.move(self.file_path, destination_path)

@@ -278,15 +278,15 @@ files = [
 plugins = ["importlib-metadata"]
 
 [[package]]
-name = "pypdf2"
-version = "3.0.1"
+name = "pypdf"
+version = "3.4.1"
 description = "A pure-python PDF library capable of splitting, merging, cropping, and transforming PDF files"
 category = "main"
 optional = false
 python-versions = ">=3.6"
 files = [
-    {file = "PyPDF2-3.0.1.tar.gz", hash = "sha256:a74408f69ba6271f71b9352ef4ed03dc53a31aa404d29b5d31f53bfecfee1440"},
-    {file = "pypdf2-3.0.1-py3-none-any.whl", hash = "sha256:d16e4205cfee272fbdc0568b68d82be796540b1537508cef59388f839c191928"},
+    {file = "pypdf-3.4.1-py3-none-any.whl", hash = "sha256:5e84dc66d17f3e74fd6c84ab1e0b0cc6e21aae79e391eac88853cdac47847813"},
+    {file = "pypdf-3.4.1.tar.gz", hash = "sha256:8b0badc787062e8fb0d8393eb2a76903717fb24e5cc84e2b03cde5ac3881700f"},
 ]
 
 [package.extras]
@@ -443,4 +443,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "d87a5af1c302b3861066ef6539928752891ca319f0b06ebe88fcfecbd7470764"
+content-hash = "facd5531a256c6c5f250f51ba9fca9a67c205b8349e2a6893fa776cd8e6fd88f"

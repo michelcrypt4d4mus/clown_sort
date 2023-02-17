@@ -33,9 +33,9 @@ def parse_arguments():
 
     if args.execute:
         print("Executing...")
-        args.dry_run = False
+        Config.dry_run = False
     else:
         print("Dry run...")
-        args.dry_run = True
+        Config.dry_run = True
 
     return args

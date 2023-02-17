@@ -3,7 +3,7 @@ Wrapper for PDF files.
 """
 from typing import Optional
 
-from PyPDF2 import PdfReader
+from pypdf import PdfReader
 
 from image_namer.files.sortable_file import SortableFile
 
