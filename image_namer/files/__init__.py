@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import List
 
 from image_namer.config import Config
-from image_namer.util.filesystem_helper import copy_file_creation_time, files_in_dir, is_sortable
+from image_namer.util.filesystem_helper import files_in_dir, is_sortable
 from image_namer.files.sortable_file import SortableFile
 from image_namer.files.image_file import ImageFile
 

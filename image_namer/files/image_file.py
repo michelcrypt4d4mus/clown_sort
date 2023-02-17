@@ -91,15 +91,6 @@ class ImageFile(SortableFile):
     def __repr__(self) -> str:
         return f"ImageFile('{self.file_path}')"
 
-    def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
-        yield(Text("\n\n\n"))
-        yield Panel(path.basename(self.file_path), expand=False, style='cyan')
-
-        if self.extracted_text() is None:
-            yield Text("<None>", style='dim')
-        else:
-            yield Text(self.extracted_text(), style='dim')
-
-        yield Text("DESTINATION BASENAME: ").append(self._new_basename(), style='cyan dim')
-        log.debug(f"RAW EXIF: {self.raw_exif_dict()}")
-        log.debug(f"EXIF: {self.exif_dict()}")
+    # def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
+    #     super().__rich_console__(console, options)
+    #     log.debug(f"RAW EXIF: {self.raw_exif_dict()}")

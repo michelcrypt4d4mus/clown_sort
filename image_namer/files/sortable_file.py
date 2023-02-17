@@ -69,5 +69,4 @@ class SortableFile:
             yield Text(self.extracted_text()[0:MAX_EXTRACTION_LENGTH], style='dim')
 
         yield Text("DESTINATION BASENAME: ").append(self._new_basename(), style='cyan dim')
-        log.debug(f"RAW EXIF: {self.raw_exif_dict()}")
         log.debug(f"EXIF: {self.exif_dict()}")
