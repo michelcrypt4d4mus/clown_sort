@@ -35,10 +35,10 @@ class SortableFile:
         sort_folders = type(self).get_sort_folders(self.extracted_text())
 
         if len(sort_folders) == 0:
-            console.print('No sort folders! ', style='magenta dim')
+            console.print(Text('➤ ').append('No sort folders!', style='magenta dim'))
             sort_folders = [None]
         else:
-            console.print(Text('FOLDERS: ', style='magenta') + comma_join(sort_folders))
+            console.print(Text('➤ ').append('FOLDERS: ', style='magenta') + comma_join(sort_folders))
 
         for folder in sort_folders:
             if folder is not None:
@@ -48,7 +48,6 @@ class SortableFile:
                     log.warning(f"Creating subdirectory '{destination_dir}'...")
                     destination_dir.mkdir()
 
-            log.info(f"Sorting {self.file_path} to {folder}")
             self.move_file_to_sorted_dir(folder)
 
     def extracted_text(self) -> Optional[str]:
@@ -69,8 +68,15 @@ class SortableFile:
             return {}
 
     def move_file_to_sorted_dir(self, destination_subdir: Optional[Union[Path, str]] = None) -> Path:
+        if destination_subdir is None:
+            destination_dir = Config.sorted_screenshots_dir
+        else:
+            destination_dir = Config.sorted_screenshots_dir.joinpath(destination_subdir)
+
+        destination_path = destination_dir.joinpath(self.new_basename())
+
         if Config.dry_run:
-            console.print(f"Dry run so not moving...", style='dim')
+            console.print(Text('➤ ').append(f"Dry run so not moving...", style='dim'))
         else:
             shutil.move(self.file_path, destination_path)
 
@@ -105,9 +111,10 @@ class SortableFile:
         yield Panel(path.basename(self.file_path), expand=False, style='cyan')
 
         if self.extracted_text() is None:
-            yield Text("<No extracted text>", style='dim')
+            txt = "<No extracted text>"
         else:
-            yield Text(self.extracted_text()[0:MAX_EXTRACTION_LENGTH], style='dim')
+            txt = self.extracted_text()[0:MAX_EXTRACTION_LENGTH]
 
+        yield Panel(txt, expand=True, style='dim')
         yield Text("DESTINATION BASENAME: ").append(self.new_basename(), style='cyan dim')
         log.debug(f"EXIF: {self.exif_dict()}")

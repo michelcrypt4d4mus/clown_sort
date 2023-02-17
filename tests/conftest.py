@@ -26,3 +26,8 @@ def test_config():
 @pytest.fixture(scope='session')
 def do_kwon_tweet():
     return FIXTURES_DIR.joinpath('do_kwon_debate_the_poor.jpeg')
+
+
+@pytest.fixture(scope='session')
+def three_of_swords_file():
+    return FIXTURES_DIR.joinpath('3 of swords occult.jpeg')

@@ -1,8 +1,24 @@
+from image_namer.config import Config
+from image_namer.files.image_file import ImageFile
 from image_namer.files.sortable_file import SortableFile
+
+from tests.test_config import *
 
 SIGNATURE = """Signature
 
 Bank"""
+
+
+def test_sort_file(three_of_swords_file, test_config):
+    Config.dry_run = False
+    Config.leave_in_place = True
+    sortable_file = SortableFile(three_of_swords_file)
+    assert(sortable_file.extracted_text() == three_of_swords_file.name)
+    sortable_file.sort_file()
+    Config.dry_run = True
+    new_file = ImageFile(Config.sorted_screenshots_dir.joinpath('Art', three_of_swords_file.name))
+    new_file.file_path.unlink()
+    new_file.file_path.parent.rmdir()
 
 
 def test_get_sort_folder():
