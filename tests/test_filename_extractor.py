@@ -1,7 +1,7 @@
 import pytest
 
 from image_namer.filename_extractor import FilenameExtractor
-from image_namer.image_file import ImageFile
+from image_namer.files.image_file import ImageFile
 
 WUBLOCKCHAIN_TWEET_TEXT = """wu
 

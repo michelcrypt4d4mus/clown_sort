@@ -4,7 +4,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 from image_namer.config import Config
-from image_namer.image_file import ImageFile
+from image_namer.files.image_file import ImageFile
 from image_namer.sorter import sort_file_by_ocr, sort_file_by_filename
 from image_namer.util.argument_parser import parse_arguments
 

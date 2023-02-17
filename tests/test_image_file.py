@@ -1,6 +1,6 @@
 import filedate
 
-from image_namer.image_file import IMAGE_DESCRIPTION, ImageFile
+from image_namer.files.image_file import IMAGE_DESCRIPTION, ImageFile
 
 from tests.test_config import *
 
