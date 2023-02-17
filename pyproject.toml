@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "image-namer"
 version = "0.1.0"
-description = "Show images and give option to name them"
+description = "Sort screenshots based on rules or through individual review."
 authors = ["Michel de Cryptadamus <michel@cryptadamus.com>"]
 readme = "README.md"
 packages = [{include = "image_namer"}]
