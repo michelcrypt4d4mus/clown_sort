@@ -12,10 +12,10 @@ Bitstamp,Bitstamp
 Bitzlato,Bitzlato
 Blockchain8,Blockchain8|tom ?emmer|ritchie ?torres|repritchie
 BlockFi,BlockFi
-Bros,cryptomanran|100trillionUSD|nic[_\s]*carter|bitboy|basedkarbon|thecryptolark|adam\s?back
+Bros,cryptomanran|100trillionUSD|nic[-_\s]*carter|bitboy|basedkarbon|thecryptolark|adam[-_\s]*back
 Cardano,Cardano|\$ADA
-Celsius,celsius|mashinsky|levity\s?and\s?love
-Circle,[@#]circle|usdc
+Celsius,celsius|mashinsky|levity[-_\s]*and[-_\s]*love
+Circle,[@#]circle|usdc|circle[-_\s]*internet
 Coinbase,Coinbase|\$COIN|brian[_\s]*armstrong
 Crypto.com,crypto[._]?com|CDC|[$#]CRO|\sCRO\s
 DCG,DCG|digital\s*currency\s*group|sh?ill?bert|Grayscale|GBTC
