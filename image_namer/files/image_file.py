@@ -6,7 +6,6 @@ EXIF: https://blog.matthewgove.com/2022/05/13/how-to-bulk-edit-your-photos-exif-
 Tags: https://exiftool.org/TagNames/EXIF.html
 """
 import io
-import logging
 from os import path
 from pathlib import Path
 from typing import List, Optional, Union
@@ -20,6 +19,7 @@ from rich.text import Text
 
 from image_namer.config import Config
 from image_namer.filename_extractor import FilenameExtractor
+from image_namer.files import SortableFile
 from image_namer.sorter import get_sort_destination
 from image_namer.util.filesystem_helper import copy_file_creation_time, files_in_dir, is_sortable
 from image_namer.util.logging import console, copied_file_log_message, log
@@ -32,36 +32,7 @@ EXIF_CODES = {
 }
 
 
-class ImageFile:
-    def __init__(self, file_path: Union[str, Path]) -> None:
-        self.file_path: Path = Path(file_path)
-        self.basename: str = path.basename(file_path)
-        self.basename_without_ext: str = str(Path(self.basename).with_suffix(''))
-        self.extname: str = self.file_path.suffix
-        self.text_extraction_attempted: bool = False
-        self._extracted_text: Optional[str] = None
-        self.__new_basename: Optional[str] = None
-
-    @classmethod
-    def screenshot_paths(cls) -> List['ImageFile']:
-        """Returns a list of ImageFiles for all the screenshots to be sorted."""
-        screenshots = [
-            ImageFile(f) for f in files_in_dir(Config.screenshots_dir)
-            if path.basename(f).startswith('Screen Shot')
-        ]
-
-        return sorted(screenshots, key=lambda f: f.basename)
-
-    @classmethod
-    def sortable_non_screenshot_paths(cls) -> List[Path]:
-        """Returns a list of ImageFiles for all the screenshots to be sorted."""
-        files = [
-            Path(f) for f in files_in_dir(Config.screenshots_dir)
-            if is_sortable(f) and not path.basename(f).startswith('Screen Shot')
-        ]
-
-        return sorted(files, key=lambda f: str(f))
-
+class ImageFile(SortableFile):
     def image_bytes(self) -> bytes:
         """Return bytes for a thumbnail."""
         image = Image.open(self.file_path)
@@ -118,22 +89,6 @@ class ImageFile:
     def raw_exif_dict(self) -> Image.Exif:
         """Return a key/value list of exif tags where keys are integers."""
         return Image.open(self.file_path).getexif()
-
-    def _new_basename(self) -> str:
-        """Return a descriptive string usable in a filename."""
-        if self.__new_basename is not None:
-            return self.__new_basename
-
-        if self.extracted_text() is None:
-            self.__new_basename = self.basename
-        else:
-            self.__new_basename = FilenameExtractor(self).filename()
-
-        self.__new_basename = self.__new_basename.replace('""', '"')
-        return self.__new_basename
-
-    def __str__(self) -> str:
-        return str(self.file_path)
 
     def __repr__(self) -> str:
         return f"ImageFile('{self.file_path}')"
