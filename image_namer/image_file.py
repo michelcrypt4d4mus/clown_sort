@@ -38,8 +38,8 @@ class ImageFile:
         self.basename: str = path.basename(file_path)
         self.basename_without_ext: str = str(Path(self.basename).with_suffix(''))
         self.extname: str = self.file_path.suffix
-        self.ocr_attempted: bool = False
-        self._ocr_text: Optional[str] = None
+        self.text_extraction_attempted: bool = False
+        self._extracted_text: Optional[str] = None
         self.__new_basename: Optional[str] = None
 
     @classmethod
@@ -70,16 +70,16 @@ class ImageFile:
         image.save(_image_bytes, format="PNG")
         return _image_bytes.getvalue()
 
-    def ocr_text(self) -> Optional[str]:
+    def extracted_text(self) -> Optional[str]:
         """Use Tesseract to OCR the text in the image, which is returned as a string."""
-        if self.ocr_attempted:
-            return self._ocr_text
+        if self.text_extraction_attempted:
+            return self._extracted_text
 
-        self._ocr_text = pytesseract.image_to_string(Image.open(self.file_path))
-        self.ocr_attempted = True
-        return self._ocr_text
+        self._extracted_text = pytesseract.image_to_string(Image.open(self.file_path))
+        self.text_extraction_attempted = True
+        return self._extracted_text
 
-    def set_image_description_exif_as_ocr_text(
+    def set_image_description_exif_as_extracted_text(
             self,
             destination_subdir: Optional[Union[Path, str]] = None,
             dry_run: bool = True
@@ -91,7 +91,7 @@ class ImageFile:
         """
         new_file = get_sort_destination(self._new_basename(), destination_subdir)
         exif_data = self.raw_exif_dict()
-        exif_data.update([(EXIF_CODES[IMAGE_DESCRIPTION], self.ocr_text())])
+        exif_data.update([(EXIF_CODES[IMAGE_DESCRIPTION], self.extracted_text())])
 
         if dry_run:
             log_msg = Text("Dry run so no copy to '").append(str(new_file), style='color(221)').append("'")
@@ -124,7 +124,7 @@ class ImageFile:
         if self.__new_basename is not None:
             return self.__new_basename
 
-        if self.ocr_text() is None:
+        if self.extracted_text() is None:
             self.__new_basename = self.basename
         else:
             self.__new_basename = FilenameExtractor(self).filename()
@@ -142,10 +142,10 @@ class ImageFile:
         yield(Text("\n\n\n"))
         yield Panel(path.basename(self.file_path), expand=False, style='cyan')
 
-        if self.ocr_text() is None:
+        if self.extracted_text() is None:
             yield Text("<None>", style='dim')
         else:
-            yield Text(self.ocr_text(), style='dim')
+            yield Text(self.extracted_text(), style='dim')
 
         yield Text("DESTINATION BASENAME: ").append(self._new_basename(), style='cyan dim')
         log.debug(f"RAW EXIF: {self.raw_exif_dict()}")

@@ -34,7 +34,7 @@ REDDIT_REPLY_REGEX = re.compile(
 class FilenameExtractor:
     def __init__(self, image_file: 'ImageFile') -> None:
         self.image_file = image_file
-        self.text: Optional[str] = image_file.ocr_text()
+        self.text: Optional[str] = image_file.extracted_text()
         self.basename_length: int = len(image_file.basename)
         self.available_char_count: int = MAX_FILENAME_LENGTH - self.basename_length - 1
 

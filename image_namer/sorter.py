@@ -25,11 +25,11 @@ def get_sort_folders(search_string: Optional[str]) -> List[str]:
 def sort_file_by_ocr(image_file: 'ImageFile', dry_run: bool = True) -> None:
     """Sort the file to destination_dir subdir."""
     console.print(image_file)
-    sort_folders = get_sort_folders(image_file.ocr_text())
+    sort_folders = get_sort_folders(image_file.extracted_text())
 
     if len(sort_folders) == 0:
         console.print('No sort folders! ', style='magenta dim')
-        image_file.set_image_description_exif_as_ocr_text(dry_run=dry_run)
+        image_file.set_image_description_exif_as_extracted_text(dry_run=dry_run)
     else:
         console.print(Text('FOLDERS: ', style='magenta') + comma_join(sort_folders))
         possible_old_file = Config.sorted_screenshots_dir.joinpath(image_file.basename)
@@ -39,7 +39,7 @@ def sort_file_by_ocr(image_file: 'ImageFile', dry_run: bool = True) -> None:
             possible_old_file.unlink()
 
         for sort_folder in sort_folders:
-            image_file.set_image_description_exif_as_ocr_text(sort_folder, dry_run=dry_run)
+            image_file.set_image_description_exif_as_extracted_text(sort_folder, dry_run=dry_run)
 
     _move_to_processed_dir(image_file.file_path, dry_run=dry_run)
 

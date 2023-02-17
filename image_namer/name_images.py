@@ -32,13 +32,13 @@ def subdir_radio_select_columns():
 
 def process_file(image: ImageFile) -> None:
     console.print(Panel(Text("Processing: '").append(str(image.file_path), style='cyan').append("'..."), expand=False))
-    ocr_text = ' '.join((image.ocr_text() or '').splitlines())
-    input = sg.Input() if len(ocr_text) == 0 or len(ocr_text) > 76 else sg.Input(ocr_text)
-    log.info(f"OCR Text: {ocr_text} ({len(ocr_text)} chars)")
+    extracted_text = ' '.join((image.extracted_text() or '').splitlines())
+    input = sg.Input() if len(extracted_text) == 0 or len(extracted_text) > 76 else sg.Input(extracted_text)
+    log.info(f"OCR Text: {extracted_text} ({len(extracted_text)} chars)")
 
     layout = [
         [sg.Image(data=image.image_bytes(), key="-IMAGE-")],
-        #[sg.Text(image.ocr_text())],
+        #[sg.Text(image.extracted_text())],
         [sg.Text("Enter file name:")],
         [input]
     ] + list(subdir_radio_select_columns()) + \
