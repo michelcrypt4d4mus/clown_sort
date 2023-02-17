@@ -1,7 +1,7 @@
 """
 Wrapper for sortable files of any type.
 """
-from abc import abstractmethod
+import shutil
 from os import path
 from pathlib import Path
 from typing import List, Optional, Union
@@ -12,8 +12,8 @@ from rich.console import Console, ConsoleOptions, RenderResult
 from rich.panel import Panel
 from rich.text import Text
 
-from image_namer.filename_extractor import FilenameExtractor
-from image_namer.util.logging import log
+from image_namer.config import Config
+from image_namer.util.logging import console, log, move_file_log_message
 
 MAX_EXTRACTION_LENGTH = 4096
 
@@ -26,13 +26,17 @@ class SortableFile:
         self.extname: str = self.file_path.suffix
         self.text_extraction_attempted: bool = False
         self._extracted_text: Optional[str] = None
-        self.__new_basename: Optional[str] = None
+        self._new_basename: Optional[str] = None
 
-    @abstractmethod
-    def extracted_text() -> Optional[str]:
-        return None
+    def extracted_text(self) -> Optional[str]:
+        return self.basename
+
+    def new_basename(self) -> str:
+        """Return the original basename."""
+        return self.basename
 
     def exif_dict(self) -> dict:
+        """Return the EXIF data as a dict"""
         try:
             with ExifToolHelper() as exiftool:
                 return exiftool.get_metadata(self.file_path)[0]
@@ -40,18 +44,34 @@ class SortableFile:
             log.warning("ExifTool not found; EXIF data ignored. 'brew install exiftool' may solve this.")
             return {}
 
-    def _new_basename(self) -> str:
-        """Return a descriptive string usable in a filename."""
-        if self.__new_basename is not None:
-            return self.__new_basename
+    def move_file_to_sorted_dir(
+            self,
+            destination_subdir: Optional[Union[Path, str]] = None,
+            dry_run: bool = True
+        ) -> Path:
+        destination_path = self.sort_destination_path(destination_subdir)
+        destination_dir = destination_path.parent
 
-        if self.extracted_text() is None:
-            self.__new_basename = self.basename
+        if not destination_dir.is_dir():
+            log.warning(f"Creating subdirectory '{destination_dir}'...")
+            destination_dir.mkdir()
+
+        if dry_run:
+            console.print(f"Dry run so not moving...", style='dim')
         else:
-            self.__new_basename = FilenameExtractor(self).filename()
+            shutil.move(self.file_path, destination_path)
 
-        self.__new_basename = self.__new_basename.replace('""', '"')
-        return self.__new_basename
+        console.print(move_file_log_message(self.basename, destination_path))
+        return destination_path
+
+    def sort_destination_path(self, subdir: Optional[Union[Path, str]] = None) -> Path:
+        """Get the destination folder. """
+        destination_path = Config.sorted_screenshots_dir
+
+        if subdir is not None:
+            destination_path = destination_path.joinpath(subdir)
+
+        return destination_path.joinpath(self.new_basename())
 
     def __str__(self) -> str:
         return str(self.file_path)
@@ -68,5 +88,5 @@ class SortableFile:
         else:
             yield Text(self.extracted_text()[0:MAX_EXTRACTION_LENGTH], style='dim')
 
-        yield Text("DESTINATION BASENAME: ").append(self._new_basename(), style='cyan dim')
+        yield Text("DESTINATION BASENAME: ").append(self.new_basename(), style='cyan dim')
         log.debug(f"EXIF: {self.exif_dict()}")

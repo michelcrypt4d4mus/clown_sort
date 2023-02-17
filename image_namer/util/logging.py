@@ -89,6 +89,14 @@ def indent_whitespace(indent_level: int = 1):
 
 
 def copied_file_log_message(basename: str, new_file: Path) -> Text:
-    txt = Text("  ➤ Copied ").append(basename, style='color(221)')
+    return _file_operation_log_message(basename, new_file, 'Copied')
+
+
+def move_file_log_message(basename: str, new_file: Path) -> Text:
+    return _file_operation_log_message(basename, new_file, 'Moved')
+
+
+def _file_operation_log_message(basename: str, new_file: Path, log_msg: str) -> Text:
+    txt = Text("  ➤ {log_msg} ").append(basename, style='color(221)')
     txt.append(' to ').append(str(new_file), style='cyan')
     return txt

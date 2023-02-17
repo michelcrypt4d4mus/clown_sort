@@ -29,7 +29,7 @@ def sort_file_by_ocr(image_file: 'ImageFile', dry_run: bool = True) -> None:
 
     if len(sort_folders) == 0:
         console.print('No sort folders! ', style='magenta dim')
-        image_file.set_image_description_exif_as_extracted_text(dry_run=dry_run)
+        image_file.move_file_to_sorted_dir(dry_run=dry_run)
     else:
         console.print(Text('FOLDERS: ', style='magenta') + comma_join(sort_folders))
         possible_old_file = Config.sorted_screenshots_dir.joinpath(image_file.basename)
@@ -39,23 +39,9 @@ def sort_file_by_ocr(image_file: 'ImageFile', dry_run: bool = True) -> None:
             possible_old_file.unlink()
 
         for sort_folder in sort_folders:
-            image_file.set_image_description_exif_as_extracted_text(sort_folder, dry_run=dry_run)
+            image_file.move_file_to_sorted_dir(sort_folder, dry_run=dry_run)
 
     _move_to_processed_dir(image_file.file_path, dry_run=dry_run)
-
-
-def get_sort_destination(basename: str, subdir: Optional[Union[Path, str]] = None) -> Path:
-    """Get the destination folder. """
-    if subdir is None:
-        destination_dir = Config.sorted_screenshots_dir
-    else:
-        destination_dir = Config.sorted_screenshots_dir.joinpath(subdir)
-
-        if not destination_dir.is_dir():
-            log.warning(f"Creating subdirectory '{destination_dir}'...")
-            destination_dir.mkdir()
-
-    return destination_dir.joinpath(basename)
 
 
 def sort_file_by_filename(file_path: Path, dry_run: bool = True) -> None:
@@ -67,7 +53,7 @@ def sort_file_by_filename(file_path: Path, dry_run: bool = True) -> None:
         console.print('No sort folders! Not copying...', style='dim')
         return
     else:
-        destination_paths = [get_sort_destination(file_path.name, subdir) for subdir in sort_folders]
+        destination_paths = [sort_destination_path(file_path.name, subdir) for subdir in sort_folders]
 
     for destination_path in destination_paths:
         if dry_run:
