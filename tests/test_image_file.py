@@ -16,6 +16,5 @@ def test_extracted_text_and_move(do_kwon_tweet, test_config):
     Config.dry_run = True
     new_file = ImageFile(Config.sorted_screenshots_dir.joinpath('TerraLuna', SORTED_FILENAME))
     assert(new_file.exif_dict()[IMAGE_DESCRIPTION].startswith(DO_KWON_TEXT))
-    Config.processed_screenshots_dir.joinpath(do_kwon_tweet.name).unlink()
     new_file.file_path.unlink()
     new_file.file_path.parent.rmdir()

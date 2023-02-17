@@ -77,6 +77,8 @@ class SortableFile:
 
         if Config.dry_run:
             console.print(Text('➤ ').append(f"Dry run so not moving...", style='dim'))
+        elif Config.leave_in_place:
+            shutil.copy2(self.file_path, destination_path)
         else:
             shutil.move(self.file_path, destination_path)
 
