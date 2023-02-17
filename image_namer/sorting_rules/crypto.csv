@@ -57,9 +57,8 @@ Solana,Solana|Serum
 TerraLuna,luna\s|do[-\s]*kwon|stablekwon
 Tether,tether|usdt|paolo|friedberg|hoegner|Noble\s?Bank|Deltec[^\']|bitfinex[^e]
 Transactive Systems UAB,Transactive
-TrueUSD,TUSD|TrueUSD
+TrueUSD,TUSD|TrueUSD|TrueFi
 Tron,\stron\s|tron(block| )?chain|trondao
-TUSD,tusd|TrueFi
 Vauld,Vauld
 Voyager,voyager
 wintermute,wintermute
