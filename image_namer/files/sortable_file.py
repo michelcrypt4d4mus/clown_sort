@@ -109,7 +109,7 @@ class SortableFile:
         return f"SortableFile('{self.file_path}')"
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
-        yield(Text("\n\n\n"))
+        yield(Text("\n\n"))
         yield Panel(path.basename(self.file_path), expand=False, style='cyan')
 
         if self.extracted_text() is None:
@@ -118,5 +118,5 @@ class SortableFile:
             txt = self.extracted_text()[0:MAX_EXTRACTION_LENGTH]
 
         yield Panel(txt, expand=True, style='dim')
-        yield Text("DESTINATION BASENAME: ").append(self.new_basename(), style='cyan dim')
+        yield Text('➤ DESTINATION BASENAME: ').append(self.new_basename(), style='cyan dim')
         log.debug(f"EXIF: {self.exif_dict()}")
