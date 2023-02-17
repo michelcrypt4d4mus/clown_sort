@@ -1,15 +1,23 @@
-# importing required modules
+"""
+Wrapper for PDF files.
+"""
+from typing import Optional
+
 from PyPDF2 import PdfReader
 
-# creating a pdf reader object
-reader = PdfReader('example.pdf')
+from image_namer.files import SortableFile
 
-# printing number of pages in pdf file
-print(len(reader.pages))
 
-# getting a specific page from the pdf file
-page = reader.pages[0]
+class PdfFile(SortableFile):
+    def extracted_text(self) -> Optional[str]:
+        """Use Tesseract to OCR the text in the image, which is returned as a string."""
+        if self.text_extraction_attempted:
+            return self._extracted_text
 
-# extracting text from page
-text = page.extract_text()
-print(text)
+        pdf_reader = PdfReader(self.file_path)
+        self._extracted_text = '\\n\\n'.join([page.extract_text() for page in pdf_reader.pages])
+        self.text_extraction_attempted = True
+        return self._extracted_text
+
+    def __repr__(self) -> str:
+        return f"PdfFile('{self.file_path}')"

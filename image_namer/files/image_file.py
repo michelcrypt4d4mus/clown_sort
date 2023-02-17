@@ -17,11 +17,9 @@ from rich.console import Console, ConsoleOptions, RenderResult
 from rich.panel import Panel
 from rich.text import Text
 
-from image_namer.config import Config
-from image_namer.filename_extractor import FilenameExtractor
 from image_namer.files import SortableFile
 from image_namer.sorter import get_sort_destination
-from image_namer.util.filesystem_helper import copy_file_creation_time, files_in_dir, is_sortable
+from image_namer.util.filesystem_helper import copy_file_creation_time
 from image_namer.util.logging import console, copied_file_log_message, log
 
 THUMBNAIL_DIMENSIONS = (400, 400)

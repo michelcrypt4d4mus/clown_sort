@@ -1,8 +1,6 @@
 """
 Wrapper for sortable files of any type.
 """
-import io
-import logging
 from abc import abstractmethod
 from os import path
 from pathlib import Path
@@ -10,17 +8,12 @@ from typing import List, Optional, Union
 
 import pytesseract
 from exiftool import ExifToolHelper
-from PIL import Image
-from PIL.ExifTags import TAGS
 from rich.console import Console, ConsoleOptions, RenderResult
 from rich.panel import Panel
 from rich.text import Text
 
-from image_namer.config import Config
 from image_namer.filename_extractor import FilenameExtractor
-from image_namer.sorter import get_sort_destination
-from image_namer.util.filesystem_helper import copy_file_creation_time, files_in_dir, is_sortable
-from image_namer.util.logging import console, copied_file_log_message, log
+from image_namer.util.logging import log
 
 MAX_EXTRACTION_LENGTH = 4096
 
@@ -40,8 +33,12 @@ class SortableFile:
         return None
 
     def exif_dict(self) -> dict:
-        with ExifToolHelper() as et:
-            return et.get_metadata(self.file_path)[0]
+        try:
+            with ExifToolHelper() as exiftool:
+                return exiftool.get_metadata(self.file_path)[0]
+        except:
+            log.warning("ExifTool not found; EXIF data ignored. 'brew install exiftool' may solve this.")
+            return {}
 
     def _new_basename(self) -> str:
         """Return a descriptive string usable in a filename."""
