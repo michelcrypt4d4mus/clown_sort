@@ -1,5 +1,5 @@
 """
-Wrapper for sortable files of any type.
+Base class for sortable files of any type.
 """
 import shutil
 from os import path
@@ -14,6 +14,7 @@ from rich.text import Text
 
 from image_namer.config import Config
 from image_namer.util.logging import console, log, move_file_log_message
+from image_namer.util.string_helper import comma_join
 
 MAX_EXTRACTION_LENGTH = 4096
 
@@ -28,7 +29,23 @@ class SortableFile:
         self._extracted_text: Optional[str] = None
         self._new_basename: Optional[str] = None
 
+    def sort_file(self) -> None:
+        """Sort the file to destination_dir subdir."""
+        console.print(self)
+        sort_folders = type(self).get_sort_folders(self.extracted_text())
+
+        if len(sort_folders) == 0:
+            console.print('No sort folders! ', style='magenta dim')
+            sort_folders = [None]
+        else:
+            console.print(Text('FOLDERS: ', style='magenta') + comma_join(sort_folders))
+
+        for folder in sort_folders:
+            log.info(f"Sorting {self.file_path} to {folder}")
+            self.move_file_to_sorted_dir(folder)
+
     def extracted_text(self) -> Optional[str]:
+        """Only PdfFiles and ImageFiles have extracted text; other files are sorted on filename."""
         return self.basename
 
     def new_basename(self) -> str:
@@ -72,6 +89,14 @@ class SortableFile:
             destination_path = destination_path.joinpath(subdir)
 
         return destination_path.joinpath(self.new_basename())
+
+    @classmethod
+    def get_sort_folders(cls, search_text: Optional[str]) -> List[str]:
+        """Find any folders that could be relevant."""
+        if search_text is None:
+            return []
+
+        return [sr.folder for sr in Config.sort_rules if sr.regex.search(search_text)]
 
     def __str__(self) -> str:
         return str(self.file_path)

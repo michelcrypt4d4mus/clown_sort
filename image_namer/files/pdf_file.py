@@ -5,7 +5,7 @@ from typing import Optional
 
 from PyPDF2 import PdfReader
 
-from image_namer.files import SortableFile
+from image_namer.files.sortable_file import SortableFile
 
 
 class PdfFile(SortableFile):

@@ -22,6 +22,7 @@ CRYPTO_RULES_PATH = environ.get('SCREENSHOT_SORTER_RULES_CSV_PATH', SORTING_RULE
 
 class Config:
     debug = False
+    dry_run = True
 
     @classmethod
     def set_directories(
