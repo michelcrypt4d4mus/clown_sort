@@ -16,12 +16,13 @@ Tweet by @lawmaster: "I will say though before this thread gets taken over: 1. I
 ```
 
 Other stuff that happens:
+* Files that match multiple patterns will be copied to multiple destination folders.
 * The `ImageDescription` EXIF tag will be written (for images)
 * All timestamps will be preserved.
 * If the file is not modified or renamed it will merely be moved.
 * If modifications are to be made then the original file will be moved into a `Processed/` directory after it has been handled.
 
-Note that videos are not OCRed and can only be moved based on filename matches.
+Note that obviously this works on screenshots that are more substantive than just self-clowning screenshots. Note also that videos are not OCRed and can only be moved based on filename matches.
 
 ### Quick Start
 ```sh

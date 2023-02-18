@@ -13,7 +13,7 @@ from rich.panel import Panel
 from rich.text import Text
 
 from social_arsenal.config import Config
-from social_arsenal.util.logging import console, log, move_file_log_message
+from social_arsenal.util.logging import console, log, copying_file_log_message, moving_file_log_message
 from social_arsenal.util.string_helper import comma_join
 
 MAX_EXTRACTION_LENGTH = 4096
@@ -40,6 +40,8 @@ class SortableFile:
         else:
             console.print(Text('➤ ').append('FOLDERS: ', style='magenta') + comma_join(sort_folders))
 
+        console.line()
+
         for folder in sort_folders:
             if folder is not None:
                 destination_dir = Config.sorted_screenshots_dir.joinpath(folder)
@@ -49,6 +51,8 @@ class SortableFile:
                     destination_dir.mkdir()
 
             self.move_file_to_sorted_dir(folder)
+
+        self._move_to_processed_dir()
 
     def extracted_text(self) -> Optional[str]:
         """Only PdfFiles and ImageFiles have extracted text; other files are sorted on filename."""
@@ -74,15 +78,13 @@ class SortableFile:
             destination_dir = Config.sorted_screenshots_dir.joinpath(destination_subdir)
 
         destination_path = destination_dir.joinpath(self.new_basename())
+        console.print(copying_file_log_message(self.basename, destination_path))
 
         if Config.dry_run:
-            console.print(Text('➤ ').append(f"Dry run so not moving...", style='dim'))
-        elif Config.leave_in_place:
-            shutil.copy2(self.file_path, destination_path)
+            console.print(Text('   ➤ ').append(f"Dry run so not actually copying...", style='dim'))
         else:
-            shutil.move(self.file_path, destination_path)
+            shutil.copy2(self.file_path, destination_path)
 
-        console.print(move_file_log_message(self.basename, destination_path))
         return destination_path
 
     def sort_destination_path(self, subdir: Optional[Union[Path, str]] = None) -> Path:
@@ -94,6 +96,7 @@ class SortableFile:
 
         return destination_path.joinpath(self.new_basename())
 
+    # TODO: this doesn't belong here
     @classmethod
     def get_sort_folders(cls, search_text: Optional[str]) -> List[str]:
         """Find any folders that could be relevant."""
@@ -101,6 +104,19 @@ class SortableFile:
             return []
 
         return [sr.folder for sr in Config.sort_rules if sr.regex.search(search_text)]
+
+    def _move_to_processed_dir(self) -> None:
+        """Relocate the original file to the [SCREENSHOTS_DIR]/Processed/ folder."""
+        processed_file_path = Config.processed_screenshots_dir.joinpath(self.file_path.name)
+        console.print(moving_file_log_message(str(self.file_path), processed_file_path))
+
+        if self.file_path == processed_file_path:
+            console.print(Text('  ➤ ').append("Not moving file because it's the same location...", style='dim'))
+            return
+        elif Config.dry_run or Config.leave_in_place:
+            console.print(Text('  ➤ ').append(f"Not moving file because it's a dry run or --leave-in-place specified...", style='dim'))
+        else:
+            shutil.move(self.file_path, processed_file_path)
 
     def __str__(self) -> str:
         return str(self.file_path)

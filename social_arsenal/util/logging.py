@@ -88,12 +88,12 @@ def indent_whitespace(indent_level: int = 1):
     return ' ' * INDENT_SPACES * indent_level
 
 
-def copied_file_log_message(basename: str, new_file: Path) -> Text:
-    return _file_operation_log_message(basename, new_file, 'Copied')
+def copying_file_log_message(basename: str, new_file: Path) -> Text:
+    return _file_operation_log_message(basename, new_file, 'Copying')
 
 
-def move_file_log_message(basename: str, new_file: Path) -> Text:
-    return _file_operation_log_message(basename, new_file, 'Moved')
+def moving_file_log_message(basename: str, new_file: Path) -> Text:
+    return _file_operation_log_message(basename, new_file, 'Moving processed file')
 
 
 def _file_operation_log_message(basename: str, new_file: Path, log_msg: str) -> Text:

@@ -19,7 +19,7 @@ from social_arsenal.config import Config
 from social_arsenal.filename_extractor import FilenameExtractor
 from social_arsenal.files.sortable_file import SortableFile
 from social_arsenal.util.filesystem_helper import copy_file_creation_time
-from social_arsenal.util.logging import console, copied_file_log_message, move_file_log_message
+from social_arsenal.util.logging import console, copying_file_log_message
 
 THUMBNAIL_DIMENSIONS = (400, 400)
 IMAGE_DESCRIPTION = 'ImageDescription'
@@ -41,7 +41,7 @@ class ImageFile(SortableFile):
         exif_data.update([(EXIF_CODES[IMAGE_DESCRIPTION], self.extracted_text())])
 
         if Config.dry_run:
-            log_msg = Text("➤ Dry run so no copy to '").append(str(new_file), style='color(221)').append("'")
+            log_msg = Text("➤ Dry run otherwise would copy to '").append(str(new_file), style='color(221)').append("'")
             console.print(log_msg, style='dim')
             return new_file
 
@@ -54,7 +54,7 @@ class ImageFile(SortableFile):
             console.print(f"ERROR while processing '{self.file_path}'", style='bright_red')
             raise e
 
-        console.print(copied_file_log_message(self.basename, new_file))
+        console.print(copying_file_log_message(self.basename, new_file))
 
         if not Config.leave_in_place:
             self._move_to_processed_dir()
@@ -99,18 +99,6 @@ class ImageFile(SortableFile):
     def raw_exif_dict(self) -> Image.Exif:
         """Return a key/value list of exif tags where keys are integers."""
         return Image.open(self.file_path).getexif()
-
-    def _move_to_processed_dir(self) -> None:
-        processed_file_path = Config.processed_screenshots_dir.joinpath(self.file_path.name)
-
-        if self.file_path == processed_file_path:
-            console.print("Not moving file because it's the same location...", style='dim')
-        elif Config.dry_run:
-            console.print(f"Not moving file because it's a dry run...", style='dim')
-        else:
-            shutil.move(self.file_path, processed_file_path)
-
-        console.print(move_file_log_message(str(self.file_path), processed_file_path))
 
     def __repr__(self) -> str:
         return f"ImageFile('{self.file_path}')"
