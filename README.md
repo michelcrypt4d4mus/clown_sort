@@ -22,7 +22,7 @@ Other stuff that happens:
 * The original file will be moved into a `Processed/` directory after it has been handled.
 
 Note also that:
-* Obviously this works on images that are more substantive than just self-clowning screenshots
+* This works on images that are more substantive than just self-clowning screenshots
 * PDFs can be sorted by contents or filename, e.g. a PDF named `Crypto bro poetry.pdf` containing [a verse](https://universeodon.com/@cryptadamist/109642431382653023) like _"Fuck u justin sun  and fuck ur dick face... u all play with investing and money of the people !!!!"_ by the noted bard JOKER_OF_CRYPTO will be copied to the `Justin Sun/` folder but not renamed.
 * Videos are not OCRed and can only be moved based on filename matches, e.g. a file called `SBF is a big fat liar.mov` will be moved to the `FTX/` folder but otherwise left alone.
 
