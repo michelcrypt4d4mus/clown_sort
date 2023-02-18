@@ -9,6 +9,7 @@ Banks,\$CUBI|Customers[_\s]*Ban(k|corp)|SEBA[^a-z]|Cross\s?River
 Bankless,Bankless
 Binance,binance|biconomy|bnb|cz|bifinity|binaryx|billance|changpeng|joselito|paysafe|SwipeIO|Swipe\s*Wallet|keyway|key\s*vision\s*dev|TrustWallet
 Bitstamp,Bitstamp
+Bittrex,Bittrex
 Bitzlato,Bitzlato
 Blockchain8,Blockchain8|tom ?emmer|ritchie ?torres|repritchie
 BlockFi,BlockFi
@@ -63,3 +64,4 @@ Vauld,Vauld
 Voyager,voyager
 wintermute,wintermute
 Wirecard,wirecard
+wyre,wyre
