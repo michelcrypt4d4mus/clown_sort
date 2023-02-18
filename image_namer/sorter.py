@@ -9,7 +9,6 @@ from image_namer.config import Config
 from image_namer.files.image_file import ImageFile
 from image_namer.files.pdf_file import PdfFile
 from image_namer.files.sortable_file import SortableFile
-from image_namer.files.sortable_file import SortableFile
 from image_namer.util.filesystem_helper import files_in_dir, is_image, is_pdf, is_sortable
 
 

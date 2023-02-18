@@ -19,6 +19,10 @@ parser = ArgumentParser(
 parser.add_argument('-e', '--execute', action='store_true',
                     help='execute the moves (default is dry run)')
 
+parser.add_argument('-r', '--rules-csv',
+                    metavar='RULES_FILE.CSV',
+                    help='use a custom set of sorting rules')
+
 
 # The Parsening Begins
 def parse_arguments():
