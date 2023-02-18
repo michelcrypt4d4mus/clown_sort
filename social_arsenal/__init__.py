@@ -3,7 +3,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-from social_arsenal.sorter import screenshot_paths, sortable_non_screenshot_paths
+from social_arsenal.sorter import screenshot_paths
 from social_arsenal.util.argument_parser import parse_arguments
 
 # load_dotenv() should be called as soon as possible (before parsing local classes) but not for pytest
@@ -19,10 +19,3 @@ def sort_screenshots():
 
     for image in screenshot_paths():
         image.sort_file()
-
-
-def sort_non_screenshots():
-    parse_arguments()
-
-    for file in sortable_non_screenshot_paths():
-        file.sort_file()

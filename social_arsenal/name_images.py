@@ -31,7 +31,7 @@ def subdir_radio_select_columns():
 
 
 def process_file(image: ImageFile) -> None:
-    console.print(Panel(Text("Processing: '").append(str(image.file_path), style='cyan').append("'..."), expand=False))
+    console.print(Panel(Text("Processing: '").append(str(image.file_path), style='cyan reverse').append("'..."), expand=False))
     extracted_text = ' '.join((image.extracted_text() or '').splitlines())
     input = sg.Input() if len(extracted_text) == 0 or len(extracted_text) > 76 else sg.Input(extracted_text)
     log.info(f"OCR Text: {extracted_text} ({len(extracted_text)} chars)")

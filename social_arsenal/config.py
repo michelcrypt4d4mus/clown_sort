@@ -21,6 +21,7 @@ PACKAGE_NAME = 'social_arsenal'
 DEFAULT_SCREENSHOTS_DIR = Path.home().joinpath('Pictures', 'Screenshots')
 SORTING_RULES_DIR = importlib.resources.files(PACKAGE_NAME).joinpath('sorting_rules')
 CRYPTO_RULES_CSV_PATH = str(SORTING_RULES_DIR.joinpath('crypto.csv'))
+MAC_SCREENSHOT_REGEX = re.compile('^Screen Shot \\d{4}-\\d{2}-\\d{2} at \\d{1,2}\\.\\d{2}\\.\\d{2} [AP]M.(png|jpe?g)')
 
 if 'RULES_CSV_PATH' in environ:
     DEFAULT_RULES_CSV_PATH = str(environ.get('RULES_CSV_PATH'))
@@ -29,9 +30,11 @@ else:
 
 
 class Config:
-    debug = False
-    dry_run = True
-    leave_in_place = False
+    debug: bool = False
+    dry_run: bool = True
+    leave_in_place: bool = False
+    screenshots_only: bool = True
+    filename_regex: re.Pattern = MAC_SCREENSHOT_REGEX
 
     @classmethod
     def set_directories(
