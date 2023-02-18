@@ -20,7 +20,7 @@ Tweet by @lawmaster: "I will say though before this thread gets taken over: 1. I
 # Installation with pipx is preferred if you have it but you can also use pip which comes standard
 # on almost all systems. pipx is only a noticeably better answer if you're a python programmer who
 # is concerned about side effects of pip upgrading system python packages.
-pip install screenshots_sorter
+pip install social arsenal
 
 # Get help
 sort_screenshots -h
