@@ -3,7 +3,7 @@ Sometimes someone is being a clown on the internet. Somewhere on your hard drive
 
 Social Arsenal solves this.
 
-### What It Do
+## What It Do
 
 It sorts screenshots, PDFs, etc. based on their name and/or their textual contents into folders based on a list of rules. The contents of the tweet/reddit post/whatever are prepended to the filename and the `ImageDescription` EXIF tag is set to the OCR text. For example this screenshot of a tweet by a noteworthy cryptocurrency "reporter"[^1] on the eve of FTX's implosion:
 
@@ -24,7 +24,7 @@ Other stuff that happens:
 
 Note that obviously this works on screenshots that are more substantive than just self-clowning screenshots. Note also that videos are not OCRed and can only be moved based on filename matches.
 
-### Quick Start
+## Quick Start
 ```sh
 # Installation with pipx is preferred if you have it but you can also use pip which comes standard
 # on almost all systems. pipx is only a noticeably better answer if you're a python programmer who
@@ -48,6 +48,11 @@ sort_screenshots --rules-csv /Users/hrollins/my_war.csv --execute
 ```
 
 # Setup
+```
+pip install social arsenal
+```
+
+### Optional Components
 If you want to use the popup window to manually tag you may need to install:
 * Python TK: `brew install python-tk@3.10` (if you don't have [homebrew](https://brew.sh/) you need to install it to run `brew install`)
 
