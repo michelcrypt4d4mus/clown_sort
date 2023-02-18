@@ -1,3 +1,6 @@
+# Rules CSV (should be two columns: folder,regex)
+RULES_CSV_PATH='/Users/uz0r/my_war.csv'
+
 # Location of files to sort.
 SCREENSHOTS_DIR='/Users/uz0r/Pictures/Screenshots/'
 

@@ -6,11 +6,11 @@ from os import path
 from pathlib import Path
 from typing import List, Union
 
-from image_namer.config import Config
-from image_namer.files.image_file import ImageFile
-from image_namer.files.pdf_file import PdfFile
-from image_namer.files.sortable_file import SortableFile
-from image_namer.util.filesystem_helper import files_in_dir, is_image, is_pdf, is_sortable
+from social_arsenal.config import Config
+from social_arsenal.files.image_file import ImageFile
+from social_arsenal.files.pdf_file import PdfFile
+from social_arsenal.files.sortable_file import SortableFile
+from social_arsenal.util.filesystem_helper import files_in_dir, is_image, is_pdf, is_sortable
 
 SCREENSHOT_REGEX = re.compile('^Screen Shot \\d{4}-\\d{2}-\\d{2} at \\d{1,2}\\.\\d{2}\\.\\d{2} [AP]M.png')
 

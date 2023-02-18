@@ -15,11 +15,11 @@ from PIL import Image
 from PIL.ExifTags import TAGS
 from rich.text import Text
 
-from image_namer.config import Config
-from image_namer.filename_extractor import FilenameExtractor
-from image_namer.files.sortable_file import SortableFile
-from image_namer.util.filesystem_helper import copy_file_creation_time
-from image_namer.util.logging import console, copied_file_log_message, move_file_log_message
+from social_arsenal.config import Config
+from social_arsenal.filename_extractor import FilenameExtractor
+from social_arsenal.files.sortable_file import SortableFile
+from social_arsenal.util.filesystem_helper import copy_file_creation_time
+from social_arsenal.util.logging import console, copied_file_log_message, move_file_log_message
 
 THUMBNAIL_DIMENSIONS = (400, 400)
 IMAGE_DESCRIPTION = 'ImageDescription'

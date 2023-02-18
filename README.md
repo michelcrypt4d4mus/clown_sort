@@ -19,16 +19,22 @@ Tweet by @lawmaster: "I will say though before this thread gets taken over: 1. I
 
 ### Quick Start
 ```sh
+# Installation with pipx is preferred if you have it but you can also use pip which comes standard
+# on almost all systems, especially if you're not a python programmer who is concerned about side
+# effects of pip upgrading system python packages.
 pipx install screenshots_sorter
 
 # Get help
 sort_screenshots -h
 
-# Dry run (don't actually move anything)
+# Dry run with default cryptocurrency sort rules (dry runs don't actually move anything, they just show you what)
 sort_screenshots
 
-# Execute
-sort_screenshots -e
+# Execute default cryptocurrency sort rules
+sort_screenshots --execute
+
+# Sort with custom rules
+sort_screenshots --rules-csv /Users/hrollins/my_war.csv --execute
 ```
 
 # Setup
@@ -39,6 +45,5 @@ Not required for standard PNG, JPG, etc. images but you may optionally install `
 * ExifTool: `brew install exiftool` or download from https://exiftool.org
 
 
-
 # Usage
-The default is to sort cryptocurrency related content but you can define your own CSV of rules with two columns `folder` and `regex`. The value in `folder` specifies the subdirectory to sort into and `regex` is the pattern to match against. See [the default crypto related configuration](image_namer/sorting_rules/crypto.csv) for an example. An explanation of regular expressions is beyond the scope of this README but many resources are available to help. if you're not good at regexes just remember that any alphanumeric string is a regex that will match that string. [pythex](http://pythex.org/) is a great website for testing your regexes.
+The default is to sort cryptocurrency related content but you can define your own CSV of rules with two columns `folder` and `regex`. The value in `folder` specifies the subdirectory to sort into and `regex` is the pattern to match against. See [the default crypto related configuration](social_arsenal/sorting_rules/crypto.csv) for an example. An explanation of regular expressions is beyond the scope of this README but many resources are available to help. if you're not good at regexes just remember that any alphanumeric string is a regex that will match that string. [pythex](http://pythex.org/) is a great website for testing your regexes.

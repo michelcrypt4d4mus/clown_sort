@@ -1,16 +1,25 @@
 [tool.poetry]
-name = "image-namer"
+name = "social-arsenal"
 version = "0.1.0"
 description = "Sort screenshots based on rules or through individual review."
 authors = ["Michel de Cryptadamus <michel@cryptadamus.com>"]
 readme = "README.md"
-packages = [{include = "image_namer"}]
+packages = [{include = "social_arsenal"}]
 homepage = "https://github.com/michelcrypt4d4mus/screenshot_sorter"
 
 include = [
     "CHANGELOG.md",
     "LICENSE",
     { path = "sorting_rules/crypto.csv" }
+]
+
+keywords = [
+    'ocr',
+    'organization',
+    'organizer',
+    'screenshot',
+    'rename',
+    'sort',
 ]
 
 
@@ -29,7 +38,6 @@ pyexiftool = "^0.5.5"
 pypdf = "^3.4.1"
 
 
-
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.2.0"
 
@@ -45,5 +53,5 @@ build-backend = "poetry.core.masonry.api"
 
 
 [tool.poetry.scripts]
-sort_screenshots = 'image_namer:sort_screenshots'
-sort_non_screenshots = 'image_namer:sort_non_screenshots'
+sort_screenshots = 'social_arsenal:sort_screenshots'
+sort_non_screenshots = 'social_arsenal:sort_non_screenshots'

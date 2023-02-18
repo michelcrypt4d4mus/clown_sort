@@ -4,7 +4,7 @@ from importlib.metadata import version
 
 from rich_argparse_plus import RichHelpFormatterPlus
 
-from image_namer.config import Config, PACKAGE_NAME
+from social_arsenal.config import Config, PACKAGE_NAME
 
 DESCRIPTION = "Sort screenshots according to rules."
 EPILOG = "Currently focused on crypto related screenshots."

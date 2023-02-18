@@ -1,6 +1,6 @@
-from image_namer.config import Config
-from image_namer.files.image_file import ImageFile
-from image_namer.files.sortable_file import SortableFile
+from social_arsenal.config import Config
+from social_arsenal.files.image_file import ImageFile
+from social_arsenal.files.sortable_file import SortableFile
 
 from tests.test_config import *
 

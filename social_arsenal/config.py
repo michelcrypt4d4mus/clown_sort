@@ -10,11 +10,11 @@ from os import environ
 from pathlib import Path
 from typing import List, Optional, Union
 
-from image_namer.util.filesystem_helper import subdirs_of_dir
+from social_arsenal.util.filesystem_helper import subdirs_of_dir
 
 SortRule = namedtuple('SortRule', ['folder', 'regex'])
 
-PACKAGE_NAME = 'image_namer'
+PACKAGE_NAME = 'social_arsenal'
 DEFAULT_SCREENSHOTS_DIR = Path.home().joinpath('Pictures', 'Screenshots')
 SORTING_RULES_DIR = importlib.resources.files(PACKAGE_NAME).joinpath('sorting_rules')
 CRYPTO_RULES_PATH = environ.get('SCREENSHOT_SORTER_RULES_CSV_PATH', SORTING_RULES_DIR.joinpath('crypto.csv'))

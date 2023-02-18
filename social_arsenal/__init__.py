@@ -3,8 +3,8 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-from image_namer.sorter import screenshot_paths, sortable_non_screenshot_paths
-from image_namer.util.argument_parser import parse_arguments
+from social_arsenal.sorter import screenshot_paths, sortable_non_screenshot_paths
+from social_arsenal.util.argument_parser import parse_arguments
 
 # load_dotenv() should be called as soon as possible (before parsing local classes) but not for pytest
 if not environ.get('INVOKED_BY_PYTEST', False):

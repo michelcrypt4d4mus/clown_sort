@@ -7,10 +7,10 @@ import PySimpleGUI as sg
 from rich.panel import Panel
 from rich.text import Text
 
-from image_namer.config import DEFAULT_SCREENSHOTS_DIR, Config
-from image_namer.files.image_file import ImageFile
-from image_namer.util.dict_helper import get_dict_key_by_value
-from image_namer.util.logging import console, log
+from social_arsenal.config import DEFAULT_SCREENSHOTS_DIR, Config
+from social_arsenal.files.image_file import ImageFile
+from social_arsenal.util.dict_helper import get_dict_key_by_value
+from social_arsenal.util.logging import console, log
 
 SORTED_DIR = DEFAULT_SCREENSHOTS_DIR.joinpath('Sorted')
 PROCESSED_DIR = DEFAULT_SCREENSHOTS_DIR.joinpath('Processed')

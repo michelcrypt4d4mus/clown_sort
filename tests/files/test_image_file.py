@@ -1,5 +1,5 @@
-from image_namer.config import Config
-from image_namer.files.image_file import IMAGE_DESCRIPTION, ImageFile
+from social_arsenal.config import Config
+from social_arsenal.files.image_file import IMAGE_DESCRIPTION, ImageFile
 
 from tests.test_config import *
 

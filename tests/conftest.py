@@ -5,8 +5,8 @@ from pathlib import Path
 
 import pytest
 
-from image_namer.config import Config
-from image_namer.util.argument_parser import PACKAGE_NAME
+from social_arsenal.config import Config
+from social_arsenal.util.argument_parser import PACKAGE_NAME
 
 PROJECT_DIR = path.join(str(importlib.resources.files(PACKAGE_NAME)), pardir)
 TESTS_DIR = Path(PROJECT_DIR).joinpath('tests')

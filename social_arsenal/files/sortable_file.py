@@ -12,9 +12,9 @@ from rich.console import Console, ConsoleOptions, RenderResult
 from rich.panel import Panel
 from rich.text import Text
 
-from image_namer.config import Config
-from image_namer.util.logging import console, log, move_file_log_message
-from image_namer.util.string_helper import comma_join
+from social_arsenal.config import Config
+from social_arsenal.util.logging import console, log, move_file_log_message
+from social_arsenal.util.string_helper import comma_join
 
 MAX_EXTRACTION_LENGTH = 4096
 

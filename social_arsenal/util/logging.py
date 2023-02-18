@@ -11,7 +11,7 @@ from rich.panel import Panel
 from rich.text import Text
 from rich.theme import Theme
 
-from image_namer.config import Config, PACKAGE_NAME
+from social_arsenal.config import Config, PACKAGE_NAME
 
 ### Logging ###
 LOG_LEVEL = 'INFO'

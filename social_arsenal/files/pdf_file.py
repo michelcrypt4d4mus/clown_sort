@@ -5,7 +5,7 @@ from typing import Optional
 
 from pypdf import PdfReader
 
-from image_namer.files.sortable_file import SortableFile
+from social_arsenal.files.sortable_file import SortableFile
 
 
 class PdfFile(SortableFile):
