@@ -5,7 +5,7 @@ Social Arsenal solves this.
 
 ### What It Do
 
-It sorts screenshots, PDFs, etc. based on their name and/or their textual contents into folders based on a list of rules. The contents of the tweet/reddit post/etc are appended to the filename and the `ImageDescription` EXIF tag is set to the OCR text. For example this screenshot of a tweet by a noteworthy cryptocurrency "reporter" on the eve of FTX's implosion:
+It sorts screenshots, PDFs, etc. based on their name and/or their textual contents into folders based on a list of rules. The contents of the tweet/reddit post/whatever are prepended to the filename and the `ImageDescription` EXIF tag is set to the OCR text. For example this screenshot of a tweet by a noteworthy cryptocurrency "reporter"[^1] on the eve of FTX's implosion:
 
 ![](doc/larry_cermak_on_alameda_and_ftx.png)
 
@@ -14,8 +14,6 @@ Would be renamed from `Screen Shot 2023-02-17 at 7.11.37 PM.png` to
 ```
 Tweet by @lawmaster: "I will say though before this thread gets taken over: 1. I do believe Alameda has the size to easily buy Binance\'s FIT OTC 2. I think the chance of FTX insolvency is near" Screen Shot 2023-02-17 at 7.11.37 PM.png
 ```
-
-(Perhaps notable that the "reporter" in question for years maintained a private list of the blockchain addresses of Sam Bankman-Fried's various scams as part of his commitment to "unrivaled transparency".)
 
 ### Quick Start
 ```sh
@@ -30,8 +28,11 @@ sort_screenshots -h
 # Dry run with default cryptocurrency sort rules (dry runs don't actually move anything, they just show you what)
 sort_screenshots
 
-# Execute default cryptocurrency sort rules
+# Execute default cryptocurrency sort rules against ~/Pictures/Screenshots
 sort_screenshots --execute
+
+# Sort a different directory of screenshots
+sort_screenshots --screenshots-dir /Users/hrollins/Pictures/get_in_the_van/tourphotos --execute
 
 # Sort with custom rules
 sort_screenshots --rules-csv /Users/hrollins/my_war.csv --execute
@@ -47,3 +48,5 @@ Not required for standard PNG, JPG, etc. images but you may optionally install `
 
 # Usage
 The default is to sort cryptocurrency related content but you can define your own CSV of rules with two columns `folder` and `regex`. The value in `folder` specifies the subdirectory to sort into and `regex` is the pattern to match against. See [the default crypto related configuration](social_arsenal/sorting_rules/crypto.csv) for an example. An explanation of regular expressions is beyond the scope of this README but many resources are available to help. if you're not good at regexes just remember that any alphanumeric string is a regex that will match that string. [pythex](http://pythex.org/) is a great website for testing your regexes.
+
+[^1]: Perhaps notable that the "reporter" in question for years maintained a private list of the blockchain addresses of Sam Bankman-Fried's various scams as part of his commitment to "unrivaled transparency".
