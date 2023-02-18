@@ -6,8 +6,9 @@ from rich_argparse_plus import RichHelpFormatterPlus
 
 from social_arsenal.config import Config, CRYPTO_RULES_CSV_PATH, DEFAULT_SCREENSHOTS_DIR, PACKAGE_NAME
 
-DESCRIPTION = "Sort screenshots according to rules."
-EPILOG = "Currently focused on crypto related screenshots."
+DESCRIPTION = "Sort, rename, and tag screenshots (and the occasional PDF) according to rules."
+EPILOG = "Defaults are focused on crypto related screenshots."
+
 
 RichHelpFormatterPlus.choose_theme('prince')
 
@@ -21,8 +22,8 @@ parser.add_argument('-e', '--execute', action='store_true',
 
 parser.add_argument('-s', '--screenshots-dir',
                     metavar='SCREENSHOTS_DIR',
-                    default=DEFAULT_SCREENSHOTS_DIR,
-                    help='folder containing files you wish to sort')
+                    help='folder containing files you wish to sort',
+                    default=DEFAULT_SCREENSHOTS_DIR)
 
 parser.add_argument('-d', '--destination-dir',
                     metavar='DESTINATION_DIR',
@@ -34,9 +35,6 @@ parser.add_argument('-r', '--rules-csv',
                     default=CRYPTO_RULES_CSV_PATH)
 
 
-
-
-# The Parsening Begins
 def parse_arguments():
     """Parse command line args."""
     if '--version' in sys.argv:
@@ -52,5 +50,10 @@ def parse_arguments():
         print("Dry run...")
         Config.dry_run = True
 
-    Config.set_directories()
+    Config.set_directories(
+        screenshots_dir=args.screenshots_dir,
+        destination_dir=args.destination_dir,
+        rules_csv_path=args.rules_csv
+    )
+
     return args
