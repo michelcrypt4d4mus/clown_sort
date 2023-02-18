@@ -15,6 +15,14 @@ Would be renamed from `Screen Shot 2023-02-17 at 7.11.37 PM.png` to
 Tweet by @lawmaster: "I will say though before this thread gets taken over: 1. I do believe Alameda has the size to easily buy Binance\'s FIT OTC 2. I think the chance of FTX insolvency is near" Screen Shot 2023-02-17 at 7.11.37 PM.png
 ```
 
+Other stuff that happens:
+* The `ImageDescription` EXIF tag will be written (for images)
+* All timestamps will be preserved.
+* If the file is not modified or renamed it will merely be moved.
+* If modifications are to be made then the original file will be moved into a `Processed/` directory after it has been handled.
+
+Note that videos are not OCRed and can only be moved based on filename matches.
+
 ### Quick Start
 ```sh
 # Installation with pipx is preferred if you have it but you can also use pip which comes standard

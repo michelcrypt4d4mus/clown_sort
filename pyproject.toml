@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "social-arsenal"
-version = "0.2.0"
+version = "0.2.1"
 description = "Sort screenshots based on rules or through individual review."
 authors = ["Michel de Cryptadamus <michel@cryptadamus.com>"]
 readme = "README.md"
@@ -26,7 +26,7 @@ keywords = [
 [tool.poetry.dependencies]
 python = "^3.10"
 exif = "^1.5.0"
-PySimpleGUI = "^4.60.4"
+PySimpleGUI = {version = "^4.60.4", optional = true}
 pytesseract = "^0.3.10"
 rich = "^13.0.1"
 piexif = "^1.1.3"
@@ -36,6 +36,7 @@ python-dotenv = "^0.21.1"
 rich-argparse-plus = "^0.3.1.4"
 pyexiftool = "^0.5.5"
 pypdf = "^3.4.1"
+
 
 
 [tool.poetry.group.dev.dependencies]

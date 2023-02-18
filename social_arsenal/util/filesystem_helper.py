@@ -39,7 +39,7 @@ def timestamp_for_filename() -> str:
 
 def copy_file_creation_time(source_file: Path, destination_file: Path) -> None:
     """Copy the file creation timestamp from source_file to destination_file."""
-    Copy(str(source_file), str(destination_file)).modified()
+    Copy(str(source_file), str(destination_file)).all()
     # The filedate library has a bad habit of changing all the permissions so we change them back.
     os.chmod(destination_file, stat.S_IRUSR | stat.S_IWUSR | stat.S_IRGRP | stat.S_IROTH)
 
