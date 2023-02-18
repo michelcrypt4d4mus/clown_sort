@@ -7,7 +7,7 @@ Social Arsenal solves this.
 
 It sorts screenshots, PDFs, etc. based on their name and/or their textual contents into folders based on a list of rules. The contents of the tweet/reddit post/etc are appended to the filename and the `ImageDescription` EXIF tag is set to the OCR text. For example this screenshot of a tweet by a noteworthy cryptocurrency "reporter" on the eve of FTX's implosion:
 
-![](doc/larry cermak on FTX Alameda.png)
+![](doc/larry_cermak_on_alameda_and_ftx.png)
 
 Would be renamed from `Screen Shot 2023-02-17 at 7.11.37 PM.png` to
 
