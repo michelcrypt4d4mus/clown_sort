@@ -5,19 +5,27 @@ import csv
 import importlib.resources
 import logging
 import re
+import sys
 from collections import namedtuple
 from os import environ
 from pathlib import Path
 from typing import List, Optional, Union
 
+#from social_arsenal.util.logging import log
 from social_arsenal.util.filesystem_helper import subdirs_of_dir
 
+OptionalPath = Optional[Union[str, Path]]
 SortRule = namedtuple('SortRule', ['folder', 'regex'])
 
 PACKAGE_NAME = 'social_arsenal'
 DEFAULT_SCREENSHOTS_DIR = Path.home().joinpath('Pictures', 'Screenshots')
 SORTING_RULES_DIR = importlib.resources.files(PACKAGE_NAME).joinpath('sorting_rules')
-CRYPTO_RULES_PATH = environ.get('SCREENSHOT_SORTER_RULES_CSV_PATH', SORTING_RULES_DIR.joinpath('crypto.csv'))
+CRYPTO_RULES_CSV_PATH = str(SORTING_RULES_DIR.joinpath('crypto.csv'))
+
+if 'RULES_CSV_PATH' in environ:
+    DEFAULT_RULES_CSV_PATH = str(environ.get('RULES_CSV_PATH'))
+else:
+    DEFAULT_RULES_CSV_PATH = CRYPTO_RULES_CSV_PATH
 
 
 class Config:
@@ -28,11 +36,20 @@ class Config:
     @classmethod
     def set_directories(
             cls,
-            screenshots_dir: Union[str, Path] = DEFAULT_SCREENSHOTS_DIR,
-            destination_dir: Optional[Union[str, Path]] = None
+            screenshots_dir: OptionalPath = None,
+            destination_dir: OptionalPath = None,
+            rules_csv_path: OptionalPath = None
     ) -> None:
         """Set the directories to find screenshots in and sort screenshots to."""
-        cls.sort_rules = cls._load_rules_csv(str(CRYPTO_RULES_PATH))
+        screenshots_dir = Path(screenshots_dir or DEFAULT_SCREENSHOTS_DIR)
+        destination_dir = Path(destination_dir or screenshots_dir)
+        rules_csv_path = Path(rules_csv_path or DEFAULT_RULES_CSV_PATH)
+
+        if not rules_csv_path.is_file():
+            print(f"'{rules_csv_path}' is not a file.")
+            sys.exit()
+
+        cls.sort_rules = cls._load_rules_csv(rules_csv_path)
         cls.screenshots_dir: Path = Path(screenshots_dir)
         cls.destination_dir: Path = Path(destination_dir or screenshots_dir)
         cls.sorted_screenshots_dir = cls.destination_dir.joinpath('Sorted')

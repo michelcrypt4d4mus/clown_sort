@@ -14,14 +14,15 @@ if not environ.get('INVOKED_BY_PYTEST', False):
             break
 
 
-parse_arguments()
-
-
 def sort_screenshots():
+    parse_arguments()
+
     for image in screenshot_paths():
         image.sort_file()
 
 
 def sort_non_screenshots():
+    parse_arguments()
+
     for file in sortable_non_screenshot_paths():
         file.sort_file()
