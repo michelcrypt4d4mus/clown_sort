@@ -77,7 +77,7 @@ class FilenameExtractor:
         body = tweet_match.group('body')
 
         filename_text = f"Tweet by {author}"
-        log_txt = Text("YES it's a tweet by ", style='color(82)').append(author, style='color(178)')
+        log_txt = Text("It's a tweet by ", style='color(82)').append(author, style='color(178)')
         reply_to = TWEET_REPLY_REGEX.search(self.text)
 
         if reply_to is not None:

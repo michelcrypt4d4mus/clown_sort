@@ -1,6 +1,7 @@
 """
 Sort images based on the extracted contents.
 """
+import re
 from os import path
 from pathlib import Path
 from typing import List, Union
@@ -10,6 +11,8 @@ from image_namer.files.image_file import ImageFile
 from image_namer.files.pdf_file import PdfFile
 from image_namer.files.sortable_file import SortableFile
 from image_namer.util.filesystem_helper import files_in_dir, is_image, is_pdf, is_sortable
+
+SCREENSHOT_REGEX = re.compile('^Screen Shot \\d{4}-\\d{2}-\\d{2} at \\d{1,2}\\.\\d{2}\\.\\d{2} [AP]M.png')
 
 
 def screenshot_paths() -> List[SortableFile]:
@@ -39,3 +42,7 @@ def _build_sortable_file(file_path: Union[str, Path]) -> SortableFile:
         return PdfFile(file_path)
     else:
         return SortableFile(file_path)
+
+
+def _is_screenshot(file_path: Union[str, Path]) -> bool:
+    return SCREENSHOT_REGEX.search(str(file_path)) is not None
