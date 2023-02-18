@@ -23,7 +23,7 @@ Other stuff that happens:
 
 Note also that:
 * This works on images that are more substantive than just self-clowning screenshots
-* PDFs can be sorted by contents or filename, e.g. a PDF named `Crypto bro poetry.pdf` containing [a verse](https://universeodon.com/@cryptadamist/109642431382653023) like _"Fuck u justin sun  and fuck ur dick face... u all play with investing and money of the people !!!!"_ by the noted bard JOKER_OF_CRYPTO will be copied to the `Justin Sun/` folder but not renamed.
+* PDFs can be sorted by contents or filename, e.g. a PDF named `Norton Anthology of Crypto Bro Poetry.pdf` containing iambic verse like _["Fuck u justin sun  and fuck ur dick face... u all play with investing and money of the people !!!!"](https://universeodon.com/@cryptadamist/109642431382653023)_ by the noted bard JOKER_OF_CRYPTO will be copied to the `Justin Sun/` folder but not renamed.
 * Videos are not OCRed and can only be moved based on filename matches, e.g. a file called `SBF is a big fat liar.mov` will be moved to the `FTX/` folder but otherwise left alone.
 
 ## Quick Start
@@ -31,7 +31,7 @@ Note also that:
 # Installation with pipx is preferred if you have it but you can also use pip which comes standard
 # on almost all systems. pipx is only a noticeably better answer if you're a python programmer who
 # is concerned about side effects of pip upgrading system python packages.
-pip install social arsenal
+pip install social_arsenal
 
 # Get help
 sort_screenshots -h
@@ -51,7 +51,7 @@ sort_screenshots --rules-csv /Users/hrollins/my_war.csv --execute
 
 # Setup
 ```
-pip install social arsenal
+pip install social_arsenal
 ```
 
 ### Optional Components
