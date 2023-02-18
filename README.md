@@ -37,7 +37,8 @@ pip install social_arsenal
 # Get help
 sort_screenshots -h
 
-# Dry run with default cryptocurrency sort rules (dry runs don't actually move anything, they just show you what)
+# Dry run with default cryptocurrency sort rules (dry runs don't actually move anything,
+# they just show you what will happen if you run again with the --execute flag)
 sort_screenshots
 
 # Execute default cryptocurrency sort rules against ~/Pictures/Screenshots
