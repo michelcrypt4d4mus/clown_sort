@@ -78,7 +78,12 @@ class SortableFile:
             destination_dir = Config.sorted_screenshots_dir.joinpath(destination_subdir)
 
         destination_path = destination_dir.joinpath(self.new_basename())
-        console.print(copying_file_log_message(self.basename, destination_path))
+
+        # TODO: refactor into copying_file_log_message()
+        if Config.debug:
+            console.print(copying_file_log_message(self.basename, destination_path))
+        else:
+            console.print(indented_bullet(Text('Copying to ').append(str(destination_subdir), style='sort_destination')))
 
         if Config.dry_run:
             console.print(indented_bullet("Dry run so not actually copying...", style='dim'))
