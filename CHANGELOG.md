@@ -1,4 +1,6 @@
-### 0.2.4
+### 0.3.0
+* `--show-rules` argument
+* More sorting rules
 * Logging adjustments
 
 ### 0.2.3
