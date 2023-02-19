@@ -5,7 +5,7 @@ description = "Sort screenshots based on rules or through individual review."
 authors = ["Michel de Cryptadamus <michel@cryptadamus.com>"]
 readme = "README.md"
 packages = [{include = "social_arsenal"}]
-homepage = "https://github.com/michelcrypt4d4mus/screenshot_sorter"
+homepage = "https://github.com/michelcrypt4d4mus/social_arsenal"
 
 include = [
     "CHANGELOG.md",
