@@ -18,6 +18,7 @@ from social_arsenal.util.logging import console, log, copying_file_log_message, 
 from social_arsenal.util.string_helper import comma_join
 
 MAX_EXTRACTION_LENGTH = 4096
+NOT_MOVING_FILE = 'Not moving file to proccessed dir'
 
 
 class SortableFile:
@@ -37,7 +38,7 @@ class SortableFile:
         sort_folders = type(self).get_sort_folders(self.extracted_text())
 
         if len(sort_folders) == 0:
-            console.print(bullet_text('No sort folders found! Copying to base sorted dir...', style='red dim'))
+            console.print(bullet_text('No sort folders found! Copying to base sorted dir...', style='red'))
             sort_folders = [None]
         else:
             console.print(bullet_text(Text('Sort folders: ') + comma_join(sort_folders)))
@@ -119,11 +120,12 @@ class SortableFile:
         else:
             console.print(bullet_text("Processing complete..."))
 
+
         if self.file_path == processed_file_path:
-            console.print(indented_bullet("Not moving file because it's the same location...", style='dim'))
+            console.print(indented_bullet(f"{NOT_MOVING_FILE} because it's the same location...", style='dim'))
             return
         elif Config.dry_run or Config.leave_in_place:
-            console.print(indented_bullet(f"Not moving file because it's a dry run or --leave-in-place specified...", style='dim'))
+            console.print(indented_bullet(f"{NOT_MOVING_FILE} because it's a dry run or --leave-in-place specified...", style='dim'))
         else:
             shutil.move(self.file_path, processed_file_path)
 
@@ -145,7 +147,7 @@ class SortableFile:
 
             yield Panel(txt, expand=True, style='dim')
 
-        log_basename = bullet_text(Text('DESTINATION BASENAME: ').append(self.new_basename(), style='cyan dim'))
+        log_basename = bullet_text(Text('Destination filename: ').append(self.new_basename(), style='cyan dim'))
 
         if self._filename_extractor is not None:
             if self._filename_extractor._is_tweet():

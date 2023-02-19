@@ -45,10 +45,16 @@ class ImageFile(SortableFile):
         if Config.debug:
             console.print(copying_file_log_message(self.basename, new_file))
         else:
+            log_msg = Text('Copying to ')
+
+            if Config.dry_run:
+                log_msg = Text('').append('(Not) ', style='dim') + log_msg
+
             if destination_subdir is None:
-                console.print(indented_bullet(Text('Copying to root sorted dir...')))
+                console.print(indented_bullet(log_msg + Text('root sorted dir...')))
             else:
-                console.print(indented_bullet(Text('Copying to ').append(str(destination_subdir), style='sort_destination')))
+                log_msg.append(str(destination_subdir), style='sort_destination')
+                console.print(indented_bullet(log_msg.append('...')))
 
         if Config.dry_run:
             log_msg = Text("  ➤ ").append("Dry run otherwise would copy to '", style='dim')
