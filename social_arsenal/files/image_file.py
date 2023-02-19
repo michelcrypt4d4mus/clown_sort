@@ -69,7 +69,8 @@ class ImageFile(SortableFile):
         if self.extracted_text() is None:
             self._new_basename = self.basename
         else:
-            self._new_basename = FilenameExtractor(self).filename()
+            self._filename_extractor = FilenameExtractor(self)
+            self._new_basename = self._filename_extractor.filename()
 
         self._new_basename = self._new_basename.replace('""', '"')
         return self._new_basename

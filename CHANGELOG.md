@@ -1,3 +1,6 @@
+### 0.2.4
+* Logging adjustments
+
 ### 0.2.3
 * Logging adjustments.
 

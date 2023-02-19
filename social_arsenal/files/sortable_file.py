@@ -13,6 +13,7 @@ from rich.panel import Panel
 from rich.text import Text
 
 from social_arsenal.config import Config
+from social_arsenal.filename_extractor import FilenameExtractor
 from social_arsenal.util.logging import console, log, copying_file_log_message, moving_file_log_message
 from social_arsenal.util.string_helper import comma_join
 
@@ -28,6 +29,7 @@ class SortableFile:
         self.text_extraction_attempted: bool = False
         self._extracted_text: Optional[str] = None
         self._new_basename: Optional[str] = None
+        self._filename_extractor: Optional[FilenameExtractor] = None
 
     def sort_file(self) -> None:
         """Sort the file to destination_dir subdir."""
@@ -135,4 +137,18 @@ class SortableFile:
 
         yield Panel(txt, expand=True, style='dim')
         yield Text('➤ DESTINATION BASENAME: ').append(self.new_basename(), style='cyan dim')
+
+        if self._filename_extractor is not None:
+            if self._filename_extractor._is_tweet():
+                log_txt = Text('➤ ').append("It's a tweet by ", style='color(82)')
+                log_txt.append(self._filename_extractor.author, style='color(178)')
+
+                if self._filename_extractor.reply_to_account is not None:
+                    log_txt.append("\n    -> Replying to ", style='color(23)')
+                    log_txt.append(self._filename_extractor.reply_to_account, style='color(178)')
+
+                yield log_txt
+            elif self._filename_extractor._is_reddit():
+                yield Text("It's a reddit post", style='color(82)')
+
         log.debug(f"EXIF: {self.exif_dict()}")

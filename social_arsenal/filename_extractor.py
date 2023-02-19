@@ -37,6 +37,8 @@ class FilenameExtractor:
         self.text: Optional[str] = image_file.extracted_text()
         self.basename_length: int = len(image_file.basename)
         self.available_char_count: int = MAX_FILENAME_LENGTH - self.basename_length - 1
+        self.author: Optional[str] = None
+        self.reply_to_account: Optional[str] = None
 
     def filename(self) -> str:
         filename: str
@@ -73,24 +75,19 @@ class FilenameExtractor:
     def _filename_str_for_tweet(self) -> str:
         """Build a filename for tweets."""
         tweet_match = TWEET_REGEX.search(self.text)
-        author = tweet_match.group(1)
+        self.author = tweet_match.group(1)
         body = tweet_match.group('body')
-
-        filename_text = f"Tweet by {author}"
-        log_txt = Text("It's a tweet by ", style='color(82)').append(author, style='color(178)')
+        filename_text = f"Tweet by {self.author}"
         reply_to = TWEET_REPLY_REGEX.search(self.text)
 
         if reply_to is not None:
-            reply_to_account = reply_to.group(1)
+            self.reply_to_account = reply_to.group(1)
 
-            if reply_to_account != author:
-                filename_text += f" replying to {reply_to_account}"
+            if self.reply_to_account != self.author:
+                filename_text += f" replying to {self.reply_to_account}"
 
             body = reply_to.group('body')
-            log_txt.append("\n    -> Replying to ", style='color(23)')
-            log_txt.append(reply_to.group(1), style='color(178)')
 
-        console.print(log_txt)
         return self._build_filename(filename_text, body)
 
     def _filename_str_for_reddit(self) -> str:
