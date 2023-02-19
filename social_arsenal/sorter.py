@@ -1,5 +1,7 @@
 """
 Sort images based on the extracted contents.
+
+# TODO rename this file to file_finder.py, file_builder.py, or something like that.
 """
 from os import path
 from pathlib import Path
