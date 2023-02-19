@@ -4,4 +4,4 @@ from rich.text import Text
 
 
 def comma_join(strs: List[str]) -> Text:
-    return Text(", ").join([Text(s, 'bright_green') for s in strs])
+    return Text(", ").join([Text(s, 'magenta') for s in strs])

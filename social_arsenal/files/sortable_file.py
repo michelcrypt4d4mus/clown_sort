@@ -37,10 +37,10 @@ class SortableFile:
         sort_folders = type(self).get_sort_folders(self.extracted_text())
 
         if len(sort_folders) == 0:
-            console.print(bullet_text('No sort folders found! Copying to base sorted dir...', style='magenta dim'))
+            console.print(bullet_text('No sort folders found! Copying to base sorted dir...', style='red dim'))
             sort_folders = [None]
         else:
-            console.print(bullet_text(Text('FOLDERS: ', style='magenta') + comma_join(sort_folders)))
+            console.print(bullet_text(Text('Sort folders: ') + comma_join(sort_folders)))
 
         for folder in sort_folders:
             if folder is not None:
