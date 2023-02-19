@@ -55,6 +55,8 @@ COLOR_THEME_DICT = {
     'grey.darkest': 'color(235) dim',
     'grey.light': 'color(248)',
     'off_white': 'color(245)',
+    'social_media': 'color(82)',
+    'author': 'color(178)',
 }
 
 COLOR_THEME = Theme(COLOR_THEME_DICT)

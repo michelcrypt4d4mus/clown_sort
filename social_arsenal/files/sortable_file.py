@@ -144,16 +144,16 @@ class SortableFile:
 
         if self._filename_extractor is not None:
             if self._filename_extractor._is_tweet():
-                log_txt = bullet_text("It's a tweet by ", style='color(82)')
-                log_txt.append(self._filename_extractor.author, style='color(178)')
+                log_txt = bullet_text("It's a tweet by ", style='social_media')
+                log_txt.append(self._filename_extractor.author, style='author')
 
                 if self._filename_extractor.reply_to_account is not None:
                     log_txt.append("\n    -> Replying to ", style='color(23)')
-                    log_txt.append(self._filename_extractor.reply_to_account, style='color(178)')
+                    log_txt.append(self._filename_extractor.reply_to_account, style='author')
 
                 yield log_txt
             elif self._filename_extractor._is_reddit():
-                yield Text("It's a reddit post", style='color(82)')
+                yield Text("It's a reddit post", style='social_media')
 
         console.print(log_basename)
 
