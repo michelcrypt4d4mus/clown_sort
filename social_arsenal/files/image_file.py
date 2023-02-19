@@ -41,6 +41,7 @@ class ImageFile(SortableFile):
         exif_data = self.raw_exif_dict()
         exif_data.update([(EXIF_CODES[IMAGE_DESCRIPTION], self.extracted_text())])
 
+        # TODO: refactor
         if Config.debug:
             console.print(copying_file_log_message(self.basename, new_file))
         else:
