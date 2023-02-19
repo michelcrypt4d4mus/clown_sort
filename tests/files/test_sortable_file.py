@@ -55,6 +55,8 @@ def test_get_sort_folder():
     assert SortableFile.get_sort_folders('fuck Arianna1Simpson') == ['A16Z']
     assert SortableFile.get_sort_folders('fuck DAI ') == ['MakerDAO']
     assert SortableFile.get_sort_folders('fuck #DAI ') == ['MakerDAO']
+    assert SortableFile.get_sort_folders('fuck EOS ') == ['EOS']
+    assert SortableFile.get_sort_folders('fuck B. Blumer ') == ['EOS']
 
     for hoo in ['Rexy Wang', 'Rexy Hoo', '#Hoo', 'Hoo Exchange', 'HooExchange']:
         assert SortableFile.get_sort_folders(f"fuck {hoo} yo") == ['Hoo']
@@ -63,3 +65,4 @@ def test_get_sort_folder():
     assert SortableFile.get_sort_folders("fuck Deltec'ed it sucks") == []
     assert SortableFile.get_sort_folders('fuck bitfinexed it sucks') == []
     assert SortableFile.get_sort_folders('fuck DAIS ') == []
+    assert SortableFile.get_sort_folders('fuckEOS ') == []

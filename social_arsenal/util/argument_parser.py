@@ -56,6 +56,9 @@ parser.add_argument('-f', '--filename-regex',
 parser.add_argument('--show-rules', action='store_true',
                     help='display the sorting rules and exit')
 
+parser.add_argument('--debug', action='store_true',
+                    help='turn on debug level logging')
+
 
 def parse_arguments():
     """Parse command line args."""
@@ -90,6 +93,9 @@ def parse_arguments():
     if args.show_rules:
         console.print(_rules_table())
         sys.exit()
+
+    if args.debug:
+        Config.debug = True
 
     return args
 

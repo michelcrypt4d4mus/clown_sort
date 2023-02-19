@@ -21,6 +21,7 @@ Coinbase,Coinbase|\$COIN|brian[_\s]*armstrong
 Crypto.com,crypto[._]?com|CDC|[$#]CRO|\sCRO\s
 DCG,DCG|digital\s*currency\s*group|sh?ill?bert|Grayscale|GBTC
 El Salvador,El[-\s]*Salvador|Bukele
+EOS,[^\w]EOS|\s*Blumer[^\w]
 FTX,FTX|FTT|SBF|Trabucco|Bankman|Ellison|Nishad|Alameda|Moonstone|friedberg
 Gemini,Gemini|winklev|@cameron
 Genesis,Genesis|Michael\s?Moro
@@ -35,6 +36,7 @@ North Korea,lazarus|North\s*Korea|pyongyang
 Paul LeRoux,leroux
 MakerDAO,makerdao|[$#\s]DAI[^\w]
 Marathon,\$MARA|marathon
+Matthew Roszak,[^\w]roszak
 Mario Nawfal,marionawfal
 Messari,Ryan\s*Selkis|twobitidiot|messari
 Memes,\smeme
