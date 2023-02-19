@@ -6,7 +6,7 @@ from typing import Optional
 
 from rich.text import Text
 
-from social_arsenal.util.logging import console, log
+from clown_sort.util.logging import console, log
 
 MAX_FILENAME_LENGTH = 225
 

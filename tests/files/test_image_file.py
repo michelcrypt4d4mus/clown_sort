@@ -1,5 +1,5 @@
-from social_arsenal.config import Config
-from social_arsenal.files.image_file import IMAGE_DESCRIPTION, ImageFile
+from clown_sort.config import Config
+from clown_sort.files.image_file import IMAGE_DESCRIPTION, ImageFile
 
 from tests.test_config import *
 

@@ -11,11 +11,11 @@ from rich.console import Console, ConsoleOptions, RenderResult
 from rich.panel import Panel
 from rich.text import Text
 
-from social_arsenal.config import Config
-from social_arsenal.filename_extractor import FilenameExtractor
-from social_arsenal.util.rich_helper import bullet_text, indented_bullet
-from social_arsenal.util.logging import console, log, copying_file_log_message, moving_file_log_message
-from social_arsenal.util.string_helper import comma_join
+from clown_sort.config import Config
+from clown_sort.filename_extractor import FilenameExtractor
+from clown_sort.util.rich_helper import bullet_text, indented_bullet
+from clown_sort.util.logging import console, log, copying_file_log_message, moving_file_log_message
+from clown_sort.util.string_helper import comma_join
 
 MAX_EXTRACTION_LENGTH = 4096
 NOT_MOVING_FILE = 'Not moving file to proccessed dir'

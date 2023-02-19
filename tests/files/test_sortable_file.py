@@ -1,6 +1,6 @@
-from social_arsenal.config import Config
-from social_arsenal.files.image_file import ImageFile
-from social_arsenal.files.sortable_file import SortableFile
+from clown_sort.config import Config
+from clown_sort.files.image_file import ImageFile
+from clown_sort.files.sortable_file import SortableFile
 
 from tests.test_config import *
 

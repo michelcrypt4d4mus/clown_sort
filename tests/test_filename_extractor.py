@@ -1,7 +1,7 @@
 import pytest
 
-from social_arsenal.filename_extractor import FilenameExtractor
-from social_arsenal.files.image_file import ImageFile
+from clown_sort.filename_extractor import FilenameExtractor
+from clown_sort.files.image_file import ImageFile
 
 WUBLOCKCHAIN_TWEET_TEXT = """wu
 

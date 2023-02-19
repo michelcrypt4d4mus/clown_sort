@@ -9,9 +9,9 @@ from rich.table import Table
 from rich.text import Text
 from rich_argparse_plus import RichHelpFormatterPlus
 
-from social_arsenal.config import (Config, CRYPTO_RULES_CSV_PATH, DEFAULT_SCREENSHOTS_DIR,
+from clown_sort.config import (Config, CRYPTO_RULES_CSV_PATH, DEFAULT_SCREENSHOTS_DIR,
     MAC_SCREENSHOT_REGEX, PACKAGE_NAME)
-from social_arsenal.util.logging import console
+from clown_sort.util.logging import console
 
 DESCRIPTION = "Sort, rename, and tag screenshots (and the occasional PDF) according to rules."
 EPILOG = "Defaults are focused on crypto related screenshots."

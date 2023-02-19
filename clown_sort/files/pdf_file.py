@@ -5,7 +5,7 @@ from typing import Optional
 
 from pypdf import PdfReader
 
-from social_arsenal.files.sortable_file import SortableFile
+from clown_sort.files.sortable_file import SortableFile
 
 
 class PdfFile(SortableFile):

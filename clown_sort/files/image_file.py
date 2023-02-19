@@ -15,12 +15,12 @@ from PIL import Image
 from PIL.ExifTags import TAGS
 from rich.text import Text
 
-from social_arsenal.config import Config
-from social_arsenal.filename_extractor import FilenameExtractor
-from social_arsenal.files.sortable_file import SortableFile
-from social_arsenal.util.filesystem_helper import copy_file_creation_time
-from social_arsenal.util.logging import console, copying_file_log_message
-from social_arsenal.util.rich_helper import bullet_text, indented_bullet
+from clown_sort.config import Config
+from clown_sort.filename_extractor import FilenameExtractor
+from clown_sort.files.sortable_file import SortableFile
+from clown_sort.util.filesystem_helper import copy_file_creation_time
+from clown_sort.util.logging import console, copying_file_log_message
+from clown_sort.util.rich_helper import bullet_text, indented_bullet
 
 THUMBNAIL_DIMENSIONS = (400, 400)
 IMAGE_DESCRIPTION = 'ImageDescription'

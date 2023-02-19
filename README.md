@@ -32,7 +32,7 @@ Note also that:
 # Installation with pipx is preferred if you have it but you can also use pip which comes standard
 # on almost all systems. pipx is only a noticeably better answer if you're a python programmer who
 # is concerned about side effects of pip upgrading system python packages.
-pip install social_arsenal
+pip install clown_sort
 
 # Get help
 sort_screenshots -h
@@ -53,7 +53,7 @@ sort_screenshots --rules-csv /Users/hrollins/my_war.csv --execute
 
 # Setup
 ```
-pip install social_arsenal
+pip install clown_sort
 ```
 
 ### Optional Components
@@ -69,7 +69,7 @@ Help screen:
 ![](doc/sort_screenshots_help.png)
 
 ### Custom Sorting Rules
-The default is to sort cryptocurrency related content but you can define your own CSV of rules with two columns `folder` and `regex`. The value in `folder` specifies the subdirectory to sort into and `regex` is the pattern to match against. See [the default crypto related configuration](social_arsenal/sorting_rules/crypto.csv) for an example. An explanation of regular expressions is beyond the scope of this README but many resources are available to help. if you're not good at regexes just remember that any alphanumeric string is a regex that will match that string. [pythex](http://pythex.org/) is a great website for testing your regexes.
+The default is to sort cryptocurrency related content but you can define your own CSV of rules with two columns `folder` and `regex`. The value in `folder` specifies the subdirectory to sort into and `regex` is the pattern to match against. See [the default crypto related configuration](clown_sort/sorting_rules/crypto.csv) for an example. An explanation of regular expressions is beyond the scope of this README but many resources are available to help. if you're not good at regexes just remember that any alphanumeric string is a regex that will match that string. [pythex](http://pythex.org/) is a great website for testing your regexes.
 
 
 [^1]: Perhaps notable that the "reporter" in question for years maintained a private list of the blockchain addresses of Sam Bankman-Fried's various scams as part of his commitment to "unrivaled transparency".
