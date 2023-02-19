@@ -24,7 +24,7 @@ El Salvador,El[-\s]*Salvador|Bukele
 FTX,FTX|FTT|SBF|Trabucco|Bankman|Ellison|Nishad|Alameda|Moonstone|friedberg
 Gemini,Gemini|winklev|@cameron
 Genesis,Genesis|Michael\s?Moro
-Hex,Hex\s|[#$]Hex|Pulsechain|Richard\s?Heart
+Hex,Hex\s|[#$]Hex|Pulsechain|Richard\s*Heart
 Hoo,Hoo[-\s]*Exchange|#Hoo\s|Rexy\s?(Hoo|Wang)
 Huobi,huobi
 Justin Sun,justin\s*sun|pgala|sunswap

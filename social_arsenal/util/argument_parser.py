@@ -4,10 +4,14 @@ from argparse import ArgumentError, ArgumentParser
 from importlib.metadata import version
 from pathlib import Path
 
+from rich import box
+from rich.table import Table
+from rich.text import Text
 from rich_argparse_plus import RichHelpFormatterPlus
 
 from social_arsenal.config import (Config, CRYPTO_RULES_CSV_PATH, DEFAULT_SCREENSHOTS_DIR,
     MAC_SCREENSHOT_REGEX, PACKAGE_NAME)
+from social_arsenal.util.logging import console
 
 DESCRIPTION = "Sort, rename, and tag screenshots (and the occasional PDF) according to rules."
 EPILOG = "Defaults are focused on crypto related screenshots."
@@ -22,10 +26,13 @@ parser = ArgumentParser(
     epilog=EPILOG)
 
 parser.add_argument('-e', '--execute', action='store_true',
-                    help='execute the file renames/moves (without this flag no actual changes will be made, you will just be shown the changes it plans to make)')
+                    help='without this flag no actual changes will be made (you will see the logs of the changes it plans to make)')
 
 parser.add_argument('-a', '--all', action='store_true',
-                    help="sort all image, movie, and PDF files (without this flag only files of the pattern 'Screen Shot 2023-02-18 at 3.06.44 AM.png' will be examined)")
+                    help="sort all image, movie, and PDF files is SCREENSHOTS_DIR (without this flag only files of the pattern 'Screen Shot 2023-02-18 at 3.06.44 AM.png' will be examined)")
+
+parser.add_argument('-l', '--leave-in-place', action='store_true',
+                    help='leave original file in place rather than moving to the SCREENSHOTS_DIR/Processed folder')
 
 parser.add_argument('-s', '--screenshots-dir',
                     metavar='SCREENSHOTS_DIR',
@@ -35,19 +42,19 @@ parser.add_argument('-s', '--screenshots-dir',
 
 parser.add_argument('-d', '--destination-dir',
                     metavar='DESTINATION_DIR',
-                    help='destination folder to place sorted files (defaults to SCREENSHOTS_DIR/Sorted)')
+                    help='destination folder to place sorted files (default: SCREENSHOTS_DIR/Sorted)')
 
 parser.add_argument('-r', '--rules-csv',
                     metavar='RULES_FILE.CSV',
                     help='use a custom set of sorting rules',
                     default=CRYPTO)
 
-parser.add_argument('-l', '--leave-in-place', action='store_true',
-                    help='leave original file in place rather than moving to the SCREENSHOTS_DIR/Processed folder')
-
 parser.add_argument('-f', '--filename-regex',
                     help='filename regular expression',
                     default=MAC_SCREENSHOT_REGEX.pattern)
+
+parser.add_argument('--show-rules', action='store_true',
+                    help='display the sorting rules and exit')
 
 
 def parse_arguments():
@@ -80,4 +87,28 @@ def parse_arguments():
         rules_csv_path=args.rules_csv if args.rules_csv != CRYPTO else CRYPTO_RULES_CSV_PATH
     )
 
+    if args.show_rules:
+        console.print(_rules_table())
+        sys.exit()
+
     return args
+
+
+def _rules_table() -> Table:
+    table = Table(
+        'Folder', 'Regex',
+        title='Sorting Rules',
+        title_style='color(153) italic dim',
+        header_style='off_white',
+        #style='dim',
+        box=box.SIMPLE,
+        show_edge=False,
+
+        collapse_padding=True)
+
+    for sort_rule in Config.sort_rules:
+        table.add_row(sort_rule.folder, sort_rule.regex.pattern)
+
+    table.columns[0].style = 'bright_red'
+    table.columns[1].style = 'color(65)'
+    return table
