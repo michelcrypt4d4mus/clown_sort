@@ -15,6 +15,7 @@ Blockchain8,Blockchain8|tom ?emmer|ritchie ?torres|repritchie
 BlockFi,BlockFi
 Bros,cryptomanran|trillionUSD|nic[-_\s]*carter|bitboy|basedkarbon|thecryptolark|adam([-_\s]*back|3us)|@DegenSp
 Cardano,Cardano|[$\s]ADA[^\w]
+Cathie Wood,Cathie\s*Wood|\bARK(K|\s*Innovation|\s*Invest)
 Celsius,celsius|mashinsky|levity[-_\s]*and[-_\s]*love
 Circle,[@#]circle|usdc|circle[-_\s]*internet
 Coinbase,Coinbase|\$COIN|brian[_\s]*armstrong
