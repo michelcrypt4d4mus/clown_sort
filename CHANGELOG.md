@@ -1,5 +1,5 @@
 ### 0.3.0
-* `--show-rules` argument
+* `--show-rules` argument, `--debug` argument
 * More sorting rules
 * Logging adjustments
 
