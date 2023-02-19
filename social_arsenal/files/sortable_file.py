@@ -6,7 +6,6 @@ from os import path
 from pathlib import Path
 from typing import List, Optional, Union
 
-import pytesseract
 from exiftool import ExifToolHelper
 from rich.console import Console, ConsoleOptions, RenderResult
 from rich.panel import Panel
@@ -14,6 +13,7 @@ from rich.text import Text
 
 from social_arsenal.config import Config
 from social_arsenal.filename_extractor import FilenameExtractor
+from social_arsenal.util.rich_helper import bullet_text, indented_bullet
 from social_arsenal.util.logging import console, log, copying_file_log_message, moving_file_log_message
 from social_arsenal.util.string_helper import comma_join
 
@@ -37,12 +37,10 @@ class SortableFile:
         sort_folders = type(self).get_sort_folders(self.extracted_text())
 
         if len(sort_folders) == 0:
-            console.print(Text('➤ ').append('No sort folders!', style='magenta dim'))
+            console.print(bullet_text('No sort folders found! Copying to base sorted dir...', style='magenta dim'))
             sort_folders = [None]
         else:
-            console.print(Text('➤ ').append('FOLDERS: ', style='magenta') + comma_join(sort_folders))
-
-        console.line()
+            console.print(bullet_text(Text('FOLDERS: ', style='magenta') + comma_join(sort_folders)))
 
         for folder in sort_folders:
             if folder is not None:
@@ -83,7 +81,7 @@ class SortableFile:
         console.print(copying_file_log_message(self.basename, destination_path))
 
         if Config.dry_run:
-            console.print(Text('   ➤ ').append(f"Dry run so not actually copying...", style='dim'))
+            console.print(indented_bullet("Dry run so not actually copying...", style='dim'))
         else:
             shutil.copy2(self.file_path, destination_path)
 
@@ -110,13 +108,17 @@ class SortableFile:
     def _move_to_processed_dir(self) -> None:
         """Relocate the original file to the [SCREENSHOTS_DIR]/Processed/ folder."""
         processed_file_path = Config.processed_screenshots_dir.joinpath(self.file_path.name)
-        console.print(moving_file_log_message(str(self.file_path), processed_file_path))
+
+        if Config.debug:
+            console.print(moving_file_log_message(str(self.file_path), processed_file_path))
+        else:
+            console.print(bullet_text("Processing complete..."))
 
         if self.file_path == processed_file_path:
-            console.print(Text('  ➤ ').append("Not moving file because it's the same location...", style='dim'))
+            console.print(indented_bullet("Not moving file because it's the same location...", style='dim'))
             return
         elif Config.dry_run or Config.leave_in_place:
-            console.print(Text('  ➤ ').append(f"Not moving file because it's a dry run or --leave-in-place specified...", style='dim'))
+            console.print(indented_bullet(f"Not moving file because it's a dry run or --leave-in-place specified...", style='dim'))
         else:
             shutil.move(self.file_path, processed_file_path)
 
@@ -130,17 +132,19 @@ class SortableFile:
         yield(Text("\n\n"))
         yield Panel(path.basename(self.file_path), expand=False, style='bright_white reverse')
 
-        if self.extracted_text() is None:
-            txt = "<No extracted text>"
-        else:
-            txt = self.extracted_text()[0:MAX_EXTRACTION_LENGTH]
+        if Config.debug:
+            if self.extracted_text() is None:
+                txt = "<No extracted text>"
+            else:
+                txt = self.extracted_text()[0:MAX_EXTRACTION_LENGTH]
 
-        yield Panel(txt, expand=True, style='dim')
-        yield Text('➤ DESTINATION BASENAME: ').append(self.new_basename(), style='cyan dim')
+            yield Panel(txt, expand=True, style='dim')
+
+        log_basename = bullet_text(Text('DESTINATION BASENAME: ').append(self.new_basename(), style='cyan dim'))
 
         if self._filename_extractor is not None:
             if self._filename_extractor._is_tweet():
-                log_txt = Text('➤ ').append("It's a tweet by ", style='color(82)')
+                log_txt = bullet_text("It's a tweet by ", style='color(82)')
                 log_txt.append(self._filename_extractor.author, style='color(178)')
 
                 if self._filename_extractor.reply_to_account is not None:
@@ -151,4 +155,8 @@ class SortableFile:
             elif self._filename_extractor._is_reddit():
                 yield Text("It's a reddit post", style='color(82)')
 
-        log.debug(f"EXIF: {self.exif_dict()}")
+        console.print(log_basename)
+
+        if Config.debug:
+            console.print(bullet_text('EXIF: '))
+            console.print(f"   {self.exif_dict()}")

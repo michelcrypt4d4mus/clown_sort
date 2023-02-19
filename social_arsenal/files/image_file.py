@@ -41,8 +41,12 @@ class ImageFile(SortableFile):
         exif_data.update([(EXIF_CODES[IMAGE_DESCRIPTION], self.extracted_text())])
 
         if Config.dry_run:
-            log_msg = Text("➤ Dry run otherwise would copy to '").append(str(new_file), style='color(221)').append("'")
-            console.print(log_msg, style='dim')
+            log_msg = Text("  ➤ ").append("Dry run otherwise would copy to '", style='dim')
+            log_msg.append(str(new_file), style='color(221)').append("'")
+
+            if Config.debug:
+                console.print(log_msg)
+
             return new_file
 
         try:
