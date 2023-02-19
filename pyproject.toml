@@ -22,6 +22,13 @@ keywords = [
     'sort',
 ]
 
+classifiers = [
+    "Topic :: Desktop Environment :: File Managers",
+    "Topic :: Multimedia :: Graphics :: Capture :: Screen Capture",
+    "Topic :: Multimedia :: Graphics :: Capture",
+    "Scientific/Engineering :: Image Processing",
+]
+
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -55,4 +62,3 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 sort_screenshots = 'social_arsenal:sort_screenshots'
-#sort_non_screenshots = 'social_arsenal:sort_non_screenshots'
