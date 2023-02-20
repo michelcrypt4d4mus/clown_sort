@@ -75,10 +75,6 @@ class ImageFile(SortableFile):
             raise e
 
         console.print(copying_file_log_message(self.basename, new_file))
-
-        if not Config.leave_in_place:
-            self._move_to_processed_dir()
-
         return new_file
 
     def new_basename(self) -> str:

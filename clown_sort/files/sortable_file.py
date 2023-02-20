@@ -53,7 +53,8 @@ class SortableFile:
 
             self.move_file_to_sorted_dir(folder)
 
-        self._move_to_processed_dir()
+        if not Config.leave_in_place:
+            self._move_to_processed_dir()
 
     def extracted_text(self) -> Optional[str]:
         """Only PdfFiles and ImageFiles have extracted text; other files are sorted on filename."""
@@ -73,6 +74,7 @@ class SortableFile:
             return {}
 
     def move_file_to_sorted_dir(self, destination_subdir: Optional[Union[Path, str]] = None) -> Path:
+        """Move or copy the file to destination_subdir."""
         if destination_subdir is None:
             destination_dir = Config.sorted_screenshots_dir
         else:
@@ -119,7 +121,6 @@ class SortableFile:
             console.print(moving_file_log_message(str(self.file_path), processed_file_path))
         else:
             console.print(bullet_text("Processing complete..."))
-
 
         if self.file_path == processed_file_path:
             console.print(indented_bullet(f"{NOT_MOVING_FILE} because it's the same location...", style='dim'))
