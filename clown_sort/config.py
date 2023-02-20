@@ -11,7 +11,6 @@ from os import environ
 from pathlib import Path
 from typing import List, Optional, Union
 
-#from clown_sort.util.logging import log
 from clown_sort.util.filesystem_helper import subdirs_of_dir
 
 OptionalPath = Optional[Union[str, Path]]
@@ -62,6 +61,15 @@ class Config:
             if not dir.is_dir():
                 logging.warning(f"Need to create '{dir}'")
                 dir.mkdir(parents=True, exist_ok=True)
+
+        # TODO: this sucks
+        if cls.debug:
+            log = logging.getLogger(PACKAGE_NAME)
+            log.setLevel('DEBUG')
+            log.info(f"screenshots_dir: {cls.screenshots_dir}")
+            log.info(f"destination_dir: {cls.destination_dir}")
+            log.info(f"sorted_screenshots_dir: {cls.sorted_screenshots_dir}")
+            log.info(f"processed_screenshots_dir: {cls.processed_screenshots_dir}")
 
     @classmethod
     def get_sort_dirs(cls) -> List[str]:

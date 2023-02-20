@@ -26,7 +26,7 @@ REDDIT_POST_REGEX = re.compile(
 )
 
 REDDIT_REPLY_REGEX = re.compile(
-    '(?P<author>\\w{3,30})\\s+(.*?)-\\s+\\d+\\s+(seconds|minutes|hours|hr\\.|days|months|years)\\s+ago\\s*(.*?)\\n(?P<body>.*?)(Reply\\s+)?Give\\s?Award\\s+Share\\s+Report',
+    '(?P<author>\\w{3,30})( OP -)?\\s+(.*?)-\\s+\\d+\\s+(seconds|min(\\.|utes)|hours|hr\\.|days|months|years)\\s+ago\\s*(.*?)\\n(?P<body>.*?)(Reply\\s+)?Give\\s?Award\\s+Share\\s+Report',
     re.DOTALL | re.MULTILINE | re.IGNORECASE
 )
 

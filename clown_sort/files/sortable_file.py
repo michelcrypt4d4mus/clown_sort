@@ -136,7 +136,7 @@ class SortableFile:
         return f"SortableFile('{self.file_path}')"
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
-        yield(Text("\n\n"))
+        yield Text("\n\n")
         yield Panel(path.basename(self.file_path), expand=False, style='bright_white reverse')
 
         if Config.debug:
@@ -162,8 +162,8 @@ class SortableFile:
             elif self._filename_extractor._is_reddit():
                 yield Text("It's a reddit post", style='social_media')
 
-        console.print(log_basename)
+        yield log_basename
 
         if Config.debug:
-            console.print(bullet_text('EXIF: '))
-            console.print(f"   {self.exif_dict()}")
+            yield bullet_text('EXIF: ')
+            yield f"   {self.exif_dict()}"

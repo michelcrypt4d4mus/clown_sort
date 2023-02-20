@@ -173,6 +173,22 @@ People will just change from BUSD to other stables.
 <p. 1<4 Giveaward Share Report Save Follow
 """
 
+
+REDDIT_DEBIT_COMMENT = """Spmhealy_ADA OP - 21 min. ago
+
+I can't use Debit for anything. Usually I can just buy with Debit or Google Play (both
+show my Debit card number)
+
+Can't use Debit to deposit fiat. Don't even see that as an option. I see link bank (which I
+picked for instant use) ACH (3-5 day to clear) or Wire Transfer 1-2 days.
+
+Using the first option of "Link Bank", via Routing/Account through Plaid, I can deposit
+fiat directly into my account ($20 minimum. Instant use. Of course 7 days till it can be
+
+
+4} vote <> C) Reply Give Award Share Report Save Follow"""
+
+
 @pytest.fixture(scope='session')
 def ocr_image(do_kwon_tweet):
     """Requires the private varibale _extracted_text to be set manually."""
@@ -201,3 +217,5 @@ def test_reddit_filenames(ocr_image):
     assert FilenameExtractor(ocr_image).filename() == 'Reddit post by Fluffyhobbit: "Option 4. 80_ of us send crypto to cold storage and binance doesn\'t skip a beat Edit: forgot to put in doesn\'t_ _ 22 tb _" do_kwon_debate_the_poor.jpeg'
     ocr_image._extracted_text = REDDIT_R_CRYPTOCURRENCY_REPLY
     assert FilenameExtractor(ocr_image).filename() == 'Reddit post by Roberto9410: "Wow the downfall of BUSD is something to see _p. 1_4" do_kwon_debate_the_poor.jpeg'
+    ocr_image._extracted_text = REDDIT_DEBIT_COMMENT
+    assert FilenameExtractor(ocr_image).filename() == 'Reddit post by Spmhealy_ADA: "show my Debit card number_ Can\'t use Debit to deposit fiat. Don\'t even see that as an option. I see link bank _which I picked for instant use_ ACH _3_5 day to clear_" do_kwon_debate_the_poor.jpeg'

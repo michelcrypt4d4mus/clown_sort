@@ -42,7 +42,7 @@ parser.add_argument('-s', '--screenshots-dir',
 
 parser.add_argument('-d', '--destination-dir',
                     metavar='DESTINATION_DIR',
-                    help='destination folder to place sorted files (default: SCREENSHOTS_DIR/Sorted)')
+                    help='destination folder to place the Sorted/ and Processed/ dirs (default: SCREENSHOTS_DIR)')
 
 parser.add_argument('-r', '--rules-csv',
                     metavar='RULES_FILE.CSV',
@@ -67,6 +67,9 @@ def parse_arguments():
         sys.exit()
 
     args = parser.parse_args()
+
+    if args.debug:
+        Config.debug = True
 
     if args.execute:
         print("Executing...")
@@ -93,9 +96,6 @@ def parse_arguments():
     if args.show_rules:
         console.print(_rules_table())
         sys.exit()
-
-    if args.debug:
-        Config.debug = True
 
     return args
 
