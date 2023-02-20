@@ -189,6 +189,18 @@ fiat directly into my account ($20 minimum. Instant use. Of course 7 days till i
 4} vote <> C) Reply Give Award Share Report Save Follow"""
 
 
+REDDIT_POST_2 = """c Posted by u/cho0n22 2 days ago
+0 Thave the blue card and it's not working
+v
+
+My blue card isn't being accepted for online payments, have not tried in person yet.
+Is it because I have nothing staked?
+
+Says to check card details.
+
+i) 22 Comments Award lad Share in Save"""
+
+
 @pytest.fixture(scope='session')
 def ocr_image(do_kwon_tweet):
     """Requires the private varibale _extracted_text to be set manually."""
@@ -219,3 +231,5 @@ def test_reddit_filenames(ocr_image):
     assert FilenameExtractor(ocr_image).filename() == 'Reddit post by Roberto9410: "Wow the downfall of BUSD is something to see _p. 1_4" do_kwon_debate_the_poor.jpeg'
     ocr_image._extracted_text = REDDIT_DEBIT_COMMENT
     assert FilenameExtractor(ocr_image).filename() == 'Reddit post by Spmhealy_ADA: "show my Debit card number_ Can\'t use Debit to deposit fiat. Don\'t even see that as an option. I see link bank _which I picked for instant use_ ACH _3_5 day to clear_" do_kwon_debate_the_poor.jpeg'
+    ocr_image._extracted_text = REDDIT_POST_2
+    assert FilenameExtractor(ocr_image).filename() == 'Reddit post by cho0n22: "0 Thave the blue card and it\'s not working v My blue card isn\'t being accepted for online payments_ have not tried in person yet. Is it because I have nothing staked? Say" do_kwon_debate_the_poor.jpeg'

@@ -21,7 +21,7 @@ TWEET_REGEX = re.compile(
 )
 
 REDDIT_POST_REGEX = re.compile(
-    'r/(?P<sub>\\w{3,30}) - Posted by u/(?P<author>\\w{3,30}) \\d+.*?\\n(?P<body>.*)',
+    '(r/(?P<sub>\\w{3,30}) - )?Posted by u/(?P<author>\\w{3,30}) \\d+.*?\\n(?P<body>.*)',
     re.DOTALL | re.MULTILINE
 )
 
@@ -94,15 +94,18 @@ class FilenameExtractor:
         """Build a filename for Reddit posts and comments."""
         if self._is_reddit_post():
             reddit_match = REDDIT_POST_REGEX.search(self.text)
-            author: str = reddit_match.group('author')
+            self.author: str = reddit_match.group('author')
             subreddit: str = reddit_match.group('sub')
             body: str = reddit_match.group('body')
-            filename_text: str = f"Reddit post by {author} in {subreddit}"
+            filename_text: str = f"Reddit post by {self.author}"
+
+            if subreddit:
+                filename_text += f" in {subreddit}"
         else:
             reddit_match = REDDIT_REPLY_REGEX.search(self.text)
-            author: str = reddit_match.group('author')
+            self.author: str = reddit_match.group('author')
             body: str = reddit_match.group('body')
-            filename_text: str = f"Reddit post by {author}"
+            filename_text: str = f"Reddit post by {self.author}"
 
         return self._build_filename(filename_text, body)
 

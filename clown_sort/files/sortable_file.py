@@ -166,4 +166,4 @@ class SortableFile:
 
         if Config.debug:
             yield bullet_text('EXIF: ')
-            yield f"   {self.exif_dict()}"
+            yield f"   {self.exif_dict()}\n\n"
