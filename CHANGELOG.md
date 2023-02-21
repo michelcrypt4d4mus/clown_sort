@@ -1,3 +1,10 @@
+# NEXT RELEASE
+
+## O.4.0
+* Improve Tweet matching
+* Improve logging
+* Rename to `clown_sort`
+
 ### 0.3.1
 * Logging adjustments
 
