@@ -49,6 +49,9 @@ class FilenameExtractor:
 
         if self.text is None:
             filename = self.image_file.basename
+        elif DUNE_ANALYTICS_REGEX.search(self.text):
+            dune_match = DUNE_ANALYTICS_REGEX.search(self.text)
+            filename = 'Dune Analytics "' + dune_match.group(1) + '" ' + self.image_file.basename
         elif self._is_tweet() or self._is_reddit():
             if self._is_tweet():
                 filename_str = self._filename_str_for_tweet()
@@ -66,9 +69,6 @@ class FilenameExtractor:
                 filename += 'r_' + (subreddit_match.group('subreddit') or subreddit_match.group('subreddit2')) + ' '
 
             filename += self.image_file.basename
-        elif DUNE_ANALYTICS_REGEX.search(self.text):
-            dune_match = DUNE_ANALYTICS_REGEX.search(self.text)
-            filename = 'Dune Analytics "' + dune_match.group(1) + '" ' + self.image_file.basename
         else:
             filename = self.image_file.basename
 
