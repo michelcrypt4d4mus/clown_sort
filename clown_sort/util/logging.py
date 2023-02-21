@@ -15,6 +15,7 @@ from clown_sort.config import Config, PACKAGE_NAME
 
 ### Logging ###
 LOG_LEVEL = 'INFO'
+NOT = Text('').append('(Not) ', style='dim')
 
 
 def set_log_level(log_level) -> None:
@@ -100,6 +101,12 @@ def moving_file_log_message(basename: str, new_file: Path) -> Text:
 
 
 def _file_operation_log_message(basename: str, new_file: Path, log_msg: str) -> Text:
-    txt = Text(f"➤ {log_msg} ").append(basename, style='color(221)')
+    log_msg += ' '
+    log_msg = Text(log_msg)
+
+    if Config.dry_run:
+        log_msg = NOT + log_msg
+
+    txt = Text(f"➤ ") + log_msg + Text(basename, style='color(221)')
     txt.append(' to ').append(str(new_file), style='cyan')
     return txt

@@ -20,7 +20,6 @@ from clown_sort.util.string_helper import comma_join
 
 MAX_EXTRACTION_LENGTH = 4096
 NOT_MOVING_FILE = "Not moving file to proccessed dir because it's"
-NOT = Text('').append('(Not) ', style='dim')
 
 
 class SortableFile:
@@ -96,13 +95,13 @@ class SortableFile:
     def _log_copy_file(self, destination_path: Path) -> None:
         """Log info about a file copy."""
         if Config.debug:
-            console.print(NOT + copying_file_log_message(self.basename, destination_path))
+            console.print(copying_file_log_message(self.basename, destination_path))
             return
 
         log_msg = Text('Copying to ')
 
         if Config.dry_run:
-            log_msg = NOT + log_msg
+            log_msg = log_msg
 
         if destination_path.parent == Config.destination_dir:
             console.print(indented_bullet(log_msg + Text('root sorted dir...')))

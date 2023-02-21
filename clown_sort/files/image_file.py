@@ -19,8 +19,6 @@ from clown_sort.config import Config
 from clown_sort.filename_extractor import FilenameExtractor
 from clown_sort.files.sortable_file import SortableFile
 from clown_sort.util.filesystem_helper import copy_file_creation_time
-from clown_sort.util.logging import console, copying_file_log_message
-from clown_sort.util.rich_helper import bullet_text, indented_bullet
 
 THUMBNAIL_DIMENSIONS = (400, 400)
 IMAGE_DESCRIPTION = 'ImageDescription'
@@ -43,12 +41,6 @@ class ImageFile(SortableFile):
         self._log_copy_file(destination_path)
 
         if Config.dry_run:
-            log_msg = Text("  ➤ ").append("Dry run otherwise would copy to '", style='dim')
-            log_msg.append(str(destination_path), style='color(221)').append("'")
-
-            if Config.debug:
-                console.print(log_msg)
-
             return destination_path
 
         try:
