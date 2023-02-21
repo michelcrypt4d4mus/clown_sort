@@ -32,6 +32,7 @@ REDDIT_REPLY_REGEX = re.compile(
 
 REVEDDIT_REGEX = re.compile('Reveddit Real.?Time')
 SUBREDDIT_REGEX = re.compile('/r/(?P<subreddit>\\w+)|\\sse(lf|ir)\\.(?P<subreddit2>\\w+)')
+DUNE_ANALYTICS_REGEX = re.compile('Query results (.*) @\\w+')
 
 
 class FilenameExtractor:
@@ -65,6 +66,9 @@ class FilenameExtractor:
                 filename += 'r_' + (subreddit_match.group('subreddit') or subreddit_match.group('subreddit2')) + ' '
 
             filename += self.image_file.basename
+        elif DUNE_ANALYTICS_REGEX.search(self.text):
+            dune_match = DUNE_ANALYTICS_REGEX.search(self.text)
+            filename = 'Dune Analytics "' + dune_match.group(1) + '" ' + self.image_file.basename
         else:
             filename = self.image_file.basename
 
@@ -72,7 +76,7 @@ class FilenameExtractor:
 
     def _is_tweet(self) -> bool:
         """Return true if the text looks like a tweet."""
-        return TWEET_REGEX.search(self.text) is not None
+        return TWEET_REGEX.search(self.text) is not None and '@crypto_oracle' not in self.text
 
     def _is_reddit(self) -> bool:
         return self._is_reddit_post() or self._is_reddit_reply()

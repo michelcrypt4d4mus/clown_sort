@@ -232,6 +232,37 @@ view my removed comments
 @  ‘/reveddit"""
 
 
+DUNE_ANALYTICS = """Query results Alameda (Tagged and Rumored) Ethereum Wallets All Time In and Out a) @crypto_oracle
+
+symbol inbound_usd inbound_txn_count inbound_avg_usd_per_txn outbound_usd outbound_txn_count outbound_avg_usd_per_txn gross_usd_volume
+UST ic} ic} ic} 39,043 ,282,243,898,941,440 32 1,220,102,570,121,841,920 39,043 ,282,243,898,941,440
+UST 18,144,219,611,167,979,520 39 465 , 236,400, 286,358,464 66,919 , 371 99 675 ,953 18,144,219,611, 234,897,920
+USDC 10,457 ,122,051 1,406 7 , 437,498 53,826,674, 384 4,282 12,570,452 64,283 ,796,435
+USDC 27 ,609 ,877,275 2,085 13,242,147 ic} ic} ic} 27 ,609 ,877,275
+USDT 6 ,412,994,982 2,442 2,626,124 18,405 ,687,731 3,372 5,458,389 24,818 ,682,712
+BUSD 5,194,152,635 830 6,258,015 14,142 ,335,576 1,770 7,990,020 19, 336,488,211
+FIT 1,701, 881,033 425 4,004,426 11,554,699,961 386 29,934,456 13, 256,580,994
+USDC ic} ic} ic} 9, 758,805,985 695 14,041,447 9, 758,805,985
+USDT 3, 068,693,355 1,015 3,023,343 4 , 886,514,268 170 28 , 744,202 7,955,207 ,623
+BUSD 2,012,057 , 564 806 2,496,349 3,650,959, 785 193 18,916 ,890 5,663 ,017,349
+USDC 2,460, 329,194 113 21,772,825 2,460, 284,995 110 22,366,227 4,920 ,614,190
+USDT 1,069,466 ,002 949 1,126,940 3,694,837 , 430 1,452 2,544,654 4,764,303 ,432
+USDC 4,753,143 ,010 347 13,697 ,818 ic} ic} ic} 4,753,143 ,010
+USDC 1,893,508 ,015 673 2, 813 , 533 2,684,621,215 150 17,897,475 4,578 ,129,229
+FIT 4 ,554,280,415 9 506,031,157 ic} ic} ic} 4 ,554,280,415
+WBTC 1,457,376 ,216 218 6,685,212 2,958,107 ,671 513 5,766,292 4,415 ,483 , 887
+FIT ic} ic} ic} 4,308 ,989,371 2 2,154,494, 685 4,308 ,989,371
+USDC 4, 254,331,253 63 67 , 529,068 ic} ic} ic} 4, 254,331,253
+USDC 2,091,907 , 850 89 23,504,583 2,100,717 ,678 94 22,348 ,060 4,192 ,625,528
+USDC 4,187 ,877,876 132 31,726,348 ic} ic} ic} 4,187 ,877,876
+FIT 4 ,174,679,205 8 521,834,901 ic} ic} ic} 4,174,679,205
+TUSD 689,890,645 178 3,875,790 3, 069,951,471 1,347 2,279,103 3,759,842 ,117
+HUSD 483 , 794,983 120 4,031,625 2,944,786 ,359 759 3,879,824 3,428 581,343
+USDT ic} ic} ic} 3 , 337,578,009 626 5,331,594 3 , 337,578,009
+
+m Miner; Tornado Cash Recipient WBTC 3, 299,132,787 85 38,813,327 [c) [c) [o) 3, 299,132,787"""
+
+
 @pytest.fixture(scope='session')
 def ocr_image(do_kwon_tweet):
     """Requires the private varibale _extracted_text to be set manually."""
@@ -271,3 +302,8 @@ def test_reddit_filenames(ocr_image):
 def test_reveddit_filenames(ocr_image):
     ocr_image._extracted_text = REVEDDIT_THREAD
     assert FilenameExtractor(ocr_image).filename() == 'Reveddit r_binance do_kwon_debate_the_poor.jpeg'
+
+
+def test_dune_analytics_filename(ocr_image):
+    ocr_image._extracted_text = DUNE_ANALYTICS
+    assert FilenameExtractor(ocr_image).filename() == 'Dune Analytics "Alameda (Tagged and Rumored) Ethereum Wallets All Time In and Out a)" do_kwon_debate_the_poor.jpeg'
