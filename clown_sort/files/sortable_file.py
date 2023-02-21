@@ -167,7 +167,7 @@ class SortableFile:
         if self._filename_extractor is not None:
             if self._filename_extractor._is_tweet():
                 log_txt = bullet_text("It's a tweet by ", style='social_media')
-                log_txt.append(self._filename_extractor.author, style='author')
+                log_txt.append(self._filename_extractor.author or 'NO_AUTHOR', style='author')
 
                 if self._filename_extractor.reply_to_account is not None:
                     log_txt.append("\n    -> Replying to ", style='color(23)')

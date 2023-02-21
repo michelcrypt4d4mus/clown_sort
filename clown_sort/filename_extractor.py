@@ -51,7 +51,8 @@ class FilenameExtractor:
             filename = self.image_file.basename
         elif DUNE_ANALYTICS_REGEX.search(self.text):
             dune_match = DUNE_ANALYTICS_REGEX.search(self.text)
-            filename = 'Dune Analytics "' + dune_match.group(1) + '" ' + self.image_file.basename
+            query_title = self._strip_bad_chars(dune_match.group(1))
+            filename = 'Dune Analytics "' + query_title + '" ' + self.image_file.basename
         elif self._is_tweet() or self._is_reddit():
             if self._is_tweet():
                 filename_str = self._filename_str_for_tweet()
@@ -131,6 +132,10 @@ class FilenameExtractor:
         body = ' '.join(body.splitlines()).replace('\\s+', ' ')
         log.debug(f"\nBody flattened:\n{body}\n")
         body = re.sub('’', "'", body).replace('|', 'I').replace(',', ',')
-        body = re.sub('[^0-9a-zA-Z@.?_:\'" ]+', '_', body)
+        body = self._strip_bad_chars(body)
         body = body[0:self.available_char_count - len(filename_text) - 2].strip()
         return f'{filename_text}: "{body}"'.replace('  ', ' ')
+
+    def _strip_bad_chars(self, text: str) -> str:
+        """Remove chars that don't work well in filenames"""
+        return re.sub('[^0-9a-zA-Z@.?_:\'" ()]+', '_', text)

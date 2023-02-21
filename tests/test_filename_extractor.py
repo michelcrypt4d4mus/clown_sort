@@ -281,20 +281,20 @@ def test_tweet_filenames(ocr_image):
     ocr_image._extracted_text = GABOR_TWEET_TEXT
     assert FilenameExtractor(ocr_image).filename() == 'Tweet by @gaborgurbacs: "I think this Coinbase media campaign will have the opposite effect. USDC users will learn about USDT and convert to USDT as they question the motivations and rationale of" do_kwon_debate_the_poor.jpeg'
     ocr_image._extracted_text = BAD_OCR_TWEET
-    assert FilenameExtractor(ocr_image).filename() == 'Tweet by @ASYB111 replying to @cz_binance: "Any updates on send cash feature? It is temporarily disabled. 1o_ td iv_ ily 399 a_" do_kwon_debate_the_poor.jpeg'
+    assert FilenameExtractor(ocr_image).filename() == 'Tweet by @ASYB111 replying to @cz_binance: "Any updates on send cash feature? It is temporarily disabled. 1o) td iv) ily 399 a_" do_kwon_debate_the_poor.jpeg'
     ocr_image._extracted_text = TWITTER_CZ
-    assert FilenameExtractor(ocr_image).filename() == 'Tweet by @cz_binance: "7_ Binance always encourages collaboration between industry players. i: Regarding any speculation as to whether this is a move against a competitor_ it is not. Our industry i" do_kwon_debate_the_poor.jpeg'
+    assert FilenameExtractor(ocr_image).filename() == 'Tweet by @cz_binance: "7) Binance always encourages collaboration between industry players. i: Regarding any speculation as to whether this is a move against a competitor_ it is not. Our industry i" do_kwon_debate_the_poor.jpeg'
 
 
 def test_reddit_filenames(ocr_image):
     ocr_image._extracted_text = REDDIT_POST
     assert FilenameExtractor(ocr_image).filename() == 'Reddit post by TheLostWander_er in binance: "send cash feature is temporarily disable. I was trying to withdraw cash since last week and I am seeing this message every time I try the send cash fe" do_kwon_debate_the_poor.jpeg'
     ocr_image._extracted_text = REDDIT_REPLIES
-    assert FilenameExtractor(ocr_image).filename() == 'Reddit post by Fluffyhobbit: "Option 4. 80_ of us send crypto to cold storage and binance doesn\'t skip a beat Edit: forgot to put in doesn\'t_ _ 22 tb _" do_kwon_debate_the_poor.jpeg'
+    assert FilenameExtractor(ocr_image).filename() == 'Reddit post by Fluffyhobbit: "Option 4. 80_ of us send crypto to cold storage and binance doesn\'t skip a beat Edit: forgot to put in doesn\'t_ _ 22 tb )" do_kwon_debate_the_poor.jpeg'
     ocr_image._extracted_text = REDDIT_R_CRYPTOCURRENCY_REPLY
     assert FilenameExtractor(ocr_image).filename() == 'Reddit post by Roberto9410: "Wow the downfall of BUSD is something to see _p. 1_4" do_kwon_debate_the_poor.jpeg'
     ocr_image._extracted_text = REDDIT_DEBIT_COMMENT
-    assert FilenameExtractor(ocr_image).filename() == 'Reddit post by Spmhealy_ADA: "show my Debit card number_ Can\'t use Debit to deposit fiat. Don\'t even see that as an option. I see link bank _which I picked for instant use_ ACH _3_5 day to clear_" do_kwon_debate_the_poor.jpeg'
+    assert FilenameExtractor(ocr_image).filename() == 'Reddit post by Spmhealy_ADA: "show my Debit card number) Can\'t use Debit to deposit fiat. Don\'t even see that as an option. I see link bank (which I picked for instant use) ACH (3_5 day to clear)" do_kwon_debate_the_poor.jpeg'
     ocr_image._extracted_text = REDDIT_POST_2
     assert FilenameExtractor(ocr_image).filename() == 'Reddit post by cho0n22: "0 Thave the blue card and it\'s not working v My blue card isn\'t being accepted for online payments_ have not tried in person yet. Is it because I have nothing staked? Say" do_kwon_debate_the_poor.jpeg'
 
