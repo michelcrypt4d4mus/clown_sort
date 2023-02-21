@@ -37,45 +37,30 @@ class ImageFile(SortableFile):
         If :destination_subdir is given new file will be in :destination_subdir off
         of the configured :destination_dir. Returns new file path.
         """
-        new_file = self.sort_destination_path(destination_subdir)
+        destination_path = self.sort_destination_path(destination_subdir)
         exif_data = self.raw_exif_dict()
         exif_data.update([(EXIF_CODES[IMAGE_DESCRIPTION], self.extracted_text())])
-
-        # TODO: refactor
-        if Config.debug:
-            console.print(copying_file_log_message(self.basename, new_file))
-        else:
-            log_msg = Text('Copying to ')
-
-            if Config.dry_run:
-                log_msg = Text('').append('(Not) ', style='dim') + log_msg
-
-            if destination_subdir is None:
-                console.print(indented_bullet(log_msg + Text('root sorted dir...')))
-            else:
-                log_msg.append(str(destination_subdir), style='sort_destination')
-                console.print(indented_bullet(log_msg.append('...')))
+        self._log_copy_file(destination_path)
 
         if Config.dry_run:
             log_msg = Text("  ➤ ").append("Dry run otherwise would copy to '", style='dim')
-            log_msg.append(str(new_file), style='color(221)').append("'")
+            log_msg.append(str(destination_path), style='color(221)').append("'")
 
             if Config.debug:
                 console.print(log_msg)
 
-            return new_file
+            return destination_path
 
         try:
             img = Image.open(self.file_path)
-            img.save(new_file, exif=exif_data)
-            copy_file_creation_time(self.file_path, new_file)
+            img.save(destination_path, exif=exif_data)
+            copy_file_creation_time(self.file_path, destination_path)
         except ValueError as e:
             console.print_exception()
             console.print(f"ERROR while processing '{self.file_path}'", style='bright_red')
             raise e
 
-        console.print(copying_file_log_message(self.basename, new_file))
-        return new_file
+        return destination_path
 
     def new_basename(self) -> str:
         """Return a descriptive string usable in a filename."""

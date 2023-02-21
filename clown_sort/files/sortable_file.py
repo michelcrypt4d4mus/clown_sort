@@ -13,12 +13,14 @@ from rich.text import Text
 
 from clown_sort.config import Config
 from clown_sort.filename_extractor import FilenameExtractor
-from clown_sort.util.rich_helper import bullet_text, indented_bullet
+from clown_sort.util.filesystem_helper import copy_file_creation_time
 from clown_sort.util.logging import console, log, copying_file_log_message, moving_file_log_message
+from clown_sort.util.rich_helper import bullet_text, indented_bullet
 from clown_sort.util.string_helper import comma_join
 
 MAX_EXTRACTION_LENGTH = 4096
-NOT_MOVING_FILE = 'Not moving file to proccessed dir'
+NOT_MOVING_FILE = "Not moving file to proccessed dir because it's"
+NOT = Text('').append('(Not) ', style='dim')
 
 
 class SortableFile:
@@ -81,19 +83,32 @@ class SortableFile:
             destination_dir = Config.sorted_screenshots_dir.joinpath(destination_subdir)
 
         destination_path = destination_dir.joinpath(self.new_basename())
-
-        # TODO: refactor into copying_file_log_message()
-        if Config.debug:
-            console.print(copying_file_log_message(self.basename, destination_path))
-        else:
-            console.print(indented_bullet(Text('Copying to ').append(str(destination_subdir), style='sort_destination')))
+        self._log_copy_file(destination_path)
 
         if Config.dry_run:
             console.print(indented_bullet("Dry run so not actually copying...", style='dim'))
         else:
             shutil.copy2(self.file_path, destination_path)
+            copy_file_creation_time(self.file_path, destination_path)
 
         return destination_path
+
+    def _log_copy_file(self, destination_path: Path) -> None:
+        """Log info about a file copy."""
+        if Config.debug:
+            console.print(NOT + copying_file_log_message(self.basename, destination_path))
+            return
+
+        log_msg = Text('Copying to ')
+
+        if Config.dry_run:
+            log_msg = NOT + log_msg
+
+        if destination_path.parent == Config.destination_dir:
+            console.print(indented_bullet(log_msg + Text('root sorted dir...')))
+        else:
+            log_msg.append(str(destination_path.parent), style='sort_destination')
+            console.print(indented_bullet(log_msg.append('...')))
 
     def sort_destination_path(self, subdir: Optional[Union[Path, str]] = None) -> Path:
         """Get the destination folder. """
@@ -123,10 +138,10 @@ class SortableFile:
             console.print(bullet_text("Processing complete..."))
 
         if self.file_path == processed_file_path:
-            console.print(indented_bullet(f"{NOT_MOVING_FILE} because it's the same location...", style='dim'))
+            console.print(indented_bullet(f"{NOT_MOVING_FILE} the same location...", style='dim'))
             return
         elif Config.dry_run or Config.leave_in_place:
-            console.print(indented_bullet(f"{NOT_MOVING_FILE} because it's a dry run or --leave-in-place specified...", style='dim'))
+            console.print(indented_bullet(f"{NOT_MOVING_FILE} a dry run or --leave-in-place specified...", style='dim'))
         else:
             shutil.move(self.file_path, processed_file_path)
 
