@@ -210,6 +210,28 @@ Says to check card details.
 i) 22 Comments Award lad Share in Save"""
 
 
+REVEDDIT_THREAD = """[+]_show filters
+
+The account review period does not seem to end !!! my assets are blocked forever. (self.binance)
+submitted 2 days, 13 hours ago by F150Rraptor to /r/binance (888.2k)
+
+| by reddit (spam) Q)
+
+Qcomments_ reddit other-discussions subreddit-index message mods _ op-focus 4
+
+ before archival, within 13 seconds
+
+Reveddit Real-Time can notify you when your content is removed.
+
+archive status (?)
+comments’ 1 week, 2 days until overwrite
+
+Check if your account has any removed comments.
+view my removed comments
+
+@  ‘/reveddit"""
+
+
 @pytest.fixture(scope='session')
 def ocr_image(do_kwon_tweet):
     """Requires the private varibale _extracted_text to be set manually."""
@@ -233,7 +255,6 @@ def test_tweet_filenames(ocr_image):
     assert FilenameExtractor(ocr_image).filename() == 'Tweet by @cz_binance: "7_ Binance always encourages collaboration between industry players. i: Regarding any speculation as to whether this is a move against a competitor_ it is not. Our industry i" do_kwon_debate_the_poor.jpeg'
 
 
-
 def test_reddit_filenames(ocr_image):
     ocr_image._extracted_text = REDDIT_POST
     assert FilenameExtractor(ocr_image).filename() == 'Reddit post by TheLostWander_er in binance: "send cash feature is temporarily disable. I was trying to withdraw cash since last week and I am seeing this message every time I try the send cash fe" do_kwon_debate_the_poor.jpeg'
@@ -245,3 +266,8 @@ def test_reddit_filenames(ocr_image):
     assert FilenameExtractor(ocr_image).filename() == 'Reddit post by Spmhealy_ADA: "show my Debit card number_ Can\'t use Debit to deposit fiat. Don\'t even see that as an option. I see link bank _which I picked for instant use_ ACH _3_5 day to clear_" do_kwon_debate_the_poor.jpeg'
     ocr_image._extracted_text = REDDIT_POST_2
     assert FilenameExtractor(ocr_image).filename() == 'Reddit post by cho0n22: "0 Thave the blue card and it\'s not working v My blue card isn\'t being accepted for online payments_ have not tried in person yet. Is it because I have nothing staked? Say" do_kwon_debate_the_poor.jpeg'
+
+
+def test_reveddit_filenames(ocr_image):
+    ocr_image._extracted_text = REVEDDIT_THREAD
+    assert FilenameExtractor(ocr_image).filename() == 'Reveddit r_binance do_kwon_debate_the_poor.jpeg'

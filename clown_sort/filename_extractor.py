@@ -30,6 +30,10 @@ REDDIT_REPLY_REGEX = re.compile(
     re.DOTALL | re.MULTILINE | re.IGNORECASE
 )
 
+REVEDDIT_REGEX = re.compile('Reveddit Real.?Time')
+SUBREDDIT_REGEX_STRING = '/r/(\\w+)'
+SUBREDDIT_REGEX = re.compile('/r/(?P<subreddit>\\w+)|\\sse(lf|ir)\\.(?P<subreddit2>\\w+)')
+
 
 class FilenameExtractor:
     def __init__(self, image_file: 'ImageFile') -> None:
@@ -54,6 +58,14 @@ class FilenameExtractor:
             filename = f"{filename_str} {self.image_file.basename_without_ext}"
             filename = filename[0:-1] if filename.endswith('.') else filename
             filename = filename + self.image_file.extname
+        elif self._is_reveddit():
+            filename = 'Reveddit '
+            subreddit_match = SUBREDDIT_REGEX.search(self.text)
+
+            if subreddit_match is not None:
+                filename += 'r_' + (subreddit_match.group('subreddit') or subreddit_match.group('subreddit2')) + ' '
+
+            filename += self.image_file.basename
         else:
             filename = self.image_file.basename
 
@@ -71,6 +83,9 @@ class FilenameExtractor:
 
     def _is_reddit_reply(self) -> bool:
         return REDDIT_REPLY_REGEX.search(self.text) is not None
+
+    def _is_reveddit(self) -> bool:
+        return REVEDDIT_REGEX.search(self.text) is not None
 
     def _filename_str_for_tweet(self) -> str:
         """Build a filename for tweets."""
