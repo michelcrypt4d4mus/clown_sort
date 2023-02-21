@@ -98,6 +98,15 @@ partners and competitors in a respectful and collaborative manner. Tether
 cares about the industry. After all: Rising tides lift all boats."""
 
 
+TWITTER_CZ = """(te CZ @ Binance @ @cz_binance - Nov 6
+7) Binance always encourages collaboration between industry players.
+i: Regarding any speculation as to whether this is a move against a
+competitor, it is not. Our industry is in it’s nascency and every time a
+project publicly fails it hurts every user and every platform. 3/4
+
+3 Tl 493 © 5,626 ath"""
+
+
 BAD_OCR_TWEET = """af
 
 Martin Farber @ASYB111 - tih
@@ -219,7 +228,10 @@ def test_tweet_filenames(ocr_image):
     ocr_image._extracted_text = GABOR_TWEET_TEXT
     assert FilenameExtractor(ocr_image).filename() == 'Tweet by @gaborgurbacs: "I think this Coinbase media campaign will have the opposite effect. USDC users will learn about USDT and convert to USDT as they question the motivations and rationale of" do_kwon_debate_the_poor.jpeg'
     ocr_image._extracted_text = BAD_OCR_TWEET
-    assert FilenameExtractor(ocr_image).filename() == 'Tweet by @ASYB111: "Replying to @cz_binance Any updates on send cash feature? It is temporarily disabled. 1o_ td iv_ ily 399 a_" do_kwon_debate_the_poor.jpeg'
+    assert FilenameExtractor(ocr_image).filename() == 'Tweet by @ASYB111 replying to @cz_binance: "Any updates on send cash feature? It is temporarily disabled. 1o_ td iv_ ily 399 a_" do_kwon_debate_the_poor.jpeg'
+    ocr_image._extracted_text = TWITTER_CZ
+    assert FilenameExtractor(ocr_image).filename() == 'Tweet by @cz_binance: "7_ Binance always encourages collaboration between industry players. i: Regarding any speculation as to whether this is a move against a competitor_ it is not. Our industry i" do_kwon_debate_the_poor.jpeg'
+
 
 
 def test_reddit_filenames(ocr_image):

@@ -11,12 +11,12 @@ from clown_sort.util.logging import console, log
 MAX_FILENAME_LENGTH = 225
 
 TWEET_REPLY_REGEX = re.compile(
-    'Replying to (@[a-zA-Z0-9]{3,15}).*?\\n(?P<body>.*)',
+    'Replying to (@\\w{3,15}).*?\\n(?P<body>.*)',
     re.DOTALL | re.MULTILINE
 )
 
 TWEET_REGEX = re.compile(
-    '(@[a-zA-Z0-9]{3,15}(\\.\\.\\.)?)(\\s{1,2}-\\s{1,2}([\\dti]{1,2}[smhd]|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec).*?)?\\n(?P<body>.*)',
+    '(@\\w{3,15}(\\.\\.\\.)?)(\\s{1,2}-\\s{1,2}([\\dti]{1,2}[smhd]|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec).*?)?\\n(?P<body>.*)',
     re.DOTALL | re.MULTILINE
 )
 
