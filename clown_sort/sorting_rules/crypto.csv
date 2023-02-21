@@ -23,7 +23,7 @@ Crypto.com,crypto[._]?com|CDC|[$#]CRO|\sCRO\s
 DCG,DCG|digital\s*currency\s*group|sh?ill?bert|Grayscale|GBTC
 El Salvador,El[-\s]*Salvador|Bukele
 EOS,[^\w]EOS|\s*Blumer[^\w]
-FTX,FTX|FTT|SBF|Trabucco|Bankman|Ellison|Nishad|Alameda|Moonstone|friedberg
+FTX,FTX|FTT|SBF|Trabucco|Bankman|Ellison|Nishad|Alameda|Moonstone|friedberg|autism\s*capital
 Gemini,Gemini|winklev|@cameron
 Genesis,Genesis|Michael\s?Moro
 Hex,Hex\s|[#$]Hex|Pulsechain|Richard\s*Heart
