@@ -19,6 +19,7 @@ from clown_sort.config import Config
 from clown_sort.filename_extractor import FilenameExtractor
 from clown_sort.files.sortable_file import SortableFile
 from clown_sort.util.filesystem_helper import copy_file_creation_time
+from clown_sort.util.logging import console
 
 THUMBNAIL_DIMENSIONS = (400, 400)
 IMAGE_DESCRIPTION = 'ImageDescription'

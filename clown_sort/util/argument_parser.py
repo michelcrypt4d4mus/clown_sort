@@ -9,8 +9,8 @@ from rich.table import Table
 from rich.text import Text
 from rich_argparse_plus import RichHelpFormatterPlus
 
-from clown_sort.config import (Config, CRYPTO_RULES_CSV_PATH, DEFAULT_SCREENSHOTS_DIR,
-    MAC_SCREENSHOT_REGEX, PACKAGE_NAME)
+from clown_sort.config import Config, CRYPTO_RULES_CSV_PATH, DEFAULT_SCREENSHOTS_DIR, PACKAGE_NAME
+from clown_sort.util.filesystem_helper import MAC_SCREENSHOT_REGEX
 from clown_sort.util.logging import console
 
 DESCRIPTION = "Sort, rename, and tag screenshots (and the occasional PDF) according to rules."

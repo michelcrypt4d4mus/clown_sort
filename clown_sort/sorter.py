@@ -14,7 +14,7 @@ from clown_sort.files.sortable_file import SortableFile
 from clown_sort.util.filesystem_helper import files_in_dir, is_image, is_pdf
 
 
-def screenshot_paths() -> List[SortableFile]:
+def screenshot_paths(dir: Path) -> List[SortableFile]:
     """Returns a list of ImageFiles for all the screenshots to be sorted."""
     screenshots = [
         _build_sortable_file(f) for f in files_in_dir(Config.screenshots_dir)

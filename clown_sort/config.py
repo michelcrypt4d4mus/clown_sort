@@ -11,7 +11,7 @@ from os import environ
 from pathlib import Path
 from typing import List, Optional, Union
 
-from clown_sort.util.filesystem_helper import subdirs_of_dir
+from clown_sort.util.filesystem_helper import MAC_SCREENSHOT_REGEX, subdirs_of_dir
 
 OptionalPath = Optional[Union[str, Path]]
 SortRule = namedtuple('SortRule', ['folder', 'regex'])
@@ -20,7 +20,6 @@ PACKAGE_NAME = 'clown_sort'
 DEFAULT_SCREENSHOTS_DIR = Path.home().joinpath('Pictures', 'Screenshots')
 SORTING_RULES_DIR = importlib.resources.files(PACKAGE_NAME).joinpath('sorting_rules')
 CRYPTO_RULES_CSV_PATH = str(SORTING_RULES_DIR.joinpath('crypto.csv'))
-MAC_SCREENSHOT_REGEX = re.compile('^Screen Shot \\d{4}-\\d{2}-\\d{2} at \\d{1,2}\\.\\d{2}\\.\\d{2} [AP]M.(png|jpe?g)')
 
 if 'RULES_CSV_PATH' in environ:
     DEFAULT_RULES_CSV_PATH = str(environ.get('RULES_CSV_PATH'))
