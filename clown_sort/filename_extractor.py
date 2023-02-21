@@ -45,6 +45,7 @@ class FilenameExtractor:
         self.reply_to_account: Optional[str] = None
 
     def filename(self) -> str:
+        """Examine self.text and decide on an appropriate filename."""
         filename: str
 
         if self.text is None:
@@ -80,15 +81,19 @@ class FilenameExtractor:
         return TWEET_REGEX.search(self.text) is not None and '@crypto_oracle' not in self.text
 
     def _is_reddit(self) -> bool:
-        return self._is_reddit_post() or self._is_reddit_reply()
+        """Return true if it's a reddit post or reddit comment."""
+        return self._is_reddit_post() or self._is_reddit_comment()
 
     def _is_reddit_post(self) -> bool:
+        """Return true if it's a reddit post."""
         return REDDIT_POST_REGEX.search(self.text) is not None
 
-    def _is_reddit_reply(self) -> bool:
+    def _is_reddit_comment(self) -> bool:
+        """Return true if it's a reddit comment."""
         return REDDIT_REPLY_REGEX.search(self.text) is not None
 
     def _is_reveddit(self) -> bool:
+        """Return true if text is from reveddit.com (site for deleted reddit posts and comments)."""
         return REVEDDIT_REGEX.search(self.text) is not None
 
     def _filename_str_for_tweet(self) -> str:
@@ -129,6 +134,7 @@ class FilenameExtractor:
         return self._build_filename(filename_text, body)
 
     def _build_filename(self, filename_text: str, body: str) -> str:
+        """Construct a workable filename."""
         body = ' '.join(body.splitlines()).replace('\\s+', ' ')
         log.debug(f"\nBody flattened:\n{body}\n")
         body = re.sub('’', "'", body).replace('|', 'I').replace(',', ',')
