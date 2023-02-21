@@ -18,7 +18,7 @@ PDF_EXTENSION = '.pdf'
 IMAGE_FILE_EXTENSIONS = [f".{ext}" for ext in 'tiff jpg jpeg png heic'.split()]
 MOVIE_FILE_EXTENSIONS = ['.mov', '.flv', '.avi']
 SORTABLE_FILE_EXTENSIONS = IMAGE_FILE_EXTENSIONS + [PDF_EXTENSION, '.mov']
-MAC_SCREENSHOT_REGEX = re.compile('^Screen Shot (\\d{4}-\\d{2}-\\d{2} at \\d{1,2}\\.\\d{2}\\.\\d{2} [AP]M).(png|jpe?g)')
+MAC_SCREENSHOT_REGEX = re.compile('Screen Shot (\\d{4}-\\d{2}-\\d{2} at \\d{1,2}\\.\\d{2}\\.\\d{2} [AP]M).(png|jpe?g)')
 MAC_SCREENSHOT_TIMESTAMP_FORMAT = '%Y-%m-%d at %I.%M.%S %p'
 
 

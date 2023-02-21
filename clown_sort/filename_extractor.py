@@ -31,7 +31,6 @@ REDDIT_REPLY_REGEX = re.compile(
 )
 
 REVEDDIT_REGEX = re.compile('Reveddit Real.?Time')
-SUBREDDIT_REGEX_STRING = '/r/(\\w+)'
 SUBREDDIT_REGEX = re.compile('/r/(?P<subreddit>\\w+)|\\sse(lf|ir)\\.(?P<subreddit2>\\w+)')
 
 
