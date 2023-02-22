@@ -6,7 +6,8 @@ from typing import Optional
 
 from rich.text import Text
 
-from clown_sort.util.logging import console, log
+from clown_sort.util.logging import log
+from clown_sort.util.rich_helper import console
 
 MAX_FILENAME_LENGTH = 225
 

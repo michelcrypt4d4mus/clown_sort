@@ -7,10 +7,11 @@ import PySimpleGUI as sg
 from rich.panel import Panel
 from rich.text import Text
 
-from clown_sort.config import DEFAULT_SCREENSHOTS_DIR, Config
+from clown_sort.config import Config
+from clown_sort.util.constants import DEFAULT_SCREENSHOTS_DIR
 from clown_sort.files.image_file import ImageFile
 from clown_sort.util.dict_helper import get_dict_key_by_value
-from clown_sort.util.logging import console, log
+from clown_sort.util.logging import log
 
 SORTED_DIR = DEFAULT_SCREENSHOTS_DIR.joinpath('Sorted')
 PROCESSED_DIR = DEFAULT_SCREENSHOTS_DIR.joinpath('Processed')

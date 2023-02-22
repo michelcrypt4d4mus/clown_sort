@@ -8,7 +8,6 @@ from clown_sort.config import Config
 from clown_sort.files.image_file import ImageFile
 from clown_sort.files.pdf_file import PdfFile
 from clown_sort.files.sortable_file import SortableFile
-from clown_sort.util.argument_parser import parse_arguments
 from clown_sort.util.filesystem_helper import (files_in_dir, is_image, is_pdf,
      set_timestamp_based_on_screenshot_filename)
 
@@ -21,14 +20,14 @@ if not environ.get('INVOKED_BY_PYTEST', False):
 
 
 def sort_screenshots():
-    parse_arguments()
+    Config.configure()
 
     for image in screenshot_paths(Config.screenshots_dir):
         image.sort_file()
 
 
 def set_screenshot_timestamps():
-    parse_arguments()
+    Config.configure()
 
     for image in screenshot_paths(Config.screenshots_dir):
         set_timestamp_based_on_screenshot_filename(image.file_path)

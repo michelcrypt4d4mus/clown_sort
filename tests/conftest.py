@@ -6,7 +6,7 @@ from pathlib import Path
 import pytest
 
 from clown_sort.config import Config
-from clown_sort.util.argument_parser import PACKAGE_NAME
+from clown_sort.util.constants import CRYPTO_RULES_CSV_PATH, PACKAGE_NAME
 
 PROJECT_DIR = path.join(str(importlib.resources.files(PACKAGE_NAME)), pardir)
 TESTS_DIR = Path(PROJECT_DIR).joinpath('tests')
@@ -18,7 +18,7 @@ PROCESSED_DIR = TMP_DIR.joinpath('Processed')
 
 @pytest.fixture(scope='session', autouse=True)
 def test_config():
-    yield Config.set_directories(FIXTURES_DIR, TMP_DIR)
+    yield Config.set_directories(FIXTURES_DIR, TMP_DIR, [CRYPTO_RULES_CSV_PATH])
     SORTED_DIR.rmdir()
     PROCESSED_DIR.rmdir()
 

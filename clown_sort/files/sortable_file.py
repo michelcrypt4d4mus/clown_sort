@@ -14,9 +14,10 @@ from rich.text import Text
 from clown_sort.config import Config
 from clown_sort.filename_extractor import FilenameExtractor
 from clown_sort.util.filesystem_helper import copy_file_creation_time
-from clown_sort.util.logging import console, log, copying_file_log_message, moving_file_log_message
-from clown_sort.util.rich_helper import bullet_text, indented_bullet
+from clown_sort.util.logging import log
+from clown_sort.util.rich_helper import bullet_text, indented_bullet, console, copying_file_log_message, moving_file_log_message
 from clown_sort.util.string_helper import comma_join
+
 
 MAX_EXTRACTION_LENGTH = 4096
 NOT_MOVING_FILE = "Not moving file to proccessed dir because it's"

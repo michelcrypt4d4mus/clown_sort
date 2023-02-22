@@ -2,27 +2,32 @@
 Global configuration.
 """
 import csv
-import importlib.resources
 import logging
 import re
 import sys
+from argparse import Namespace
 from collections import namedtuple
+from importlib.metadata import version
 from os import environ
 from pathlib import Path
 from typing import List, Optional, Union
 
+from rich import box
+from rich.console import Console
+from rich.table import Table
+from rich.text import Text
+
+from clown_sort.util.constants import CRYPTO_RULES_CSV_PATH, PACKAGE_NAME
+from clown_sort.util.argument_parser import CRYPTO, parser
 from clown_sort.util.filesystem_helper import MAC_SCREENSHOT_REGEX, subdirs_of_dir
 
 StringOrPath = Union[str, Path]
 SortRule = namedtuple('SortRule', ['folder', 'regex'])
 
-PACKAGE_NAME = 'clown_sort'
-DEFAULT_SCREENSHOTS_DIR = Path.home().joinpath('Pictures', 'Screenshots')
-SORTING_RULES_DIR = importlib.resources.files(PACKAGE_NAME).joinpath('sorting_rules')
-CRYPTO_RULES_CSV_PATH = str(SORTING_RULES_DIR.joinpath('crypto.csv'))
+RULES_CSV_PATH = 'RULES_CSV_PATH'
 
-if 'RULES_CSV_PATH' in environ:
-    DEFAULT_RULES_CSV_PATH = str(environ.get('RULES_CSV_PATH'))
+if RULES_CSV_PATH in environ:
+    DEFAULT_RULES_CSV_PATH = str(environ.get(RULES_CSV_PATH))
 else:
     DEFAULT_RULES_CSV_PATH = CRYPTO_RULES_CSV_PATH
 
@@ -34,6 +39,44 @@ class Config:
     screenshots_only: bool = True
     filename_regex: re.Pattern = MAC_SCREENSHOT_REGEX
     sort_rules: List[SortRule] = []
+
+    @classmethod
+    def configure(cls):
+        """Parse arguments and configure."""
+        if '--version' in sys.argv:
+            print(f"{PACKAGE_NAME} {version(PACKAGE_NAME)}")
+            sys.exit()
+
+        args: Namespace = parser.parse_args()
+
+        if args.debug:
+            Config.debug = True
+
+        if args.rules_csv is None:
+            rules_csvs = [CRYPTO_RULES_CSV_PATH]
+        else:
+            rules_csvs = [CRYPTO_RULES_CSV_PATH if arg == CRYPTO else arg for arg in args.rules_csv]
+
+        destination_dir = args.destination_dir or args.screenshots_dir
+        Config.set_directories(args.screenshots_dir, destination_dir, rules_csvs)
+        Config.filename_regex = re.compile(args.filename_regex)
+        Config.leave_in_place = True if args.leave_in_place else False
+
+        if args.show_rules:
+            Console().print(cls._rules_table())
+            sys.exit()
+
+        if args.execute:
+            Config.dry_run = False
+        else:
+            print("Dry run...")
+
+        if args.all:
+            print("Processing all files in directory, not just 'Screenshot' files....")
+            Config.screenshots_only = False
+
+        if Config.debug:
+            print(f"Rules CSV: {rules_csvs}")
 
     @classmethod
     def set_directories(
@@ -85,3 +128,22 @@ class Config:
                 SortRule(row['folder'], re.compile(row['regex'], re.IGNORECASE | re.MULTILINE))
                 for row in csv.DictReader(csvfile, delimiter=',')
             ]
+
+    @classmethod
+    def _rules_table(cls) -> Table:
+        """Generate a table of the sort rules in effect."""
+        table = Table(
+            'Folder', 'Regex',
+            title='Sorting Rules',
+            title_style='color(153) italic dim',
+            header_style='off_white',
+            box=box.SIMPLE,
+            show_edge=False,
+            collapse_padding=True)
+
+        for sort_rule in Config.sort_rules:
+            table.add_row(sort_rule.folder, sort_rule.regex.pattern)
+
+        table.columns[0].style = 'bright_red'
+        table.columns[1].style = 'color(65)'
+        return table
