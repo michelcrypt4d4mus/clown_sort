@@ -4,19 +4,19 @@ from typing import List, Union
 
 from dotenv import load_dotenv
 
-from clown_sort.config import Config
-from clown_sort.files.image_file import ImageFile
-from clown_sort.files.pdf_file import PdfFile
-from clown_sort.files.sortable_file import SortableFile
-from clown_sort.util.filesystem_helper import (files_in_dir, is_image, is_pdf,
-     set_timestamp_based_on_screenshot_filename)
-
 # load_dotenv() should be called as soon as possible (before parsing local classes) but not for pytest
 if not environ.get('INVOKED_BY_PYTEST', False):
     for dotenv_file in [path.join(dir, '.clown_sort') for dir in [getcwd(), Path.home()]]:
         if path.exists(dotenv_file):
             load_dotenv(dotenv_path=dotenv_file)
             break
+
+from clown_sort.config import Config
+from clown_sort.files.image_file import ImageFile
+from clown_sort.files.pdf_file import PdfFile
+from clown_sort.files.sortable_file import SortableFile
+from clown_sort.util.filesystem_helper import (files_in_dir, is_image, is_pdf,
+     set_timestamp_based_on_screenshot_filename)
 
 
 def sort_screenshots():

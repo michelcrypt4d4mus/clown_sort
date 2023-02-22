@@ -17,19 +17,20 @@ from rich.console import Console
 from rich.table import Table
 from rich.text import Text
 
-from clown_sort.util.constants import CRYPTO_RULES_CSV_PATH, PACKAGE_NAME
 from clown_sort.util.argument_parser import CRYPTO, parser
+from clown_sort.util.constants import CRYPTO_RULES_CSV_PATH, PACKAGE_NAME
 from clown_sort.util.filesystem_helper import MAC_SCREENSHOT_REGEX, subdirs_of_dir
+from clown_sort.util.logging import log, set_log_level
 
 StringOrPath = Union[str, Path]
 SortRule = namedtuple('SortRule', ['folder', 'regex'])
 
-RULES_CSV_PATH = 'RULES_CSV_PATH'
+RULES_CSV_PATHS = 'RULES_CSV_PATHS'
 
-if RULES_CSV_PATH in environ:
-    DEFAULT_RULES_CSV_PATH = str(environ.get(RULES_CSV_PATH))
+if RULES_CSV_PATHS in environ:
+    DEFAULT_RULES_CSV_PATHS = str(environ.get(RULES_CSV_PATHS)).split(':')
 else:
-    DEFAULT_RULES_CSV_PATH = CRYPTO_RULES_CSV_PATH
+    DEFAULT_RULES_CSV_PATHS = CRYPTO_RULES_CSV_PATH
 
 
 class Config:
@@ -51,13 +52,12 @@ class Config:
 
         if args.debug:
             Config.debug = True
+            set_log_level('DEBUG')
 
-        if args.rules_csv is None:
-            rules_csvs = [CRYPTO_RULES_CSV_PATH]
-        else:
-            rules_csvs = [CRYPTO_RULES_CSV_PATH if arg == CRYPTO else arg for arg in args.rules_csv]
-
+        args.rules_csv = args.rules_csv or DEFAULT_RULES_CSV_PATHS
         destination_dir = args.destination_dir or args.screenshots_dir
+        rules_csvs = [CRYPTO_RULES_CSV_PATH if arg == CRYPTO else arg for arg in args.rules_csv]
+        log.debug(f"Rules CSVs: {rules_csvs}")
         Config.set_directories(args.screenshots_dir, destination_dir, rules_csvs)
         Config.filename_regex = re.compile(args.filename_regex)
         Config.leave_in_place = True if args.leave_in_place else False
@@ -104,13 +104,11 @@ class Config:
 
         for dir in [cls.destination_dir, cls.sorted_screenshots_dir, cls.processed_screenshots_dir]:
             if not dir.is_dir():
-                logging.warning(f"Need to create '{dir}'")
+                log.warning(f"Need to create '{dir}'")
                 dir.mkdir(parents=True, exist_ok=True)
 
         # TODO: this sucks
         if cls.debug:
-            log = logging.getLogger(PACKAGE_NAME)
-            log.setLevel('DEBUG')
             log.info(f"screenshots_dir: {cls.screenshots_dir}")
             log.info(f"destination_dir: {cls.destination_dir}")
             log.info(f"sorted_screenshots_dir: {cls.sorted_screenshots_dir}")
@@ -136,7 +134,7 @@ class Config:
             'Folder', 'Regex',
             title='Sorting Rules',
             title_style='color(153) italic dim',
-            header_style='off_white',
+            header_style='color(245)',
             box=box.SIMPLE,
             show_edge=False,
             collapse_padding=True)

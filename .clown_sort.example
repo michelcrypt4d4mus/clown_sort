@@ -1,10 +1,11 @@
-# Rules CSV (should be two columns: folder,regex)
-RULES_CSV_PATH='/Users/uz0r/my_war.csv'
+# Rules CSVS. Should be two columns: folder,regex.
+# Use : to separate multiple paths.
+RULES_CSV_PATHS=/Users/uz0r/my_war.csv
 
 # Location of files to sort.
-SCREENSHOTS_DIR='/Users/uz0r/Pictures/Screenshots/'
+SCREENSHOTS_DIR=/Users/uz0r/Pictures/Screenshots/
 
 # Destination for sorted files. 'Sorted' and 'Processed' subdirs will be created.
 # Further subdirectories will be created off of the 'Sorted' subdir as sort rules
 # are matched.
-DESTINATION_DIR='/Users/uz0r/Pictures/Screenshots/'
+DESTINATION_DIR=/Users/uz0r/Pictures/Screenshots/
