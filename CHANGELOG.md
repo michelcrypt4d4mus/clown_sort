@@ -1,5 +1,6 @@
 ## 0.5.0
 * Allow multiple rules CSV files
+* Allow configuration of rules CSV files via `.clown_sort` file
 
 ## O.4.0
 * Improve Tweet matching

@@ -1,6 +1,7 @@
 # Rules CSVS. Should be two columns: folder,regex.
+# Use string 'crypto' to specify the default sort rules.
 # Use : to separate multiple paths.
-RULES_CSV_PATHS=/Users/uz0r/my_war.csv
+RULES_CSV_PATHS=/Users/uz0r/my_war.csv:crypto
 
 # Location of files to sort.
 SCREENSHOTS_DIR=/Users/uz0r/Pictures/Screenshots/
