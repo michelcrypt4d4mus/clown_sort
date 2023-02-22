@@ -1,10 +1,10 @@
 import importlib.resources
-from os import path, pardir
+from os import environ, path, pardir
 from pathlib import Path
-#environ['INVOKED_BY_PYTEST'] = 'True'
 
 import pytest
 
+environ['INVOKED_BY_PYTEST'] = 'True'
 from clown_sort.config import Config
 from clown_sort.util.constants import CRYPTO_RULES_CSV_PATH, PACKAGE_NAME
 
