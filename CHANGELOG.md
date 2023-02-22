@@ -1,4 +1,5 @@
-# NEXT RELEASE
+## 0.5.0
+* Allow multiple rules CSV files
 
 ## O.4.0
 * Improve Tweet matching

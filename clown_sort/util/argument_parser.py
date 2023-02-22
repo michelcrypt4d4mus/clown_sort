@@ -15,7 +15,7 @@ from clown_sort.util.logging import console
 
 DESCRIPTION = "Sort, rename, and tag screenshots (and the occasional PDF) according to rules."
 EPILOG = "Defaults are focused on crypto related screenshots."
-CRYPTO = 'crypto_rules'
+CRYPTO = 'crypto'
 
 
 RichHelpFormatterPlus.choose_theme('prince')
@@ -29,7 +29,7 @@ parser.add_argument('-e', '--execute', action='store_true',
                     help='without this flag no actual changes will be made (you will see the logs of the changes it plans to make)')
 
 parser.add_argument('-a', '--all', action='store_true',
-                    help="sort all image, movie, and PDF files is SCREENSHOTS_DIR (without this flag only files of the pattern 'Screen Shot 2023-02-18 at 3.06.44 AM.png' will be examined)")
+                    help="sort all image, movie, and PDF files in SCREENSHOTS_DIR (without this flag only files of the pattern 'Screen Shot 2023-02-18 at 3.06.44 AM.png' will be examined)")
 
 parser.add_argument('-l', '--leave-in-place', action='store_true',
                     help='leave original file in place rather than moving to the SCREENSHOTS_DIR/Processed folder')
@@ -45,9 +45,9 @@ parser.add_argument('-d', '--destination-dir',
                     help='destination folder to place the Sorted/ and Processed/ dirs (default: SCREENSHOTS_DIR)')
 
 parser.add_argument('-r', '--rules-csv',
+                    action='append',
                     metavar='RULES_FILE.CSV',
-                    help='use a custom set of sorting rules',
-                    default=CRYPTO)
+                    help=f"sorting rules can be supplied more than once (use string '{CRYPTO}' to use the defaults)")
 
 parser.add_argument('-f', '--filename-regex',
                     help='filename regular expression',
@@ -87,11 +87,16 @@ def parse_arguments():
     if args.filename_regex:
         Config.filename_regex = re.compile(args.filename_regex)
 
-    Config.set_directories(
-        screenshots_dir=args.screenshots_dir,
-        destination_dir=args.destination_dir,
-        rules_csv_path=args.rules_csv if args.rules_csv != CRYPTO else CRYPTO_RULES_CSV_PATH
-    )
+    if args.rules_csv is None:
+        rules_csvs = [CRYPTO_RULES_CSV_PATH]
+    else:
+        rules_csvs = [CRYPTO_RULES_CSV_PATH if arg == CRYPTO else arg for arg in args.rules_csv]
+
+    if Config.debug:
+        print(f"Rules CSV: {rules_csvs}")
+
+    args.destination_dir = args.destination_dir or args.screenshots_dir
+    Config.set_directories(args.screenshots_dir, args.destination_dir, rules_csvs)
 
     if args.show_rules:
         console.print(_rules_table())

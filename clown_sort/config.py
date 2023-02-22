@@ -13,7 +13,7 @@ from typing import List, Optional, Union
 
 from clown_sort.util.filesystem_helper import MAC_SCREENSHOT_REGEX, subdirs_of_dir
 
-OptionalPath = Optional[Union[str, Path]]
+StringOrPath = Union[str, Path]
 SortRule = namedtuple('SortRule', ['folder', 'regex'])
 
 PACKAGE_NAME = 'clown_sort'
@@ -33,24 +33,27 @@ class Config:
     leave_in_place: bool = False
     screenshots_only: bool = True
     filename_regex: re.Pattern = MAC_SCREENSHOT_REGEX
+    sort_rules: List[SortRule] = []
 
     @classmethod
     def set_directories(
             cls,
-            screenshots_dir: OptionalPath = None,
-            destination_dir: OptionalPath = None,
-            rules_csv_path: OptionalPath = None
+            screenshots_dir: StringOrPath,
+            destination_dir: StringOrPath,
+            rules_csv_paths: List[StringOrPath]
     ) -> None:
         """Set the directories to find screenshots in and sort screenshots to."""
         screenshots_dir = Path(screenshots_dir or DEFAULT_SCREENSHOTS_DIR)
         destination_dir = Path(destination_dir or screenshots_dir)
-        rules_csv_path = Path(rules_csv_path or DEFAULT_RULES_CSV_PATH)
+        rules_csv_paths = [Path(r) for r in rules_csv_paths]
 
-        if not rules_csv_path.is_file():
-            print(f"'{rules_csv_path}' is not a file.")
-            sys.exit()
+        for csv_path in rules_csv_paths:
+            if not csv_path.is_file():
+                print(f"'{csv_path}' is not a file.")
+                sys.exit()
+            else:
+                cls.sort_rules += cls._load_rules_csv(csv_path)
 
-        cls.sort_rules = cls._load_rules_csv(rules_csv_path)
         cls.screenshots_dir: Path = Path(screenshots_dir)
         cls.destination_dir: Path = Path(destination_dir or screenshots_dir)
         cls.sorted_screenshots_dir = cls.destination_dir.joinpath('Sorted')
