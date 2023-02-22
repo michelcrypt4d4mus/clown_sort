@@ -30,7 +30,7 @@ RULES_CSV_PATHS = 'RULES_CSV_PATHS'
 if RULES_CSV_PATHS in environ:
     DEFAULT_RULES_CSV_PATHS = str(environ.get(RULES_CSV_PATHS)).split(':')
 else:
-    DEFAULT_RULES_CSV_PATHS = CRYPTO_RULES_CSV_PATH
+    DEFAULT_RULES_CSV_PATHS = [CRYPTO_RULES_CSV_PATH]
 
 
 class Config:
@@ -54,10 +54,11 @@ class Config:
             Config.debug = True
             set_log_level('DEBUG')
 
-        args.rules_csv = args.rules_csv or DEFAULT_RULES_CSV_PATHS
-        destination_dir = args.destination_dir or args.screenshots_dir
-        rules_csvs = [CRYPTO_RULES_CSV_PATH if arg == CRYPTO else arg for arg in args.rules_csv]
+        rules_csvs = args.rules_csv or DEFAULT_RULES_CSV_PATHS
+        rules_csvs = [CRYPTO_RULES_CSV_PATH if arg == CRYPTO else arg for arg in rules_csvs]
         log.debug(f"Rules CSVs: {rules_csvs}")
+
+        destination_dir = args.destination_dir or args.screenshots_dir
         Config.set_directories(args.screenshots_dir, destination_dir, rules_csvs)
         Config.filename_regex = re.compile(args.filename_regex)
         Config.leave_in_place = True if args.leave_in_place else False
@@ -74,9 +75,6 @@ class Config:
         if args.all:
             print("Processing all files in directory, not just 'Screenshot' files....")
             Config.screenshots_only = False
-
-        if Config.debug:
-            print(f"Rules CSV: {rules_csvs}")
 
     @classmethod
     def set_directories(
@@ -107,12 +105,8 @@ class Config:
                 log.warning(f"Need to create '{dir}'")
                 dir.mkdir(parents=True, exist_ok=True)
 
-        # TODO: this sucks
-        if cls.debug:
-            log.info(f"screenshots_dir: {cls.screenshots_dir}")
-            log.info(f"destination_dir: {cls.destination_dir}")
-            log.info(f"sorted_screenshots_dir: {cls.sorted_screenshots_dir}")
-            log.info(f"processed_screenshots_dir: {cls.processed_screenshots_dir}")
+
+        cls._log_configured_paths()
 
     @classmethod
     def get_sort_dirs(cls) -> List[str]:
@@ -145,3 +139,10 @@ class Config:
         table.columns[0].style = 'bright_red'
         table.columns[1].style = 'color(65)'
         return table
+
+    @classmethod
+    def _log_configured_paths(cls) -> None:
+        log.debug(f"screenshots_dir: {cls.screenshots_dir}")
+        log.debug(f"destination_dir: {cls.destination_dir}")
+        log.debug(f"sorted_screenshots_dir: {cls.sorted_screenshots_dir}")
+        log.debug(f"processed_screenshots_dir: {cls.processed_screenshots_dir}")

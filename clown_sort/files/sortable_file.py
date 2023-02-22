@@ -101,11 +101,8 @@ class SortableFile:
 
         log_msg = Text('Copying to ')
 
-        if Config.dry_run:
-            log_msg = log_msg
-
         if destination_path.parent == Config.destination_dir:
-            console.print(indented_bullet(log_msg + Text('root sorted dir...')))
+            console.print(indented_bullet(log_msg.append('root sorted dir...')))
         else:
             log_msg.append(str(destination_path.parent), style='sort_destination')
             console.print(indented_bullet(log_msg.append('...')))

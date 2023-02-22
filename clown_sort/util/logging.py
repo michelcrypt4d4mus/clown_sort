@@ -7,9 +7,6 @@ from rich.logging import RichHandler
 
 from clown_sort.util.constants import PACKAGE_NAME
 
-### Logging ###
-LOG_LEVEL = 'INFO'
-
 
 log = logging.getLogger(PACKAGE_NAME)
 log.addHandler(RichHandler(rich_tracebacks=True))
