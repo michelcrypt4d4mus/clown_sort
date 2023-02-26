@@ -7,14 +7,14 @@ Art,occult
 Avalanche,Avax|avalanche
 Banks,\$CUBI|Customers[_\s]*Ban(k|corp)|SEBA[^a-z]|Cross\s?River
 Bankless,Bankless
-Binance,binance|biconomy|bnb|cz|bifinity|binaryx|billance|changpeng|joselito|paysafe|SwipeIO|Swipe\s*Wallet|keyway|key\s*vision\s*dev|TrustWallet|BUSD
+Binance,binance|biconomy|bnb|bsc|cz|bifinity|binaryx|billance|changpeng|joselito|paysafe|SwipeIO|Swipe\s*Wallet|keyway|key\s*vision\s*dev|TrustWallet|BUSD
 Bitstamp,Bitstamp
 Bittrex,Bittrex
 Bitzlato,Bitzlato
 Blockchain8,Blockchain8|tom ?emmer|ritchie ?torres|repritchie
 BlockFi,BlockFi
 Bros,cryptomanran|trillionUSD|nic[-_\s]*carter|bitboy|basedkarbon|thecryptolark|adam([-_\s]*back|3us)|@DegenSp
-Cardano,Cardano|[$\s]ADA[^\w]
+Cardano,Cardano|[$\s]ADA[^\w]|Hoskinson
 Cathie Wood,Cathie\s*Wood|\bARK(K|\s*Innovation|\s*Invest)
 Celsius,celsius|mashinsky|levity[-_\s]*and[-_\s]*love
 Circle,[@#]circle|usdc|circle[-_\s]*internet

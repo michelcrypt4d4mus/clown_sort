@@ -1,3 +1,6 @@
+## 0.5.1
+* Only sort filenames if they match the regex OR have a sorting folder match
+
 ## 0.5.0
 * Allow multiple rules CSV files
 * Allow configuration of rules CSV files via `.clown_sort` file

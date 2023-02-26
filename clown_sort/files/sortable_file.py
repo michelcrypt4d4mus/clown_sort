@@ -40,8 +40,12 @@ class SortableFile:
         sort_folders = type(self).get_sort_folders(self.extracted_text())
 
         if len(sort_folders) == 0:
-            console.print(bullet_text('No sort folders found! Copying to base sorted dir...', style='red'))
-            sort_folders = [None]
+            if Config.filename_regex.search(self.basename):
+                console.print(bullet_text('No sort folders found! Copying to base sorted dir...', style='color(209)'))
+                sort_folders = [None]
+            else:
+                console.print(bullet_text('Unsortable - no folder match and filename_regex does not match. Skipping...'))
+                return
         else:
             console.print(bullet_text(Text('Sort folders: ') + comma_join(sort_folders)))
 
