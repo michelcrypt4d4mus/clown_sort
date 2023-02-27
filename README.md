@@ -62,29 +62,6 @@ sort_screenshots -f '.*pdf$' -e
 pipx install clown_sort
 ```
 
-### Optional Components
-If you want to use the popup window to manually tag you may need to install:
-* Python TK: `brew install python-tk@3.10` (if you don't have [homebrew](https://brew.sh/) you need to install it to run `brew install`)
-
-Not required for standard PNG, JPG, etc. images but you may optionally install `exiftool` for other file types.
-* ExifTool: `brew install exiftool` or download from https://exiftool.org
-
-
-# Usage
-**YOU ARE ADVISED TO MAKE A BACKUP OF YOUR FILES BEFORE HITTING THE `--execute` flag.** While an effort has been made to use Python's cross platform `Pathlib` module as much as possible sometimes shit gets wonky on other platforms. This is 100x as true on Windows - Clown Sort has never been tested on a Windows platform.
-
-### Help Screen
-![](doc/sort_screenshots_help.png)
-
-### Custom Sorting Rules
-The default is to sort cryptocurrency related content but you can define your own CSV of rules with two columns `folder` and `regex`. The value in `folder` specifies the subdirectory to sort into and `regex` is the pattern to match against. See [the default crypto related configuration](clown_sort/sorting_rules/crypto.csv) for an example. An explanation of regular expressions is beyond the scope of this README but many resources are available to help. if you're not good at regexes just remember that any alphanumeric string is a regex that will match that string. [pythex](http://pythex.org/) is a great website for testing your regexes.
-
-### Manually Sorting (Experimental)
-**This is an experimental feature.** It's only been tested on macOS.
-
-If you run with the `--manual-sort` command line the behavior is quite different. Rather than automatically sort files for you, instead for every file you will be greated with a popup asking you for a desired filename and a radio button select of possible subdirectories off your `Sorted/` directory.
-![](doc/manual_select_box.png)
-
 ### Configuring With `.clown_sort` File
 If there are command line options you find yourself specifying repeatedly you can place them in a `.clown_sort` file. When you invoke `sort_screenshots` the following locations will be checked for `.clown_sort`:
 
@@ -93,8 +70,32 @@ If there are command line options you find yourself specifying repeatedly you ca
 
 See [the example](.clown_sort.example) for more information on what can be configured this way.
 
-### Example Output
+### Optional Components
+If you want to use the popup window to manually tag you _may_ need to install:
+* Python TK: `brew install python-tk@3.10` (if you don't have [homebrew](https://brew.sh/) you need to install it to run `brew install`)
+
+Not required for standard PNG, JPG, etc. images but you may optionally install `exiftool` for other file types if you want excessive debugging.
+* ExifTool: `brew install exiftool` or download from https://exiftool.org
+
+
+# Usage
+The default is for the tool to run in "dry run" mode, meaning it doesn't actually do anything - it just shows you what it _would_ do if you added the `--execute` flag. **YOU ARE ADVISED TO MAKE A BACKUP OF YOUR SCREENSHOTS FOLDER BEFORE HITTING THE `--execute` flag.** While an effort has been made to use Python's cross platform `Pathlib` module as much as possible sometimes shit gets wonky on other platforms. This is 100x as true on Windows - Clown Sort has never been tested on a Windows platform.
+
+### Help Screen
+![](doc/sort_screenshots_help.png)
+
+### Custom Sorting Rules
+The default is to sort cryptocurrency related content but you can define your own CSV of rules with two columns `folder` and `regex`. The value in `folder` specifies the subdirectory to sort into and `regex` is the pattern to match against. See [the default crypto related configuration](clown_sort/sorting_rules/crypto.csv) for an example. An explanation of regular expressions is beyond the scope of this README but many resources are available to help. if you're not good at regexes just remember that any alphanumeric string is a regex that will match that string. [pythex](http://pythex.org/) is a great website for testing your regexes.
+
+### Example Output (Automated Sorting)
 ![](doc/output_example.png)
+
+
+## Manually Sorting (Experimental)
+**This is an experimental feature.** It's only been tested on macOS.
+
+If you run with the `--manual-sort` command line the behavior is quite different. Rather than automatically sort files for you, instead for every file you will be greated with a popup asking you for a desired filename and a radio button select of possible subdirectories off your `Sorted/` directory.
+![](doc/manual_select_box.png)
 
 
 # Contributing
