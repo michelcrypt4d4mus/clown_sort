@@ -79,7 +79,9 @@ Not required for standard PNG, JPG, etc. images but you may optionally install `
 
 
 # Usage
-The default is for the tool to run in "dry run" mode, meaning it doesn't actually do anything - it just shows you what it _would_ do if you added the `--execute` flag. **YOU ARE ADVISED TO MAKE A BACKUP OF YOUR SCREENSHOTS FOLDER BEFORE HITTING THE `--execute` flag.** While an effort has been made to use Python's cross platform `Pathlib` module as much as possible sometimes shit gets wonky on other platforms. This is 100x as true on Windows - Clown Sort has never been tested on a Windows platform.
+The default is for the tool to run in "dry run" mode, meaning it doesn't actually do anything - it just shows you what it _would_ do if you added the `--execute` flag. **YOU ARE ADVISED TO MAKE A BACKUP OF YOUR SCREENSHOTS FOLDER BEFORE HITTING THE `--execute` flag.**
+
+While every effort has been made to use Python's cross platform `Pathlib` module as much as possible sometimes shit gets wonky on other platforms. This is 100x as true on Windows - Clown Sort has never been tested on a Windows platform.
 
 ### Help Screen
 ![](doc/sort_screenshots_help.png)
@@ -95,6 +97,7 @@ The default is to sort cryptocurrency related content but you can define your ow
 **This is an experimental feature.** It's only been tested on macOS.
 
 If you run with the `--manual-sort` command line the behavior is quite different. Rather than automatically sort files for you, instead for every file you will be greated with a popup asking you for a desired filename and a radio button select of possible subdirectories off your `Sorted/` directory.
+
 ![](doc/manual_select_box.png)
 
 
