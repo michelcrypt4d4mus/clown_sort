@@ -1,5 +1,6 @@
 ## NEXT RELEASE
 * Read `CLOWN_SORT_SCREENSHOTS_DIR` and `CLOWN_SORT_DESTINATION_DIR` defaults.
+* Use tilde notation for home dir in default args.
 
 ## 0.5.1
 * Only sort filenames if they match the regex OR have a sorting folder match
