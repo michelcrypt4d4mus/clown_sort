@@ -119,7 +119,7 @@ class FilenameExtractor:
         """Build a filename for Reddit posts and comments."""
         if self._is_reddit_post():
             reddit_match = REDDIT_POST_REGEX.search(self.text)
-            self.author: str = reddit_match.group('author')
+            self.author = reddit_match.group('author')
             subreddit: str = reddit_match.group('sub')
             body: str = reddit_match.group('body')
             filename_text: str = f"Reddit post by {self.author}"
@@ -128,7 +128,7 @@ class FilenameExtractor:
                 filename_text += f" in {subreddit}"
         else:
             reddit_match = REDDIT_REPLY_REGEX.search(self.text)
-            self.author: str = reddit_match.group('author')
+            self.author = reddit_match.group('author')
             body: str = reddit_match.group('body')
             filename_text: str = f"Reddit post by {self.author}"
 

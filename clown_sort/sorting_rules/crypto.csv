@@ -56,6 +56,7 @@ Quadriga,Quadriga|Gerald[-_\s]*Cotten
 Revolut,revolut[^\w]
 RIOT,\$RIOT|Riot[-\s_]*Block
 Safemoon,Safemoon
+SEC,\bSEC(\b|Gov)|Gensler|Securities.{0,6}Exchange.{0,6}Commission
 SBNY,SBNY|Signature[-_\s]*Bank|Signet
 Silvergate,\$SI|Silvergate|Alan\s*Lane|Eisele|[\s#]SEN[^\w]
 Solana,Solana|Serum

@@ -13,8 +13,6 @@ DESCRIPTION = "Sort, rename, and tag screenshots (and the occasional PDF) accord
 EPILOG = "Defaults are focused on crypto related screenshots."
 
 
-print(f"filneamreg: {DEFAULT_FILENAME_REGEX.pattern}")
-
 RichHelpFormatterPlus.choose_theme('prince')
 
 parser = ArgumentParser(
@@ -40,6 +38,9 @@ parser.add_argument('-d', '--destination-dir',
                     metavar='DESTINATION_DIR',
                     help='destination folder to place the Sorted/ and Processed/ dirs (default: SCREENSHOTS_DIR)',
                     default=str(DEFAULT_DESTINATION_DIR).replace(str(Path.home()), '~'))
+
+parser.add_argument('-m', '--manual-sort', action='store_true',
+                    help='causes a popup to be presented for each file where it can be manually named and a sorting destination selected')
 
 parser.add_argument('-r', '--rules-csv',
                     action='append',

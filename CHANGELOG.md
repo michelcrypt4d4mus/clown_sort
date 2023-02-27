@@ -1,4 +1,5 @@
-### NEXT RELEASE
+## 0.8.0
+- `--manual-sort` option
 * Couple new sorting rules
 
 ## 0.7.0

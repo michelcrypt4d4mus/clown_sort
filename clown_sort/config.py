@@ -36,6 +36,7 @@ else:
 class Config:
     debug: bool = False
     dry_run: bool = True
+    manual_sort: bool = False
     leave_in_place: bool = False
     screenshots_only: bool = True
     sort_rules: List[SortRule] = []
@@ -77,6 +78,10 @@ class Config:
             print("Processing all files in directory, not just 'Screenshot' files....")
             Config.screenshots_only = False
 
+        if args.manual_sort:
+            _check_for_pysimplegui()
+            Config.manual_sort = True
+
     @classmethod
     def set_directories(
             cls,
@@ -85,7 +90,7 @@ class Config:
             rules_csv_paths: List[StringOrPath]
     ) -> None:
         """Set the directories to find screenshots in and sort screenshots to."""
-        screenshots_dir = Path(screenshots_dir or DEFAULT_SCREENSHOTS_DIR)
+        screenshots_dir = Path(screenshots_dir)
         destination_dir = Path(destination_dir or screenshots_dir)
         rules_csv_paths = [Path(r) for r in rules_csv_paths]
 
@@ -146,3 +151,18 @@ class Config:
         log.debug(f"destination_dir: {cls.destination_dir}")
         log.debug(f"sorted_screenshots_dir: {cls.sorted_screenshots_dir}")
         log.debug(f"processed_screenshots_dir: {cls.processed_screenshots_dir}")
+
+
+def _check_for_pysimplegui():
+    try:
+        import PySimpleGUI as sg
+    except ModuleNotFoundError:
+        console = Console()
+        msg = Text('ERROR: ', style='bright_red')
+        msg.append('PySimpleGUI package must be installed before you can use the manual selector. Try running:', style='bright_white')
+        console.line(2)
+        console.print(msg)
+        console.line(2)
+        console.print("     pipx install clown_sort[PySimpleGUI]", style='bright_cyan')
+        console.line(2)
+        sys.exit()
