@@ -1,3 +1,6 @@
+## 0.7.0
+* Read `CLOWN_SORT_FILENAME_REGEX` default from env.
+
 ### 0.6.1
 * Fix PySimpleGui packages reqs
 

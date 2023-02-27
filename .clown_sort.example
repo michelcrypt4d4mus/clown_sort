@@ -1,6 +1,6 @@
 # Rules CSVS. Should be two columns: folder,regex.
-# Use string 'crypto' to specify the default sort rules.
-# Use : to separate multiple paths.
+#   1. Use : to separate multiple paths.
+#   2. Use string 'crypto' to specify the default sort rules.
 RULES_CSV_PATHS=/Users/uz0r/my_war.csv:crypto
 
 # Location of files to sort.
@@ -11,3 +11,7 @@ CLOWN_SORT_SCREENSHOTS_DIR=/Users/uz0r/Pictures/Screenshots/
 #   2. Folders configured by sorting rules will be subdirs of 'DESTINATION_DIR/Sorted'
 #      as matches are found.
 CLOWN_SORT_DESTINATION_DIR=/Users/uz0r/Pictures/Screenshots/
+
+# Regular expression that matches the files you want sorted.
+# Regexes are hard and I can't explain them here but '.*' is a wild card that matches anything.
+CLOWN_SORT_FILENAME_REGEX=Self Clown .*.png

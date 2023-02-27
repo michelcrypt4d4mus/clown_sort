@@ -1,17 +1,19 @@
 import re
-import sys
-from argparse import ArgumentError, ArgumentParser
+from argparse import ArgumentParser
+from os import environ
 from pathlib import Path
 
 from rich_argparse_plus import RichHelpFormatterPlus
 
-from clown_sort.util.constants import DEFAULT_SCREENSHOTS_DIR, DEFAULT_DESTINATION_DIR
-from clown_sort.util.filesystem_helper import MAC_SCREENSHOT_REGEX
+from clown_sort.util.constants import (DEFAULT_SCREENSHOTS_DIR, DEFAULT_DESTINATION_DIR,
+     DEFAULT_FILENAME_REGEX)
 
+CRYPTO = 'crypto'
 DESCRIPTION = "Sort, rename, and tag screenshots (and the occasional PDF) according to rules."
 EPILOG = "Defaults are focused on crypto related screenshots."
-CRYPTO = 'crypto'
 
+
+print(f"filneamreg: {DEFAULT_FILENAME_REGEX.pattern}")
 
 RichHelpFormatterPlus.choose_theme('prince')
 
@@ -46,7 +48,7 @@ parser.add_argument('-r', '--rules-csv',
 
 parser.add_argument('-f', '--filename-regex',
                     help='filename regular expression',
-                    default=MAC_SCREENSHOT_REGEX.pattern)
+                    default=DEFAULT_FILENAME_REGEX.pattern)
 
 parser.add_argument('--show-rules', action='store_true',
                     help='display the sorting rules and exit')

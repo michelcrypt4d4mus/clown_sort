@@ -19,7 +19,7 @@ from rich.text import Text
 
 from clown_sort.util.argument_parser import CRYPTO, parser
 from clown_sort.util.constants import CRYPTO_RULES_CSV_PATH, PACKAGE_NAME
-from clown_sort.util.filesystem_helper import MAC_SCREENSHOT_REGEX, subdirs_of_dir
+from clown_sort.util.filesystem_helper import subdirs_of_dir
 from clown_sort.util.logging import log, set_log_level
 
 StringOrPath = Union[str, Path]
@@ -38,8 +38,8 @@ class Config:
     dry_run: bool = True
     leave_in_place: bool = False
     screenshots_only: bool = True
-    filename_regex: re.Pattern = MAC_SCREENSHOT_REGEX
     sort_rules: List[SortRule] = []
+    filename_regex: re.Pattern
 
     @classmethod
     def configure(cls):
