@@ -1,3 +1,6 @@
+### NEXT RELEASE
+* Couple new sorting rules
+
 ## 0.7.0
 * Read `CLOWN_SORT_FILENAME_REGEX` default from env.
 

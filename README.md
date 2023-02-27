@@ -71,6 +71,8 @@ Not required for standard PNG, JPG, etc. images but you may optionally install `
 
 
 # Usage
+**YOU ARE ADVISED TO MAKE A BACKUP OF YOUR FILES BEFORE HITTING THE `--execute` flag.** While an effort has been made to use Python's cross platform `Pathlib` module as much as possible sometimes shit gets wonky on other platforms. This is 100x as true on Windows - Clown Sort has never been tested on a Windows platform.
+
 ### Help Screen
 ![](doc/sort_screenshots_help.png)
 
