@@ -3,8 +3,8 @@ Sometimes someone is being a clown on the internet. Somewhere on your hard drive
 
 Clown Sort[^1] solves this.
 
-## What It Do
 
+## What It Do
 It sorts screenshots, PDFs, etc. based on their name and/or their textual contents into folders based on a list of rules. The contents of the tweet/reddit post/whatever are prepended to the filename and the `ImageDescription` EXIF tag is set to the OCR text. As you can configure your own arbitrary rules and run it against any set of images it works on many things other than screenshots of social media clowns, though the default configuration is for cryptocurrency clowns.
 
 For example this screenshot of a tweet by a noteworthy cryptocurrency "reporter"[^2] on the eve of FTX's implosion:

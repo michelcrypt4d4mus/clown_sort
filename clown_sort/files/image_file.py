@@ -6,7 +6,6 @@ EXIF: https://blog.matthewgove.com/2022/05/13/how-to-bulk-edit-your-photos-exif-
 Tags: https://exiftool.org/TagNames/EXIF.html
 """
 import io
-import shutil
 from pathlib import Path
 from typing import Optional, Union
 
@@ -46,8 +45,7 @@ class ImageFile(SortableFile):
             return destination_path
 
         try:
-            img = Image.open(self.file_path)
-            img.save(destination_path, exif=exif_data)
+            self.pillow_image_obj().save(destination_path, exif=exif_data)
             copy_file_creation_time(self.file_path, destination_path)
         except ValueError as e:
             console.print_exception()
@@ -72,7 +70,7 @@ class ImageFile(SortableFile):
 
     def image_bytes(self) -> bytes:
         """Return bytes for a thumbnail."""
-        image = Image.open(self.file_path)
+        image = self.pillow_image_obj()
         image.thumbnail(THUMBNAIL_DIMENSIONS)
         _image_bytes = io.BytesIO()
         image.save(_image_bytes, format="PNG")
@@ -83,18 +81,21 @@ class ImageFile(SortableFile):
         if self.text_extraction_attempted:
             return self._extracted_text
 
-        self._extracted_text = pytesseract.image_to_string(Image.open(self.file_path))
+        self._extracted_text = pytesseract.image_to_string(self.pillow_image_obj())
         self.text_extraction_attempted = True
         return self._extracted_text
 
     def exif_dict(self) -> dict:
         """Return a key/value list of exif tags where keys are strings."""
-        raw_exif_tags = Image.open(self.file_path).getexif()
+        raw_exif_tags = self.pillow_image_obj().getexif()
         return {TAGS[k]: v for k,v in raw_exif_tags.items()}
 
     def raw_exif_dict(self) -> Image.Exif:
         """Return a key/value list of exif tags where keys are integers."""
-        return Image.open(self.file_path).getexif()
+        return self.pillow_image_obj().getexif()
+
+    def pillow_image_obj(self) -> Image.Image:
+        return Image.open(self.file_path)
 
     def __repr__(self) -> str:
         return f"ImageFile('{self.file_path}')"

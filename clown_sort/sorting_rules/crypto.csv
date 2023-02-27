@@ -21,13 +21,13 @@ Circle,[@#]circle|usdc|circle[-_\s]*internet
 Coinbase,Coinbase|\$COIN|brian[_\s]*armstrong
 Crypto.com,crypto[._]?com|CDC|[$#]CRO|\sCRO\s
 DCG,DCG|digital\s*currency\s*group|sh?ill?bert|Grayscale|GBTC
-El Salvador,El[-\s]*Salvador|Bukele
+El Salvador,El[-_\s]*Salvador|Bukele
 EOS,[^\w]EOS|\s*Blumer[^\w]
 FTX,FTX|FTT|SBF|Trabucco|Bankman|Ellison|Nishad|Alameda|Moonstone|friedberg|autism\s*capital
 Gemini,Gemini|winklev|@cameron
 Genesis,Genesis|Michael\s?Moro
 Hex,Hex\s|[#$]Hex|Pulsechain|Richard\s*Heart
-Hoo,Hoo[-\s]*Exchange|#Hoo\s|Rexy\s?(Hoo|Wang)
+Hoo,Hoo[-_\s]*Exchange|#Hoo\s|Rexy\s*(Hoo|Wang)
 Huobi,huobi
 Justin Sun,justin\s*sun|pgala|sunswap
 Kinesis,kinesis|kvt|ABX|KAG
@@ -41,7 +41,7 @@ Matthew Roszak,[^\w]roszak
 Mario Nawfal,marionawfal
 Messari,Ryan\s*Selkis|twobitidiot|messari
 Memes,\smeme
-Miners,bitcoin[-\s]*min(ing|er)|\$(CORZ|IRIS|ARGO|HUT|HIVE|CAN|BLOK|BTCM)|Core[-\s]*Scientific|Iris[-\s]*Energy|Blockstream
+Miners,bitcoin[-_\s]*min(ing|er)|\$(CORZ|IRIS|ARGO|HUT|HIVE|CAN|BLOK|BTCM)|Core[-_\s]*Scientific|Iris[-_\s]*Energy|Blockstream
 MSTR,Saylor|MSTR
 Nexo,Nexo
 OKX,oke?[cx]|star xu
@@ -50,18 +50,20 @@ OpenSea,OpenSea
 Paxos,paxos|BUSD|USDP|PAXG
 Payrnet,payrnet|railsr|railsbank
 Pi,\$PI[^\w]|Pi[-_\s]*Network
-Prime Trust,Prime[-\s]?Trust
+Prime Trust,Prime[-\s_]?Trust
 PVBC,PVBC|BankProv
+Quadriga,Quadriga|Gerald[-_\s]*Cotten
 Revolut,revolut[^\w]
 RIOT,\$RIOT|Riot[-\s_]*Block
 Safemoon,Safemoon
-SBNY,SBNY|Signature[-\s]*Bank|Signet
+SBNY,SBNY|Signature[-_\s]*Bank|Signet
 Silvergate,\$SI|Silvergate|Alan\s*Lane|Eisele|[\s#]SEN[^\w]
 Solana,Solana|Serum
-TerraLuna,luna\s|do[-\s]*kwon|stablekwon
+TerraLuna,luna\s|do[-_\s]*kwon|stablekwon
 Tether,tether|usdt|paolo|friedberg|hoegner|Noble\s?Bank|Deltec[^\']|bitfinex[^e]|brock\s*pierce
+Tornado Cash,tornado\s*cash
 Transactive Systems UAB,Transactive
-Tron,\stron\s|tron(block| )?chain|trondao
+Tron,\stron\s|tron(block|\s*)?chain|trondao
 TrueUSD,TUSD|TrueUSD|TrueFi
 Vauld,Vauld
 Voyager,voyager
