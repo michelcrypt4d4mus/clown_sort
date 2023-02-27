@@ -5,7 +5,7 @@ from pathlib import Path
 
 from rich_argparse_plus import RichHelpFormatterPlus
 
-from clown_sort.util.constants import CRYPTO_RULES_CSV_PATH, DEFAULT_SCREENSHOTS_DIR
+from clown_sort.util.constants import DEFAULT_SCREENSHOTS_DIR, DEFAULT_DESTINATION_DIR
 from clown_sort.util.filesystem_helper import MAC_SCREENSHOT_REGEX
 
 DESCRIPTION = "Sort, rename, and tag screenshots (and the occasional PDF) according to rules."
@@ -37,7 +37,8 @@ parser.add_argument('-s', '--screenshots-dir',
 
 parser.add_argument('-d', '--destination-dir',
                     metavar='DESTINATION_DIR',
-                    help='destination folder to place the Sorted/ and Processed/ dirs (default: SCREENSHOTS_DIR)')
+                    help='destination folder to place the Sorted/ and Processed/ dirs (default: SCREENSHOTS_DIR)',
+                    default=str(DEFAULT_DESTINATION_DIR))
 
 parser.add_argument('-r', '--rules-csv',
                     action='append',

@@ -82,6 +82,8 @@ If there are command line options you find yourself specifying repeatedly you ca
 1. The current directory
 2. Your home directory
 
+See the example `.clownsort` for more information.
+
 ### Example Output
 ![](doc/output_example.png)
 
