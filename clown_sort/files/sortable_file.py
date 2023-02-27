@@ -15,12 +15,14 @@ from clown_sort.config import Config
 from clown_sort.filename_extractor import FilenameExtractor
 from clown_sort.util.filesystem_helper import copy_file_creation_time
 from clown_sort.util.logging import log
-from clown_sort.util.rich_helper import bullet_text, indented_bullet, console, copying_file_log_message, moving_file_log_message
+from clown_sort.util.rich_helper import (bullet_text, indented_bullet, console,
+     copying_file_log_message, moving_file_log_message)
 from clown_sort.util.string_helper import comma_join
-
 
 MAX_EXTRACTION_LENGTH = 4096
 NOT_MOVING_FILE = "Not moving file to proccessed dir because it's"
+NO_SORT_FOLDERS_MSG = bullet_text('No sort folders found! Copying to base sorted dir...', style='color(209)')
+UNSORTABLE_MSG = bullet_text('Unsortable - no folder match and filename_regex does not match. Skipping...')
 
 
 class SortableFile:
@@ -37,14 +39,15 @@ class SortableFile:
     def sort_file(self) -> None:
         """Sort the file to destination_dir subdir."""
         console.print(self)
-        sort_folders = type(self).get_sort_folders(self.extracted_text())
+        search_text = self.basename_without_ext + ' ' + (self.extracted_text() or '')
+        sort_folders = type(self).get_sort_folders(search_text)
 
         if len(sort_folders) == 0:
             if Config.filename_regex.search(self.basename):
-                console.print(bullet_text('No sort folders found! Copying to base sorted dir...', style='color(209)'))
+                console.print(NO_SORT_FOLDERS_MSG)
                 sort_folders = [None]
             else:
-                console.print(bullet_text('Unsortable - no folder match and filename_regex does not match. Skipping...'))
+                console.print(UNSORTABLE_MSG)
                 return
         else:
             console.print(bullet_text(Text('Sort folders: ') + comma_join(sort_folders)))
@@ -97,6 +100,15 @@ class SortableFile:
 
         return destination_path
 
+    def sort_destination_path(self, subdir: Optional[Union[Path, str]] = None) -> Path:
+        """Get the destination folder. """
+        destination_path = Config.sorted_screenshots_dir
+
+        if subdir is not None:
+            destination_path = destination_path.joinpath(subdir)
+
+        return destination_path.joinpath(self.new_basename())
+
     def _log_copy_file(self, destination_path: Path) -> None:
         """Log info about a file copy."""
         if Config.debug:
@@ -111,24 +123,6 @@ class SortableFile:
             log_msg.append(str(destination_path.parent), style='sort_destination')
             console.print(indented_bullet(log_msg.append('...')))
 
-    def sort_destination_path(self, subdir: Optional[Union[Path, str]] = None) -> Path:
-        """Get the destination folder. """
-        destination_path = Config.sorted_screenshots_dir
-
-        if subdir is not None:
-            destination_path = destination_path.joinpath(subdir)
-
-        return destination_path.joinpath(self.new_basename())
-
-    # TODO: this doesn't belong here
-    @classmethod
-    def get_sort_folders(cls, search_text: Optional[str]) -> List[str]:
-        """Find any folders that could be relevant."""
-        if search_text is None:
-            return []
-
-        return [sr.folder for sr in Config.sort_rules if sr.regex.search(search_text)]
-
     def _move_to_processed_dir(self) -> None:
         """Relocate the original file to the [SCREENSHOTS_DIR]/Processed/ folder."""
         processed_file_path = Config.processed_screenshots_dir.joinpath(self.file_path.name)
@@ -142,9 +136,19 @@ class SortableFile:
             console.print(indented_bullet(f"{NOT_MOVING_FILE} the same location...", style='dim'))
             return
         elif Config.dry_run or Config.leave_in_place:
-            console.print(indented_bullet(f"{NOT_MOVING_FILE} a dry run or --leave-in-place specified...", style='dim'))
+            msg = f"{NOT_MOVING_FILE} a dry run or --leave-in-place specified..."
+            console.print(indented_bullet(msg, style='dim'))
         else:
             shutil.move(self.file_path, processed_file_path)
+
+    # TODO: this doesn't belong here
+    @classmethod
+    def get_sort_folders(cls, search_text: Optional[str]) -> List[str]:
+        """Find any folders that could be relevant."""
+        if search_text is None:
+            return []
+
+        return [sr.folder for sr in Config.sort_rules if sr.regex.search(search_text)]
 
     def __str__(self) -> str:
         return str(self.file_path)
@@ -164,8 +168,6 @@ class SortableFile:
 
             yield Panel(txt, expand=True, style='dim')
 
-        log_basename = bullet_text(Text('Destination filename: ').append(self.new_basename(), style='cyan dim'))
-
         if self._filename_extractor is not None:
             if self._filename_extractor._is_tweet():
                 log_txt = bullet_text("It's a tweet by ", style='social_media')
@@ -179,7 +181,8 @@ class SortableFile:
             elif self._filename_extractor._is_reddit():
                 yield Text("It's a reddit post", style='social_media')
 
-        yield log_basename
+        log_msg = Text('Destination filename: ').append(self.new_basename(), style='cyan dim')
+        yield bullet_text(log_msg)
 
         if Config.debug:
             yield bullet_text('EXIF: ')

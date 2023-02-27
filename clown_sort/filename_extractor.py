@@ -47,14 +47,12 @@ class FilenameExtractor:
 
     def filename(self) -> str:
         """Examine self.text and decide on an appropriate filename."""
-        filename: str
-
         if self.text is None:
-            filename = self.image_file.basename
+            return self.image_file.basename
         elif DUNE_ANALYTICS_REGEX.search(self.text):
             dune_match = DUNE_ANALYTICS_REGEX.search(self.text)
             query_title = self._strip_bad_chars(dune_match.group(1))
-            filename = 'Dune Analytics "' + query_title + '" ' + self.image_file.basename
+            return 'Dune Analytics "' + query_title + '" ' + self.image_file.basename
         elif self._is_tweet() or self._is_reddit():
             if self._is_tweet():
                 filename_str = self._filename_str_for_tweet()
@@ -63,7 +61,7 @@ class FilenameExtractor:
 
             filename = f"{filename_str} {self.image_file.basename_without_ext}"
             filename = filename[0:-1] if filename.endswith('.') else filename
-            filename = filename + self.image_file.extname
+            return filename + self.image_file.extname
         elif self._is_reveddit():
             filename = 'Reveddit '
             subreddit_match = SUBREDDIT_REGEX.search(self.text)
@@ -71,11 +69,9 @@ class FilenameExtractor:
             if subreddit_match is not None:
                 filename += 'r_' + (subreddit_match.group('subreddit') or subreddit_match.group('subreddit2')) + ' '
 
-            filename += self.image_file.basename
+            return filename + self.image_file.basename
         else:
-            filename = self.image_file.basename
-
-        return filename
+            return self.image_file.basename
 
     def _is_tweet(self) -> bool:
         """Return true if the text looks like a tweet."""
