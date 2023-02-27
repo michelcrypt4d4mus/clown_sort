@@ -1,4 +1,6 @@
-## NEXT RELEASE
+# NEXT RELEASE
+
+## 0.6.0
 * Read `CLOWN_SORT_SCREENSHOTS_DIR` and `CLOWN_SORT_DESTINATION_DIR` defaults.
 * Use tilde notation for home dir in default args.
 
