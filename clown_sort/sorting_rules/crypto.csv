@@ -1,0 +1,70 @@
+folder,regex
+3ac,3ac|Three[-_\s]*Arrows[-_\s]*Capital
+A16Z,a16z|andreessen|packym|arianna[-_\s1]*simpson
+Aave,aave
+AAX,aax
+Art,occult
+Avalanche,Avax|avalanche
+Banks,\$CUBI|Customers[_\s]*Ban(k|corp)|SEBA[^a-z]|Cross\s?River
+Bankless,Bankless
+Binance,binance|biconomy|bnb|bsc|cz|bifinity|binaryx|billance|changpeng|joselito|paysafe|SwipeIO|Swipe\s*Wallet|keyway|key\s*vision\s*dev|TrustWallet|BUSD
+Bitstamp,Bitstamp
+Bittrex,Bittrex
+Bitzlato,Bitzlato
+Blockchain8,Blockchain8|tom ?emmer|ritchie ?torres|repritchie
+BlockFi,BlockFi
+Bros,cryptomanran|trillionUSD|nic[-_\s]*carter|bitboy|basedkarbon|thecryptolark|adam([-_\s]*back|3us)|@DegenSp
+Cardano,Cardano|[$\s]ADA[^\w]|Hoskinson
+Cathie Wood,Cathie\s*Wood|\bARK(K|\s*Innovation|\s*Invest)
+Celsius,celsius|mashinsky|levity[-_\s]*and[-_\s]*love
+Circle,[@#]circle|usdc|circle[-_\s]*internet
+Coinbase,Coinbase|\$COIN|brian[_\s]*armstrong
+Crypto.com,crypto[._]?com|CDC|[$#]CRO|\sCRO\s
+DCG,DCG|digital\s*currency\s*group|sh?ill?bert|Grayscale|GBTC
+El Salvador,El[-\s]*Salvador|Bukele
+EOS,[^\w]EOS|\s*Blumer[^\w]
+FTX,FTX|FTT|SBF|Trabucco|Bankman|Ellison|Nishad|Alameda|Moonstone|friedberg|autism\s*capital
+Gemini,Gemini|winklev|@cameron
+Genesis,Genesis|Michael\s?Moro
+Hex,Hex\s|[#$]Hex|Pulsechain|Richard\s*Heart
+Hoo,Hoo[-\s]*Exchange|#Hoo\s|Rexy\s?(Hoo|Wang)
+Huobi,huobi
+Justin Sun,justin\s*sun|pgala|sunswap
+Kinesis,kinesis|kvt|ABX|KAG
+Kraken,kraken|payward
+KuCoin,kucoin
+North Korea,lazarus|North\s*Korea|pyongyang
+Paul LeRoux,leroux
+MakerDAO,makerdao|[$#\s]DAI[^\w]
+Marathon,\$MARA|marathon
+Matthew Roszak,[^\w]roszak
+Mario Nawfal,marionawfal
+Messari,Ryan\s*Selkis|twobitidiot|messari
+Memes,\smeme
+Miners,bitcoin[-\s]*min(ing|er)|\$(CORZ|IRIS|ARGO|HUT|HIVE|CAN|BLOK|BTCM)|Core[-\s]*Scientific|Iris[-\s]*Energy|Blockstream
+MSTR,Saylor|MSTR
+Nexo,Nexo
+OKX,oke?[cx]|star xu
+OpenPayd,openpayd|CFD\s?Team
+OpenSea,OpenSea
+Paxos,paxos|BUSD|USDP|PAXG
+Payrnet,payrnet|railsr|railsbank
+Pi,\$PI[^\w]|Pi[-_\s]*Network
+Prime Trust,Prime[-\s]?Trust
+PVBC,PVBC|BankProv
+Revolut,revolut[^\w]
+RIOT,\$RIOT|Riot[-\s_]*Block
+Safemoon,Safemoon
+SBNY,SBNY|Signature[-\s]*Bank|Signet
+Silvergate,\$SI|Silvergate|Alan\s*Lane|Eisele|[\s#]SEN[^\w]
+Solana,Solana|Serum
+TerraLuna,luna\s|do[-\s]*kwon|stablekwon
+Tether,tether|usdt|paolo|friedberg|hoegner|Noble\s?Bank|Deltec[^\']|bitfinex[^e]|brock\s*pierce
+Transactive Systems UAB,Transactive
+Tron,\stron\s|tron(block| )?chain|trondao
+TrueUSD,TUSD|TrueUSD|TrueFi
+Vauld,Vauld
+Voyager,voyager
+Wintermute,wintermute
+Wirecard,wirecard
+Wyre,wyre
