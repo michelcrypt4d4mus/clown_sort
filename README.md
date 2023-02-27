@@ -85,6 +85,8 @@ If there are command line options you find yourself specifying repeatedly you ca
 ### Example Output
 ![](doc/output_example.png)
 
+# Credit Where It's Due
+The name `clown_sort` was suggested by [ParrotCapital](http://twitter.com/ParrotCapital) and while the tool can work on any kind of screenshot it was too good not to use.
 
 
 [^1]: Perhaps notable that the "reporter" in question for years maintained a private list of the blockchain addresses of Sam Bankman-Fried's various scams as part of his commitment to "unrivaled transparency".
