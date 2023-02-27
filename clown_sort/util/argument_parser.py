@@ -24,7 +24,7 @@ parser.add_argument('-e', '--execute', action='store_true',
                     help='without this flag no actual changes will be made (you will see the logs of the changes it plans to make)')
 
 parser.add_argument('-a', '--all', action='store_true',
-                    help="sort all image, movie, and PDF files in SCREENSHOTS_DIR (without this flag only files of the pattern 'Screen Shot 2023-02-18 at 3.06.44 AM.png' will be examined)")
+                    help="sort all image, movie, and PDF files in SCREENSHOTS_DIR (without this flag only files matching the --filename-regex argument will be examined)")
 
 parser.add_argument('-l', '--leave-in-place', action='store_true',
                     help='leave original file in place rather than moving to the SCREENSHOTS_DIR/Processed folder')
