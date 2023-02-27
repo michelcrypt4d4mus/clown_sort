@@ -58,8 +58,9 @@ class Config:
         rules_csvs = [CRYPTO_RULES_CSV_PATH if arg == CRYPTO else arg for arg in rules_csvs]
         log.debug(f"Rules CSVs: {rules_csvs}")
 
-        destination_dir = args.destination_dir or args.screenshots_dir
-        Config.set_directories(args.screenshots_dir, destination_dir, rules_csvs)
+        screenshots_dir = Path(args.screenshots_dir).expanduser()
+        destination_dir = Path(args.destination_dir or args.screenshots_dir).expanduser()
+        Config.set_directories(screenshots_dir, destination_dir, rules_csvs)
         Config.filename_regex = re.compile(args.filename_regex)
         Config.leave_in_place = True if args.leave_in_place else False
 
@@ -104,7 +105,6 @@ class Config:
             if not dir.is_dir():
                 log.warning(f"Need to create '{dir}'")
                 dir.mkdir(parents=True, exist_ok=True)
-
 
         cls._log_configured_paths()
 

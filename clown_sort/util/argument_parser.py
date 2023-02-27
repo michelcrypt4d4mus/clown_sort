@@ -32,13 +32,12 @@ parser.add_argument('-l', '--leave-in-place', action='store_true',
 parser.add_argument('-s', '--screenshots-dir',
                     metavar='SCREENSHOTS_DIR',
                     help='folder containing files you wish to sort',
-                    default=str(DEFAULT_SCREENSHOTS_DIR))
-                    #default=str(DEFAULT_SCREENSHOTS_DIR).replace(str(Path.home()), '~'))
+                    default=str(DEFAULT_SCREENSHOTS_DIR).replace(str(Path.home()), '~'))
 
 parser.add_argument('-d', '--destination-dir',
                     metavar='DESTINATION_DIR',
                     help='destination folder to place the Sorted/ and Processed/ dirs (default: SCREENSHOTS_DIR)',
-                    default=str(DEFAULT_DESTINATION_DIR))
+                    default=str(DEFAULT_DESTINATION_DIR).replace(str(Path.home()), '~'))
 
 parser.add_argument('-r', '--rules-csv',
                     action='append',
