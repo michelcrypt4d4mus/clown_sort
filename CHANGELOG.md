@@ -1,4 +1,5 @@
-# NEXT RELEASE
+### 0.6.1
+* Fix PySimpleGui packages reqs
 
 ## 0.6.0
 * Read `CLOWN_SORT_SCREENSHOTS_DIR` and `CLOWN_SORT_DESTINATION_DIR` defaults.
