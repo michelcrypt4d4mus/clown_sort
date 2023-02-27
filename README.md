@@ -57,8 +57,9 @@ sort_screenshots -f '.*pdf$' -e
 ```
 
 # Setup
+[pipx](https://pypa.github.io/pipx/) is recommended because it keeps your system python environment safe but you can also just use `pip`.
 ```
-pip install clown_sort
+pipx install clown_sort
 ```
 
 ### Optional Components
@@ -70,7 +71,7 @@ Not required for standard PNG, JPG, etc. images but you may optionally install `
 
 
 # Usage
-Help screen:
+### Help Screen
 ![](doc/sort_screenshots_help.png)
 
 ### Custom Sorting Rules
@@ -82,15 +83,11 @@ If there are command line options you find yourself specifying repeatedly you ca
 1. The current directory
 2. Your home directory
 
-See the example `.clownsort` for more information.
+See [the example](.clown_sort.example) for more information on what can be configured this way.
 
 ### Example Output
 ![](doc/output_example.png)
 
-
-[^1]: The name `clown_sort` was suggested by [ParrotCapital](http://twitter.com/ParrotCapital) and while the tool can work on any kind of screenshot it was too good not to use.
-
-[^2]: Perhaps notable that the "reporter" in question for years maintained a private list of the blockchain addresses of Sam Bankman-Fried's various scams as part of his commitment to "unrivaled transparency".
 
 # Contributing
 Feel free to file issues or open pull requests. Only requirement is that tests should pass before you open it, which you can check with
@@ -98,3 +95,7 @@ Feel free to file issues or open pull requests. Only requirement is that tests s
 ```
 pytest
 ```
+
+[^1]: The name `clown_sort` was suggested by [ParrotCapital](http://twitter.com/ParrotCapital) and while the tool can work on any kind of screenshot it was too good not to use.
+
+[^2]: Perhaps notable that the "reporter" in question for years maintained a private list of the blockchain addresses of Sam Bankman-Fried's various scams as part of his commitment to "unrivaled transparency".
