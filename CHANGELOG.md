@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+# 1.0.0
 * Wallet address sorting rules
 
 ## 0.9.2
