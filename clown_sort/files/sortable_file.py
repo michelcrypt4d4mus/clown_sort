@@ -175,7 +175,7 @@ class SortableFile:
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield Text("\n\n")
-        yield Panel(path.basename(self.file_path), expand=False, style='bright_white reverse')
+        yield Panel(str(self.file_path), expand=False, style='bright_white reverse')
 
         if Config.debug:
             if self.extracted_text() is None:

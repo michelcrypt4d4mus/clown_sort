@@ -1,8 +1,6 @@
 # NEXT RELEASE
 
-### 0.9.2
-
-## 0.9.0
+## 0.9.2
 * Apply extracted text to non-Tweets, non-Reddit posts.
 * `--delete-originals` option
 * `--rescan-sorted` option

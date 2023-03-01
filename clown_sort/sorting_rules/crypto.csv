@@ -69,6 +69,17 @@ Tron,\stron\s|tron(block|\s*)?chain|trondao
 TrueUSD,TUSD|TrueUSD|TrueFi
 Vauld,Vauld
 Voyager,voyager
+Wallet Addresses BCH,bitcoincash:q.*\b
+Wallet Addresses Bitcoin,(bc1|[13])[a-zA-HJ-NP-Z0–9]{25,39}\b
+Wallet Addresses Cardano,addr1[a-z0–9]+\b
+Wallet Addresses Cosmos,cosmos[a-zA-Z0–9_.-]{10,}\b
+Wallet Addresses Dash,X[1–9A-HJ-NP-Za-km-z]{33}
+Wallet Addresses Doge,\sD[a-zA-Z0–9_.-]{33}
+Wallet Addresses Ethereum,0x[a-fA-F0–9]{40}
+Wallet Addresses Monero,[48][0–9AB][1–9A-HJ-NP-Za-km-z]{93}
+Wallet Addresses Polkadot,1[0–9a-zA-Z]{47}
+Wallet Addresses Ripple,r[0–9a-zA-Z]{33}
+Wallet Addresses Stellar,G[0–9A-Z]{40,60}\b
 Wintermute,wintermute
 Wirecard,wirecard
 Wyre,wyre

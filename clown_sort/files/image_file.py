@@ -79,12 +79,17 @@ class ImageFile(SortableFile):
         if self.text_extraction_attempted:
             return self._extracted_text
 
-        self._extracted_text = pytesseract.image_to_string(self.pillow_image_obj())
-        self.text_extraction_attempted = True
+        try:
+            self._extracted_text = pytesseract.image_to_string(self.pillow_image_obj())
+        except Exception as e:
+            console.print_exception()
+            console.print(f"Error while extracting '{self.file_path}'!", style='bright_red')
+            raise e
 
         if self._extracted_text is not None:
             self._extracted_text = self._extracted_text.strip()
 
+        self.text_extraction_attempted = True
         return self._extracted_text
 
     def exif_dict(self) -> dict:
