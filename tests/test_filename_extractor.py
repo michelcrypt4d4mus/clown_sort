@@ -263,6 +263,20 @@ USDT ic} ic} ic} 3 , 337,578,009 626 5,331,594 3 , 337,578,009
 m Miner; Tornado Cash Recipient WBTC 3, 299,132,787 85 38,813,327 [c) [c) [o) 3, 299,132,787"""
 
 
+PARANOID_STYLE = """It was Welch who promised to cut communists and "comsymps" (sympathizers) from
+the fabric of American society. It was Welch who called then-President Dwight D.
+Eisenhower "a dedicated, conscious agent of the communist conspiracy." It was
+Welch who inspired those "Impeach Earl Warren" and "Get the U.S. Out of the
+United Nations" billboards that dominated the highways of America in the 1960s as
+the Burma Shave signs had in the 1930s and 40s.
+
+Although Belmont was the society's headquarters, Southern California was its sort of
+unofficial capital. With a regional command post in San Marino, Birchism spread
+through the region, its intense, almost exclusively white, upper-middle class
+Americans carrying the society's conservative banner.
+"""
+
+
 @pytest.fixture(scope='session')
 def ocr_image(do_kwon_tweet):
     """Requires the private varibale _extracted_text to be set manually."""
@@ -307,3 +321,8 @@ def test_reveddit_filenames(ocr_image):
 def test_dune_analytics_filename(ocr_image):
     ocr_image._extracted_text = DUNE_ANALYTICS
     assert FilenameExtractor(ocr_image).filename() == 'Dune Analytics "Alameda (Tagged and Rumored) Ethereum Wallets All Time In and Out a)" do_kwon_debate_the_poor.jpeg'
+
+
+def test_everything_else_filename(ocr_image):
+    ocr_image._extracted_text = PARANOID_STYLE
+    assert FilenameExtractor(ocr_image).filename() == 'do_kwon_debate_the_poor: "It was Welch who promised to cut communists and "comsymps" (sympathizers) from the fabric of American society. It was Welch who called then_President Dwight D. Eisenhower".jpeg'

@@ -1,5 +1,8 @@
+## 0.9.0
+* Apply extracted text to non-Tweets, non-Reddit posts.
+
 ## 0.8.0
-- `--manual-sort` option
+* `--manual-sort` option
 * Couple new sorting rules
 
 ## 0.7.0

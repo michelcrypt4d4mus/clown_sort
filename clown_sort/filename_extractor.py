@@ -71,7 +71,11 @@ class FilenameExtractor:
 
             return filename + self.image_file.basename
         else:
-            return self.image_file.basename
+            filename = self._build_filename(
+                self.image_file.basename_without_ext,
+                self.text[0:self.available_char_count]
+            )
+            return filename + self.image_file.extname
 
     def _is_tweet(self) -> bool:
         """Return true if the text looks like a tweet."""

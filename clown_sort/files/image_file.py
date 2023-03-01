@@ -12,7 +12,6 @@ from typing import Optional, Union
 import pytesseract
 from PIL import Image
 from PIL.ExifTags import TAGS
-from rich.text import Text
 
 from clown_sort.config import Config
 from clown_sort.util.logging import log
@@ -95,6 +94,7 @@ class ImageFile(SortableFile):
         return self.pillow_image_obj().getexif()
 
     def pillow_image_obj(self) -> Image.Image:
+        """Return the file as Pillow Image object."""
         return Image.open(self.file_path)
 
     def __repr__(self) -> str:
