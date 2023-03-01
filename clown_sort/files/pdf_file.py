@@ -16,6 +16,10 @@ class PdfFile(SortableFile):
 
         pdf_reader = PdfReader(self.file_path)
         self._extracted_text = '\\n\\n'.join([page.extract_text() for page in pdf_reader.pages])
+
+        if self._extracted_text is not None:
+            self._extracted_text = self._extracted_text.strip()
+
         self.text_extraction_attempted = True
         return self._extracted_text
 

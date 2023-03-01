@@ -23,7 +23,7 @@ Crypto.com,crypto[._]?com|CDC|[$#]CRO|\sCRO\s
 DCG,DCG|digital\s*currency\s*group|sh?ill?bert|Grayscale|GBTC
 El Salvador,El[-_\s]*Salvador|Bukele
 EOS,[^\w]EOS|\s*Blumer[^\w]
-Friedlander Group,Friedlander|Agro\s*Bank|all\s*year\*m
+Friedlander Group,Friedlander|Agro\s*Bank|all\s*year\*m|\bbrock\b|brockpierce
 FTX,FTX|FTT|SBF|Trabucco|Bankman|Ellison|Nishad|Alameda|Moonstone|friedberg|autism\s*capital
 Gemini,Gemini|winklev|@cameron
 Genesis,Genesis|Michael\s?Moro
@@ -62,7 +62,7 @@ SBNY,SBNY|Signature[-_\s]*Bank|Signet
 Silvergate,\$SI|Silvergate|Alan\s*Lane|Eisele|[\s#]SEN[^\w]
 Solana,Solana|Serum
 TerraLuna,luna\s|do[-_\s]*kwon|stablekwon
-Tether,tether|usdt|paolo|friedberg|hoegner|Noble\s?Bank|Deltec[^\']|bitfinex[^e]|brock\s*pierce
+Tether,tether|usdt|paolo|friedberg|hoegner|Noble\s?Bank|Deltec[^\']|bitfinex[^e]|\bbrock\b|brockpierce
 Tornado Cash,tornado\s*cash
 Transactive Systems UAB,Transactive
 Tron,\stron\s|tron(block|\s*)?chain|trondao

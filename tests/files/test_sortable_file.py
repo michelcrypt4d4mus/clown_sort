@@ -65,6 +65,8 @@ def test_get_sort_folder():
     assert SortableFile.get_sort_folders('fuck Gary Gensler coin') == ['SEC']
     assert SortableFile.get_sort_folders('fuck @SECgov coin') == ['SEC']
     assert SortableFile.get_sort_folders('fuck the SEC coin') == ['SEC']
+    assert SortableFile.get_sort_folders('fuck the brock coin') == ['Friedlander Group', 'Tether']
+    assert SortableFile.get_sort_folders('fuck the brockpierce coin') == ['Friedlander Group', 'Tether']
 
     for hoo in ['Rexy Wang', 'Rexy Hoo', '#Hoo', 'Hoo Exchange', 'HooExchange']:
         assert SortableFile.get_sort_folders(f"fuck {hoo} yo") == ['Hoo']

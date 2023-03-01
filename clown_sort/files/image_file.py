@@ -81,6 +81,10 @@ class ImageFile(SortableFile):
 
         self._extracted_text = pytesseract.image_to_string(self.pillow_image_obj())
         self.text_extraction_attempted = True
+
+        if self._extracted_text is not None:
+            self._extracted_text = self._extracted_text.strip()
+
         return self._extracted_text
 
     def exif_dict(self) -> dict:
