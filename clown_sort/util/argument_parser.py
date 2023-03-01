@@ -51,6 +51,9 @@ parser.add_argument('-f', '--filename-regex',
                     help='filename regular expression',
                     default=DEFAULT_FILENAME_REGEX.pattern)
 
+parser.add_argument('--delete-originals', action='store_true',
+                    help="don't preserve the original screenshots in the Processed/ folder")
+
 parser.add_argument('--show-rules', action='store_true',
                     help='display the sorting rules and exit')
 

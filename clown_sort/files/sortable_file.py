@@ -2,7 +2,7 @@
 Base class for sortable files of any type.
 """
 import shutil
-from os import path
+from os import path, remove
 from pathlib import Path
 from typing import List, Optional, Union
 
@@ -20,7 +20,7 @@ from clown_sort.util.rich_helper import (bullet_text, indented_bullet, console,
 from clown_sort.util.string_helper import comma_join
 
 MAX_EXTRACTION_LENGTH = 4096
-NOT_MOVING_FILE = "Not moving file to proccessed dir because it's"
+NOT_MOVING_FILE = "Not moving file to processed dir because it's"
 NO_SORT_FOLDERS_MSG = bullet_text('No sort folders found! Copying to base sorted dir...', style='color(209)')
 UNSORTABLE_MSG = bullet_text('Unsortable - no folder match and filename_regex does not match. Skipping...')
 
@@ -62,8 +62,21 @@ class SortableFile:
 
             self.move_file_to_sorted_dir(folder)
 
-        if not Config.leave_in_place:
-            self._move_to_processed_dir()
+        if Config.leave_in_place:
+            console.print(bullet_text(Text('Leaving in place...', style='dim')))
+            return
+
+        if Config.delete_originals:
+            console.print(bullet_text(Text(f"Deleting original file...")))
+
+            if Config.dry_run:
+                console.print(indented_bullet(Text('Skipping delete because this is a dry run...', style='dim')))
+                return
+
+            remove(self.file_path)
+            return
+
+        self._move_to_processed_dir()
 
     def extracted_text(self) -> Optional[str]:
         """Only PdfFiles and ImageFiles have extracted text; other files are sorted on filename."""
@@ -74,7 +87,7 @@ class SortableFile:
         return self.basename
 
     def exif_dict(self) -> dict:
-        """Return the EXIF data as a dict"""
+        """Return the EXIF data as a dict."""
         try:
             with ExifToolHelper() as exiftool:
                 return exiftool.get_metadata(self.file_path)[0]
@@ -101,7 +114,7 @@ class SortableFile:
         return destination_path
 
     def sort_destination_path(self, subdir: Optional[Union[Path, str]] = None) -> Path:
-        """Get the destination folder. """
+        """Get the destination folder."""
         destination_path = Config.sorted_screenshots_dir
 
         if subdir is not None:
@@ -130,12 +143,12 @@ class SortableFile:
         if Config.debug:
             console.print(moving_file_log_message(str(self.file_path), processed_file_path))
         else:
-            console.print(bullet_text("Processing complete..."))
+            console.print(bullet_text("Moving to processed dir..."))
 
         if self.file_path == processed_file_path:
             console.print(indented_bullet(f"{NOT_MOVING_FILE} the same location...", style='dim'))
             return
-        elif Config.dry_run or Config.leave_in_place:
+        elif Config.dry_run:
             msg = f"{NOT_MOVING_FILE} a dry run or --leave-in-place specified..."
             console.print(indented_bullet(msg, style='dim'))
         else:

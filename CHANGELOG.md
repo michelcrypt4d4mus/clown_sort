@@ -1,5 +1,6 @@
 ## 0.9.0
 * Apply extracted text to non-Tweets, non-Reddit posts.
+* `--delete-originals` option
 
 ## 0.8.0
 * `--manual-sort` option

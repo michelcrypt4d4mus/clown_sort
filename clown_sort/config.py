@@ -39,6 +39,7 @@ class Config:
     manual_sort: bool = False
     leave_in_place: bool = False
     screenshots_only: bool = True
+    delete_originals: bool = False
     sort_rules: List[SortRule] = []
     filename_regex: re.Pattern
 
@@ -64,6 +65,11 @@ class Config:
         Config.set_directories(screenshots_dir, destination_dir, rules_csvs)
         Config.filename_regex = re.compile(args.filename_regex)
         Config.leave_in_place = True if args.leave_in_place else False
+        Config.delete_originals = True if args.delete_originals else False
+
+        if Config.leave_in_place and Config.delete_originals:
+            Console().print("--leave-in-place and --delete-originals are mutually exclusive.", style='red')
+            sys.exit()
 
         if args.show_rules:
             Console().print(cls._rules_table())
