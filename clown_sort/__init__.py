@@ -55,8 +55,9 @@ def _rescan_sorted_screenshots():
     sortable_files: List[SortableFile] = []
 
     for extname in IMAGE_FILE_EXTENSIONS:
-        glob_pattern = Config.sorted_screenshots_dir.joinpath(f"**/*{extname}")
-        file_paths.extend(glob(str(glob_pattern)))
+        for pattern in ['*', '**/*']:
+            glob_pattern = Config.sorted_screenshots_dir.joinpath(f"{pattern}{extname}")
+            file_paths.extend(glob(str(glob_pattern)))
 
     for file_path in file_paths:
         if not Config.filename_regex.match(path.basename(file_path)):

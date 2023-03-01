@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Wallet address sorting rules
 
 ## 0.9.2
 * Apply extracted text to non-Tweets, non-Reddit posts.

@@ -7,6 +7,7 @@ Art,occult
 Avalanche,Avax|avalanche
 Banks,\$CUBI|Customers[_\s]*Ban(k|corp)|SEBA[^a-z]|Cross\s?River
 Bankless,Bankless
+Binary Options,binary[_\s]*options
 Binance,binance|biconomy|bnb|bsc|cz|bifinity|binaryx|billance|changpeng|joselito|paysafe|SwipeIO|Swipe\s*Wallet|keyway|key\s*vision\s*dev|TrustWallet|BUSD
 Bitstamp,Bitstamp
 Bittrex,Bittrex
@@ -23,6 +24,7 @@ Crypto.com,crypto[._]?com|CDC|[$#]CRO|\sCRO\s
 DCG,DCG|digital\s*currency\s*group|sh?ill?bert|Grayscale|GBTC
 El Salvador,El[-_\s]*Salvador|Bukele
 EOS,[^\w]EOS|\s*Blumer[^\w]
+Finblox,finblox
 Friedlander Group,Friedlander|Agro\s*Bank|all\s*year\*m|\bbrock\b|brockpierce
 FTX,FTX|FTT|SBF|Trabucco|Bankman|Ellison|Nishad|Alameda|Moonstone|friedberg|autism\s*capital
 Gemini,Gemini|winklev|@cameron
