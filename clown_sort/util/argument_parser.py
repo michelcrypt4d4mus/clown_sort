@@ -52,7 +52,7 @@ parser.add_argument('-f', '--filename-regex',
                     default=DEFAULT_FILENAME_REGEX.pattern)
 
 parser.add_argument('--rescan-sorted', action='store_true',
-                    help="rescan already sorted files (developer option)")
+                    help="rescan already sorted files (useful if you updated your sorting rules)")
 
 parser.add_argument('--delete-originals', action='store_true',
                     help="don't preserve the original screenshots in the Processed/ folder")
