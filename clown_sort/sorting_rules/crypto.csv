@@ -14,7 +14,7 @@ Bittrex,Bittrex
 Bitzlato,Bitzlato
 Blockchain8,Blockchain8|tom ?emmer|ritchie ?torres|repritchie
 BlockFi,BlockFi
-Bros,cryptomanran|trillionUSD|nic[-_\s]*carter|bitboy|basedkarbon|thecryptolark|adam([-_\s]*back|3us)|@DegenSp
+Bros,cryptomanran|trillionUSD|nic[-_\s]*carter|bitboy|basedkarbon|thecryptolark|adam([-_\s]*back|3us)|@DegenSp|APompliano
 Cardano,Cardano|[$\s]ADA[^\w]|Hoskinson
 Cathie Wood,Cathie\s*Wood|\bARK(K|\s*Innovation|\s*Invest)
 Celsius,celsius|mashinsky|levity[-_\s]*and[-_\s]*love
@@ -71,6 +71,7 @@ Transactive Systems UAB,Transactive
 Tron,\stron\s|tron(block|\s*)?chain|trondao
 TrueUSD,TUSD|TrueUSD|TrueFi
 Vauld,Vauld
+VCs,venture[-_\s]*capital|VC
 Voyager,voyager
 Wallet Addresses BCH,bitcoincash:q.*\b
 Wallet Addresses Bitcoin,(bc1|[13])[a-zA-HJ-NP-Z0–9]{25,39}\b
