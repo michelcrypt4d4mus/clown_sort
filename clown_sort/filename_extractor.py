@@ -137,11 +137,10 @@ class FilenameExtractor:
     def _build_filename(self, filename_text: str, body: str) -> str:
         """Construct a workable filename."""
         body = ' '.join(body.splitlines()).replace('\\s+', ' ')
-        log.debug(f"\nBody flattened:\n{body}\n")
         body = re.sub('’', "'", body).replace('|', 'I').replace(',', ',')
         body = self._strip_bad_chars(body)
         body = body[0:self.available_char_count - len(filename_text) - 2].strip()
-        return f'{filename_text}: "{body}"'.replace('  ', ' ')
+        return f'{filename_text} - "{body}"'.replace('  ', ' ')
 
     def _strip_bad_chars(self, text: str) -> str:
         """Remove chars that don't work well in filenames"""
