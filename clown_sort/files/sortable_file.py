@@ -35,6 +35,7 @@ class SortableFile:
         self._extracted_text: Optional[str] = None
         self._new_basename: Optional[str] = None
         self._filename_extractor: Optional[FilenameExtractor] = None
+        self._paths_of_sorted_copies: List[Path] = []
 
     def sort_file(self) -> None:
         """Sort the file to destination_dir subdir."""
@@ -53,17 +54,25 @@ class SortableFile:
             console.print(bullet_text(Text('Sort folders: ') + comma_join(sort_folders)))
 
         for folder in sort_folders:
+            # Create the subdir if it doesn't exist.
             if folder is not None:
                 destination_dir = Config.sorted_screenshots_dir.joinpath(folder)
 
                 if not destination_dir.is_dir() and not Config.dry_run:
-                    log.warning(f"Creating subdirectory '{destination_dir}'...")
+                    log.info(f"Creating subdirectory '{destination_dir}'...")
                     destination_dir.mkdir()
 
-            self.move_file_to_sorted_dir(folder)
+            destination_path = self.sort_destination_path(folder)
+            self._paths_of_sorted_copies.append(destination_path)
+            self.copy_file_to_sorted_dir(destination_path)
 
         if Config.leave_in_place:
             console.print(bullet_text(Text('Leaving in place...', style='dim')))
+            return
+
+        # Don't move the file to the processed_dir if it started in a sorted location
+        if self.file_path in self._paths_of_sorted_copies:
+            console.print(bullet_text(Text('Not moving original file to processed dir...', style='color(127)')))
             return
 
         if Config.delete_originals:
@@ -95,23 +104,18 @@ class SortableFile:
             log.warning("ExifTool not found; EXIF data ignored. 'brew install exiftool' may solve this.")
             return {}
 
-    def move_file_to_sorted_dir(self, destination_subdir: Optional[Union[Path, str]] = None) -> Path:
+    def copy_file_to_sorted_dir(self, destination_path: Path):
         """Move or copy the file to destination_subdir."""
-        if destination_subdir is None:
-            destination_dir = Config.sorted_screenshots_dir
-        else:
-            destination_dir = Config.sorted_screenshots_dir.joinpath(destination_subdir)
-
-        destination_path = destination_dir.joinpath(self.new_basename())
         self._log_copy_file(destination_path)
+
+        if self.file_path == destination_path:
+            console.print(indented_bullet("Source and destination are the same..."))
 
         if Config.dry_run:
             console.print(indented_bullet("Dry run so not actually copying...", style='dim'))
         else:
             shutil.copy2(self.file_path, destination_path)
             copy_file_creation_time(self.file_path, destination_path)
-
-        return destination_path
 
     def sort_destination_path(self, subdir: Optional[Union[Path, str]] = None) -> Path:
         """Get the destination folder."""

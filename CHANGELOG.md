@@ -1,6 +1,8 @@
 ## 0.9.0
 * Apply extracted text to non-Tweets, non-Reddit posts.
 * `--delete-originals` option
+* `--rescan-sorted` option
+* Avoid moving files that start in a sorted location out to the processed dir
 
 ## 0.8.0
 * `--manual-sort` option

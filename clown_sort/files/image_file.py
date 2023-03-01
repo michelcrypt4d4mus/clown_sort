@@ -29,13 +29,12 @@ EXIF_CODES = {
 
 
 class ImageFile(SortableFile):
-    def move_file_to_sorted_dir(self, destination_subdir: Optional[Union[Path, str]] = None) -> Path:
+    def copy_file_to_sorted_dir(self, destination_path: Path) -> Path:
         """
         Copies to a new file and injects the ImageDescription exif tag.
         If :destination_subdir is given new file will be in :destination_subdir off
         of the configured :destination_dir. Returns new file path.
         """
-        destination_path = self.sort_destination_path(destination_subdir)
         exif_data = self.raw_exif_dict()
         exif_data.update([(EXIF_CODES[IMAGE_DESCRIPTION], self.extracted_text())])
         self._log_copy_file(destination_path)
