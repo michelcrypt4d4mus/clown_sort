@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.0.1
 * New sort rules
 
 # 1.0.0
