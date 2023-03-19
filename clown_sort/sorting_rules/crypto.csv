@@ -5,7 +5,7 @@ Aave,aave
 AAX,aax
 Art,occult
 Avalanche,Avax|avalanche
-Banks,\$CUBI|Customers[_\s]*Ban(k|corp)|SEBA[^a-z]|Cross\s?River
+Banks,\$CUBI|Customers[_\s]*Ban(k|corp)|SEBA[^a-z]|MCB|MCBankNY|Metropolitan[-_\s]*Community
 Bankless,Bankless
 Bored Ape Yacht Club,BAYC|Bored[_\s]*Ape|yuga[_\s]*labs
 Binary Options,binary[_\s]*options
@@ -13,14 +13,15 @@ Binance,binance|biconomy|bnb|bsc|cz|bifinity|binaryx|billance|changpeng|joselito
 Bitstamp,Bitstamp
 Bittrex,Bittrex
 Bitzlato,Bitzlato
-Blockchain8,Blockchain8|tom ?emmer|ritchie ?torres|repritchie
+Blockchain8,Blockchain8|tom[-_\s]*emmer|ritchie[-_\s]*torres|repritchie|Warren[-_\s]*Davidson|Byron[-_\s]*Donalds|Ted[-_\s]*Budd|Josh[-_\s]*Gotheimer|Jake[-_\s]*Auchincloss|Darren[-_\s]*Soto
 BlockFi,BlockFi
-Bros,cryptomanran|trillionUSD|nic[-_\s]*carter|bitboy|basedkarbon|thecryptolark|adam([-_\s]*back|3us)|@DegenSp|APompliano
+Bros,cryptomanran|trillionUSD|nic[-_\s]*carter|bitboy|ben[-_\s]*armstrong|basedkarbon|thecryptolark|adam([-_\s]*back|3us)|@DegenSp|APompliano|IIICapital
 Cardano,Cardano|[$\s]ADA[^\w]|Hoskinson
 Cathie Wood,Cathie\s*Wood|\bARK(K|\s*Innovation|\s*Invest)
 Celsius,celsius|mashinsky|levity[-_\s]*and[-_\s]*love|celsian
 Circle,[@#]circle|usdc|circle[-_\s]*internet
 Coinbase,Coinbase|\$COIN|brian[_\s]*armstrong
+Cross River Bank,CRB|Cross[-_\s]*River|Prestige[-_\s]*Capital|bae[-_\s]*communications|Zenfi|PeerIQ
 Crypto.com,crypto[._]?com|CDC|[$#]CRO|\sCRO\s
 DCG,DCG|digital\s*currency\s*group|sh?ill?bert|Grayscale|GBTC
 El Salvador,El[-_\s]*Salvador|Bukele
