@@ -1,4 +1,4 @@
-# Clown Sort
+# CLOWN SORT
 Sometimes someone is being a clown on the internet. Somewhere on your hard drive is the perfect screenshot to prove to the world that the clown in question is a fool, a hypocrite, a criminal, or worse. But then - horrors - you can't find the screenshot! It has been lost in your vast archive of screenshots of clowns clowning themselves on the internet.
 
 Clown Sort[^1] solves this.
@@ -18,7 +18,7 @@ Tweet by @lawmaster: "I will say though before this thread gets taken over: 1. I
 ```
 
 Other stuff that happens:
-* The `ImageDescription` EXIF tag will be written (for images)
+* The `ImageDescription` EXIF tag will be written (for images).
 * All timestamps will be preserved.
 * Files that match multiple patterns will be copied to multiple destination folders.
 * The original file will be moved into a `Processed/` directory after it has been handled.

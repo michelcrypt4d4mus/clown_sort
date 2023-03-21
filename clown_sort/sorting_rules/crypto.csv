@@ -25,6 +25,7 @@ Coinbase,Coinbase|\$COIN|brian[_\s]*armstrong
 CompoundFi,compoundfi|leshner|\bgonen\b
 Cross River Bank,CRB|Cross[-_\s]*River|Prestige[-_\s]*Capital|bae[-_\s]*communications|Zenfi|PeerIQ
 Crypto.com,crypto[._]?com|CDC|[$#]CRO|\sCRO\s
+Custodia,custodia|caitlin[-_\s]*long
 DCG,DCG|digital\s*currency\s*group|sh?ill?bert|Grayscale|GBTC
 El Salvador,El[-_\s]*Salvador|Bukele
 EOS,[^\w]EOS|\s*Blumer[^\w]
