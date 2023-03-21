@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+# 1.1.0
 * Filenames for retweets
 * New crypto sort rules
 
