@@ -1,11 +1,12 @@
 folder,regex
-3ac,3ac|Three[-_\s]*Arrows[-_\s]*Capital
+1mdb,1mdb|jho[-_\s]*low|Victor[-_\s]*Hoo
+3ac,3ac|Three[-_\s]*Arrows[-_\s]*Capital|su[-_\s]*zhu|zhu[-_\s]*su|kyle[-_\s]*davies
 A16Z,a16z|andreessen|packym|arianna[-_\s1]*simpson
 Aave,aave
 AAX,aax
 Art,occult
 Avalanche,Avax|avalanche
-Banks,\$CUBI|Customers[_\s]*Ban(k|corp)|SEBA[^a-z]|MCB|MCBankNY|Metropolitan[-_\s]*Community
+Banks,\$CUBI|Customers[_\s]*Ban(k|corp)|SEBA[^a-z]|MCB\b|MCBankNY|Metropolitan[-_\s]*Community
 Bankless,Bankless
 Bored Ape Yacht Club,BAYC|Bored[_\s]*Ape|yuga[_\s]*labs
 Binary Options,binary[_\s]*options
@@ -15,7 +16,7 @@ Bittrex,Bittrex
 Bitzlato,Bitzlato
 Blockchain8,Blockchain8|tom[-_\s]*emmer|ritchie[-_\s]*torres|repritchie|Warren[-_\s]*Davidson|Byron[-_\s]*Donalds|Ted[-_\s]*Budd|Josh[-_\s]*Gotheimer|Jake[-_\s]*Auchincloss|Darren[-_\s]*Soto|ro[-_\s]*khanna
 BlockFi,BlockFi
-Bros,cryptomanran|trillionUSD|nic[-_\s]*carter|bitboy|ben[-_\s]*armstrong|basedkarbon|thecryptolark|adam([-_\s]*back|3us)|@DegenSp|APompliano|IIICapital
+Bros,cryptomanran|trillionUSD|nic[-_\s]*carter|bitboy|ben[-_\s]*armstrong|basedkarbon|thecryptolark|adam([-_\s]*back|3us)|@DegenSp|APompliano|IIICapital|\bMeltem\b|algodtrading
 Cardano,Cardano|[$\s]ADA[^\w]|Hoskinson
 Cathie Wood,Cathie\s*Wood|\bARK(K|\s*Innovation|\s*Invest)
 Celsius,celsius|mashinsky|levity[-_\s]*and[-_\s]*love|celsian
@@ -26,6 +27,7 @@ Crypto.com,crypto[._]?com|CDC|[$#]CRO|\sCRO\s
 DCG,DCG|digital\s*currency\s*group|sh?ill?bert|Grayscale|GBTC
 El Salvador,El[-_\s]*Salvador|Bukele
 EOS,[^\w]EOS|\s*Blumer[^\w]
+Euler Finance,\beuler\b
 Finblox,finblox
 Friedlander Group,Friedlander|Agro\s*Bank|all\s*year\*m|\bbrock\b|brockpierce
 FTX,FTX|FTT|SBF|Trabucco|Bankman|Ellison|Nishad|Alameda|Moonstone|friedberg|autism\s*capital
@@ -48,6 +50,7 @@ Mario Nawfal,marionawfal
 Messari,Ryan\s*Selkis|twobitidiot|messari
 Memes,\smeme
 Metallicus,FBBT|Nauvoo|Metallicus
+Miles Guo,\bguo\b|hcoin|himalaya[-_\s]*exchange|bannon|fjb
 Miners,bitcoin[-_\s]*min(ing|er)|\$(CORZ|IRIS|ARGO|HUT|HIVE|CAN|BLOK|BTCM)|Core[-_\s]*Scientific|Iris[-_\s]*Energy|Blockstream
 MSTR,Saylor|MSTR
 Nexo,Nexo
