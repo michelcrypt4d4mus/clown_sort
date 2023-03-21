@@ -34,6 +34,7 @@ REDDIT_REPLY_REGEX = re.compile(
 REVEDDIT_REGEX = re.compile('Reveddit Real.?Time')
 SUBREDDIT_REGEX = re.compile('/r/(?P<subreddit>\\w+)|\\sse(lf|ir)\\.(?P<subreddit2>\\w+)')
 DUNE_ANALYTICS_REGEX = re.compile('Query results (.*) @\\w+')
+RETWEETED_REGEX = re.compile('(.*) Retweeted')
 
 
 class FilenameExtractor:
@@ -77,9 +78,26 @@ class FilenameExtractor:
             )
             return filename + self.image_file.extname
 
+    def _first_line(self) -> str:
+        return self.text.split('\n')[0]
+
     def _is_tweet(self) -> bool:
         """Return true if the text looks like a tweet."""
         return TWEET_REGEX.search(self.text) is not None and '@crypto_oracle' not in self.text
+
+    def _is_retweet(self) -> bool:
+        """Return true if the text looks like a retweet."""
+        return self._is_tweet() and RETWEETED_REGEX.search(self._first_line()) is not None
+
+    def _retweeter(self) -> Optional[str]:
+        """Return the name of the retweeter (or None if there isn't one)"""
+        if self._is_retweet():
+            retweet_match = RETWEETED_REGEX.search(self._first_line())
+            retweeter = retweet_match.group(1)
+            # Remove the leading 'tl' (or whatever Tesseract interprets the loop arrow icon to be)
+            return ','.join(retweeter.split()[1:])
+        else:
+            return None
 
     def _is_reddit(self) -> bool:
         """Return true if it's a reddit post or reddit comment."""
@@ -103,7 +121,11 @@ class FilenameExtractor:
         self.author = tweet_match.group(1)
         body = tweet_match.group('body')
         filename_text = f"Tweet by {self.author}"
+        retweeter = self._retweeter()
         reply_to = TWEET_REPLY_REGEX.search(self.text)
+
+        if retweeter is not None:
+            filename_text = f'Retweeted by {retweeter} - {filename_text}'
 
         if reply_to is not None:
             self.reply_to_account = reply_to.group(1)

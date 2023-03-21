@@ -29,5 +29,10 @@ def do_kwon_tweet():
 
 
 @pytest.fixture(scope='session')
+def parrot_retweet():
+    return FIXTURES_DIR.joinpath('parrot_retweet.png')
+
+
+@pytest.fixture(scope='session')
 def three_of_swords_file():
     return FIXTURES_DIR.joinpath('3 of swords occult.jpeg')

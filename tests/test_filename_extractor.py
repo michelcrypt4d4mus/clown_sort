@@ -300,6 +300,13 @@ def test_tweet_filenames(ocr_image):
     assert FilenameExtractor(ocr_image).filename() == 'Tweet by @cz_binance - "7) Binance always encourages collaboration between industry players. i: Regarding any speculation as to whether this is a move against a competitor_ it is not. Our industry i" do_kwon_debate_the_poor.jpeg'
 
 
+def test_retweet_filenames(parrot_retweet):
+    extractor = FilenameExtractor(ImageFile(parrot_retweet))
+    assert extractor._is_retweet()
+    assert extractor._retweeter() == 'Jack'
+    assert extractor.filename() == 'Retweeted by Jack - Tweet by @ParrotCapital - "A_IMPORTANT A Check the following hashtags: _CrossRiver _CrossRiverBank @MikeBurgersburg _ @Cryptadamist have been digging in_ as _Coinbase _COIN uses this ba" parrot_retweet.png'
+
+
 def test_reddit_filenames(ocr_image):
     ocr_image._extracted_text = REDDIT_POST
     assert FilenameExtractor(ocr_image).filename() == 'Reddit post by TheLostWander_er in binance - "send cash feature is temporarily disable. I was trying to withdraw cash since last week and I am seeing this message every time I try the send cash fe" do_kwon_debate_the_poor.jpeg'
