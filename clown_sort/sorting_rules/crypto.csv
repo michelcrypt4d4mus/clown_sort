@@ -31,7 +31,7 @@ El Salvador,El[-_\s]*Salvador|Bukele
 EOS,[^\w]EOS|\s*Blumer[^\w]
 Euler Finance,\beuler\b
 Finblox,finblox
-Friedlander Group,Friedlander|Agro\s*Bank|all\s*year\*m|\bbrock\b|brockpierce
+Friedlander Group,Friedlander|Agro\s*Bank|all\s*year\*m|\bbrock\b|brockpierce|litvishhocker
 FTX,FTX|FTT|SBF|Trabucco|Bankman|Ellison|Nishad|Alameda|Moonstone|friedberg|autism\s*capital
 Gemini,Gemini|winklev|@cameron
 Genesis,Genesis|Michael\s?Moro
@@ -80,7 +80,7 @@ Transactive Systems UAB,Transactive
 Tron,\stron\s|tron(block|\s*)?chain|trondao
 TrueUSD,TUSD|TrueUSD|TrueFi
 Vauld,Vauld
-VCs,venture[-_\s]*capital|VC
+VCs,venture[-_\s]*capital|\bVCs?\b|calacanis|@jason\b|david[-_\s]*sacks|\bthiel\b|sequoia|founders[-_\s]*fund
 Voyager,voyager
 Wallet Addresses BCH,bitcoincash:q.*\b
 Wallet Addresses Bitcoin,(bc1|[13])[a-zA-HJ-NP-Z0–9]{25,39}\b

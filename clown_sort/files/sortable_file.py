@@ -44,6 +44,11 @@ class SortableFile:
         sort_folders = type(self).get_sort_folders(search_text)
 
         if len(sort_folders) == 0:
+            if Config.only_if_match:
+                console.print('Unsortable - no folder match')
+                return
+
+            # TODO: what's going on here w/this if statement? Seems unnecessary...
             if Config.filename_regex.search(self.basename):
                 console.print(NO_SORT_FOLDERS_MSG)
                 sort_folders = [None]

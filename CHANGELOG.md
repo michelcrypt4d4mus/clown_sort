@@ -1,4 +1,6 @@
 # NEXT RELEASE
+* `--only-if-match` option
+* New crypto sort rules
 
 ## 1.1.0
 * Filenames for retweets
