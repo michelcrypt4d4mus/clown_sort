@@ -8,10 +8,12 @@ Art,occult
 Avalanche,Avax|avalanche
 Banks,\$CUBI|Customers[_\s]*Ban(k|corp)|SEBA[^a-z]|MCB\b|MCBankNY|Metropolitan[-_\s]*Community|Credit[-_\s]*Suisse|SJMBT|Sygnum|Celtic[-_\s]*Bank
 Bankless,Bankless
+Blockchain Capital,Blockchain[_\s]*Capital|\bbrock\b|brockpierce
 Bored Ape Yacht Club,BAYC|Bored[_\s]*Ape|yuga[_\s]*labs
 Binary Options,binary[_\s]*options
 Binance,binance|biconomy|bnb|bsc|cz|bifinity|binaryx|billance|changpeng|joselito|paysafe|SwipeIO|Swipe\s*Wallet|keyway|key\s*vision\s*dev|TrustWallet|BUSD
 Bitdeer,Bitdeer
+BitGet,Bitget
 Bitmain,Bitmain
 Bitstamp,Bitstamp
 Bittrex,Bittrex
@@ -25,7 +27,7 @@ Celsius,celsius|mashinsky|levity[-_\s]*and[-_\s]*love|celsian
 Circle,[@#]circle|usdc|circle[-_\s]*internet|disparte
 Coinbase,Coinbase|\$COIN|brian[_\s]*armstrong|grewal\b
 CompoundFi,compoundfi|leshner|\bgonen\b
-Cross River Bank,CRB|Cross[-_\s]*River|Prestige[-_\s]*Capital|bae[-_\s]*communications|Zenfi|PeerIQ|\bupstart\b
+Cross River Bank,CRB|Cross[-_\s]*River|Prestige[-_\s]*Capital|bae[-_\s]*communications|Zenfi|PeerIQ|\bupstart\b|\bUPST\b
 Crypto.com,crypto[._]?com|CDC|[$#]CRO|\sCRO\s
 Custodia,custodia|caitlin[-_\s]*long
 DCG,DCG|digital\s*currency\s*group|sh?ill?bert|Grayscale|GBTC
@@ -61,6 +63,7 @@ Miners,bitcoin[-_\s]*min(ing|er)|\$(CORZ|IRIS|ARGO|HUT|HIVE|CAN|BLOK|BTCM)|Core[
 Moonpay,moonpay
 MSTR,Saylor|MSTR
 Nexo,Nexo
+NFTs,crypto[-_\s]*punk|pudgy[-_\s]*penguin
 OKX,oke?[cx]|star xu
 OpenPayd,openpayd|CFD\s?Team
 OpenSea,OpenSea
@@ -80,7 +83,7 @@ Silicon Valley Bank,si?vb|Silicon[-_\s]*Valley[-_\s]*Bank
 Silvergate,\$SI|Silvergate|Alan\s*Lane|Eisele|[\s#]SEN[^\w]|Rebecca[-_\s]*Rettig
 Solana,Solana|Serum
 TerraLuna,luna\b|do[-_\s]*kwon|stablekwon|\bterra\b|LFG|Macedo
-Tether,tether|usdt|paolo|friedberg|hoegner|Noble\s?Bank|Deltec[^\']|bitfinex[^e]|\bbrock\b|brockpierce|Capital[-_\s]*Union|Noble[-_\s]*bank|SJMBT
+Tether,tether|usdt|paolo|friedberg|hoegner|Noble\s?Bank|Deltec[^\']|bitfinex[^e]|\bbrock\b|brockpierce|Capital[-_\s]*Union|Noblex|SJMBT
 Tornado Cash,tornado\s*cash
 Transactive Systems UAB,Transactive
 Tron,\stron\s|tron(block|\s*)?chain|trondao
