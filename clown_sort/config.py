@@ -10,7 +10,7 @@ from collections import namedtuple
 from importlib.metadata import version
 from os import environ
 from pathlib import Path
-from typing import List, Optional, Union
+from typing import List, Union
 
 from rich import box
 from rich.console import Console
