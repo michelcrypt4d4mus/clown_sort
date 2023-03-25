@@ -21,8 +21,7 @@ from clown_sort.util.string_helper import comma_join
 
 MAX_EXTRACTION_LENGTH = 4096
 NOT_MOVING_FILE = "Not moving file to processed dir because it's"
-NO_SORT_FOLDERS_MSG = bullet_text('No sort folders found! Copying to base sorted dir...', style='color(209)')
-UNSORTABLE_MSG = bullet_text('Unsortable - no folder match and filename_regex does not match. Skipping...')
+NO_SORT_FOLDERS_MSG = bullet_text('No sort folders matched so copying to base sorted dir...', style='color(209)')
 
 
 class SortableFile:
@@ -45,16 +44,11 @@ class SortableFile:
 
         if len(sort_folders) == 0:
             if Config.only_if_match:
-                console.print('Unsortable - no folder match')
+                console.print('No folder match and --only-if-match option selected. Skipping...')
                 return
 
-            # TODO: what's going on here w/this if statement? Seems unnecessary...
-            if Config.filename_regex.search(self.basename):
-                console.print(NO_SORT_FOLDERS_MSG)
-                sort_folders = [None]
-            else:
-                console.print(UNSORTABLE_MSG)
-                return
+            console.print(NO_SORT_FOLDERS_MSG)
+            sort_folders = [None]
         else:
             console.print(bullet_text(Text('Sort folders: ') + comma_join(sort_folders)))
 
@@ -81,13 +75,7 @@ class SortableFile:
             return
 
         if Config.delete_originals:
-            console.print(bullet_text(Text(f"Deleting original file...")))
-
-            if Config.dry_run:
-                console.print(indented_bullet(Text('Skipping delete because this is a dry run...', style='dim')))
-                return
-
-            remove(self.file_path)
+            self._delete_original()
             return
 
         self._move_to_processed_dir()
@@ -162,6 +150,15 @@ class SortableFile:
             console.print(indented_bullet(msg, style='dim'))
         else:
             shutil.move(self.file_path, processed_file_path)
+
+    def _delete_original(self) -> None:
+        console.print(bullet_text(Text(f"Deleting original file...")))
+
+        if Config.dry_run:
+            console.print(indented_bullet(Text('Skipping delete because this is a dry run...', style='dim')))
+            return
+
+        remove(self.file_path)
 
     # TODO: this doesn't belong here
     @classmethod
