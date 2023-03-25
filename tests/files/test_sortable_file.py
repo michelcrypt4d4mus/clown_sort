@@ -1,3 +1,5 @@
+from typing import List
+
 from clown_sort.config import Config
 from clown_sort.files.image_file import ImageFile
 from clown_sort.files.sortable_file import SortableFile
@@ -22,61 +24,67 @@ def test_sort_file(three_of_swords_file, test_config):
 
 
 def test_get_sort_folder():
-    assert SortableFile.get_sort_folders('fuck crypto.com it sucks') == ['Crypto.com']
-    assert SortableFile.get_sort_folders('fuck crypto_com it sucks') == ['Crypto.com']
-    assert SortableFile.get_sort_folders('fuck $cro it sucks') == ['Crypto.com']
-    assert SortableFile.get_sort_folders('fuck #cro it sucks') == ['Crypto.com']
-    assert SortableFile.get_sort_folders('fuck justinsuntron it sucks') == ['Justin Sun']
-    assert SortableFile.get_sort_folders('fuck paoloardoino it sucks') == ['Tether']
-    assert SortableFile.get_sort_folders('fuck bitfinex it sucks') == ['Tether']
-    assert SortableFile.get_sort_folders('fuck paolo it sucks') == ['Tether']
-    assert SortableFile.get_sort_folders('fuck Deltec it sucks') == ['Tether']
-    assert SortableFile.get_sort_folders('fuck $SI it sucks') == ['Silvergate']
-    assert SortableFile.get_sort_folders('fuck okx it sucks') == ['OKX']
-    assert SortableFile.get_sort_folders('fuck okcoin it sucks') == ['OKX']
-    assert SortableFile.get_sort_folders('fuck okex it sucks') == ['OKX']
-    assert SortableFile.get_sort_folders('fuck tron it sucks') == ['Tron']
-    assert SortableFile.get_sort_folders('fuck tronchain it sucks') == ['Tron']
-    assert SortableFile.get_sort_folders('fuck tron chain it sucks') == ['Tron']
-    assert SortableFile.get_sort_folders('fuck @circle it sucks') == ['Circle']
-    assert SortableFile.get_sort_folders('fuck #circle it sucks') == ['Circle']
-    assert SortableFile.get_sort_folders('fuck USDC it sucks') == ['Circle']
-    assert SortableFile.get_sort_folders('fuck $HUT it sucks') == ['Miners']
-    assert SortableFile.get_sort_folders('fuck $CORZ it sucks') == ['Miners']
-    assert SortableFile.get_sort_folders('fuck CoreScientific it sucks') == ['Miners']
-    assert SortableFile.get_sort_folders('fuck Core Scientific it sucks') == ['Miners']
-    assert SortableFile.get_sort_folders('fuck Seba Bank') == ['Banks']
-    assert SortableFile.get_sort_folders('fuck $CUBI') == ['Banks']
-    assert SortableFile.get_sort_folders(SIGNATURE) == ['SBNY']
-    assert SortableFile.get_sort_folders('fuck #SEN ') == ['Silvergate']
-    assert SortableFile.get_sort_folders('fuck Swipe Wallet ') == ['Binance']
-    assert SortableFile.get_sort_folders('fuck $PI Wallet ') == ['Pi']
-    assert SortableFile.get_sort_folders('fuck Arianna _ Simpson') == ['A16Z']
-    assert SortableFile.get_sort_folders('fuck Arianna1Simpson') == ['A16Z']
-    assert SortableFile.get_sort_folders('fuck DAI ') == ['MakerDAO']
-    assert SortableFile.get_sort_folders('fuck #DAI ') == ['MakerDAO']
-    assert SortableFile.get_sort_folders('fuck EOS ') == ['EOS']
-    assert SortableFile.get_sort_folders('fuck B. Blumer ') == ['EOS']
-    assert SortableFile.get_sort_folders('fuck $ADA ') == ['Cardano']
-    assert SortableFile.get_sort_folders('fuck ADA coin') == ['Cardano']
-    assert SortableFile.get_sort_folders('fuck CathieWood coin') == ['Cathie Wood']
-    assert SortableFile.get_sort_folders('fuck ARKK coin') == ['Cathie Wood']
-    assert SortableFile.get_sort_folders('fuck ARK Invest coin') == ['Cathie Wood']
-    assert SortableFile.get_sort_folders('fuck Gary Gensler coin') == ['SEC']
-    assert SortableFile.get_sort_folders('fuck @SECgov coin') == ['SEC']
-    assert SortableFile.get_sort_folders('fuck the SEC coin') == ['SEC']
-    assert SortableFile.get_sort_folders('fuck the brock coin') == ['Friedlander Group', 'Tether']
-    assert SortableFile.get_sort_folders('fuck the brockpierce coin') == ['Friedlander Group', 'Tether']
-    assert SortableFile.get_sort_folders('fuck @jason dipshit coin') == ['VCs']
-    assert SortableFile.get_sort_folders('fuck founders fund coin') == ['VCs']
+    check_folders('fuck Arianna _ Simpson', ['A16Z'])
+    check_folders('fuck Arianna1Simpson', ['A16Z'])
+    check_folders('fuck #AAXExchange', ['AAX'])
+    check_folders('fuck Seba Bank', ['Banks'])
+    check_folders('fuck $CUBI', ['Banks'])
+    check_folders('fuck Swipe Wallet ', ['Binance'])
+    check_folders('fuck $ADA ', ['Cardano'])
+    check_folders('fuck ADA coin', ['Cardano'])
+    check_folders('fuck CathieWood coin', ['Cathie Wood'])
+    check_folders('fuck ARKK coin', ['Cathie Wood'])
+    check_folders('fuck ARK Invest coin', ['Cathie Wood'])
+    check_folders('fuck @circle it sucks', ['Circle'])
+    check_folders('fuck #circle it sucks', ['Circle'])
+    check_folders('fuck USDC it sucks', ['Circle'])
+    check_folders('fuck crypto.com it sucks', ['Crypto.com'])
+    check_folders('fuck crypto_com it sucks', ['Crypto.com'])
+    check_folders('fuck $cro it sucks', ['Crypto.com'])
+    check_folders('fuck #cro it sucks', ['Crypto.com'])
+    check_folders('fuck EOS ', ['EOS'])
+    check_folders('fuck B. Blumer ', ['EOS'])
+    check_folders('fuck the brock coin', ['Friedlander Group', 'Tether'])
+    check_folders('fuck the brockpierce coin', ['Friedlander Group', 'Tether'])
+    check_folders('fuck justinsuntron it sucks', ['Justin Sun'])
+    check_folders('fuck DAI ', ['MakerDAO'])
+    check_folders('fuck #DAI ', ['MakerDAO'])
+    check_folders('fuck $HUT it sucks', ['Miners'])
+    check_folders('fuck $CORZ it sucks', ['Miners'])
+    check_folders('fuck CoreScientific it sucks', ['Miners'])
+    check_folders('fuck Core Scientific it sucks', ['Miners'])
+    check_folders('fuck okx it sucks', ['OKX'])
+    check_folders('fuck okcoin it sucks', ['OKX'])
+    check_folders('fuck okex it sucks', ['OKX'])
+    check_folders('fuck $PI Wallet ', ['Pi'])
+    check_folders('fuck Gary Gensler coin', ['SEC'])
+    check_folders('fuck @SECgov coin', ['SEC'])
+    check_folders('fuck the SEC coin', ['SEC'])
+    check_folders(SIGNATURE, ['Signature Bank'])
+    check_folders('fuck #Signet', ['Signature Bank'])
+    check_folders('fuck $SI it sucks', ['Silvergate'])
+    check_folders('fuck #SEN ', ['Silvergate'])
+    check_folders('fuck paoloardoino it sucks', ['Tether'])
+    check_folders('fuck bitfinex it sucks', ['Tether'])
+    check_folders('fuck paolo it sucks', ['Tether'])
+    check_folders('fuck Deltec it sucks', ['Tether'])
+    check_folders('fuck tron it sucks', ['Tron'])
+    check_folders('fuck tronchain it sucks', ['Tron'])
+    check_folders('fuck tron chain it sucks', ['Tron'])
+    check_folders('fuck @jason dipshit coin', ['VCs'])
+    check_folders('fuck founders fund coin', ['VCs'])
 
     for hoo in ['Rexy Wang', 'Rexy Hoo', '#Hoo', 'Hoo Exchange', 'HooExchange']:
-        assert SortableFile.get_sort_folders(f"fuck {hoo} yo") == ['Hoo']
+        check_folders(f"fuck {hoo} yo", ['Hoo'])
 
     # Non-matches
-    assert SortableFile.get_sort_folders("fuck Deltec'ed it sucks") == []
-    assert SortableFile.get_sort_folders('fuck bitfinexed it sucks') == []
-    assert SortableFile.get_sort_folders('fuck DAIS ') == []
-    assert SortableFile.get_sort_folders('fuckEOS ') == []
-    assert SortableFile.get_sort_folders('fuck ADAm ') == []
-    assert SortableFile.get_sort_folders('fuck the SECretary coin') == []
+    check_folders("fuck Deltec'ed it sucks", [])
+    check_folders('fuck bitfinexed it sucks', [])
+    check_folders('fuck DAIS ', [])
+    check_folders('fuckEOS ', [])
+    check_folders('fuck ADAm ', [])
+    check_folders('fuck the SECretary coin', [])
+
+
+def check_folders(search_string: str, expected_folders: List[str]) -> None:
+    assert SortableFile.get_sort_folders(search_string) == expected_folders

@@ -3,7 +3,7 @@ folder,regex
 3ac,3ac|Three[-_\s]*Arrows[-_\s]*Capital|su[-_\s]*zhu|zhu[-_\s]*su|kyle[-_\s]*davies
 A16Z,a16z|andreessen|packym|arianna[-_\s1]*simpson
 Aave,aave
-AAX,aax
+AAX,\baax
 Art,occult
 Avalanche,Avax|avalanche
 Banks,\$CUBI|Customers[_\s]*Ban(k|corp)|SEBA[^a-z]|MCB\b|MCBankNY|Metropolitan[-_\s]*Community|Credit[-_\s]*Suisse|SJMBT|Sygnum
@@ -22,7 +22,7 @@ Bros,cryptomanran|trillionUSD|nic[-_\s]*carter|bitboy|ben[-_\s]*armstrong|basedk
 Cardano,Cardano|[$\s]ADA[^\w]|Hoskinson
 Cathie Wood,Cathie\s*Wood|\bARK(K|\s*Innovation|\s*Invest)
 Celsius,celsius|mashinsky|levity[-_\s]*and[-_\s]*love|celsian
-Circle,[@#]circle|usdc|circle[-_\s]*internet
+Circle,[@#]circle|usdc|circle[-_\s]*internet|disparte
 Coinbase,Coinbase|\$COIN|brian[_\s]*armstrong|grewal\b
 CompoundFi,compoundfi|leshner|\bgonen\b
 Cross River Bank,CRB|Cross[-_\s]*River|Prestige[-_\s]*Capital|bae[-_\s]*communications|Zenfi|PeerIQ
@@ -71,7 +71,7 @@ Revolut,revolut[^\w]
 RIOT,\$RIOT|Riot[-\s_]*Block
 Safemoon,Safemoon
 SEC,\bSEC(\b|Gov)|Gensler|Securities.{0,6}Exchange.{0,6}Commission
-SBNY,SBNY|Signature[-_\s]*Bank|Signet
+Signature Bank,SBNY|Signature[-_\s]*Bank|Signet
 Silicon Valley Bank,si?vb|Silicon[-_\s]*Valley[-_\s]*Bank
 Silvergate,\$SI|Silvergate|Alan\s*Lane|Eisele|[\s#]SEN[^\w]
 Solana,Solana|Serum
