@@ -36,12 +36,21 @@ class SortableFile:
         self._filename_extractor: Optional[FilenameExtractor] = None
         self._paths_of_sorted_copies: List[Path] = []
 
+    @classmethod
+    def get_sort_folders(cls, search_text: Optional[str]) -> List[str]:
+        """Find any folders that could be relevant."""
+        if search_text is None:
+            return []
+
+        return [sr.folder for sr in Config.sort_rules if sr.regex.search(search_text)]
+
     def sort_file(self) -> None:
         """Sort the file to destination_dir subdir."""
         console.print(self)
         search_text = self.basename_without_ext + ' ' + (self.extracted_text() or '')
         sort_folders = type(self).get_sort_folders(search_text)
 
+        # Handle the case where there are no matches to any configured folders.
         if len(sort_folders) == 0:
             if Config.only_if_match:
                 console.print('No folder match and --only-if-match option selected. Skipping...')
@@ -52,6 +61,7 @@ class SortableFile:
         else:
             console.print(bullet_text(Text('Sort folders: ') + comma_join(sort_folders)))
 
+        # Copy the renamed file to all the folders whose sorting rules were matched.
         for folder in sort_folders:
             # Create the subdir if it doesn't exist.
             if folder is not None:
@@ -99,10 +109,11 @@ class SortableFile:
 
     def copy_file_to_sorted_dir(self, destination_path: Path):
         """Move or copy the file to destination_subdir."""
-        self._log_copy_file(destination_path)
-
         if self.file_path == destination_path:
             console.print(indented_bullet("Source and destination are the same..."))
+            return
+
+        self._log_copy_file(destination_path)
 
         if Config.dry_run:
             console.print(indented_bullet("Dry run so not actually copying...", style='dim'))
@@ -152,6 +163,7 @@ class SortableFile:
             shutil.move(self.file_path, processed_file_path)
 
     def _delete_original(self) -> None:
+        """Delete the original file (unless it's a dry run)."""
         console.print(bullet_text(Text(f"Deleting original file...")))
 
         if Config.dry_run:
@@ -160,15 +172,6 @@ class SortableFile:
 
         remove(self.file_path)
 
-    # TODO: this doesn't belong here
-    @classmethod
-    def get_sort_folders(cls, search_text: Optional[str]) -> List[str]:
-        """Find any folders that could be relevant."""
-        if search_text is None:
-            return []
-
-        return [sr.folder for sr in Config.sort_rules if sr.regex.search(search_text)]
-
     def __str__(self) -> str:
         return str(self.file_path)
 
@@ -176,6 +179,7 @@ class SortableFile:
         return f"SortableFile('{self.file_path}')"
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
+        """Rich text method."""
         yield Text("\n\n")
         yield Panel(str(self.file_path), expand=False, style='bright_white reverse')
 
