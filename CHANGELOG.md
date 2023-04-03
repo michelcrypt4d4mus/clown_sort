@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+# 1.2.0
 * `--only-if-match` option
 * New crypto sort rules
 
