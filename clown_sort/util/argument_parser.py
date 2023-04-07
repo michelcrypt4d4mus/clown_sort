@@ -54,6 +54,10 @@ parser.add_argument('-f', '--filename-regex',
                     help='filename regular expression',
                     default=DEFAULT_FILENAME_REGEX.pattern)
 
+parser.add_argument('-y', '--yes-overwrite', action='store_true',
+                    help='skip confirmation prompt and always overwrite if a file with the same name already exists',
+                    default=DEFAULT_FILENAME_REGEX.pattern)
+
 parser.add_argument('--rescan-sorted', action='store_true',
                     help="rescan already sorted files (useful if you updated your sorting rules)")
 

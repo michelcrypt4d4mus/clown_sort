@@ -77,7 +77,7 @@ class SortableFile:
             if destination_path.exists():
                 console.print(f"\nFile '{destination_path.name}' already exists in '{folder}/'!", style='blink')
 
-                if not Confirm.ask(f"Overwrite?"):
+                if not (Config.yes_overwrite or Confirm.ask(f"Overwrite?")):
                     console.print("Skipping...")
                     continue
 

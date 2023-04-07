@@ -42,6 +42,7 @@ class Config:
     screenshots_only: bool = True
     delete_originals: bool = False
     rescan_sorted: bool = False
+    yes_overwrite: bool = False
     sort_rules: List[SortRule] = []
     filename_regex: re.Pattern
 
@@ -70,6 +71,7 @@ class Config:
         Config.only_if_match = True if args.only_if_match else False
         Config.delete_originals = True if args.delete_originals else False
         Config.rescan_sorted = True if args.rescan_sorted else False
+        Config.yes_overwrite = True if args.yes_overwrite else False
 
         if Config.leave_in_place and Config.delete_originals:
             Console().print("--leave-in-place and --delete-originals are mutually exclusive.", style='red')
