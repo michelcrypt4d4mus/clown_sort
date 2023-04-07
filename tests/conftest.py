@@ -23,6 +23,14 @@ def test_config():
     PROCESSED_DIR.rmdir()
 
 
+@pytest.fixture
+def turn_off_dry_run():
+    Config.dry_run = False
+    Config.leave_in_place = True
+    yield
+    Config.dry_run = True
+
+
 @pytest.fixture(scope='session')
 def do_kwon_tweet():
     return FIXTURES_DIR.joinpath('do_kwon_debate_the_poor.jpeg')

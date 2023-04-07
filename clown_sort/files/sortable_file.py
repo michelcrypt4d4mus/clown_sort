@@ -9,6 +9,7 @@ from typing import List, Optional, Union
 from exiftool import ExifToolHelper
 from rich.console import Console, ConsoleOptions, RenderResult
 from rich.panel import Panel
+from rich.prompt import Confirm
 from rich.text import Text
 
 from clown_sort.config import Config
@@ -72,6 +73,14 @@ class SortableFile:
                     destination_dir.mkdir()
 
             destination_path = self.sort_destination_path(folder)
+
+            if destination_path.exists():
+                console.print(f"\nFile '{destination_path.name}' already exists in '{folder}/'!", style='blink')
+
+                if not Confirm.ask(f"Overwrite?"):
+                    console.print("Skipping...")
+                    continue
+
             self._paths_of_sorted_copies.append(destination_path)
             self.copy_file_to_sorted_dir(destination_path)
 

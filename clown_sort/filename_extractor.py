@@ -35,6 +35,7 @@ REVEDDIT_REGEX = re.compile('Reveddit Real.?Time')
 SUBREDDIT_REGEX = re.compile('/r/(?P<subreddit>\\w+)|\\sse(lf|ir)\\.(?P<subreddit2>\\w+)')
 DUNE_ANALYTICS_REGEX = re.compile('Query results (.*) @\\w+')
 RETWEETED_REGEX = re.compile('(.*) Retweeted')
+MIN_LENGTH_FOR_DUPE_CHECK = 9
 
 
 class FilenameExtractor:
@@ -50,10 +51,12 @@ class FilenameExtractor:
         """Examine self.text and decide on an appropriate filename."""
         if self.text is None:
             return self.image_file.basename
-        elif DUNE_ANALYTICS_REGEX.search(self.text):
+
+        if DUNE_ANALYTICS_REGEX.search(self.text):
             dune_match = DUNE_ANALYTICS_REGEX.search(self.text)
             query_title = self._strip_bad_chars(dune_match.group(1))
-            return 'Dune Analytics "' + query_title + '" ' + self.image_file.basename
+            filename_str = 'Dune Analytics "' + query_title + '" '
+            new_filename = filename_str + self.image_file.basename
         elif self._is_tweet() or self._is_reddit():
             if self._is_tweet():
                 filename_str = self._filename_str_for_tweet()
@@ -62,24 +65,26 @@ class FilenameExtractor:
 
             filename = f"{filename_str} {self.image_file.basename_without_ext}"
             filename = filename[0:-1] if filename.endswith('.') else filename
-            return filename + self.image_file.extname
+            new_filename = filename + self.image_file.extname
         elif self._is_reveddit():
-            filename = 'Reveddit '
+            filename_str = 'Reveddit '
             subreddit_match = SUBREDDIT_REGEX.search(self.text)
 
             if subreddit_match is not None:
-                filename += 'r_' + (subreddit_match.group('subreddit') or subreddit_match.group('subreddit2')) + ' '
+                filename_str += 'r_' + (subreddit_match.group('subreddit') or subreddit_match.group('subreddit2')) + ' '
 
-            return filename + self.image_file.basename
+            new_filename = filename_str + self.image_file.basename
         else:
-            filename = self._build_filename(
-                self.image_file.basename_without_ext,
-                self.text[0:self.available_char_count]
-            )
-            return filename + self.image_file.extname
+            filename_str = self.text[0:self.available_char_count]
+            new_filename = self._build_filename(self.image_file.basename_without_ext, filename_str)
+            new_filename += self.image_file.extname
 
-    def _first_line(self) -> str:
-        return self.text.split('\n')[0]
+        # If we already seem to have scanned the file then just return the filename
+        if self._is_text_already_in_filename(filename_str):
+            log.warning(f"'{filename_str}' already appears in filename, not renaming.")
+            return self.image_file.basename
+
+        return new_filename
 
     def _is_tweet(self) -> bool:
         """Return true if the text looks like a tweet."""
@@ -167,3 +172,10 @@ class FilenameExtractor:
     def _strip_bad_chars(self, text: str) -> str:
         """Remove chars that don't work well in filenames"""
         return re.sub('[^0-9a-zA-Z@.?_:\'" ()]+', '_', text)
+
+    def _is_text_already_in_filename(self, filename_str: str) -> bool:
+        """Check if the extracted text is already in the filename"""
+        return filename_str[0:100] in self.image_file.basename and len(filename_str) > MIN_LENGTH_FOR_DUPE_CHECK
+
+    def _first_line(self) -> str:
+        return self.text.split('\n')[0]

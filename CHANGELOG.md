@@ -1,6 +1,8 @@
 # NEXT RELEASE
+* Ask for confirmation before overwriting files
+* Check if image's extracted text is already in the filename (important if rescanning)
 
-# 1.2.0
+## 1.2.0
 * `--only-if-match` option
 * New crypto sort rules
 

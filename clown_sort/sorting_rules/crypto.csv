@@ -6,11 +6,11 @@ Aave,aave
 AAX,\baax
 Arbitrum,Arbitrum|[$#]ARB\b
 Art,occult
-Avalanche,Avax|avalanche
+Avalanche,\bAvax|avalanche
 Banks,\$CUBI|Customers[-_\s]*Ban(k|corp)|SEBA[^a-z]|MCB\b|MCBankNY|Metropolitan[-_\s]*Community|Credit[-_\s]*Suisse|SJMBT|Sygnum|Celtic[-_\s]*Bank
 Bankless,Bankless
 Binary Options,binary[-_\s]*options
-Binance,binance|biconomy|bnb|bsc|cz|bifinity|binaryx|billance|changpeng|joselito|paysafe|SwipeIO|Swipe\s*Wallet|keyway|\bkey[-_\s]*vision|TrustWallet|BUSD
+Binance,binance|biconomy|bnb|bsc|cz|bifinity|binaryx|billance|changpeng|joselito|paysafe|SwipeIO|Swipe\s*Wallet|keyway|\bkey[-_\s]*vision|TrustWallet|BUSD|\boztures
 Bitdeer,Bitdeer
 BitGet,Bitget
 Bitmain,Bitmain
@@ -84,6 +84,7 @@ Revolut,revolut[^\w]
 Ripple,XRP|garlinghouse|\bripple\b
 RIOT,\$RIOT|Riot[-\s_]*Block
 Safemoon,Safemoon
+Satoshi,Satoshi|Nakamoto
 SEC,\bSEC(\b|Gov)|Gensler|Securities.{0,6}Exchange.{0,6}Commission
 Signature Bank,SBNY|Signature[-_\s]*Bank|Signet
 Silicon Valley Bank,si?vb|Silicon[-_\s]*Valley[-_\s]*Bank
@@ -93,7 +94,7 @@ TerraLuna,luna\b|do[-_\s]*kwon|stablekwon|\bterra\b|LFG|Macedo|\bLuna[-_\s]*Foun
 Tether,tether|usdt|paolo|friedberg|hoegner|Noble\s?Bank|Deltec[^\']|bitfinex[^e]|\bbrock\b|brockpierce|Capital[-_\s]*Union|Noblex|SJMBT
 Tornado Cash,tornado\s*cash
 Transactive Systems UAB,Transactive
-Tron,\stron\s|tron(block|\s*)?chain|trondao
+Tron,\btron\b|tron(block|\s*)?chain|trondao|TRX\b
 TrueUSD,TUSD|TrueUSD|TrueFi|TrustExplorer|Techteryx
 Vauld,Vauld
 VCs,venture[-_\s]*capital|\bVCs?\b|calacanis|@jason\b|david[-_\s]*sacks|\bthiel\b|sequoia|founders[-_\s]*fund
