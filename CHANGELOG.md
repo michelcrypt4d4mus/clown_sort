@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+# 1.3.0
 * Ask for confirmation before overwriting files (`--yes-overwrite` option to skip the check)
 * Check if image's extracted text is already in the filename (important if rescanning)
 
