@@ -36,7 +36,7 @@ COLOR_THEME_DICT = {
     'off_white': 'color(245)',
     'social_media': 'color(82)',
     'author': 'color(178)',
-    'sort_destination': 'magenta',
+    'sort_destination': 'color(62)',
 }
 
 COLOR_THEME = Theme(COLOR_THEME_DICT)
