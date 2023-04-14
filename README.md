@@ -116,7 +116,16 @@ pipx install clown_sort[PySimpleGUI]
 
 
 # Contributing
-Feel free to file issues or open pull requests. Only requirement is that tests should pass before you open it, which you can check with
+Feel free to file issues or open pull requests.
+
+This package is managed with [Python Poetry](http://python-poetry.org/). To get going:
+1. Install Poetry.
+1. `git clone` this repo.
+1. `cd clown_sort`
+1. `poetry install`
+1. Optional components can be install with `poetry install -E pdf -E gui`
+
+Only requirement is that tests should pass before you open it, which you can check with
 
 ```
 pytest

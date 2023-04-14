@@ -45,7 +45,9 @@ pyexiftool = "^0.5.5"
 pypdf = "^3.4.1"
 pycryptodome = {version = "^3.17", optional = true}
 
-
+[tool.poetry.extras]
+pdf = ['pycryptodome']
+gui = ['PySimpleGUI']
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.2.0"
