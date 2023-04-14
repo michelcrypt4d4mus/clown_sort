@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.3.1
 * Handle unparseable PDFs with a warning instead of a crash.
 * `--yes-overwrite` option should not default to true
 * New crypto sort rules (MCB and CUBI now sorted to their own directories instead of 'Banks')
