@@ -43,7 +43,7 @@ parser.add_argument('-d', '--destination-dir',
                     default=str(DEFAULT_DESTINATION_DIR).replace(str(Path.home()), '~'))
 
 parser.add_argument('-m', '--manual-sort', action='store_true',
-                    help='causes a popup to be presented for each file where it can be manually named and a sorting destination selected')
+                    help='causes a popup to be presented for each file where it can be manually named and a sorting destination selected (experimental)')
 
 parser.add_argument('-r', '--rules-csv',
                     action='append',

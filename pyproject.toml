@@ -43,6 +43,7 @@ python-dotenv = "^0.21.1"
 rich-argparse-plus = "^0.3.1.4"
 pyexiftool = "^0.5.5"
 pypdf = "^3.4.1"
+pycryptodome = {version = "^3.17", optional = true}
 
 
 

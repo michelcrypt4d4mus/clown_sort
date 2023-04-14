@@ -1,8 +1,11 @@
 # NEXT RELEASE
+* Handle unparseable PDFs with a warning instead of a crash.
+* New crypto sort rules
 
 ## 1.3.0
 * Ask for confirmation before overwriting files (`--yes-overwrite` option to skip the check)
 * Check if image's extracted text is already in the filename (important if rescanning)
+* New crypto sort rules
 
 ## 1.2.0
 * `--only-if-match` option

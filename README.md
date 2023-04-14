@@ -62,6 +62,13 @@ sort_screenshots -f '.*pdf$' -e
 pipx install clown_sort
 ```
 
+Some (not many) PDFs require the `pycryptodome` package. To avoid complicating the dependency situation this is offered as an optional installation which can be accomplished with:
+
+```sh
+pipx install clown_sort[pycryptodome]
+```
+
+
 ### Configuring With `.clown_sort` File
 If there are command line options you find yourself specifying repeatedly you can place them in a `.clown_sort` file. When you invoke `sort_screenshots` the following locations will be checked for `.clown_sort`:
 
@@ -99,6 +106,11 @@ The default is to sort cryptocurrency related content but you can define your ow
 **This is an experimental feature.** It's only been tested on macOS.
 
 If you run with the `--manual-sort` command line the behavior is quite different. Rather than automatically sort files for you, instead for every file you will be greeted with a popup asking you for a desired filename and a radio button select of possible subdirectories off your `Sorted/` directory.
+
+To use this feature you must install the optional `PySimpleGUI` package which can be accomplished like this:
+```sh
+pipx install clown_sort[PySimpleGUI]
+```
 
 ![](doc/manual_select_box.png)
 

@@ -2,7 +2,6 @@
 Global configuration.
 """
 import csv
-import logging
 import re
 import sys
 from argparse import Namespace
@@ -10,7 +9,7 @@ from collections import namedtuple
 from importlib.metadata import version
 from os import environ
 from pathlib import Path
-from typing import List, Union
+from typing import List, Optional, Union
 
 from rich import box
 from rich.console import Console
@@ -169,12 +168,29 @@ def _check_for_pysimplegui():
     try:
         import PySimpleGUI as sg
     except ModuleNotFoundError:
-        console = Console()
         msg = Text('ERROR: ', style='bright_red')
-        msg.append('PySimpleGUI package must be installed before you can use the manual selector. Try running:', style='bright_white')
-        console.line(2)
-        console.print(msg)
-        console.line(2)
-        console.print("     pipx install clown_sort[PySimpleGUI]", style='bright_cyan')
-        console.line(2)
+
+        msg.append(
+            'PySimpleGUI package must be installed before you can use the manual selector. Try running:',
+            style='bright_white'
+        )
+        log_optional_module_warning('PySimpleGUI', msg)
         sys.exit()
+
+
+# TODO: it sucks that this is here but it's dependency hell otherwise
+def log_optional_module_warning(module_name: str, msg: Optional[Text] = None) -> None:
+    """msg is optional argument for a custom message, otherwise it's a warning"""
+    if msg is None:
+        msg = Text('WARNING: ', style='bright_red').append(
+            f"Optional package '{module_name}' not installed. . Try running:",
+            style='bright_white'
+        )
+
+    console = Console()
+    console.line(2)
+    console.print(msg)
+    console.line(2)
+    console.print(f"     pipx install clown_sort[{module_name}]", style='bright_cyan')
+    console.line(2)
+
