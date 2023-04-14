@@ -16,9 +16,8 @@ from clown_sort.config import Config
 from clown_sort.filename_extractor import FilenameExtractor
 from clown_sort.util.filesystem_helper import copy_file_creation_time
 from clown_sort.util.logging import log
-from clown_sort.util.rich_helper import (bullet_text, indented_bullet, console,
+from clown_sort.util.rich_helper import (bullet_text, comma_join, indented_bullet, console,
      copying_file_log_message, moving_file_log_message)
-from clown_sort.util.string_helper import comma_join
 
 MAX_EXTRACTION_LENGTH = 4096
 NOT_MOVING_FILE = "Not moving file to processed dir because it's"
@@ -60,7 +59,7 @@ class SortableFile:
             console.print(NO_SORT_FOLDERS_MSG)
             sort_folders = [None]
         else:
-            console.print(bullet_text(Text('Sort folders: ') + comma_join(sort_folders)))
+            console.print(bullet_text(Text('Sort folders: ') + comma_join(sort_folders, 'sort_folder')))
 
         # Copy the renamed file to all the folders whose sorting rules were matched.
         for folder in sort_folders:
@@ -75,10 +74,14 @@ class SortableFile:
             destination_path = self.sort_destination_path(folder)
 
             if destination_path.exists():
-                console.print(f"\nFile '{destination_path.name}' already exists in '{folder}/'!", style='blink')
+                console.line()
+                msg = Text('').append(f"WARNING", style='bright_yellow').append(f": File ")
+                msg.append(destination_path.name, style='cyan').append(" already exists in ")
+                msg.append(folder, style='sort_folder')
+                console.print(msg)
 
                 if not (Config.yes_overwrite or Confirm.ask(f"Overwrite?")):
-                    console.print("Skipping...")
+                    console.print("Skipping...", style='dim')
                     continue
 
             self._paths_of_sorted_copies.append(destination_path)

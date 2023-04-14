@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Optional, Union
+from typing import List, Optional, Union
 
 from rich.console import Console
 from rich.panel import Panel
@@ -36,7 +36,8 @@ COLOR_THEME_DICT = {
     'off_white': 'color(245)',
     'social_media': 'color(82)',
     'author': 'color(178)',
-    'sort_destination': 'color(62)',
+    'sort_destination': 'magenta',
+    'sort_folder': 'color(62)'
 }
 
 COLOR_THEME = Theme(COLOR_THEME_DICT)
@@ -85,6 +86,10 @@ def copying_file_log_message(basename: str, new_file: Path) -> Text:
 
 def moving_file_log_message(basename: str, new_file: Path) -> Text:
     return _file_operation_log_message(basename, new_file, 'Moving processed file')
+
+
+def comma_join(strs: List[str], style: str) -> Text:
+    return Text(", ").join([Text(s, style) for s in strs])
 
 
 def _file_operation_log_message(basename: str, new_file: Path, log_msg: str) -> Text:
