@@ -1,6 +1,6 @@
 # NEXT RELEASE
 * Handle unparseable PDFs with a warning instead of a crash.
-* New crypto sort rules
+* New crypto sort rules (MCB and CUBI now sorted to their own directories instead of 'Banks')
 
 ## 1.3.0
 * Ask for confirmation before overwriting files (`--yes-overwrite` option to skip the check)
