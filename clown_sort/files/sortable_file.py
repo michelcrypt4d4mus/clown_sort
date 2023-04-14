@@ -148,7 +148,7 @@ class SortableFile:
             console.print(copying_file_log_message(self.basename, destination_path))
             return
 
-        log_msg = Text('Copying to ')
+        log_msg = Text('').append('Copying to ', style='dim')
 
         if destination_path.parent == Config.destination_dir:
             console.print(indented_bullet(log_msg.append('root sorted dir...')))
@@ -216,7 +216,7 @@ class SortableFile:
             elif self._filename_extractor._is_reddit():
                 yield Text("It's a reddit post", style='social_media')
 
-        log_msg = Text('Destination filename: ').append(self.new_basename(), style='cyan dim')
+        log_msg = Text('Destination filename: ').append(self.new_basename(), style='cyan')
         yield bullet_text(log_msg)
 
         if Config.debug:
