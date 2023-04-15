@@ -41,6 +41,8 @@ def test_get_sort_folder():
     check_folders('fuck $CUBI', ['CUBI'])
     check_folders('fuck EOS ', ['EOS'])
     check_folders('fuck B. Blumer ', ['EOS'])
+    check_folders('fuck $FXS ', ['Frax'])
+    check_folders('fuck frxUSD ', ['Frax'])
     check_folders('fuck the brock coin', ['Blockchain Capital', 'Friedlander Group', 'Tether'])
     check_folders('fuck the brockpierce coin', ['Blockchain Capital','Friedlander Group', 'Tether'])
     check_folders('fuck justinsuntron it sucks', ['Justin Sun'])
