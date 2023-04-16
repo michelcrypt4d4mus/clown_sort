@@ -73,7 +73,11 @@ class SortableFile:
 
             destination_path = self.sort_destination_path(folder)
 
-            if destination_path.exists():
+            if destination_path == self.file_path:
+                msg = Text("Source and destination file are the same! Skipping...", style='mild_warning')
+                console.print(indented_bullet(msg))
+                continue
+            elif destination_path.exists():
                 console.line()
                 msg = Text('').append(f"WARNING", style='bright_yellow').append(f": File ")
                 msg.append(destination_path.name, style='cyan').append(" already exists in ")

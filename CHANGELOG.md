@@ -1,4 +1,7 @@
 # NEXT RELEASE
+* Make `--rescan-sorted` respect `--all` flag
+* Don't append empty string to images that no text was extracted from
+* More crypto sort rules
 
 ### 1.3.1
 * Handle unparseable PDFs with a warning instead of a crash.

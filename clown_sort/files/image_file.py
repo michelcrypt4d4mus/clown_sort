@@ -57,7 +57,7 @@ class ImageFile(SortableFile):
         if self._new_basename is not None:
             return self._new_basename
 
-        if self.extracted_text() is None:
+        if self.extracted_text() is None or len(self.extracted_text()) == 0:
             self._new_basename = self.basename
         else:
             self._filename_extractor = FilenameExtractor(self)

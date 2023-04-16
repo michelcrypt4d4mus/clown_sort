@@ -51,16 +51,17 @@ def set_screenshot_timestamps():
 def _rescan_sorted_screenshots():
     """Rescan sorted folders."""
     console.print(f"Rescanning '{Config.sorted_screenshots_dir}'...")
-    file_paths: List[str] = []
     sortable_files: List[SortableFile] = []
+    file_paths: List[str] = []
 
     for extname in IMAGE_FILE_EXTENSIONS:
         for pattern in ['*', '**/*']:
             glob_pattern = Config.sorted_screenshots_dir.joinpath(f"{pattern}{extname}")
+            log.debug(f"Adding '{glob_pattern}' to glob patterns...")
             file_paths.extend(glob(str(glob_pattern)))
 
     for file_path in file_paths:
-        if not Config.filename_regex.match(path.basename(file_path)):
+        if Config.screenshots_only and not Config.filename_regex.match(path.basename(file_path)):
             log.debug(f"Skipping '{file_path}' because it doesn't match the filename_regex...")
             continue
 

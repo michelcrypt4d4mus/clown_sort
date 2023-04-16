@@ -33,6 +33,7 @@ COLOR_THEME_DICT = {
     'grey.darker_italic': 'color(8) dim italic',
     'grey.darkest': 'color(235) dim',
     'grey.light': 'color(248)',
+    'mild_warning': 'color(228) dim',
     'off_white': 'color(245)',
     'social_media': 'color(82)',
     'author': 'color(178)',
