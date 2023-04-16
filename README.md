@@ -62,7 +62,7 @@ sort_screenshots -f '.*pdf$' -e
 pipx install clown_sort
 ```
 
-Some (not many) PDFs require the `pycryptodome` package. To avoid complicating the dependency situation this is offered as an optional installation which can be accomplished with `pipx install clown_sort[pycryptodome]`.
+Some (not many) PDFs require the `pycryptodome` package to be parsed. If you don't have it they will just not be parsed; only the filename will be used for sorting. To avoid complicating the dependency situation this is offered as an optional installation which can be accomplished with `pipx install clown_sort[pycryptodome]`.
 
 Updating to the latest version can be accomplished with `pipx upgrade clown_sort`.
 
