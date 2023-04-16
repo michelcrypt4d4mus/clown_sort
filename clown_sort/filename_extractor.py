@@ -8,6 +8,7 @@ from rich.text import Text
 
 from clown_sort.util.logging import log
 from clown_sort.util.rich_helper import console
+from clown_sort.util.string_helper import strip_bad_chars
 
 MAX_FILENAME_LENGTH = 225
 
@@ -54,7 +55,7 @@ class FilenameExtractor:
 
         if DUNE_ANALYTICS_REGEX.search(self.text):
             dune_match = DUNE_ANALYTICS_REGEX.search(self.text)
-            query_title = self._strip_bad_chars(dune_match.group(1))
+            query_title = strip_bad_chars(dune_match.group(1))
             filename_str = 'Dune Analytics "' + query_title + '" '
             new_filename = filename_str + self.image_file.basename
         elif self._is_tweet() or self._is_reddit():
@@ -80,9 +81,15 @@ class FilenameExtractor:
             new_filename += self.image_file.extname
 
         # If we already seem to have scanned the file then just return the filename
-        if self._is_text_already_in_filename(filename_str):
-            log.warning(f"'{filename_str}' already appears in filename, not renaming.")
+        # This is kind of cheating - we want the string cleaning of the body but not the rest
+        clean_filename_str = strip_bad_chars(filename_str)
+
+        if self._is_text_already_in_filename(clean_filename_str):
+            log.warning(f"'{clean_filename_str}' already appears in filename, not renaming.")
+            log.warning(f"Extracted text: '{self.text}'")
             return self.image_file.basename
+        else:
+            log.warning(f"\n'{clean_filename_str}'\nis not in\n'{self.image_file.basename}'\n")
 
         return new_filename
 
@@ -163,15 +170,9 @@ class FilenameExtractor:
 
     def _build_filename(self, filename_text: str, body: str) -> str:
         """Construct a workable filename."""
-        body = ' '.join(body.splitlines()).replace('\\s+', ' ')
-        body = re.sub('’', "'", body).replace('|', 'I').replace(',', ',')
-        body = self._strip_bad_chars(body)
+        body = strip_bad_chars(body)
         body = body[0:self.available_char_count - len(filename_text) - 2].strip()
         return f'{filename_text} - "{body}"'.replace('  ', ' ')
-
-    def _strip_bad_chars(self, text: str) -> str:
-        """Remove chars that don't work well in filenames"""
-        return re.sub('[^0-9a-zA-Z@.?_:\'" ()]+', '_', text)
 
     def _is_text_already_in_filename(self, filename_str: str) -> bool:
         """Check if the extracted text is already in the filename"""

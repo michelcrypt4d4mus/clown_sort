@@ -22,6 +22,7 @@ from clown_sort.util.rich_helper import console
 
 THUMBNAIL_DIMENSIONS = (400, 400)
 IMAGE_DESCRIPTION = 'ImageDescription'
+FILENAME_LENGTH_TO_CONSIDER_SORTED = 80
 
 EXIF_CODES = {
     IMAGE_DESCRIPTION: 270,
@@ -57,7 +58,9 @@ class ImageFile(SortableFile):
         if self._new_basename is not None:
             return self._new_basename
 
-        if self.extracted_text() is None or len(self.extracted_text()) == 0:
+        if self.extracted_text() is None \
+                or len(self.extracted_text()) == 0 \
+                or len(self.extracted_text()) > FILENAME_LENGTH_TO_CONSIDER_SORTED:
             self._new_basename = self.basename
         else:
             self._filename_extractor = FilenameExtractor(self)

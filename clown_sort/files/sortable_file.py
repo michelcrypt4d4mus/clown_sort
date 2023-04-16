@@ -55,6 +55,9 @@ class SortableFile:
             if Config.only_if_match:
                 console.print('No folder match and --only-if-match option selected. Skipping...')
                 return
+            elif Config.sorted_screenshots_dir in self.file_path.parents:
+                console.print("Not moving because no folder match and file already in a sorted folder...")
+                return
 
             console.print(NO_SORT_FOLDERS_MSG)
             sort_folders = [None]
@@ -78,6 +81,11 @@ class SortableFile:
                 console.print(indented_bullet(msg))
                 continue
             elif destination_path.exists():
+                if Config.rescan_sorted:
+                    msg = Text(f"'{destination_path.name}' already exists in {folder}, skipping...", style='mild_warning')
+                    console.print(indented_bullet(msg))
+                    continue
+
                 console.line()
                 msg = Text('').append(f"WARNING", style='bright_yellow').append(f": File ")
                 msg.append(destination_path.name, style='cyan').append(" already exists in ")
