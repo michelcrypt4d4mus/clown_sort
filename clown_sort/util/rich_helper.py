@@ -59,6 +59,10 @@ def bullet_text(msg: Union[str, Text], style: Optional[str] = None) -> Text:
     return Text(ARROW_BULLET).append(msg)
 
 
+def print_dim_bullet(msg: Union[str, Text]) -> None:
+    console.print(indented_bullet(msg), style='dim')
+
+
 def print_headline(headline: str) -> None:
     console.line(2)
     console.print(Panel(headline, style='reverse', width=60))
@@ -87,6 +91,19 @@ def copying_file_log_message(basename: str, new_file: Path) -> Text:
 
 def moving_file_log_message(basename: str, new_file: Path) -> Text:
     return _file_operation_log_message(basename, new_file, 'Moving processed file')
+
+
+def mild_warning(msg: str) -> None:
+    console.print(indented_bullet(Text(msg, style='mild_warning')))
+
+
+def warning_text(text: Union[str, Text]) -> Text:
+    msg = Text('').append(f"WARNING", style='bright_yellow').append(": ")
+
+    if isinstance(text, Text):
+        return msg + text
+    else:
+        return msg.append(text)
 
 
 def comma_join(strs: List[str], style: str) -> Text:

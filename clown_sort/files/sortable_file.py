@@ -16,8 +16,8 @@ from clown_sort.config import Config
 from clown_sort.filename_extractor import FilenameExtractor
 from clown_sort.util.filesystem_helper import copy_file_creation_time
 from clown_sort.util.logging import log
-from clown_sort.util.rich_helper import (bullet_text, comma_join, indented_bullet, console,
-     copying_file_log_message, moving_file_log_message)
+from clown_sort.util.rich_helper import (bullet_text, comma_join, console, copying_file_log_message,
+     indented_bullet, mild_warning, moving_file_log_message, print_dim_bullet)
 
 MAX_EXTRACTION_LENGTH = 4096
 NOT_MOVING_FILE = "Not moving file to processed dir because it's"
@@ -53,10 +53,10 @@ class SortableFile:
         # Handle the case where there are no matches to any configured folders.
         if len(sort_folders) == 0:
             if Config.only_if_match:
-                console.print('No folder match and --only-if-match option selected. Skipping...')
+                print_dim_bullet('No folder match and --only-if-match option selected. Skipping...')
                 return
             elif Config.sorted_screenshots_dir in self.file_path.parents:
-                console.print("Not moving because no folder match and file already in a sorted folder...")
+                print_dim_bullet("Not moving because no folder match and file already in a sorted folder...")
                 return
 
             console.print(NO_SORT_FOLDERS_MSG)
@@ -77,13 +77,11 @@ class SortableFile:
             destination_path = self.sort_destination_path(folder)
 
             if destination_path == self.file_path:
-                msg = Text("Source and destination file are the same! Skipping...", style='mild_warning')
-                console.print(indented_bullet(msg))
+                mild_warning("Source and destination file are the same! Skipping...")
                 continue
             elif destination_path.exists():
                 if Config.rescan_sorted:
-                    msg = Text(f"'{destination_path.name}' already exists in {folder}, skipping...", style='mild_warning')
-                    console.print(indented_bullet(msg))
+                    mild_warning(f"'{destination_path.name}' already exists in {folder}, skipping...")
                     continue
 
                 console.line()
