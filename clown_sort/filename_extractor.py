@@ -80,16 +80,8 @@ class FilenameExtractor:
             new_filename = self._build_filename(self.image_file.basename_without_ext, filename_str)
             new_filename += self.image_file.extname
 
-        # If we already seem to have scanned the file then just return the filename
-        # This is kind of cheating - we want the string cleaning of the body but not the rest
-        clean_filename_str = strip_bad_chars(filename_str)
-
-        if self._is_text_already_in_filename(clean_filename_str):
-            log.warning(f"'{clean_filename_str}' already appears in filename, not renaming.")
-            log.warning(f"Extracted text: '{self.text}'")
+        if self._is_text_already_in_filename(filename_str):
             return self.image_file.basename
-        else:
-            log.warning(f"\n'{clean_filename_str}'\nis not in\n'{self.image_file.basename}'\n")
 
         return new_filename
 
@@ -176,7 +168,15 @@ class FilenameExtractor:
 
     def _is_text_already_in_filename(self, filename_str: str) -> bool:
         """Check if the extracted text is already in the filename"""
-        return filename_str[0:100] in self.image_file.basename and len(filename_str) > MIN_LENGTH_FOR_DUPE_CHECK
+        clean_filename_str = strip_bad_chars(filename_str)
+
+        if filename_str[0:100] in self.image_file.basename and len(filename_str) > MIN_LENGTH_FOR_DUPE_CHECK:
+            log.debug(f"'{clean_filename_str}' already appears in filename, not renaming.")
+            log.debug(f"Extracted text: '{self.text}'")
+            return True
+        else:
+            log.debug(f"\n'{clean_filename_str}'\nis not in\n'{self.image_file.basename}'\n")
+            return False
 
     def _first_line(self) -> str:
         return self.text.split('\n')[0]

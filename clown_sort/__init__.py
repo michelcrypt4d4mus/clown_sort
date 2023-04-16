@@ -65,7 +65,6 @@ def _rescan_sorted_screenshots():
             log.debug(f"Skipping '{file_path}' because it doesn't match the filename_regex...")
             continue
 
-        log.debug(f"Re-sorting '{file_path}'")
         sortable_files.append(_build_sortable_file(file_path))
 
     console.print(
