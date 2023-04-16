@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.3.2
 * Make `--rescan-sorted` respect `--all` flag
 * Don't append empty string to images that no text was extracted from
 * More crypto sort rules
