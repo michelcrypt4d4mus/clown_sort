@@ -64,7 +64,7 @@ pipx install clown_sort
 
 Some (not many) PDFs require the `pycryptodome` package. To avoid complicating the dependency situation this is offered as an optional installation which can be accomplished with `pipx install clown_sort[pycryptodome]`.
 
-### Updating To Latest Version
+#### Updating To Latest Version
 `pipx upgrade clown_sort`
 
 
