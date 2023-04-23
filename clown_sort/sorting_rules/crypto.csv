@@ -30,8 +30,8 @@ Cardano,Cardano|[$\s]ADA[^\w]|Hoskinson|\bIOHK
 Cathie Wood,Cathie\s*Wood|\bARK(F|G|K|\s*Innovation|\s*Invest)
 Celsius,celsius|mashinsky|levity[-_\s]*and[-_\s]*love|celsian
 Circle,[@#]circle|usdc|circle[-_\s]*internet|disparte|\ballaire|jerallaire
-Coinbase,Coinbase|\$COIN|brian[-_\s]*armstrong|grewal\b
-Coinflex,Mark[-_\s]*Lamb|Roger[-_\s]*Ver|coinflex|Doug[-_\s]*Polk|OPNX|flexusd
+Coinbase,Coinbase|\$COIN|brian[-_\s]*armstrong|grewal\b|Asiff[-_\s]*Hirji|\bbalaji|Fred[-_\s]*Ehrsam
+Coinflex,Mark[-_\s]*Lamb|Roger[-_\s]*Ver|coinflex|Doug[-_\s]*Polk|OPNX|flexusd|Leslie[-_\s]*Lamb|dougpolkvids
 CompoundFi,compoundfi|leshner|\bgonen\b
 Cross River Bank,CRB|Cross[-_\s]*River|Prestige[-_\s]*Capital|bae[-_\s]*communications|Zenfi|PeerIQ|\bupstart\b|\bUPST\b|\bLeumi\b|Hapoalim
 Crypto.com,crypto[._]?com|CDC|[$#]CRO|\sCRO\s
@@ -39,6 +39,7 @@ CUBI,\$CUBI|Customers[-_\s]*Ban(k|corp)
 Custodia,custodia|caitlin[-_\s]*long
 DCG,DCG|digital\s*currency\s*group|sh?ill?bert|Grayscale|GBTC
 DWF,DWF|Andrey[-_\s]*Grachev|\bgrachev\b
+Effective Altruism,\bEA\b|effective[-_\s]*altruism
 El Salvador,El[-_\s]*Salvador|Bukele|Max[-_\s]*Keiser
 EOS,\bEOS\b|\bBlumer\b|Stan|@B1\b|Block[-_\.\s]One
 Euler Finance,\beuler\b
@@ -54,7 +55,7 @@ Gemini,Gemini|winklev|@cameron
 Genesis,Genesis|Michael\s?Moro
 Goldfinch,goldfinch
 Hex,\bHex\b|[#$]Hex|Pulsechain|Richard\s*Heart|Hexican
-Hoo,Hoo[-_\s]*Exchange|#Hoo\s|Rexy\s*(Hoo|Wang)
+Hoo,Hoo[-_\s]*(Research|Exchange)|#Hoo\s|Rexy\s*(Hoo|Wang)
 Huobi,huobi
 Jump Trading,Jump[-_\s]*Trading|@jump_
 Justin Sun,justin[-_\s]*sun|pgala|sunswap|sunyuchentron|poloniex|web3nina
@@ -87,6 +88,7 @@ OKX,oke?[cx]|star[-_\s]*xu
 Olympus DAO,\bOlympus\b|\bOHM\b
 OpenPayd,openpayd|CFD\s?Team
 OpenSea,OpenSea
+Paradigm,Fred[-_\s]*Ehrsam|paradigm\b
 Paxful,paxful|Ray[-_\s]*(Youssef|Savant)|Artur[-_\s]*Schaback
 Paxos,paxos|BUSD|USDP|PAXG
 Payrnet,payrnet|railsr|railsbank
