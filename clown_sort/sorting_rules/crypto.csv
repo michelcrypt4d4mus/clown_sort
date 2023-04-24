@@ -22,7 +22,7 @@ Bittrex,Bittrex|Ritchie[-_\s]*Lai|Kiran[-_\s]*Raj|John[-_\s]*Roth
 Bitzlato,Bitzlato
 Blockchain8,Blockchain8|tom[-_\s]*emmer|ritchie[-_\s]*torres|repritchie|Warren[-_\s]*Davidson|Byron[-_\s]*Donalds|Ted[-_\s]*Budd|Josh[-_\s]*Gotheimer|Jake[-_\s]*Auchincloss|Darren[-_\s]*Soto|ro[-_\s]*khanna|KMSmithDC|Kristin[-_\s]*Smith\b|Warren[-_\s]*Davidson
 Blockchain Capital,Blockchain[-_\s]*Capital|\bbrock\b|brockpierce
-BlockFi,BlockFi
+BlockFi,BlockFi|Zac[-_\s]*Prince|Brian[-_\s]*Oliver
 Blockstream,Blockstream
 Bored Ape Yacht Club,BAYC|Bored[-_\s]*Ape|yuga[-_\s]*labs
 Bros,cryptomanran|trillionUSD|nic[-_\s]*carter|bitboy|ben[-_\s]*armstrong|basedkarbon|thecryptolark|adam([-_\s]*back|3us)|@DegenSp|APompliano|IIICapital|\bMeltem\b|algodtrading|whatbitcoindid|CryptoKaleo|Mike[-_\s]*Alfred|natbrunell|natalie[-_\s]*brunell|stackersatoshi|Max[-_\s]*Keiser|Cowboy[-_\s]*Crypto|minimalcsgo|greg16676935420
@@ -96,7 +96,7 @@ OKX,oke?[cx]|star[-_\s]*xu
 Olympus DAO,\bOlympus\b|\bOHM\b
 OpenPayd,openpayd|CFD\s?Team
 OpenSea,OpenSea
-PAG,\bpag\b
+PAG,\bpag\b|Weijian[-_\s]*Shan
 Paradigm,Fred[-_\s]*Ehrsam|paradigm\b
 Paxful,paxful|Ray[-_\s]*(Youssef|Savant)|Artur[-_\s]*Schaback
 Paxos,paxos|BUSD|USDP|PAXG

@@ -2,15 +2,14 @@
 Decide on a filename string based on some OCR text.
 """
 import re
+from difflib import SequenceMatcher
 from typing import Optional
 
 from rich.text import Text
 
 from clown_sort.util.logging import log
 from clown_sort.util.rich_helper import console
-from clown_sort.util.string_helper import strip_bad_chars
-
-MAX_FILENAME_LENGTH = 225
+from clown_sort.util.string_helper import strip_bad_chars, strip_mac_screenshot
 
 TWEET_REPLY_REGEX = re.compile(
     'Replying to (@\\w{3,15}).*?\\n(?P<body>.*)',
@@ -36,7 +35,11 @@ REVEDDIT_REGEX = re.compile('Reveddit Real.?Time')
 SUBREDDIT_REGEX = re.compile('/r/(?P<subreddit>\\w+)|\\sse(lf|ir)\\.(?P<subreddit2>\\w+)')
 DUNE_ANALYTICS_REGEX = re.compile('Query results (.*) @\\w+')
 RETWEETED_REGEX = re.compile('(.*) Retweeted')
+
+MAX_FILENAME_LENGTH = 225
 MIN_LENGTH_FOR_DUPE_CHECK = 9
+DEFAULT_LENGTH_FOR_LONG_FILENAMES = 150
+MIN_SIMILARITY_RATIO_TO_BE_SAME = 0.80
 
 
 class FilenameExtractor:
@@ -64,8 +67,8 @@ class FilenameExtractor:
             else:
                 filename_str = self._filename_str_for_reddit()
 
+            filename_str = filename_str[0:-1] if filename_str.endswith('.') else filename_str
             filename = f"{filename_str} {self.image_file.basename_without_ext}"
-            filename = filename[0:-1] if filename.endswith('.') else filename
             new_filename = filename + self.image_file.extname
         elif self._is_reveddit():
             filename_str = 'Reveddit '
@@ -74,11 +77,12 @@ class FilenameExtractor:
             if subreddit_match is not None:
                 filename_str += 'r_' + (subreddit_match.group('subreddit') or subreddit_match.group('subreddit2'))
 
-            new_filename = filename_str[0:self.available_char_count - len(self.image_file.basename)]  + ' '
-            new_filename += self.image_file.basename
+            #new_filename = self._build_filename(filename_str, self.image_file.basename_without_ext)
+            new_filename = filename_str[0:self.available_char_count]  + ' ' + self.image_file.basename
+            #new_filename +=
         else:
-            filename_str = self.text[0:self.available_char_count]
-            new_filename = self._build_filename(self.image_file.basename_without_ext, filename_str)
+            filename_str = self.text[0:max(100, self.available_char_count)]
+            new_filename = self._build_filename(self.image_file.basename_without_ext, self.text)
             new_filename += self.image_file.extname
 
         if self._is_text_already_in_filename(filename_str):
@@ -165,14 +169,36 @@ class FilenameExtractor:
     def _build_filename(self, filename_text: str, body: str) -> str:
         """Construct a workable filename."""
         body = strip_bad_chars(body)
-        body = body[0:self.available_char_count - len(filename_text) - 2].strip()
+        end_position = self.available_char_count - len(filename_text) - 2
+        #import pdb;pdb.set_trace()
+        if end_position < 0:
+            end_position = DEFAULT_LENGTH_FOR_LONG_FILENAMES
+
+        body = body[0:end_position].strip()
         return f'{filename_text} - "{body}"'.replace('  ', ' ')
 
     def _is_text_already_in_filename(self, filename_str: str) -> bool:
         """Check if the extracted text is already in the filename"""
-        clean_filename_str = strip_bad_chars(filename_str)
 
-        if filename_str[0:100] in self.image_file.basename and len(filename_str) > MIN_LENGTH_FOR_DUPE_CHECK:
+        # Subtract 25 to account for the 'Screenshot at 2020-05-05' etc part of filename
+        chars_to_compare = min(len(filename_str), len(self.image_file.basename) - 25)
+        # In case it's < 0 or v. small
+        chars_to_compare = max(chars_to_compare, MIN_LENGTH_FOR_DUPE_CHECK)
+
+        # Cleanup strings before comparing
+        clean_filename_str = strip_mac_screenshot(strip_bad_chars(filename_str)[0:chars_to_compare])
+        clean_basename = strip_mac_screenshot(self.image_file.basename[0:chars_to_compare])
+        matcher = SequenceMatcher(None, clean_filename_str, clean_basename)
+        similarity = matcher.ratio()
+
+        is_duplicate_text = (matcher.ratio() > MIN_SIMILARITY_RATIO_TO_BE_SAME) \
+                         or (clean_filename_str in self.image_file.basename)
+
+        msg = f"Similarity of '{clean_filename_str}'\n  and '{clean_basename}'\n" \
+              f"  is {similarity} (is_duplicate_text: {is_duplicate_text})"
+        log.debug(msg)
+
+        if is_duplicate_text and len(filename_str) > MIN_LENGTH_FOR_DUPE_CHECK:
             log.debug(f"'{clean_filename_str}' already appears in filename, not renaming.")
             log.debug(f"Extracted text: '{self.text}'")
             return True

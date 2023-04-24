@@ -31,6 +31,7 @@ CRYPTO_RULES_CSV_PATH = str(SORTING_RULES_DIR.joinpath('crypto.csv'))
 
 
 # Filename regex stuff
+SCREENSHOT_REGEX = re.compile('Screen Shot (\\d{4}-\\d{2}-\\d{2} at \\d{1,2}\\.\\d{2}\\.\\d{2} [AP]M)')
 MAC_SCREENSHOT_REGEX = re.compile('Screen Shot (\\d{4}-\\d{2}-\\d{2} at \\d{1,2}\\.\\d{2}\\.\\d{2} [AP]M).(png|jpe?g)')
 ENV_FILENAME_REGEX = environ.get('CLOWN_SORT_FILENAME_REGEX')
 
