@@ -72,9 +72,10 @@ class FilenameExtractor:
             subreddit_match = SUBREDDIT_REGEX.search(self.text)
 
             if subreddit_match is not None:
-                filename_str += 'r_' + (subreddit_match.group('subreddit') or subreddit_match.group('subreddit2')) + ' '
+                filename_str += 'r_' + (subreddit_match.group('subreddit') or subreddit_match.group('subreddit2'))
 
-            new_filename = filename_str + self.image_file.basename
+            new_filename = filename_str[0:self.available_char_count - len(self.image_file.basename)]  + ' '
+            new_filename += self.image_file.basename
         else:
             filename_str = self.text[0:self.available_char_count]
             new_filename = self._build_filename(self.image_file.basename_without_ext, filename_str)
@@ -87,6 +88,7 @@ class FilenameExtractor:
 
     def _is_tweet(self) -> bool:
         """Return true if the text looks like a tweet."""
+        # TODO: the check for @crypto_oracle is a hack
         return TWEET_REGEX.search(self.text) is not None and '@crypto_oracle' not in self.text
 
     def _is_retweet(self) -> bool:
