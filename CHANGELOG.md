@@ -1,4 +1,6 @@
 # NEXT RELEASE
+* Handle more unparseable PDF issues
+* New crypto sort rules
 
 ### 1.3.2
 * Make `--rescan-sorted` respect `--all` flag
