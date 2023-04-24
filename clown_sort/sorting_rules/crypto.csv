@@ -23,6 +23,7 @@ Bitzlato,Bitzlato
 Blockchain8,Blockchain8|tom[-_\s]*emmer|ritchie[-_\s]*torres|repritchie|Warren[-_\s]*Davidson|Byron[-_\s]*Donalds|Ted[-_\s]*Budd|Josh[-_\s]*Gotheimer|Jake[-_\s]*Auchincloss|Darren[-_\s]*Soto|ro[-_\s]*khanna|KMSmithDC|Kristin[-_\s]*Smith\b|Warren[-_\s]*Davidson
 Blockchain Capital,Blockchain[-_\s]*Capital|\bbrock\b|brockpierce
 BlockFi,BlockFi
+Blockstream,Blockstream
 Bored Ape Yacht Club,BAYC|Bored[-_\s]*Ape|yuga[-_\s]*labs
 Bros,cryptomanran|trillionUSD|nic[-_\s]*carter|bitboy|ben[-_\s]*armstrong|basedkarbon|thecryptolark|adam([-_\s]*back|3us)|@DegenSp|APompliano|IIICapital|\bMeltem\b|algodtrading|whatbitcoindid|CryptoKaleo|Mike[-_\s]*Alfred|natbrunell|natalie[-_\s]*brunell|stackersatoshi|Max[-_\s]*Keiser|Cowboy[-_\s]*Crypto|minimalcsgo
 Bybit,\bBybit\b|Ben[-_\s]*Zhou|InvestByBit
@@ -30,13 +31,15 @@ Cardano,Cardano|[$\s]ADA[^\w]|Hoskinson|\bIOHK
 Cathie Wood,Cathie\s*Wood|\bARK(F|G|K|\s*Innovation|\s*Invest)
 Celsius,celsius|mashinsky|levity[-_\s]*and[-_\s]*love|celsian
 Circle,[@#]circle|usdc|circle[-_\s]*internet|disparte|\ballaire|jerallaire
+CMCC Global,CMCC[-_\s]*Global
 Coinbase,Coinbase|\$COIN|brian[-_\s]*armstrong|grewal\b|Asiff[-_\s]*Hirji|\bbalaji|Fred[-_\s]*Ehrsam
 Coinflex,Mark[-_\s]*Lamb|Roger[-_\s]*Ver|coinflex|Doug[-_\s]*Polk|OPNX|flexusd|Leslie[-_\s]*Lamb|dougpolkvids
 CompoundFi,compoundfi|leshner|\bgonen\b
 Cross River Bank,CRB|Cross[-_\s]*River|Prestige[-_\s]*Capital|bae[-_\s]*communications|Zenfi|PeerIQ|\bupstart\b|\bUPST\b|\bLeumi\b|Hapoalim
 Crypto.com,crypto[._]?com|CDC|[$#]CRO|\sCRO\s
-CUBI,\$CUBI|Customers[-_\s]*Ban(k|corp)
+CUBI,\bCUBI\b|Customers[-_\s]*Ban(k|corp)
 Custodia,custodia|caitlin[-_\s]*long
+dalle,craiyon
 DCG,DCG|digital\s*currency\s*group|sh?ill?bert|Grayscale|GBTC
 DWF,DWF|Andrey[-_\s]*Grachev|\bgrachev\b
 Effective Altruism,\bEA\b|effective[-_\s]*altruism
@@ -50,13 +53,14 @@ Fireblocks,fireblocks
 Frax,\bFrax\b|\bFRX|[\b#$]FXS
 Friedlander Group,Friedlander|Agro[-_\s]*Bank|all\s*year\*m|\bbrock\b|brockpierce|litvishhocker
 FTX,FTX|FTT|SBF|Trabucco|Bankman|Ellison|Nishad|Alameda|Moonstone|friedberg|autism\s*capital
+Galaxy Digital,novogratz|Alex[-_\s]*Thorn
 Gelato Network,Gelato[-_\s]*Network|\bSorbet[-_\s]*Finance|@gitpusha|hilmar[-_\s]*x|\bmistx\b|@_alchemistcoin|@ChaosLabs_NFT|Arrakis[-_\s]*Finance|Dave[-_\s]*Leibowitz|Hilmar[-_\s]*Orth|joehquak
 Gemini,Gemini|winklev|@cameron
 Genesis,Genesis|Michael\s?Moro
 Goldfinch,goldfinch
 Hex,\bHex\b|[#$]Hex|Pulsechain|Richard\s*Heart|Hexican
-Hoo,Hoo[-_\s]*(Research|Exchange)|#Hoo\s|Rexy\s*(Hoo|Wang)
-Huobi,huobi
+Hoo,Hoo[-_\s]*(Research|Exchange)|[#$]Hoo\b|Rexy\s*(Hoo|Wang)|\bhoo\b
+Huobi,huobi|jiao_newlife|jiaojiao|Leon[-_\s]*Li
 Jump Trading,Jump[-_\s]*Trading|@jump_
 Justin Sun,justin[-_\s]*sun|pgala|sunswap|sunyuchentron|poloniex|web3nina
 Kazakhstan,kazakhstan|Freedom[-_\s]*Holding|\balmaty|Timor[-_\s]*Turlov|\bFFIN[-_\s]*brokerage
@@ -68,6 +72,7 @@ Lexpunk Army,lexpunk|gabriel[-_\s]*shapiro|_gabrielShapir0|\blex_node\b
 Lifeboat Foundation,Lifeboat[-_\s]*Foundation
 North Korea,lazarus|North\s*Korea|pyongyang
 Paul LeRoux,leroux
+Polygon Labs,polygon[-_\s]*labs|ryan[-_\s]*watt\b|@Fwiz|Rebecca[-_\s]*Rettig|[#$]DOT\b
 MakerDAO,makerdao|[$#\s]DAI[^\w]
 Marathon,\$MARA|marathon
 Matthew Roszak,\broszak|matthewroszak
@@ -105,7 +110,7 @@ SEC,\bSEC(\b|Gov)|Gensler|Securities.{0,6}Exchange.{0,6}Commission
 Signature Bank,SBNY|Signature[-_\s]*Bank|Signet
 Silicon Valley Bank,si?vb|Silicon[-_\s]*Valley[-_\s]*Bank
 Silk Road,Silk[-_\s]*Road|\bulbricht|\bDPR\b
-Silvergate,\$SI|Silvergate|Alan\s*Lane|Eisele|[\s#]SEN[^\w]|Rebecca[-_\s]*Rettig
+Silvergate,\$SI|Silvergate|Alan\s*Lane|Eisele|\bSEN\b|SENnetwork|Rebecca[-_\s]*Rettig
 Solana,Solana|Serum
 Symbolic Capital,Symbolic[-_\s]*Capital|Lev[-_\s]Livnev
 TerraLuna,luna\b|do[-_\s]*kwon|stablekwon|\bterra\b|LFG|Macedo|\bLuna[-_\s]*Foundation\b
@@ -128,6 +133,7 @@ Wallet Addresses Monero,[48][0–9AB][1–9A-HJ-NP-Za-km-z]{93}
 Wallet Addresses Polkadot,1[0–9a-zA-Z]{47}
 Wallet Addresses Ripple,r[0–9a-zA-Z]{33}
 Wallet Addresses Stellar,G[0–9A-Z]{40,60}\b
+Waves,sasha35625|sasha\.waves|\bvires|sasha[-_\s]*ivanov|boris[-_\s]*titov|[$#]waves\b
 Wintermute,wintermute|\bbebop\b
-Wirecard,wirecard|\bmarsalek\b
-Wyre,wyre
+Wirecard,wirecard|\bmarsalek\b|\bBafin\b
+Wyre,\bwyre|sendwyre
