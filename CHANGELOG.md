@@ -1,5 +1,7 @@
 # NEXT RELEASE
-* Handle more unparseable PDF issues
+
+### 1.3.3
+* Handle more unparseable PDF issues more gracefully
 * New crypto sort rules
 
 ### 1.3.2
