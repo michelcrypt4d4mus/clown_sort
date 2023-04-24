@@ -36,6 +36,7 @@ class Config:
     debug: bool = False
     dry_run: bool = True
     manual_sort: bool = False
+    manual_fallback: bool = False
     only_if_match: bool = False
     leave_in_place: bool = False
     screenshots_only: bool = True
@@ -89,9 +90,13 @@ class Config:
             print("Processing all files in directory, not just 'Screenshot' files....")
             Config.screenshots_only = False
 
-        if args.manual_sort:
+        if args.manual_sort or args.manual_fallback:
             _check_for_pysimplegui()
-            Config.manual_sort = True
+
+            if args.manual_sort:
+                Config.manual_sort = True
+            if args.manual_fallback:
+                Config.manual_fallback = True
 
     @classmethod
     def set_directories(

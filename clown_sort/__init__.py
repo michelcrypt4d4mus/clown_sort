@@ -16,7 +16,7 @@ from clown_sort.config import Config
 from clown_sort.files.image_file import ImageFile
 from clown_sort.files.pdf_file import PdfFile
 from clown_sort.files.sortable_file import SortableFile
-from clown_sort.sort_selector import process_file
+from clown_sort.sort_selector import process_file_with_popup
 from clown_sort.util.filesystem_helper import (IMAGE_FILE_EXTENSIONS, files_in_dir, is_image, is_pdf,
      set_timestamp_based_on_screenshot_filename)
 from clown_sort.util.logging import log
@@ -36,7 +36,7 @@ def sort_screenshots():
                 print(f"'{image.file_path}' is not suitable for manual sort, skipping...")
                 continue
 
-            process_file(image)
+            process_file_with_popup(image)
         else:
             image.sort_file()
 

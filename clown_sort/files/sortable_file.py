@@ -14,6 +14,7 @@ from rich.text import Text
 
 from clown_sort.config import Config
 from clown_sort.filename_extractor import FilenameExtractor
+from clown_sort.sort_selector import process_file_with_popup
 from clown_sort.util.filesystem_helper import copy_file_creation_time
 from clown_sort.util.logging import log
 from clown_sort.util.rich_helper import (bullet_text, comma_join, console, copying_file_log_message,
@@ -52,7 +53,10 @@ class SortableFile:
 
         # Handle the case where there are no matches to any configured folders.
         if len(sort_folders) == 0:
-            if Config.only_if_match:
+            if Config.manual_fallback and self._can_be_presented_in_popup():
+                process_file_with_popup(self)
+                return
+            elif Config.only_if_match:
                 print_dim_bullet('No folder match and --only-if-match option selected. Skipping...')
                 return
             elif Config.sorted_screenshots_dir in self.file_path.parents:
@@ -193,6 +197,9 @@ class SortableFile:
             return
 
         remove(self.file_path)
+
+    def _can_be_presented_in_popup(self) -> bool:
+        return False
 
     def __str__(self) -> str:
         return str(self.file_path)

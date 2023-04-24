@@ -40,11 +40,12 @@ Cross River Bank,CRB|Cross[-_\s]*River|Prestige[-_\s]*Capital|bae[-_\s]*communic
 Crypto.com,crypto[._]?com|CDC|[$#]CRO|\sCRO\s
 CUBI,\bCUBI\b|Customers[-_\s]*Ban(k|corp)
 Custodia,custodia|caitlin[-_\s]*long
-dalle,craiyon
+dalle,craiyon|midjourney
 DCG,DCG|digital\s*currency\s*group|sh?ill?bert|Grayscale|GBTC
 DWF,DWF|Andrey[-_\s]*Grachev|\bgrachev\b
 Effective Altruism,\bEA\b|effective[-_\s]*altruism
 El Salvador,El[-_\s]*Salvador|Bukele|Max[-_\s]*Keiser
+Elon Musk,\bTesla\b|\bTSLA\b|\bElon\b|\bElmo\b
 EOS,\bEOS\b|\bBlumer\b|\bLarimer\b|@B1\b|Block[-_\.\s]One
 Euler Finance,\beuler\b
 FalconX,falconx
@@ -62,6 +63,7 @@ Goldfinch,goldfinch
 Hex,\bHex\b|[#$]Hex|Pulsechain|Richard\s*Heart|Hexican
 Hoo,Hoo[-_\s]*(Research|Exchange)|[#$]Hoo\b|Rexy\s*(Hoo|Wang)|\bhoo\b
 Huobi,huobi|jiao_newlife|jiaojiao|Leon[-_\s]*Li
+Iran,\bIran\b|\bIranian\b|Nobitex
 Jump Trading,Jump[-_\s]*Trading|@jump_
 Justin Sun,justin[-_\s]*sun|pgala|sunswap|sunyuchentron|poloniex|web3nina
 Kazakhstan,kazakhstan|Freedom[-_\s]*Holding|\balmaty|Timor[-_\s]*Turlov|\bFFIN[-_\s]*brokerage

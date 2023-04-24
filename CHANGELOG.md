@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Add `--manual-fallback` option
 
 ### 1.3.3
 * Handle more unparseable PDF issues more gracefully

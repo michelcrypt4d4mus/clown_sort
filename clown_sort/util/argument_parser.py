@@ -45,6 +45,9 @@ parser.add_argument('-d', '--destination-dir',
 parser.add_argument('-m', '--manual-sort', action='store_true',
                     help='causes a popup to be presented for each file where it can be manually named and a sorting destination selected (experimental)')
 
+parser.add_argument('-mf', '--manual-fallback', action='store_true',
+                    help='causes a popup to be presented for each file only as a fallback when no sort rules are matched (experimental)')
+
 parser.add_argument('-r', '--rules-csv',
                     action='append',
                     metavar='RULES_FILE.CSV',
