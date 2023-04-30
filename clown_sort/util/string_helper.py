@@ -14,4 +14,4 @@ def strip_bad_chars(text: str) -> str:
 
 
 def strip_mac_screenshot(text: str) -> str:
-    return re.sub(SCREENSHOT_REGEX, 'foo', text).strip()
+    return re.sub(SCREENSHOT_REGEX, '', text).strip()

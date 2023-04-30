@@ -1,5 +1,6 @@
 """
 Open a GUI window to allow manual name / select.
+TODO: rename to something more appropriate
 """
 import shutil
 import sys
@@ -15,7 +16,7 @@ from clown_sort.util.dict_helper import get_dict_key_by_value
 from clown_sort.util.logging import log
 from clown_sort.util.rich_helper import bullet_text, console, indented_bullet
 
-RADIO_COLS = 10
+RADIO_COLS = 11
 DELETE = 'Delete'
 OK = 'Move'
 OPEN = 'Preview Image'

@@ -77,16 +77,17 @@ class FilenameExtractor:
             if subreddit_match is not None:
                 filename_str += 'r_' + (subreddit_match.group('subreddit') or subreddit_match.group('subreddit2'))
 
-            #new_filename = self._build_filename(filename_str, self.image_file.basename_without_ext)
             new_filename = filename_str[0:self.available_char_count]  + ' ' + self.image_file.basename
-            #new_filename +=
         else:
             filename_str = self.text[0:max(100, self.available_char_count)]
             new_filename = self._build_filename(self.image_file.basename_without_ext, self.text)
-            new_filename += self.image_file.extname
+            new_filename = new_filename[0:MAX_FILENAME_LENGTH] + self.image_file.extname
 
         if self._is_text_already_in_filename(filename_str):
             return self.image_file.basename
+
+        if len(new_filename) > 255:
+            raise ValueError(f"'{new_filename}' is {len(new_filename)} chars")
 
         return new_filename
 
@@ -186,8 +187,8 @@ class FilenameExtractor:
         chars_to_compare = max(chars_to_compare, MIN_LENGTH_FOR_DUPE_CHECK)
 
         # Cleanup strings before comparing
-        clean_filename_str = strip_mac_screenshot(strip_bad_chars(filename_str)[0:chars_to_compare])
-        clean_basename = strip_mac_screenshot(self.image_file.basename[0:chars_to_compare])
+        clean_filename_str = strip_mac_screenshot(strip_bad_chars(filename_str))[0:chars_to_compare]
+        clean_basename = strip_mac_screenshot(self.image_file.basename)[0:len(clean_filename_str)]
         matcher = SequenceMatcher(None, clean_filename_str, clean_basename)
         similarity = matcher.ratio()
 
