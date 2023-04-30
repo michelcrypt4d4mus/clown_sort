@@ -171,7 +171,7 @@ class FilenameExtractor:
         """Construct a workable filename."""
         body = strip_bad_chars(body)
         end_position = self.available_char_count - len(filename_text) - 2
-        #import pdb;pdb.set_trace()
+
         if end_position < 0:
             end_position = DEFAULT_LENGTH_FOR_LONG_FILENAMES
 

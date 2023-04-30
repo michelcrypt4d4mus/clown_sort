@@ -18,7 +18,7 @@ from clown_sort.filename_extractor import FilenameExtractor
 from clown_sort.files.sortable_file import SortableFile
 from clown_sort.util.filesystem_helper import copy_file_creation_time
 from clown_sort.util.logging import log
-from clown_sort.util.rich_helper import console
+from clown_sort.util.rich_helper import console, warning_text
 
 THUMBNAIL_DIMENSIONS = (400, 400)
 IMAGE_DESCRIPTION = 'ImageDescription'
@@ -84,6 +84,13 @@ class ImageFile(SortableFile):
 
         try:
             self._extracted_text = pytesseract.image_to_string(self.pillow_image_obj())
+        except OSError as e:
+            if 'truncated' in str(e):
+                console.print(warning_text(f"Truncated image file! '{self.file_path}'!"))
+            else:
+                console.print_exception()
+                console.print(f"Error while extracting '{self.file_path}'!", style='bright_red')
+                raise e
         except Exception as e:
             console.print_exception()
             console.print(f"Error while extracting '{self.file_path}'!", style='bright_red')
