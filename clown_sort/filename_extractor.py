@@ -176,6 +176,10 @@ class FilenameExtractor:
             end_position = DEFAULT_LENGTH_FOR_LONG_FILENAMES
 
         body = body[0:end_position].strip()
+
+        if len(body) == 0:
+            return filename_text
+
         return f'{filename_text} - "{body}"'.replace('  ', ' ')
 
     def _is_text_already_in_filename(self, filename_str: str) -> bool:

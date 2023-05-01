@@ -1,7 +1,9 @@
 """
 Base class for sortable files of any type.
 """
+import re
 import shutil
+from collections import namedtuple
 from os import path, remove
 from pathlib import Path
 from typing import List, Optional, Union
@@ -19,6 +21,8 @@ from clown_sort.util.filesystem_helper import copy_file_creation_time
 from clown_sort.util.logging import log
 from clown_sort.util.rich_helper import (bullet_text, comma_join, console, copying_file_log_message,
      indented_bullet, mild_warning, moving_file_log_message, print_dim_bullet)
+
+RuleMatch = namedtuple('RuleMatch', ['folder', 'match'])
 
 MAX_EXTRACTION_LENGTH = 4096
 NOT_MOVING_FILE = "Not moving file to processed dir because it's"
@@ -38,21 +42,25 @@ class SortableFile:
         self._paths_of_sorted_copies: List[Path] = []
 
     @classmethod
-    def get_sort_folders(cls, search_text: Optional[str]) -> List[str]:
+    def get_sort_folders(cls, search_text: Optional[str]) -> List[RuleMatch]:
         """Find any folders that could be relevant."""
         if search_text is None:
             return []
 
-        return [sr.folder for sr in Config.sort_rules if sr.regex.search(search_text)]
+        return [
+            RuleMatch(sr.folder, sr.regex.search(search_text))
+            for sr in Config.sort_rules if sr.regex.search(search_text)
+        ]
 
     def sort_file(self) -> None:
         """Sort the file to destination_dir subdir."""
         console.print(self)
         search_text = self.basename_without_ext + ' ' + (self.extracted_text() or '')
-        sort_folders = type(self).get_sort_folders(search_text)
+        rule_matches = type(self).get_sort_folders(search_text)
+        sort_folders = [rm.folder for rm in rule_matches]
 
         # Handle the case where there are no matches to any configured folders.
-        if len(sort_folders) == 0:
+        if len(rule_matches) == 0:
             if Config.manual_fallback and self._can_be_presented_in_popup():
                 process_file_with_popup(self)
                 return
@@ -69,9 +77,14 @@ class SortableFile:
             console.print(bullet_text(Text('Sort folders: ') + comma_join(sort_folders, 'sort_folder')))
 
         # Copy the renamed file to all the folders whose sorting rules were matched.
-        for folder in sort_folders:
+        for rule_match in rule_matches:
             # Create the subdir if it doesn't exist.
-            if folder is not None:
+            folder = None
+            match = None
+
+            if rule_match is not None:
+                folder = rule_match.folder
+                match = rule_match.match
                 destination_dir = Config.sorted_screenshots_dir.joinpath(folder)
 
                 if not destination_dir.is_dir() and not Config.dry_run:
@@ -99,7 +112,7 @@ class SortableFile:
                     continue
 
             self._paths_of_sorted_copies.append(destination_path)
-            self.copy_file_to_sorted_dir(destination_path)
+            self.copy_file_to_sorted_dir(destination_path, match)
 
         if Config.leave_in_place:
             console.print(bullet_text(Text('Leaving in place...', style='dim')))
@@ -133,13 +146,13 @@ class SortableFile:
             log.warning("ExifTool not found; EXIF data ignored. 'brew install exiftool' may solve this.")
             return {}
 
-    def copy_file_to_sorted_dir(self, destination_path: Path):
+    def copy_file_to_sorted_dir(self, destination_path: Path, match: Optional[re.Match] = None):
         """Move or copy the file to destination_subdir."""
         if self.file_path == destination_path:
             console.print(indented_bullet("Source and destination are the same..."))
             return
 
-        self._log_copy_file(destination_path)
+        self._log_copy_file(destination_path, match)
 
         if Config.dry_run:
             console.print(indented_bullet("Dry run so not actually copying...", style='dim'))
@@ -156,7 +169,7 @@ class SortableFile:
 
         return destination_path.joinpath(self.new_basename())
 
-    def _log_copy_file(self, destination_path: Path) -> None:
+    def _log_copy_file(self, destination_path: Path, match: Optional[re.Match] = None) -> None:
         """Log info about a file copy."""
         if Config.debug:
             console.print(copying_file_log_message(self.basename, destination_path))
@@ -168,6 +181,12 @@ class SortableFile:
             console.print(indented_bullet(log_msg.append('root sorted dir...')))
         else:
             log_msg.append(str(destination_path.parent), style='sort_destination')
+
+            if match is not None:
+                log_msg.append(f" (matched '", style='dim')
+                log_msg.append(match.group(0).strip(), style='magenta dim')
+                log_msg.append("')", style='dim')
+
             console.print(indented_bullet(log_msg.append('...')))
 
     def _move_to_processed_dir(self) -> None:

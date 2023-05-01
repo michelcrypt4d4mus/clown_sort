@@ -6,6 +6,7 @@ EXIF: https://blog.matthewgove.com/2022/05/13/how-to-bulk-edit-your-photos-exif-
 Tags: https://exiftool.org/TagNames/EXIF.html
 """
 import io
+import re
 from pathlib import Path
 from typing import Optional
 
@@ -15,7 +16,7 @@ from PIL.ExifTags import TAGS
 
 from clown_sort.config import Config
 from clown_sort.filename_extractor import FilenameExtractor
-from clown_sort.files.sortable_file import SortableFile
+from clown_sort.files.sortable_file import RuleMatch, SortableFile
 from clown_sort.util.filesystem_helper import copy_file_creation_time
 from clown_sort.util.logging import log
 from clown_sort.util.rich_helper import console, warning_text
@@ -30,7 +31,7 @@ EXIF_CODES = {
 
 
 class ImageFile(SortableFile):
-    def copy_file_to_sorted_dir(self, destination_path: Path) -> Path:
+    def copy_file_to_sorted_dir(self, destination_path: Path, match: Optional[re.Match] = None) -> Path:
         """
         Copies to a new file and injects the ImageDescription exif tag.
         If :destination_subdir is given new file will be in :destination_subdir off
@@ -38,7 +39,7 @@ class ImageFile(SortableFile):
         """
         exif_data = self.raw_exif_dict()
         exif_data.update([(EXIF_CODES[IMAGE_DESCRIPTION], self.extracted_text())])
-        self._log_copy_file(destination_path)
+        self._log_copy_file(destination_path, match)
 
         if Config.dry_run:
             return destination_path
