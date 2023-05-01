@@ -1,5 +1,7 @@
 # NEXT RELEASE
 * Add `--manual-fallback` option
+* Handle truncated image file binary errors
+* New crypto sorting rules
 
 ### 1.3.3
 * Handle more unparseable PDF issues more gracefully

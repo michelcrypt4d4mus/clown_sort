@@ -193,9 +193,12 @@ def log_optional_module_warning(module_name: str, msg: Optional[Text] = None) ->
         )
 
     console = Console()
-    console.line(2)
+    console.line()
     console.print(msg)
-    console.line(2)
+    console.line()
     console.print(f"     pipx install clown_sort[{module_name}]", style='bright_cyan')
-    console.line(2)
-
+    console.line()
+    console.print(f"(or 'poetry install --all-extras' if you're in a development environment)")
+    console.line()
+    console.print(f"You make also need to install 'python-tk'.")
+    console.print("In macOS this can be installed with 'brew install python-tk'.")
