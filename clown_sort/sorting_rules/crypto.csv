@@ -10,7 +10,7 @@ Aptos,\bAptos\b
 Art,occult
 Avalanche,\bAvax|AVAX\b|avalanche
 Banks,SEBA[^a-z]|Credit[-_\s]*Suisse|SJMBT|Sygnum|Celtic[-_\s]*Bank|\bMercury\b|Choice[-_\s]*Financial[-_\s]*Group|\$FRC|Commercium[-_\s]*Financial|\bmetabank|\bHBAN\b|Huntington[-_\s]*Bancshares
-Bankless,Bankless
+Bankless,Bankless|David[-_\s]*Hoffman
 Biconomy,\bBiconomy|Omchain
 Binary Options,binary[-_\s]*options
 Binance,binance|biconomy|\bbnb\b|\bbsc\b|\bcz\b|\bbifinity\b|binaryx|\bbillance|changpeng|joselito|paysafe|\bSwipe[-_\s]*(IO|Wallet)|\bkeyway|\bkey[-_\s]*vision|\bTrustWallet\b|BUSD|\boztures|Kaiser[-_\s]*Ng|InvestByBit
@@ -34,7 +34,7 @@ Cathie Wood,Cathie\s*Wood|\bARK(F|G|K|\s*Innovation|\s*Invest)
 Celsius,celsius|mashinsky|levity[-_\s]*and[-_\s]*love|celsian
 Circle,[@#]circle|usdc|circle[-_\s]*internet|disparte|\ballaire|jerallaire
 CMCC Global,CMCC[-_\s]*Global
-Coinbase,Coinbase|\$COIN|brian[-_\s]*armstrong|grewal\b|Asiff[-_\s]*Hirji|\bbalaji|Fred[-_\s]*Ehrsam|\bremitly\b|\$RELY
+Coinbase,Coinbase|\$COIN|brian[-_\s]*armstrong|grewal\b|Asiff[-_\s]*Hirji|\bbalaji|Fred[-_\s]*Ehrsam|\bremitly\b|\$RELY\b
 Coinflex,Mark[-_\s]*Lamb|Roger[-_\s]*Ver|coinflex|Doug[-_\s]*Polk|OPNX|flexusd|Leslie[-_\s]*Lamb|dougpolkvids
 CoinLoan,coinloan|Faliushin
 CompoundFi,compoundfi|leshner|\bgonen\b
@@ -132,16 +132,16 @@ Vauld,Vauld
 VCs,venture[-_\s]*capital|\bVCs?\b|calacanis|@jason\b|david[-_\s]*sacks|\bthiel\b|sequoia|founders[-_\s]*fund|Valar[-_\s]*Ventures|6th[-_\s]*Man[-_\s]*Ventures|Northzone|Warburg[-_\s]*Serres|Alan[-_\s]*Howard|Tiger[-_\s]*Global
 Voyager,voyager
 Wallet Addresses BCH,bitcoincash:q.*\b
-Wallet Addresses Bitcoin,(bc1|[13])[a-zA-HJ-NP-Z0–9]{25,39}\b
-Wallet Addresses Cardano,addr1[a-z0–9]+\b
-Wallet Addresses Cosmos,cosmos[a-zA-Z0–9_.-]{10,}\b
-Wallet Addresses Dash,X[1–9A-HJ-NP-Za-km-z]{33}
-Wallet Addresses Doge,\sD[a-zA-Z0–9_.-]{33}
-Wallet Addresses Ethereum,0x[a-fA-F0–9]{40}
-Wallet Addresses Monero,[48][0–9AB][1–9A-HJ-NP-Za-km-z]{93}
-Wallet Addresses Polkadot,1[0–9a-zA-Z]{47}
-Wallet Addresses Ripple,r[0–9a-zA-Z]{33}
-Wallet Addresses Stellar,G[0–9A-Z]{40,60}\b
+Wallet Addresses Bitcoin,\b(bc1|[13])[a-zA-HJ-NP-Z0–9]{25,39}\b
+Wallet Addresses Cardano,\baddr1[a-z0–9]+\b
+Wallet Addresses Cosmos,\bcosmos[a-zA-Z0–9_.-]{10,}\b
+Wallet Addresses Dash,\bX[1–9A-HJ-NP-Za-km-z]{33}
+Wallet Addresses Doge,\bD[a-zA-Z0–9_.-]{33}
+Wallet Addresses Ethereum,\b0x[a-fA-F0–9]{40}
+Wallet Addresses Monero,\b[48][0–9AB][1–9A-HJ-NP-Za-km-z]{93}
+Wallet Addresses Polkadot,\b1[0–9a-zA-Z]{47}
+Wallet Addresses Ripple,\br[0–9a-zA-Z]{33}
+Wallet Addresses Stellar,\bG[0–9A-Z]{40,60}\b
 Waves,sasha35625|sasha\.waves|\bvires|sasha[-_\s]*ivanov|boris[-_\s]*titov|[$#]waves\b
 Wintermute,wintermute|\bbebop\b
 Wirecard,wirecard|\bmarsalek\b|\bBafin\b

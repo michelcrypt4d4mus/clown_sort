@@ -1,6 +1,7 @@
 # NEXT RELEASE
 * Add `--manual-fallback` option
 * Handle truncated image file binary errors
+* Display the string that matched the rule when copying
 * New crypto sorting rules
 
 ### 1.3.3
