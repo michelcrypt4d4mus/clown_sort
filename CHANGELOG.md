@@ -1,6 +1,6 @@
 # NEXT RELEASE
 
-# 1.4.0
+## 1.4.0
 * Add `--manual-fallback` option
 * Handle truncated image file binary errors
 * Display the string that matched the rule when copying
