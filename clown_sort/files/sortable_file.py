@@ -73,6 +73,7 @@ class SortableFile:
 
             console.print(NO_SORT_FOLDERS_MSG)
             sort_folders = [None]
+            rule_matches = [None]
         else:
             console.print(bullet_text(Text('Sort folders: ') + comma_join(sort_folders, 'sort_folder')))
 
@@ -187,7 +188,7 @@ class SortableFile:
                 log_msg.append(match.group(0).strip(), style='magenta dim')
                 log_msg.append("')", style='dim')
 
-            console.print(indented_bullet(log_msg.append('...')))
+            console.print(indented_bullet(log_msg))
 
     def _move_to_processed_dir(self) -> None:
         """Relocate the original file to the [SCREENSHOTS_DIR]/Processed/ folder."""
