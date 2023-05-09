@@ -2,6 +2,7 @@
 * Add `--manual-fallback` option
 * Handle truncated image file binary errors
 * Display the string that matched the rule when copying
+* Better handling of re-scanning already sorted files
 * New crypto sorting rules
 
 ### 1.3.3
