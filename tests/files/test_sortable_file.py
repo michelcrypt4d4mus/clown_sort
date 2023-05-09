@@ -87,4 +87,5 @@ def test_get_sort_folder():
 
 
 def check_folders(search_string: str, expected_folders: List[str]) -> None:
-    assert SortableFile.get_sort_folders(search_string) == expected_folders
+    folders = [rm.folder for rm in SortableFile.get_sort_folders(search_string)]
+    assert folders == expected_folders
