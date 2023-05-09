@@ -1,3 +1,7 @@
+![Python Version](https://img.shields.io/pypi/pyversions/clown_sort)
+![Release](https://img.shields.io/pypi/v/clown_sort)
+![Downloads](https://img.shields.io/pypi/dm/clown_sort)
+
 # CLOWN SORT
 Sometimes someone is being a clown on the internet. Somewhere on your hard drive is the perfect screenshot to prove to the world that the clown in question is a fool, a hypocrite, a criminal, or worse. But then - horrors - you can't find the screenshot! It has been lost in your vast archive of screenshots of clowns clowning themselves on the internet.
 
