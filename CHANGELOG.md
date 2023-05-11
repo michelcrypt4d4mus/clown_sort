@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* New default crypto sort rules
 
 ## 1.4.0
 * Add `--manual-fallback` option
