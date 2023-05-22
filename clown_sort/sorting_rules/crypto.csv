@@ -102,7 +102,7 @@ Near Protocol,NEAR[-_\s]*Protocol|[$#]near\b|\bavichal\b|Rebecca[-_\s]*Rettig
 Nexo,\bNexo\b|Antoni[-_\s]*Trenchev|Georgi[-_\s]*Shulev|Lydia[-_\s]*Shuleva
 NFTs,crypto[-_\s]*punk|pudgy[-_\s]*penguin
 OKX,oke?[cx]|star[-_\s]*xu
-Olympus DAO,\bOlympus\b|\bOHM\b
+Olympus DAO,\bOlympus\b|OlympusDAO|\bOHM\b
 OpenPayd,openpayd|CFD\s?Team
 OpenSea,OpenSea
 PAG,\bpag\b|Weijian[-_\s]*Shan

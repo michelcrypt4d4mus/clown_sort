@@ -96,6 +96,10 @@ class Config:
             if args.manual_sort:
                 Config.manual_sort = True
             if args.manual_fallback:
+                if Config.only_if_match:
+                    Console().print('Only one of --manual-fallback and --only-if-match can be specified.', style='red')
+                    sys.exit()
+
                 Config.manual_fallback = True
 
     @classmethod
