@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.4.1
 * Make --manual-fallback and --only-if-match mutually exclusive
 * New default crypto sort rules
 
