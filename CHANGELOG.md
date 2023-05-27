@@ -1,6 +1,6 @@
 # NEXT RELEASE
 
-# 1.6.0
+## 1.6.0
 * PDF previews in manual sorting windows
 
 ### 1.5.2
