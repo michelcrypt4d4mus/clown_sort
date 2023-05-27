@@ -69,7 +69,7 @@ sort_screenshots -a -mf -e
 pipx install clown_sort
 ```
 
-Some (not many) PDFs require the `pycryptodome` package to be parsed. If you don't have it they will just not be parsed; only the filename will be used for sorting. To avoid complicating the dependency situation this is offered as an optional installation which can be accomplished with `pipx install clown_sort[pycryptodome]`.
+Some (not many) PDFs require the `pycryptodome` package to be parsed. If you don't have it they will just not be parsed; only the filename will be used for sorting. To avoid complicating the dependency situation this is offered as an optional installation which can be accomplished with `pipx install clown_sort[pdf]`.
 
 Updating to the latest version can be accomplished with `pipx upgrade clown_sort`.
 
@@ -116,7 +116,7 @@ A related command line option is `--manual-fallback` which will popup a window o
 
 To use this feature you must install the optional `PySimpleGUI` package which can be accomplished like this:
 ```sh
-pipx install clown_sort[PySimpleGUI]
+pipx install clown_sort[gui]
 ```
 
 ![](doc/manual_select_box.png)
