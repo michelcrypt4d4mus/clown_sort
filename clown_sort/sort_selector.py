@@ -2,10 +2,9 @@
 Open a GUI window to allow manual name / select.
 TODO: rename to something more appropriate
 """
-import shutil
+import platform
 import sys
 from os import path, remove
-from subprocess import run
 
 from clown_sort.config import Config
 from clown_sort.filename_extractor import FilenameExtractor
@@ -49,8 +48,7 @@ def process_file_with_popup(image: 'ImageFile') -> None:
         event, values = window.Read()
 
         if event == OPEN:
-            log.info(f"Opening '{image.file_path}'")
-            run(['open', image.file_path])
+            image.preview()
             continue
 
         window.close()
