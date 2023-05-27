@@ -287,24 +287,24 @@ def ocr_image(do_kwon_tweet):
 
 def test_tweet_filenames(ocr_image):
     ocr_image._extracted_text = WUBLOCKCHAIN_TWEET_TEXT
-    assert FilenameExtractor(ocr_image).filename() == 'Tweet by @WuBlockchain - "a16z voted 15 million UNI against the final proposal to deploy Uniswap V3 on BNB Chain proposed by OxPlasma Labs. The proposal uses Wormhole as a cross_chain bridge. a16z o" do_kwon_debate_the_poor.jpeg'
+    assert FilenameExtractor(ocr_image).filename() == 'Tweet by @WuBlockchain - "a16z voted 15 million UNI against the final proposal to deploy Uniswap V3 on BNB Chain proposed by OxPlasma Labs. The proposal uses Wormhole as a cross-chain bridge. a16z o" do_kwon_debate_the_poor.jpeg'
     ocr_image._extracted_text = REPLY_TWEET_TEXT
-    assert FilenameExtractor(ocr_image).filename() == 'Tweet by @gedaominas replying to @tier10k - "The same thing happened with their SEPA transfers a couple of years ago. Just because Binance isn\'t licensed for money institution activities_ they have" do_kwon_debate_the_poor.jpeg'
+    assert FilenameExtractor(ocr_image).filename() == 'Tweet by @gedaominas replying to @tier10k - "The same thing happened with their SEPA transfers a couple of years ago. Just because Binance isn\'t licensed for money institution activities, they have" do_kwon_debate_the_poor.jpeg'
     ocr_image._extracted_text = TIMESTAMPED_TWEET_TEXT
-    assert FilenameExtractor(ocr_image).filename() == 'Tweet by @tier10k - "_DB_ SEC Probe Into Kraken at an Advanced Stage and Could Lead to a Settlement in Coming Days: Bloomberg 3:55 PM _ Feb 8_ 2023 _ 77.3K Views" do_kwon_debate_the_poor.jpeg'
+    assert FilenameExtractor(ocr_image).filename() == 'Tweet by @tier10k - "_DB_ SEC Probe Into Kraken at an Advanced Stage and Could Lead to a Settlement in Coming Days: Bloomberg 3:55 PM - Feb 8, 2023 - 77.3K Views" do_kwon_debate_the_poor.jpeg'
     ocr_image._extracted_text = GABOR_TWEET_TEXT
     assert FilenameExtractor(ocr_image).filename() == 'Tweet by @gaborgurbacs - "I think this Coinbase media campaign will have the opposite effect. USDC users will learn about USDT and convert to USDT as they question the motivations and rationale of" do_kwon_debate_the_poor.jpeg'
     ocr_image._extracted_text = BAD_OCR_TWEET
     assert FilenameExtractor(ocr_image).filename() == 'Tweet by @ASYB111 replying to @cz_binance - "Any updates on send cash feature? It is temporarily disabled. 1o) td iv) ily 399 a_" do_kwon_debate_the_poor.jpeg'
     ocr_image._extracted_text = TWITTER_CZ
-    assert FilenameExtractor(ocr_image).filename() == 'Tweet by @cz_binance - "7) Binance always encourages collaboration between industry players. i: Regarding any speculation as to whether this is a move against a competitor_ it is not. Our industry i" do_kwon_debate_the_poor.jpeg'
+    assert FilenameExtractor(ocr_image).filename() == 'Tweet by @cz_binance - "7) Binance always encourages collaboration between industry players. i: Regarding any speculation as to whether this is a move against a competitor, it is not. Our industry i" do_kwon_debate_the_poor.jpeg'
 
 
 def test_retweet_filenames(parrot_retweet):
     extractor = FilenameExtractor(ImageFile(parrot_retweet))
     assert extractor._is_retweet()
     assert extractor._retweeter() == 'Jack'
-    assert extractor.filename() == 'Retweeted by Jack - Tweet by @ParrotCapital - "A_IMPORTANT A Check the following hashtags: _CrossRiver _CrossRiverBank @MikeBurgersburg _ @Cryptadamist have been digging in_ as _Coinbase _COIN uses this bank_" parrot_retweet.png'
+    assert extractor.filename() == 'Retweeted by Jack - Tweet by @ParrotCapital - "A_IMPORTANT A Check the following hashtags: #CrossRiver #CrossRiverBank @MikeBurgersburg _ @Cryptadamist have been digging in, as #Coinbase $COIN uses this bank," parrot_retweet.png'
 
 
 def test_reddit_filenames(ocr_image):
@@ -315,9 +315,9 @@ def test_reddit_filenames(ocr_image):
     ocr_image._extracted_text = REDDIT_R_CRYPTOCURRENCY_REPLY
     assert FilenameExtractor(ocr_image).filename() == 'Reddit post by Roberto9410 - "Wow the downfall of BUSD is something to see _p. 1_4" do_kwon_debate_the_poor.jpeg'
     ocr_image._extracted_text = REDDIT_DEBIT_COMMENT
-    assert FilenameExtractor(ocr_image).filename() == 'Reddit post by Spmhealy_ADA - "show my Debit card number) Can\'t use Debit to deposit fiat. Don\'t even see that as an option. I see link bank (which I picked for instant use) ACH (3_5 day to clear) o" do_kwon_debate_the_poor.jpeg'
+    assert FilenameExtractor(ocr_image).filename() == 'Reddit post by Spmhealy_ADA - "show my Debit card number) Can\'t use Debit to deposit fiat. Don\'t even see that as an option. I see link bank (which I picked for instant use) ACH (3-5 day to clear) o" do_kwon_debate_the_poor.jpeg'
     ocr_image._extracted_text = REDDIT_POST_2
-    assert FilenameExtractor(ocr_image).filename() == 'Reddit post by cho0n22 - "0 Thave the blue card and it\'s not working v My blue card isn\'t being accepted for online payments_ have not tried in person yet. Is it because I have nothing staked? Says" do_kwon_debate_the_poor.jpeg'
+    assert FilenameExtractor(ocr_image).filename() == 'Reddit post by cho0n22 - "0 Thave the blue card and it\'s not working v My blue card isn\'t being accepted for online payments, have not tried in person yet. Is it because I have nothing staked? Says" do_kwon_debate_the_poor.jpeg'
 
 
 def test_reveddit_filenames(ocr_image):
@@ -332,4 +332,4 @@ def test_dune_analytics_filename(ocr_image):
 
 def test_everything_else_filename(ocr_image):
     ocr_image._extracted_text = PARANOID_STYLE
-    assert FilenameExtractor(ocr_image).filename() == 'do_kwon_debate_the_poor - "It was Welch who promised to cut communists and "comsymps" (sympathizers) from the fabric of American society. It was Welch who called then_President Dwight D. Eisenhower".jpeg'
+    assert FilenameExtractor(ocr_image).filename() == 'do_kwon_debate_the_poor - "It was Welch who promised to cut communists and "comsymps" (sympathizers) from the fabric of American society. It was Welch who called then-President Dwight D. Eisenhower".jpeg'
