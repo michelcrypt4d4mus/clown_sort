@@ -31,7 +31,7 @@ EXIF_CODES = {
 
 
 class ImageFile(SortableFile):
-    def copy_file_to_sorted_dir(self, destination_path: Path, match: Optional[re.Match] = None) -> Path:
+    def copy_file_to_sorted_dir(self, destination_path: Path, match: Optional[re.Match] = None) -> None:
         """
         Copies to a new file and injects the ImageDescription exif tag.
         If :destination_subdir is given new file will be in :destination_subdir off
@@ -42,7 +42,7 @@ class ImageFile(SortableFile):
         self._log_copy_file(destination_path, match)
 
         if Config.dry_run:
-            return destination_path
+            return
 
         try:
             self.pillow_image_obj().save(destination_path, exif=exif_data)
@@ -51,8 +51,6 @@ class ImageFile(SortableFile):
             console.print_exception()
             console.print(f"ERROR while processing '{self.file_path}'", style='bright_red')
             raise e
-
-        return destination_path
 
     def new_basename(self) -> str:
         """Return a descriptive string usable in a filename."""

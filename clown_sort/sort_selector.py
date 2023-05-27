@@ -7,9 +7,6 @@ import sys
 from os import path, remove
 from subprocess import run
 
-from rich.panel import Panel
-from rich.text import Text
-
 from clown_sort.config import Config
 from clown_sort.filename_extractor import FilenameExtractor
 from clown_sort.util.logging import log
@@ -68,6 +65,7 @@ def process_file_with_popup(image: 'ImageFile') -> None:
         elif event == OK:
             break
 
+    log.debug(f"All values: {values}")
     chosen_filename = values[0]
     new_dir = values[1]
 
@@ -77,23 +75,8 @@ def process_file_with_popup(image: 'ImageFile') -> None:
     new_dir = Config.sorted_screenshots_dir.joinpath(new_dir)
     new_filename = new_dir.joinpath(chosen_filename)
     log.info(f"Chosen Filename: '{chosen_filename}'\nDirectory: '{new_dir}'\nNew file: '{new_filename}'\nEvent: {event}\n")
-    log.debug(f"All values: {values}")
     console.print(bullet_text(f"Moving '{image.file_path}' to '{new_filename}'..."))
-
-    if Config.dry_run:
-        console.print(indented_bullet("Dry run so not moving..."), style='dim')
-    else:
-        shutil.move(image.file_path, new_filename)
-
-
-def _subdir_radio_select_columns(sg):
-    dirs = Config.get_sort_dirs()
-
-    for i in range(0, len(dirs), RADIO_COLS):
-        yield [
-            sg.Radio(path.basename(dir), "SORTDIR_RADIO", default=False, key=dir)
-            for dir in dirs[i: i + RADIO_COLS]
-        ]
+    image.copy_file_to_sorted_dir(new_filename)
 
 
 def _subdir_combobox_items():
