@@ -4,6 +4,7 @@ TODO: rename to something more appropriate
 """
 import sys
 from os import path, remove
+from typing import Union
 
 from clown_sort.config import Config
 from clown_sort.filename_extractor import FilenameExtractor
@@ -20,7 +21,7 @@ SKIP = 'Skip'
 EXIT = 'Exit'
 
 
-def process_file_with_popup(image: 'ImageFile') -> None:
+def process_file_with_popup(image: Union['ImageFile', 'PdfFile']) -> None:
     # Do the import here so as to allow usage without installing PySimpleGUI
     import PySimpleGUI as psg
     psg.theme('SystemDefault1')
