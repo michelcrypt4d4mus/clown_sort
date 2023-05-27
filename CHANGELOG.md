@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Fix the install messages for missing packages
 
 # 1.5.0
 * Combobox instead of radio buttons for manual fallback directory select
