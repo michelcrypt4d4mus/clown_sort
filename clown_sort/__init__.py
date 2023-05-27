@@ -12,7 +12,7 @@ if not environ.get('INVOKED_BY_PYTEST', False):
             load_dotenv(dotenv_path=dotenv_file)
             break
 
-from clown_sort.config import Config
+from clown_sort.config import Config, check_for_pymupdf
 from clown_sort.files.image_file import ImageFile
 from clown_sort.files.pdf_file import PdfFile
 from clown_sort.files.sortable_file import SortableFile
@@ -30,15 +30,14 @@ def sort_screenshots():
         _rescan_sorted_screenshots()
         return
 
-    for image in screenshot_paths(Config.screenshots_dir):
+    for file_to_sort in screenshot_paths(Config.screenshots_dir):
         if Config.manual_sort:
-            if not isinstance(image, (ImageFile, PdfFile)):
-                print(f"'{image.file_path}' is not suitable for manual sort, skipping...")
-                continue
-
-            process_file_with_popup(image)
+            if file_to_sort._can_be_presented_in_popup():
+                process_file_with_popup(file_to_sort)
+            else:
+                print(f"'{file_to_sort.file_path}' is not suitable for manual sort, skipping...")
         else:
-            image.sort_file()
+            file_to_sort.sort_file()
 
 
 def set_screenshot_timestamps():

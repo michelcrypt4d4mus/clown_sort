@@ -11,6 +11,7 @@ from clown_sort.config import Config
 ARROW_BULLET = '➤ '
 INDENTED_BULLET = f"  {ARROW_BULLET}"
 NOT = Text('').append('(Not) ', style='dim')
+WARNING = Text('').append('WARNING', style='bright_yellow').append(': ')
 
 ### Printing ###
 BYTES = 'color(100) dim'

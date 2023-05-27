@@ -177,23 +177,36 @@ def _check_for_pysimplegui():
     try:
         import PySimpleGUI as sg
     except ModuleNotFoundError:
-        msg = Text('ERROR: ', style='bright_red')
+        msg = Text('ERROR', style='bright_red')
 
         msg.append(
-            'PySimpleGUI package must be installed before you can use the manual selector. Try running:',
+            ': PySimpleGUI package must be installed before you can use the manual selector. Try running:',
             style='bright_white'
         )
 
         log_optional_module_warning('gui', msg)
+        console = Console()
+        console.line()
+        console.print(f"You make also need to install 'python-tk'.")
+        console.print("In macOS this can be installed with 'brew install python-tk'.")
         sys.exit()
+
+
+def check_for_pymupdf() -> bool:
+    try:
+        import fitz
+        return True
+    except ModuleNotFoundError:
+        log_optional_module_warning('pdf')
+        return False
 
 
 # TODO: it sucks that this is here but it's dependency hell otherwise
 def log_optional_module_warning(module_name: str, msg: Optional[Text] = None) -> None:
     """msg is optional argument for a custom message, otherwise it's a warning"""
     if msg is None:
-        msg = Text('WARNING: ', style='bright_red').append(
-            f"Optional package '{module_name}' not installed. . Try running:",
+        msg = Text('WARNING', style='bright_red').append(
+            f": Optional package '{module_name}' not installed. Try running:",
             style='bright_white'
         )
 
@@ -201,9 +214,6 @@ def log_optional_module_warning(module_name: str, msg: Optional[Text] = None) ->
     console.line()
     console.print(msg)
     console.line()
-    console.print(f"     pipx install clown_sort[{module_name}]", style='bright_cyan')
+    console.print(f"     pipx install clown_sort\[{module_name}]", style='bright_cyan')
     console.line()
     console.print(f"(or 'poetry install --all-extras' if you're in a development environment)")
-    console.line()
-    console.print(f"You make also need to install 'python-tk'.")
-    console.print("In macOS this can be installed with 'brew install python-tk'.")

@@ -1,17 +1,21 @@
 """
 Wrapper for PDF files.
 """
+from sys import exit
 from typing import Optional
 
 from pypdf import PdfReader
 from pypdf.errors import DependencyError
 
-from clown_sort.config import log_optional_module_warning
+from clown_sort.config import check_for_pymupdf, log_optional_module_warning
+from clown_sort.util.rich_helper import WARNING, console
 from clown_sort.util.logging import log
 from clown_sort.files.sortable_file import SortableFile
 
 
 class PdfFile(SortableFile):
+    is_presentable_in_popup = None
+
     def extracted_text(self) -> Optional[str]:
         """Use Tesseract to OCR the text in the image, which is returned as a string."""
         if self.text_extraction_attempted:
@@ -37,18 +41,22 @@ class PdfFile(SortableFile):
 
     def thumbnail_bytes(self) -> bytes:
         """Return bytes for a thumbnail."""
-        try:
-            import fitz
-            doc = fitz.open(self.file_path)
-        except DependencyError:
-            log_optional_module_warning('pdf')
-
+        import fitz
+        doc = fitz.open(self.file_path)
         zoom_matrix = fitz.Matrix(fitz.Identity).prescale(0.4, 0.4)
         page = doc[0].get_pixmap(matrix=zoom_matrix, alpha=False)
         return page.tobytes()
 
     def _can_be_presented_in_popup(self) -> bool:
-        return True
+        if type(self).is_presentable_in_popup is None:
+            type(self).is_presentable_in_popup = check_for_pymupdf()
+
+        if not type(self).is_presentable_in_popup:
+            console.line()
+            msg = WARNING.append(f"File '{self.basename}' is not displayable without pymupdf...\n")
+            console.print(msg)
+
+        return type(self).is_presentable_in_popup
 
     def __repr__(self) -> str:
         return f"PdfFile('{self.file_path}')"
