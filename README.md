@@ -47,8 +47,8 @@ sort_screenshots -h
 # they just show you what will happen if you run again with the --execute flag)
 sort_screenshots
 
-# Execute default cryptocurrency sort rules against ~/Pictures/Screenshots
-sort_screenshots --execute
+# Execute default cryptocurrency sort rules against ~/Pictures/Screenshots with debug logging
+sort_screenshots --execute --debug
 
 # Sort a different directory of screenshots
 sort_screenshots --screenshots-dir /Users/hrollins/Pictures/get_in_the_van/tourphotos --execute
@@ -58,6 +58,9 @@ sort_screenshots --rules-csv /Users/hrollins/my_war.csv --execute
 
 # Sort pdfs
 sort_screenshots -f '.*pdf$' -e
+
+# Sort all but put up the manual folder / filename selector window if file doesn't match any sort rules
+sort_screenshots -a -mf -e
 ```
 
 # Setup
