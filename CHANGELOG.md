@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.5.2
 * Override premature release
 
 ### 1.5.1
