@@ -21,7 +21,7 @@ from clown_sort.util.filesystem_helper import copy_file_creation_time
 from clown_sort.util.logging import log
 from clown_sort.util.rich_helper import console, warning_text
 
-THUMBNAIL_DIMENSIONS = (400, 400)
+THUMBNAIL_DIMENSIONS = (512, 512)
 IMAGE_DESCRIPTION = 'ImageDescription'
 FILENAME_LENGTH_TO_CONSIDER_SORTED = 80
 
@@ -31,7 +31,7 @@ EXIF_CODES = {
 
 
 class ImageFile(SortableFile):
-    def copy_file_to_sorted_dir(self, destination_path: Path, match: Optional[re.Match] = None) -> Path:
+    def copy_file_to_sorted_dir(self, destination_path: Path, match: Optional[re.Match] = None) -> None:
         """
         Copies to a new file and injects the ImageDescription exif tag.
         If :destination_subdir is given new file will be in :destination_subdir off
@@ -42,7 +42,7 @@ class ImageFile(SortableFile):
         self._log_copy_file(destination_path, match)
 
         if Config.dry_run:
-            return destination_path
+            return
 
         try:
             self.pillow_image_obj().save(destination_path, exif=exif_data)
@@ -51,8 +51,6 @@ class ImageFile(SortableFile):
             console.print_exception()
             console.print(f"ERROR while processing '{self.file_path}'", style='bright_red')
             raise e
-
-        return destination_path
 
     def new_basename(self) -> str:
         """Return a descriptive string usable in a filename."""
@@ -70,13 +68,13 @@ class ImageFile(SortableFile):
         self._new_basename = self._new_basename.replace('""', '"')
         return self._new_basename
 
-    def image_bytes(self) -> bytes:
+    def thumbnail_bytes(self) -> bytes:
         """Return bytes for a thumbnail."""
         image = self.pillow_image_obj()
         image.thumbnail(THUMBNAIL_DIMENSIONS)
-        _image_bytes = io.BytesIO()
-        image.save(_image_bytes, format="PNG")
-        return _image_bytes.getvalue()
+        _thumbnail_bytes = io.BytesIO()
+        image.save(_thumbnail_bytes, format="PNG")
+        return _thumbnail_bytes.getvalue()
 
     def extracted_text(self) -> Optional[str]:
         """Use Tesseract to OCR the text in the image, which is returned as a string."""

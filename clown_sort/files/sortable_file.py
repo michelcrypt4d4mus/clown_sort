@@ -2,10 +2,12 @@
 Base class for sortable files of any type.
 """
 import re
+import platform
 import shutil
 from collections import namedtuple
 from os import path, remove
 from pathlib import Path
+from subprocess import run
 from typing import List, Optional, Union
 
 from exiftool import ExifToolHelper
@@ -169,6 +171,16 @@ class SortableFile:
             destination_path = destination_path.joinpath(subdir)
 
         return destination_path.joinpath(self.new_basename())
+
+    def preview(self) -> None:
+        """Attempt to open a separate application to view the image."""
+        log.info(f"Opening '{self.file_path}'")
+
+        if platform.system() == 'Windows':
+            log.debug("Windows platform detected; attempting to run the file itself...")
+            run([self.file_path])
+        else:
+            run(['open', self.file_path])
 
     def _log_copy_file(self, destination_path: Path, match: Optional[re.Match] = None) -> None:
         """Log info about a file copy."""
