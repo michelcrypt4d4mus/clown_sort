@@ -23,6 +23,7 @@ EXIT = 'Exit'
 def process_file_with_popup(image: 'ImageFile') -> None:
     # Do the import here so as to allow usage without installing PySimpleGUI
     import PySimpleGUI as psg
+    psg.theme('LightBlue3')
     suggested_filename = FilenameExtractor(image).filename()
     sort_dirs = [path.basename(dir) for dir in Config.get_sort_dirs()]
     max_dirname_length = max([len(dir) for dir in sort_dirs])
