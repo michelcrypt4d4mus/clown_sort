@@ -44,10 +44,10 @@ rich-argparse-plus = "^0.3.1.4"
 pyexiftool = "^0.5.5"
 pypdf = "^3.4.1"
 pycryptodome = {version = "^3.17", optional = true}
-pymupdf = {version = "^1.22.3", optional = true}
+PyMuPDF = {version = "^1.22.3", optional = true}
 
 [tool.poetry.extras]
-pdf = ['pycryptodome', 'pymupdf']
+pdf = ['pycryptodome', 'PyMuPDF']
 gui = ['PySimpleGUI']
 
 [tool.poetry.group.dev.dependencies]

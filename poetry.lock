@@ -892,9 +892,9 @@ files = [
 
 [extras]
 gui = ["PySimpleGUI"]
-pdf = ["pycryptodome"]
+pdf = ["PyMuPDF", "pycryptodome"]
 
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "60f2960568beba832ef520e175769e08f1490203277ceabc81b2dca8e8233d3e"
+content-hash = "16b05519862dcae0fea1b01031989923917219e0f3fe1c15c33d4af9026d1a52"
