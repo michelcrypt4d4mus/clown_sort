@@ -1,4 +1,6 @@
 # NEXT RELEASE
+* Replace fewer special characters in filenames
+* New default crypto sort rules
 
 ### 1.4.1
 * Make --manual-fallback and --only-if-match mutually exclusive
