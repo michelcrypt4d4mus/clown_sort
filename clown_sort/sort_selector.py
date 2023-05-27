@@ -29,7 +29,7 @@ def process_file_with_popup(image: 'ImageFile') -> None:
     max_dirname_length = max([len(dir) for dir in sort_dirs])
 
     layout = [
-        [psg.Column([[psg.Image(data=image.image_bytes(), key="-IMAGE-")]], justification='center')],
+        [psg.Column([[psg.Image(data=image.thumbnail_bytes(), key="-IMAGE-")]], justification='center')],
         [psg.HSep()],
         [psg.Text("Choose Filename:")],
         [psg.Input(suggested_filename, size=(len(suggested_filename), 1))],# font=("Courier New", 12))],

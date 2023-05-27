@@ -21,7 +21,7 @@ from clown_sort.util.filesystem_helper import copy_file_creation_time
 from clown_sort.util.logging import log
 from clown_sort.util.rich_helper import console, warning_text
 
-THUMBNAIL_DIMENSIONS = (400, 400)
+THUMBNAIL_DIMENSIONS = (512, 512)
 IMAGE_DESCRIPTION = 'ImageDescription'
 FILENAME_LENGTH_TO_CONSIDER_SORTED = 80
 
@@ -68,13 +68,13 @@ class ImageFile(SortableFile):
         self._new_basename = self._new_basename.replace('""', '"')
         return self._new_basename
 
-    def image_bytes(self) -> bytes:
+    def thumbnail_bytes(self) -> bytes:
         """Return bytes for a thumbnail."""
         image = self.pillow_image_obj()
         image.thumbnail(THUMBNAIL_DIMENSIONS)
-        _image_bytes = io.BytesIO()
-        image.save(_image_bytes, format="PNG")
-        return _image_bytes.getvalue()
+        _thumbnail_bytes = io.BytesIO()
+        image.save(_thumbnail_bytes, format="PNG")
+        return _thumbnail_bytes.getvalue()
 
     def extracted_text(self) -> Optional[str]:
         """Use Tesseract to OCR the text in the image, which is returned as a string."""
