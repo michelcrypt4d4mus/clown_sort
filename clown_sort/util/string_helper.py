@@ -14,4 +14,9 @@ def strip_bad_chars(text: str) -> str:
 
 
 def strip_mac_screenshot(text: str) -> str:
+    """Strip default macOS screenshot format from filename."""
     return re.sub(SCREENSHOT_REGEX, '', text).strip()
+
+
+def is_empty(text: str) -> bool:
+    return text is None or len(text) == 0

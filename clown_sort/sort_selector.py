@@ -12,9 +12,9 @@ from rich.text import Text
 
 from clown_sort.config import Config
 from clown_sort.filename_extractor import FilenameExtractor
-from clown_sort.util.dict_helper import get_dict_key_by_value
 from clown_sort.util.logging import log
 from clown_sort.util.rich_helper import bullet_text, console, indented_bullet
+from clown_sort.util.string_helper import is_empty
 
 RADIO_COLS = 11
 DELETE = 'Delete'
@@ -25,16 +25,12 @@ EXIT = 'Exit'
 
 
 def process_file_with_popup(image: 'ImageFile') -> None:
+    # Do the import here so as to allow usage without installing PySimpleGUI
     import PySimpleGUI as sg
-    file_msg = Text("Processing: '").append(str(image.file_path), style='cyan reverse').append("'...")
-    console.print(Panel(file_msg, expand=False))
-    extracted_text = ' '.join((image.extracted_text() or '').splitlines())
-    log.info(f"OCR Text: {extracted_text} ({len(extracted_text)} chars)")
     suggested_filename = FilenameExtractor(image).filename()
 
     layout = [
         [sg.Image(data=image.image_bytes(), key="-IMAGE-")],
-        #[sg.Text(image.extracted_text())],
         [sg.Text("Enter file name:")],
         [sg.Input(suggested_filename, size=(len(suggested_filename), 1))]
     ]
@@ -54,36 +50,30 @@ def process_file_with_popup(image: 'ImageFile') -> None:
     # Event Loop
     while True:
         event, values = window.Read()
+        window.close()
 
         if event == DELETE:
             log.warning(f"Deleting '{image.file_path}'")
             remove(image.file_path)
-            window.close()
             return
         elif event == OPEN:
             log.info(f"Opening '{image.file_path}'")
             run(['open', image.file_path])
         elif event == SKIP:
-            window.close()
             return
         elif event == EXIT:
-            window.close()
             sys.exit()
         elif event == OK:
             break
 
-    window.close()
     chosen_filename = values[0]
+    new_dir = values[1]
 
-    if chosen_filename is None or len(chosen_filename) == 0:
+    if is_empty(chosen_filename):
         raise ValueError("Filename can't be blank!")
 
-    try:
-        new_dir = get_dict_key_by_value(values, True)
-    except ValueError:
-        new_dir = Config.sorted_screenshots_dir
-
-    new_filename = path.join(new_dir, chosen_filename)
+    new_dir = Config.sorted_screenshots_dir.joinpath(new_dir)
+    new_filename = new_dir.joinpath(chosen_filename)
     log.info(f"Chosen Filename: '{chosen_filename}'\nDirectory: '{new_dir}'\nNew file: '{new_filename}'\nEvent: {event}\n")
     log.debug(f"All values: {values}")
     console.print(bullet_text(f"Moving '{image.file_path}' to '{new_filename}'..."))
