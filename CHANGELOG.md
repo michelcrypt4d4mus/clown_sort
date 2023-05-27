@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.5.1
 * Fix the install messages for missing packages
 
 # 1.5.0
