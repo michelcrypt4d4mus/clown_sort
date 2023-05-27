@@ -23,7 +23,7 @@ class PdfFile(SortableFile):
             pdf_reader = PdfReader(self.file_path)
             self._extracted_text = '\\n\\n'.join([page.extract_text() for page in pdf_reader.pages])
         except DependencyError:
-            log_optional_module_warning('pycryptodome')
+            log_optional_module_warning('pdf')
         except (KeyError, TypeError):
             # TODO: failure on KeyError: '/Root' seems to have been fixed but not released yet
             # https://github.com/py-pdf/pypdf/pull/1784

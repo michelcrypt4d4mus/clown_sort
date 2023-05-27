@@ -1,6 +1,9 @@
 # NEXT RELEASE
 * Override premature release
 
+### 1.5.1
+* Fix the install messages for missing packages
+
 # 1.5.0
 * Combobox instead of radio buttons for manual fallback directory select
 * Replace fewer special characters in filenames

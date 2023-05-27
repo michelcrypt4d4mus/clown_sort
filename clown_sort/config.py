@@ -183,7 +183,8 @@ def _check_for_pysimplegui():
             'PySimpleGUI package must be installed before you can use the manual selector. Try running:',
             style='bright_white'
         )
-        log_optional_module_warning('PySimpleGUI', msg)
+
+        log_optional_module_warning('gui', msg)
         sys.exit()
 
 
