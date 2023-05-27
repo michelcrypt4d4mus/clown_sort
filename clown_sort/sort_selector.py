@@ -28,9 +28,10 @@ def process_file_with_popup(image: 'ImageFile') -> None:
     max_dirname_length = max([len(dir) for dir in sort_dirs])
 
     layout = [
-        [psg.Image(data=image.image_bytes(), key="-IMAGE-")],
+        [psg.Column([[psg.Image(data=image.image_bytes(), key="-IMAGE-")]], justification='center')],
         [psg.Text("Enter file name:")],
-        [psg.Input(suggested_filename, size=(len(suggested_filename), 1))],
+        [psg.Input(suggested_filename, size=(len(suggested_filename), 1))],# font=("Courier New", 12))],
+        [psg.Text(f"Choose subdirectory (empty is root sorted dir '{Config.sorted_screenshots_dir}', type text to create new folder):")],
         [psg.Combo(sort_dirs, size=(max_dirname_length, SELECT_SIZE))],
         [
             psg.Button(OK, bind_return_key=True),
