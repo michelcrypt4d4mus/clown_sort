@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+# 1.5.0
 * Combobox instead of radio buttons for manual fallback directory select
 * Replace fewer special characters in filenames
 * New default crypto sort rules
