@@ -31,15 +31,23 @@ def process_file_with_popup(image: 'ImageFile') -> None:
     extracted_text = ' '.join((image.extracted_text() or '').splitlines())
     log.info(f"OCR Text: {extracted_text} ({len(extracted_text)} chars)")
     suggested_filename = FilenameExtractor(image).filename()
-    input = sg.Input(suggested_filename, size=(len(suggested_filename), 1))
 
     layout = [
         [sg.Image(data=image.image_bytes(), key="-IMAGE-")],
         #[sg.Text(image.extracted_text())],
         [sg.Text("Enter file name:")],
-        [input]
-    ] + list(_subdir_radio_select_columns(sg)) + \
-        [[sg.Button(OK, bind_return_key=True), sg.Button(DELETE), sg.Button(OPEN), sg.Button(SKIP), sg.Button(EXIT)]]
+        [sg.Input(suggested_filename, size=(len(suggested_filename), 1))]
+    ]
+
+    layout += [[sg.Combo([path.basename(dir) for dir in Config.get_sort_dirs()])]]
+
+    layout += [[
+        sg.Button(OK, bind_return_key=True),
+        sg.Button(DELETE),
+        sg.Button(OPEN),
+        sg.Button(SKIP),
+        sg.Button(EXIT)
+    ]]
 
     window = sg.Window(image.basename, layout)
 
@@ -94,3 +102,7 @@ def _subdir_radio_select_columns(sg):
             sg.Radio(path.basename(dir), "SORTDIR_RADIO", default=False, key=dir)
             for dir in dirs[i: i + RADIO_COLS]
         ]
+
+
+def _subdir_combobox_items():
+    return [path.basename(dir) for dir in Config.get_sort_dirs()]
