@@ -26,23 +26,21 @@ def process_file_with_popup(image: 'ImageFile') -> None:
     # Do the import here so as to allow usage without installing PySimpleGUI
     import PySimpleGUI as sg
     suggested_filename = FilenameExtractor(image).filename()
+    sort_dirs = [path.basename(dir) for dir in Config.get_sort_dirs()]
 
     layout = [
         [sg.Image(data=image.image_bytes(), key="-IMAGE-")],
         [sg.Text("Enter file name:")],
-        [sg.Input(suggested_filename, size=(len(suggested_filename), 1))]
+        [sg.Input(suggested_filename, size=(len(suggested_filename), 1))],
+        [sg.Combo(sort_dirs, size=(max([len(dir) for dir in sort_dirs]), SELECT_SIZE))],
+        [
+            sg.Button(OK, bind_return_key=True),
+            sg.Button(DELETE),
+            sg.Button(OPEN),
+            sg.Button(SKIP),
+            sg.Button(EXIT)
+        ]
     ]
-
-    sort_dirs = [path.basename(dir) for dir in Config.get_sort_dirs()]
-    layout += [[sg.Combo(sort_dirs, size=(max([len(dir) for dir in sort_dirs]), SELECT_SIZE))]]
-
-    layout += [[
-        sg.Button(OK, bind_return_key=True),
-        sg.Button(DELETE),
-        sg.Button(OPEN),
-        sg.Button(SKIP),
-        sg.Button(EXIT)
-    ]]
 
     window = sg.Window(image.basename, layout)
 
