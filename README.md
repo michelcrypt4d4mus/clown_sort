@@ -98,7 +98,7 @@ While every effort has been made to use Python's cross platform `Pathlib` module
 ### Help Screen
 ![](doc/sort_screenshots_help.png)
 
-(In my personal usuage I tend to run the tool with the `--all` and `--only-if-match` options.)
+(In my personal usuage I tend to run the tool with the `--all` and `--manual-fallback` options.)
 
 ### Custom Sorting Rules
 The default is to sort cryptocurrency related content but you can define your own CSV of rules with two columns `folder` and `regex`. The value in `folder` specifies the subdirectory to sort into and `regex` is the pattern to match against. See [the default crypto related configuration](clown_sort/sorting_rules/crypto.csv) for an example. An explanation of regular expressions is beyond the scope of this README but many resources are available to help. If you're not good at regexes just remember that any alphanumeric string is a regex that will match that string. [pythex](http://pythex.org/) is a great website for testing your regexes.
@@ -110,7 +110,9 @@ The default is to sort cryptocurrency related content but you can define your ow
 ## Manually Sorting (Experimental)
 **This is an experimental feature.** It's only been tested on macOS.
 
-If you run with the `--manual-sort` command line the behavior is quite different. Rather than automatically sort files for you, instead for every file you will be greeted with a popup asking you for a desired filename and a radio button select of possible subdirectories off your `Sorted/` directory.
+If you run with the `--manual-sort` command line the behavior is quite different. Rather than automatically sort files for you for every image file you will be greeted with a popup asking you for a desired filename and a radio button select of possible subdirectories off your `Sorted/` directory.
+
+A related command line option is `--manual-fallback` which will popup a window only when the file is an image and has not matched any of the configured sorting rules.
 
 To use this feature you must install the optional `PySimpleGUI` package which can be accomplished like this:
 ```sh
