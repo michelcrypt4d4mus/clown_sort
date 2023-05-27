@@ -43,8 +43,8 @@ class PdfFile(SortableFile):
         except DependencyError:
             log_optional_module_warning('pdf')
 
-        page = doc[0].get_pixmap(alpha=False)
-        #import pdb;pdb.set_trace()
+        zoom_matrix = fitz.Matrix(fitz.Identity).prescale(0.4, 0.4)
+        page = doc[0].get_pixmap(matrix=zoom_matrix, alpha=False)
         return page.tobytes()
 
     def _can_be_presented_in_popup(self) -> bool:
