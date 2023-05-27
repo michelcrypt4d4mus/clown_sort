@@ -17,6 +17,7 @@ from clown_sort.util.rich_helper import bullet_text, console, indented_bullet
 from clown_sort.util.string_helper import is_empty
 
 RADIO_COLS = 11
+SELECT_SIZE = 45
 DELETE = 'Delete'
 OK = 'Move'
 OPEN = 'Preview Image'
@@ -35,7 +36,8 @@ def process_file_with_popup(image: 'ImageFile') -> None:
         [sg.Input(suggested_filename, size=(len(suggested_filename), 1))]
     ]
 
-    layout += [[sg.Combo([path.basename(dir) for dir in Config.get_sort_dirs()])]]
+    sort_dirs = [path.basename(dir) for dir in Config.get_sort_dirs()]
+    layout += [[sg.Combo(sort_dirs, size=(max([len(dir) for dir in sort_dirs]), SELECT_SIZE))]]
 
     layout += [[
         sg.Button(OK, bind_return_key=True),
