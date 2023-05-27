@@ -1,5 +1,6 @@
 # NEXT RELEASE
 * Make the brackets print in the optional package install instructions
+* Only check for `pymupdf` once
 
 ## 1.6.0
 * PDF previews in manual sorting windows
