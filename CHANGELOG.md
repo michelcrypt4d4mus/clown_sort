@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.6.1
 * Make the brackets print in the optional package install instructions
 * Only check for `pymupdf` once
 
