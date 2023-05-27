@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* PDF previews in manual sorting windows
 
 ### 1.5.2
 * Override premature release

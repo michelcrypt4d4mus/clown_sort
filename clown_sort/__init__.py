@@ -17,8 +17,8 @@ from clown_sort.files.image_file import ImageFile
 from clown_sort.files.pdf_file import PdfFile
 from clown_sort.files.sortable_file import SortableFile
 from clown_sort.sort_selector import process_file_with_popup
-from clown_sort.util.filesystem_helper import (IMAGE_FILE_EXTENSIONS, files_in_dir, is_image, is_pdf,
-     set_timestamp_based_on_screenshot_filename)
+from clown_sort.util.filesystem_helper import (IMAGE_FILE_EXTENSIONS, files_in_dir, is_image,
+      is_pdf, set_timestamp_based_on_screenshot_filename)
 from clown_sort.util.logging import log
 from clown_sort.util.rich_helper import console
 
@@ -32,7 +32,7 @@ def sort_screenshots():
 
     for image in screenshot_paths(Config.screenshots_dir):
         if Config.manual_sort:
-            if not isinstance(image, ImageFile):
+            if not isinstance(image, (ImageFile, PdfFile)):
                 print(f"'{image.file_path}' is not suitable for manual sort, skipping...")
                 continue
 

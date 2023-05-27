@@ -35,5 +35,20 @@ class PdfFile(SortableFile):
         self.text_extraction_attempted = True
         return self._extracted_text
 
+    def thumbnail_bytes(self) -> bytes:
+        """Return bytes for a thumbnail."""
+        try:
+            import fitz
+            doc = fitz.open(self.file_path)
+        except DependencyError:
+            log_optional_module_warning('pdf')
+
+        zoom_matrix = fitz.Matrix(fitz.Identity).prescale(0.4, 0.4)
+        page = doc[0].get_pixmap(matrix=zoom_matrix, alpha=False)
+        return page.tobytes()
+
+    def _can_be_presented_in_popup(self) -> bool:
+        return True
+
     def __repr__(self) -> str:
         return f"PdfFile('{self.file_path}')"
