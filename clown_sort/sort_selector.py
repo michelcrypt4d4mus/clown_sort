@@ -2,7 +2,6 @@
 Open a GUI window to allow manual name / select.
 TODO: rename to something more appropriate
 """
-import platform
 import sys
 from os import path, remove
 
@@ -23,26 +22,26 @@ EXIT = 'Exit'
 
 def process_file_with_popup(image: 'ImageFile') -> None:
     # Do the import here so as to allow usage without installing PySimpleGUI
-    import PySimpleGUI as sg
+    import PySimpleGUI as psg
     suggested_filename = FilenameExtractor(image).filename()
     sort_dirs = [path.basename(dir) for dir in Config.get_sort_dirs()]
     max_dirname_length = max([len(dir) for dir in sort_dirs])
 
     layout = [
-        [sg.Image(data=image.image_bytes(), key="-IMAGE-")],
-        [sg.Text("Enter file name:")],
-        [sg.Input(suggested_filename, size=(len(suggested_filename), 1))],
-        [sg.Combo(sort_dirs, size=(max_dirname_length, SELECT_SIZE))],
+        [psg.Image(data=image.image_bytes(), key="-IMAGE-")],
+        [psg.Text("Enter file name:")],
+        [psg.Input(suggested_filename, size=(len(suggested_filename), 1))],
+        [psg.Combo(sort_dirs, size=(max_dirname_length, SELECT_SIZE))],
         [
-            sg.Button(OK, bind_return_key=True),
-            sg.Button(DELETE),
-            sg.Button(OPEN),
-            sg.Button(SKIP),
-            sg.Button(EXIT)
+            psg.Button(OK, bind_return_key=True),
+            psg.Button(DELETE),
+            psg.Button(OPEN),
+            psg.Button(SKIP),
+            psg.Button(EXIT)
         ]
     ]
 
-    window = sg.Window(image.basename, layout)
+    window = psg.Window(image.basename, layout)
 
     # Event Loop
     while True:
@@ -74,7 +73,7 @@ def process_file_with_popup(image: 'ImageFile') -> None:
         raise ValueError("Filename can't be blank!")
 
     if not destination_dir.exists():
-        result = sg.popup_yes_no(f"Subdir '{new_subdir}' doesn't exist. Create?",  title="Unknown Subdirectory")
+        result = psg.popup_yes_no(f"Subdir '{new_subdir}' doesn't exist. Create?",  title="Unknown Subdirectory")
 
         if result == 'Yes' and not Config.dry_run:
             log.info(f"Creating directory '{new_subdir}'...")
