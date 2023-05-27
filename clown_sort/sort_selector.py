@@ -47,15 +47,18 @@ def process_file_with_popup(image: 'ImageFile') -> None:
     # Event Loop
     while True:
         event, values = window.Read()
+
+        if event == OPEN:
+            log.info(f"Opening '{image.file_path}'")
+            run(['open', image.file_path])
+            continue
+
         window.close()
 
         if event == DELETE:
             log.warning(f"Deleting '{image.file_path}'")
             remove(image.file_path)
             return
-        elif event == OPEN:
-            log.info(f"Opening '{image.file_path}'")
-            run(['open', image.file_path])
         elif event == SKIP:
             return
         elif event == EXIT:
