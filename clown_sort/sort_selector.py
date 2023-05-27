@@ -26,12 +26,13 @@ def process_file_with_popup(image: 'ImageFile') -> None:
     import PySimpleGUI as sg
     suggested_filename = FilenameExtractor(image).filename()
     sort_dirs = [path.basename(dir) for dir in Config.get_sort_dirs()]
+    max_dirname_length = max([len(dir) for dir in sort_dirs])
 
     layout = [
         [sg.Image(data=image.image_bytes(), key="-IMAGE-")],
         [sg.Text("Enter file name:")],
         [sg.Input(suggested_filename, size=(len(suggested_filename), 1))],
-        [sg.Combo(sort_dirs, size=(max([len(dir) for dir in sort_dirs]), SELECT_SIZE))],
+        [sg.Combo(sort_dirs, size=(max_dirname_length, SELECT_SIZE))],
         [
             sg.Button(OK, bind_return_key=True),
             sg.Button(DELETE),
@@ -66,17 +67,23 @@ def process_file_with_popup(image: 'ImageFile') -> None:
 
     log.debug(f"All values: {values}")
     chosen_filename = values[0]
-    new_dir = values[1]
+    new_subdir = values[1]
+    destination_dir = Config.sorted_screenshots_dir.joinpath(new_subdir)
 
     if is_empty(chosen_filename):
         raise ValueError("Filename can't be blank!")
 
-    new_dir = Config.sorted_screenshots_dir.joinpath(new_dir)
-    new_filename = new_dir.joinpath(chosen_filename)
-    log.info(f"Chosen Filename: '{chosen_filename}'\nDirectory: '{new_dir}'\nNew file: '{new_filename}'\nEvent: {event}\n")
+    if not destination_dir.exists():
+        result = sg.popup_yes_no(f"Subdir '{new_subdir}' doesn't exist. Create?",  title="Unknown Subdirectory")
+
+        if result == 'Yes' and not Config.dry_run:
+            log.info(f"Creating directory '{new_subdir}'...")
+            destination_dir.mkdir()
+        else:
+            console.print(bullet_text(f"Directory not found. Skipping '{image.file_path}'..."))
+            return
+
+    new_filename = destination_dir.joinpath(chosen_filename)
+    log.info(f"Chosen Filename: '{chosen_filename}'\nSubdir: '{new_subdir}'\nNew file: '{new_filename}'\nEvent: {event}\n")
     console.print(bullet_text(f"Moving '{image.file_path}' to '{new_filename}'..."))
     image.copy_file_to_sorted_dir(new_filename)
-
-
-def _subdir_combobox_items():
-    return [path.basename(dir) for dir in Config.get_sort_dirs()]
