@@ -23,7 +23,7 @@ EXIT = 'Exit'
 def process_file_with_popup(image: 'ImageFile') -> None:
     # Do the import here so as to allow usage without installing PySimpleGUI
     import PySimpleGUI as psg
-    psg.theme('LightBlue3')
+    psg.theme('SystemDefault1')
     suggested_filename = FilenameExtractor(image).filename()
     sort_dirs = [path.basename(dir) for dir in Config.get_sort_dirs()]
     max_dirname_length = max([len(dir) for dir in sort_dirs])
@@ -59,7 +59,7 @@ def process_file_with_popup(image: 'ImageFile') -> None:
             log.warning(f"Deleting '{image.file_path}'")
             remove(image.file_path)
             return
-        elif event == SKIP:
+        elif event == SKIP or event == psg.WIN_CLOSED:
             return
         elif event == EXIT:
             sys.exit()
