@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.6.2
 * Add `--force` and `[gui,pdf]` to the `pipx` installation instructions
 
 ### 1.6.1
