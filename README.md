@@ -138,13 +138,12 @@ This package is managed with [Python Poetry](http://python-poetry.org/). To get 
 1. `git clone` this repo.
 1. `cd clown_sort`
 1. `poetry install`
-1. Optional components can be install with `poetry install -E pdf -E gui`
+1. Optional components can be install with `poetry install --all-extras`
 
-Only requirement is that tests should pass before you open it, which you can check with
+Only requirement is that tests should pass before you open it which you can check by running `pytest`.
 
-```
-pytest
-```
+### Running Tests
+Test suite can be launched with `pytest`. If you do some development and something goes weird and you're continually running into errors about non-empty directories try clearing out the test suite's temp directory by deleting the contents of `tests/tmp/` (`rm -fr tests/tmp/*` on Linux or macOS etc.).
 
 [^1]: The name `clown_sort` was suggested by [ParrotCapital](http://twitter.com/ParrotCapital) and while the tool can work on any kind of screenshot it was too good not to use.
 
