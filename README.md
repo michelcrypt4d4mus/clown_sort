@@ -38,7 +38,7 @@ Note also that:
 # Installation with pipx is preferred if you have it but you can also use pip which comes standard
 # on almost all systems. pipx is only a noticeably better answer if you're a python programmer who
 # is concerned about side effects of pip upgrading system python packages.
-pip install clown_sort
+pip install clown_sort[gui,pdf]
 
 # Get help
 sort_screenshots -h
@@ -65,11 +65,19 @@ sort_screenshots -a -mf -e
 
 # Setup
 [pipx](https://pypa.github.io/pipx/) is recommended because it keeps your system python environment safe but you can also just use `pip`.
-```
-pipx install clown_sort
+
+```sh
+# Install with all packages including GUI and PDF handlers:
+pipx install 'clown_sort[gui,pdf]'
+
+# Install with optional GUI packages (required for --manual-fallback and --manual-sort options):
+pipx install 'clown_sort[gui]' --force
+
+# Install the minimal setup (no GUI, no encrypted PDF parsing):
+pipx install 'clown_sort'
 ```
 
-Some (not many) PDFs require the `pycryptodome` package to be parsed. If you don't have it they will just not be parsed; only the filename will be used for sorting. To avoid complicating the dependency situation this is offered as an optional installation which can be accomplished with `pipx install clown_sort[pdf]`.
+Some (not many) PDFs require the `pycryptodome` package to be parsed. This is installed when you install `clown_sort[pdf]`. If you don't install it these PDFS will not have their contents parsed and only the filename will be used for sorting.
 
 Updating to the latest version can be accomplished with `pipx upgrade clown_sort`.
 

@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Add `--force` and `[gui,pdf]` to the `pipx` installation instructions
 
 ### 1.6.1
 * Make the brackets print in the optional package install instructions

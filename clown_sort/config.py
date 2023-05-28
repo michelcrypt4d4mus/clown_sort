@@ -186,9 +186,8 @@ def _check_for_pysimplegui():
 
         log_optional_module_warning('gui', msg)
         console = Console()
-        console.line()
-        console.print(f"You make also need to install 'python-tk'.")
-        console.print("In macOS this can be installed with 'brew install python-tk'.")
+        #console.line()
+        console.print(f"You make also need to install 'python-tk'. In macOS this can be installed with 'brew install python-tk'.")
         sys.exit()
 
 
@@ -214,6 +213,6 @@ def log_optional_module_warning(module_name: str, msg: Optional[Text] = None) ->
     console.line()
     console.print(msg)
     console.line()
-    console.print(f"     pipx install clown_sort\[{module_name}]", style='bright_cyan')
+    console.print(f"     pipx install clown_sort\[{module_name}] --force", style='bright_cyan')
     console.line()
-    console.print(f"(or 'poetry install --all-extras' if you're in a development environment)")
+    console.print(f"'pip install' works if you're not using pipx. Use 'poetry install --all-extras' if you're in a development environment.")
