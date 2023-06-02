@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.6.3
 * Fix bug with manual folder selection
 * Refactor `move_to_processed_dir()` and call from `sort_selector.py`.
 
