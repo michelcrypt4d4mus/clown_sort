@@ -65,6 +65,7 @@ def test_get_sort_folder():
     check_folders('fuck #Signet', ['Signature Bank'])
     check_folders('fuck $SI it sucks', ['Silvergate'])
     check_folders('fuck #SEN ', ['Silvergate'])
+    check_folders('fuck SynapseFi ', ['Synapse'])
     check_folders('fuck paoloardoino it sucks', ['Tether'])
     check_folders('fuck rohn monroe he sucks', ['Tether'])
     check_folders('fuck bitfinex it sucks', ['Tether'])

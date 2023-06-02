@@ -1,6 +1,7 @@
 # NEXT RELEASE
 * Crop very long PDF pages when previewing in manual select window
 * Fix regexes for wallet addresses
+* Gracefully handle failures in file timestamp copying call
 
 ### 1.6.3
 * Fix bug with manual folder selection

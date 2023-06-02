@@ -13,6 +13,8 @@ from typing import List, Optional, Union
 
 from filedate.Utils import Copy
 from filedate import File
+from rich.console import Console
+from rich.text import Text
 
 from clown_sort.util.constants import MAC_SCREENSHOT_REGEX
 
@@ -45,7 +47,14 @@ def timestamp_for_filename() -> str:
 
 def copy_file_creation_time(source_file: Path, destination_file: Path) -> None:
     """Copy the file creation timestamp from source_file to destination_file."""
-    Copy(str(source_file), str(destination_file)).all()
+    try:
+        Copy(str(source_file), str(destination_file)).all()
+    except FileNotFoundError:
+        msg = Text("WARNING! couldn't copy file creation timestamp because file does not exist for ")
+        msg.append(f"'{destination_file}'!")
+        Console().print(msg, style='bright_yellow')
+        return
+
     _set_permissions(destination_file)
 
 
