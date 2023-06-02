@@ -72,8 +72,8 @@ def process_file_with_popup(image: Union['ImageFile', 'PdfFile']) -> None:
             break
 
     log.debug(f"All values: {values}")
-    chosen_filename = values[0]
-    new_subdir = values[1]
+    chosen_filename = values[1]
+    new_subdir = values[2]
     destination_dir = Config.sorted_screenshots_dir.joinpath(new_subdir)
 
     if is_empty(chosen_filename):
@@ -93,3 +93,4 @@ def process_file_with_popup(image: Union['ImageFile', 'PdfFile']) -> None:
     log.info(f"Chosen Filename: '{chosen_filename}'\nSubdir: '{new_subdir}'\nNew file: '{new_filename}'\nEvent: {event}\n")
     console.print(bullet_text(f"Moving '{image.file_path}' to '{new_filename}'..."))
     image.copy_file_to_sorted_dir(new_filename)
+    image.move_to_processed_dir()

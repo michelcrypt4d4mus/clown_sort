@@ -1,4 +1,6 @@
 # NEXT RELEASE
+* Fix bug with manual folder selection
+* Refactor `move_to_processed_dir()` and call from `sort_selector.py`.
 
 ### 1.6.2
 * Add `--force` and `[gui,pdf]` to the `pipx` installation instructions

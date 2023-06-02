@@ -117,6 +117,10 @@ class SortableFile:
             self._paths_of_sorted_copies.append(destination_path)
             self.copy_file_to_sorted_dir(destination_path, match)
 
+        self.move_to_processed_dir()
+
+    def move_to_processed_dir(self) -> None:
+        """Finalize the file handling, either leaving, deleting, or moving to processed files dir."""
         if Config.leave_in_place:
             console.print(bullet_text(Text('Leaving in place...', style='dim')))
             return

@@ -79,7 +79,7 @@ Kazakhstan,\bkazakh|Freedom[-_\s.]*Holding|\balmaty|Timor[-_\s.]*Turlov|\bFFIN[-
 Kinesis,kinesis|\bKVT\b|\bABX\b|\bKAG\b
 Kraken,kraken|payward
 KuCoin,kucoin
-Lead Bank,\bLead[-_\s.]*Bank\b
+Lead Bank,\bLead[-_\s.]*Bank\b|Finzly
 LBRY,LBRY|\bLBC\b
 Lexpunk Army,lexpunk|gabriel[-_\s.]*shapiro|_gabrielShapir0|\blex_node\b
 Lifeboat Foundation,Lifeboat[-_\s.]*Foundation
