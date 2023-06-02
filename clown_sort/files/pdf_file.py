@@ -1,6 +1,7 @@
 """
 Wrapper for PDF files.
 """
+import logging
 from sys import exit
 from typing import Optional
 
@@ -11,6 +12,9 @@ from clown_sort.config import check_for_pymupdf, log_optional_module_warning
 from clown_sort.util.rich_helper import WARNING, console
 from clown_sort.util.logging import log
 from clown_sort.files.sortable_file import SortableFile
+
+MAX_DISPLAY_HEIGHT = 600
+SCALE_FACTOR = 0.4
 
 
 class PdfFile(SortableFile):
@@ -43,9 +47,20 @@ class PdfFile(SortableFile):
         """Return bytes for a thumbnail."""
         import fitz
         doc = fitz.open(self.file_path)
-        zoom_matrix = fitz.Matrix(fitz.Identity).prescale(0.4, 0.4)
-        page = doc[0].get_pixmap(matrix=zoom_matrix, alpha=False)
-        return page.tobytes()
+        zoom_matrix = fitz.Matrix(fitz.Identity).prescale(SCALE_FACTOR, SCALE_FACTOR)
+        page = doc[0]
+        bottom_right = page.rect.br
+        page_height = bottom_right[1]
+        page_width = bottom_right[0]
+
+        # Check for PDFs with very long pages and crop them
+        if SCALE_FACTOR * page_height > MAX_DISPLAY_HEIGHT:
+            logging.debug(f"PDF page is {page_height} pixels high so cropping...")
+            clip = fitz.Rect((0, 0), (MAX_DISPLAY_HEIGHT / SCALE_FACTOR, page_width))
+        else:
+            clip = fitz.Rect((0, 0), bottom_right)
+
+        return page.get_pixmap(matrix=zoom_matrix, clip= clip, alpha=False).tobytes()
 
     def _can_be_presented_in_popup(self) -> bool:
         if type(self).is_presentable_in_popup is None:

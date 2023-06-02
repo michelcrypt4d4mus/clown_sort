@@ -60,6 +60,7 @@ class SortableFile:
         search_text = self.basename_without_ext + ' ' + (self.extracted_text() or '')
         rule_matches = type(self).get_sort_folders(search_text)
         sort_folders = [rm.folder for rm in rule_matches]
+        #import pdb;pdb.set_trace()
 
         # Handle the case where there are no matches to any configured folders.
         if len(rule_matches) == 0:

@@ -121,7 +121,7 @@ Ripple,XRP|garlinghouse|\bripple\b
 RIOT,[$#]RIOT\b|Riot[-\s_]*(Block|Platform)|Bioptix
 Safemoon,Safemoon
 Satoshi,Satoshi|Nakamoto
-SEC,\bSEC(\b|Gov)|Gensler|Securities.{0,6}Exchange.{0,6}Commission
+SEC,\bSEC(\b|Gov)|\bGensler|CFTC|Securities.{0,6}Exchange.{0,6}Commission
 Signature Bank,SBNY|Signature[-_\s.]*Bank|Signet|Scott[-_\s.]*Shay\b|(Joseph|Joe)[-_\s.]*DePaolo|\bKushner\b
 Silicon Valley Bank,si?vb|Silicon[-_\s.]*Valley[-_\s.]*Bank
 Silk Road,Silk[-_\s.]*Road|\bulbricht|\bDPR\b
@@ -140,16 +140,16 @@ VCs,venture[-_\s.]*capital|\bVCs?\b|calacanis|@jason\b|david[-_\s.]*sacks|\bthie
 Vitalik Buterin,\bvitalik\b
 Voyager,voyager
 Wallet Addresses BCH,bitcoincash:q.*\b
-Wallet Addresses Bitcoin,\b(bc1|[13])[a-zA-HJ-NP-Z0–9]{25,39}\b
-Wallet Addresses Cardano,\baddr1[a-z0–9]+\b
-Wallet Addresses Cosmos,\bcosmos[a-zA-Z0–9_.-]{10,}\b
-Wallet Addresses Dash,\bX[1–9A-HJ-NP-Za-km-z]{33}
-Wallet Addresses Doge,\bD[a-zA-Z0–9_.-]{33}
-Wallet Addresses Ethereum,\b0x[a-fA-F0–9]{40}
-Wallet Addresses Monero,\b[48][0–9AB][1–9A-HJ-NP-Za-km-z]{93}
-Wallet Addresses Polkadot,\b1[0–9a-zA-Z]{47}
-Wallet Addresses Ripple,\br[0–9a-zA-Z]{33}
-Wallet Addresses Stellar,\bG[0–9A-Z]{40,60}\b
+Wallet Addresses Bitcoin,\b(bc1|[13])[a-zA-HJ-NP-Z0-9]{25,39}\b
+Wallet Addresses Cardano,\baddr1[a-z0-9]+\b
+Wallet Addresses Cosmos,\bcosmos[a-zA-Z0-9_.-]{10,}\b
+Wallet Addresses Dash,\bX[1-9A-HJ-NP-Za-km-z]{33}
+Wallet Addresses Doge,\bD[a-zA-Z0-9_.-]{33}
+Wallet Addresses Ethereum,0x[a-fA-F0-9]{40}
+Wallet Addresses Monero,\b[48][0-9AB][1-9A-HJ-NP-Za-km-z]{93}
+Wallet Addresses Polkadot,\b1[0-9a-zA-Z]{47}
+Wallet Addresses Ripple,\br[0-9a-zA-Z]{33}
+Wallet Addresses Stellar,\bG[0-9A-Z]{40,60}\b
 Waves,sasha35625|sasha\.waves|\bvires|sasha[-_\s.]*ivanov|boris[-_\s.]*titov|[$#]waves\b
 Wintermute,wintermute|\bbebop\b
 Wirecard,wirecard|\bmarsalek\b|\bBafin\b

@@ -57,6 +57,7 @@ def test_get_sort_folder():
     check_folders('fuck okcoin it sucks', ['OKX'])
     check_folders('fuck okex it sucks', ['OKX'])
     check_folders('fuck $PI Wallet ', ['Pi'])
+    check_folders("CFTC’s Division of Clearing and Risk Issues.pdf", ['SEC'])
     check_folders('fuck Gary Gensler coin', ['SEC'])
     check_folders('fuck @SECgov coin', ['SEC'])
     check_folders('fuck the SEC coin', ['SEC'])
@@ -74,6 +75,7 @@ def test_get_sort_folder():
     check_folders('fuck tron chain it sucks', ['Tron'])
     check_folders('fuck @jason dipshit coin', ['VCs'])
     check_folders('fuck founders fund coin', ['VCs'])
+    check_folders('fuck 0xe85c4D91DC0D9dB0a59300e18acFA2A498419E83 coin', ['Wallet Addresses Ethereum'])
 
     for hoo in ['Rexy Wang', 'Rexy Hoo', '#Hoo', 'Hoo Exchange', 'HooExchange']:
         check_folders(f"fuck {hoo} yo", ['Hoo'])
