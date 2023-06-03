@@ -144,7 +144,7 @@ class Config:
             return [
                 SortRule(row['folder'], re.compile(row['regex'], re.IGNORECASE | re.MULTILINE))
                 for row in csv.DictReader(
-                    filter(lambda row: len(row) > 0 and row.lstrip()[0] != '#', csvfile),
+                    filter(lambda _row: len(_row) > 0 and _row.lstrip()[0] != '#', csvfile),
                     delimiter=','
                 )
             ]
@@ -216,6 +216,6 @@ def log_optional_module_warning(module_name: str, msg: Optional[Text] = None) ->
     console.line()
     console.print(msg)
     console.line()
-    console.print(f"     pipx install clown_sort\[{module_name}] --force", style='bright_cyan')
+    console.print(f"     pipx install clown_sort\\[{module_name}] --force", style='bright_cyan')
     console.line()
     console.print(f"'pip install' works if you're not using pipx. Use 'poetry install --all-extras' if you're in a development environment.")
