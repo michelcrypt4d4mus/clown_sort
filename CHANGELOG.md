@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Skip comment rows in rules CSVs.
 
 ### 1.6.4
 * Crop very long PDF pages when previewing in manual select window

@@ -22,7 +22,7 @@ Bitmain,Bitmain
 Bitstamp,Bitstamp
 Bittrex,Bittrex|Ritchie[-_\s.]*Lai|Kiran[-_\s.]*Raj|John[-_\s.]*Roth\b|\bAquila\b
 Bitzlato,Bitzlato
-Blockchain.com,\bblockchain\.com\b|@blockchain\b|@AskBlockchain\b
+Blockchain.com,\bblockchain\.com\b|@blockchain\b|@AskBlockchain\b|Patrick[-_\s.]*McHenry
 Blockchain8,Blockchain8|tom[-_\s.]*emmer|ritchie[-_\s.]*torres|repritchie|Warren[-_\s.]*Davidson|Byron[-_\s.]*Donalds|Ted[-_\s.]*Budd|Josh[-_\s.]*Gotheimer|Jake[-_\s.]*Auchincloss|Darren[-_\s.]*Soto|ro[-_\s.]*khanna|KMSmithDC|Kristin[-_\s.]*Smith\b|Warren[-_\s.]*Davidson
 Blockchain Capital,Blockchain[-_\s.]*Capital|\bbrock\b|brockpierce
 BlockFi,BlockFi|Zac[-_\s.]*Prince|Brian[-_\s.]*Oliver

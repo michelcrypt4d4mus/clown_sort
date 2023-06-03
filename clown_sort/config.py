@@ -143,7 +143,10 @@ class Config:
         with open(Path(file_path), mode='r') as csvfile:
             return [
                 SortRule(row['folder'], re.compile(row['regex'], re.IGNORECASE | re.MULTILINE))
-                for row in csv.DictReader(csvfile, delimiter=',')
+                for row in csv.DictReader(
+                    filter(lambda row: len(row) > 0 and row.lstrip()[0] != '#', csvfile),
+                    delimiter=','
+                )
             ]
 
     @classmethod
