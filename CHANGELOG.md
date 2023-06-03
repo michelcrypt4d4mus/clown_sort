@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+# 1.7.0
 * Skip comment rows starting with `#` in rules CSVs.
 * New default rules
 
