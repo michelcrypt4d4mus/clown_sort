@@ -1,5 +1,6 @@
 # NEXT RELEASE
-* Skip comment rows in rules CSVs.
+* Skip comment rows starting with `#` in rules CSVs.
+* New default rules
 
 ### 1.6.4
 * Crop very long PDF pages when previewing in manual select window
