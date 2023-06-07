@@ -1,7 +1,7 @@
 folder,regex
 1mdb,1mdb|jho[-_\s.]*low|Victor[-_\s.]*Hoo
 3ac,3ac|Three[-_\s.]*Arrows[-_\s.]*Capital|su[-_\s.]*zhu|zhu[-_\s.]*su|kyle[-_\s.]*davies|OPNX
-A16Z,a16z|Andreessen|Packym|Arianna[-_\s1]*Simpson|Ben[-_\s.]*Horowitz
+A16Z,a16z|Andreessen|Packym|Arianna[-_\s1]*Simpson|Ben[-_\s.]*Horowitz|\bAXS\b
 Aave,\bAave
 AAX,\baax
 Algorand,\bAlgorand|\b[$#]ALGO\b
@@ -45,7 +45,7 @@ CompoundFi,compoundfi|leshner|\bgonen\b
 ConsenSys,ConsenSys
 Cross River Bank,\bCRB|Cross[-_\s.]*River|Prestige[-_\s.]*Capital|\bbae[-_\s.]*communications|Zenfi\b|PeerIQ|\bupstart\b|\bUPST\b|\bLeumi\b|Hapoalim|BetterFin|\bMANTL\b|\bLvnv|\bKabbage|\bAFRM\b
 Cumberland,cumberland
-Crypto.com,crypto[._]?com|CDC|[$#]CRO|\sCRO\s|Doug(las)?[-_\s.]*
+Crypto.com,crypto[._]?com|CDC|[$#]CRO|\sCRO\s|Doug(las)?[-_\s.]*Ching\b
 CUBI,\bCUBI\b|Customers[-_\s.]*Ban(k|corp)
 Custodia,custodia\b|caitlin[-_\s.]*long
 dalle,craiyon|midjourney|\bdall[-_\s.]*e\b
@@ -68,6 +68,7 @@ Frax,\bFrax\b|\bFRX|[\b#$]FXS
 Friedlander Group,Friedlander|Agro[-_\s.]*Bank|\ball[-_\s.]*year\b|\bbrock\b|brockpierce|litvishhocker
 FTX,FTX|\bFTT\b|\bSBF|Trabucco|\bBankman\b|\bEllison|\bNishad|\bAlameda|Moonstone|friedberg|autism[-_\s.]*capital|\bryne\b|clifton[-_\s.]*bay|\bZUBR\b
 Galaxy Digital,novogratz|Alex[-_\s.]*Thorn
+Gate.io,Gate[_.]?IO
 Gelato Network,Gelato[-_\s.]*Network|\bSorbet[-_\s.]*Finance|@gitpusha|hilmar[-_\s.]*x|\bmistx\b|@_alchemistcoin|@ChaosLabs_NFT|Arrakis[-_\s.]*Finance|Dave[-_\s.]*Leibowitz|Hilmar[-_\s.]*Orth|joehquak
 Gemini,Gemini|winklev|@cameron
 Genesis,Genesis|Michael\s?Moro
