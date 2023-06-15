@@ -1,4 +1,6 @@
 # NEXT RELEASE
+* Handle 0 byte PDF error
+* More default rules
 
 # 1.7.0
 * Skip comment rows starting with `#` in rules CSVs.

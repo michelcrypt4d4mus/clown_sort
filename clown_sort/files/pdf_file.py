@@ -6,7 +6,7 @@ from sys import exit
 from typing import Optional
 
 from pypdf import PdfReader
-from pypdf.errors import DependencyError
+from pypdf.errors import DependencyError, EmptyFileError
 
 from clown_sort.config import check_for_pymupdf, log_optional_module_warning
 from clown_sort.util.rich_helper import WARNING, console
@@ -32,6 +32,8 @@ class PdfFile(SortableFile):
             self._extracted_text = '\\n\\n'.join([page.extract_text() for page in pdf_reader.pages])
         except DependencyError:
             log_optional_module_warning('pdf')
+        except EmptyFileError:
+            log.warn("Skipping empty file!")
         except (KeyError, TypeError):
             # TODO: failure on KeyError: '/Root' seems to have been fixed but not released yet
             # https://github.com/py-pdf/pypdf/pull/1784
@@ -46,7 +48,12 @@ class PdfFile(SortableFile):
     def thumbnail_bytes(self) -> bytes:
         """Return bytes for a thumbnail."""
         import fitz
-        doc = fitz.open(self.file_path)
+
+        try:
+            doc = fitz.open(self.file_path)
+        except fitz.fitz.EmptyFileError:
+            return b''
+
         zoom_matrix = fitz.Matrix(fitz.Identity).prescale(SCALE_FACTOR, SCALE_FACTOR)
         page = doc[0]
         bottom_right = page.rect.br
