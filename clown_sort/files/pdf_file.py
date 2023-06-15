@@ -26,6 +26,7 @@ class PdfFile(SortableFile):
             return self._extracted_text
 
         self._extracted_text = None
+        log.debug(f"Extracting text from '{self.file_path}'...")
 
         try:
             pdf_reader = PdfReader(self.file_path)
@@ -48,6 +49,7 @@ class PdfFile(SortableFile):
     def thumbnail_bytes(self) -> Optional[bytes]:
         """Return bytes for a thumbnail."""
         import fitz
+        log.debug(f"Getting bytes for '{self.file_path}'...")
 
         try:
             doc = fitz.open(self.file_path)
