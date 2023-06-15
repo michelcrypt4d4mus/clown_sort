@@ -28,9 +28,14 @@ def process_file_with_popup(image: Union['ImageFile', 'PdfFile']) -> None:
     suggested_filename = FilenameExtractor(image).filename()
     sort_dirs = [path.basename(dir) for dir in Config.get_sort_dirs()]
     max_dirname_length = max([len(dir) for dir in sort_dirs])
+    thumbnail_bytes = image.thumbnail_bytes()
+
+    if thumbnail_bytes is None:
+        log.warn(f"Failed to get a thumbnail; skipping...")
+        return
 
     layout = [
-        [psg.Column([[psg.Image(data=image.thumbnail_bytes(), key="-IMAGE-")]], justification='center')],
+        [psg.Column([[psg.Image(data=thumbnail_bytes, key="-IMAGE-")]], justification='center')],
         [psg.HSep()],
         [psg.Text("Choose Filename:")],
         [psg.Input(suggested_filename, size=(len(suggested_filename), 1))],# font=("Courier New", 12))],

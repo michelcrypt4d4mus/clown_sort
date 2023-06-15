@@ -45,14 +45,14 @@ class PdfFile(SortableFile):
         self.text_extraction_attempted = True
         return self._extracted_text
 
-    def thumbnail_bytes(self) -> bytes:
+    def thumbnail_bytes(self) -> Optional[bytes]:
         """Return bytes for a thumbnail."""
         import fitz
 
         try:
             doc = fitz.open(self.file_path)
         except fitz.fitz.EmptyFileError:
-            return b''
+            return None
 
         zoom_matrix = fitz.Matrix(fitz.Identity).prescale(SCALE_FACTOR, SCALE_FACTOR)
         page = doc[0]
