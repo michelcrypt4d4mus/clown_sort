@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.7.1
 * Handle 0 byte PDF error
 * More default rules
 
