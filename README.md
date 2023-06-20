@@ -135,6 +135,16 @@ pipx install clown_sort[gui]
 ![](doc/manual_select_box.png)
 
 
+## One Offs
+There is a script you can use to extract text from a single file (or a bunch of files, or all the files in a given directory). Just run:
+
+```
+scripts/extract_text_from_files.py MY_FILE1 MY_FILE2 SOME_DIR3
+```
+
+This will parse and display the text in `MY_FILE1`, `MY_FILE2`, and all the files in `SOME_DIR3`.
+
+
 # Contributing
 Feel free to file issues or open pull requests.
 

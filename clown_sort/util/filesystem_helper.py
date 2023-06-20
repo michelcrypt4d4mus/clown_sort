@@ -26,7 +26,7 @@ MAC_SCREENSHOT_TIMESTAMP_FORMAT = '%Y-%m-%d at %I.%M.%S %p'
 
 
 def files_in_dir(dir: Union[os.PathLike, str], with_extname: Optional[str] = None) -> List[str]:
-    """Paths for non-hidden files, optionally ending in 'with_extname'"""
+    """Paths for non-hidden, non-directory files, optionally ending in 'with_extname'"""
     files = [file for file in _non_hidden_files_in_dir(dir) if not path.isdir(file)]
 
     if with_extname:

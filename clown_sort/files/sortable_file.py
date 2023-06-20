@@ -186,6 +186,29 @@ class SortableFile:
         else:
             run(['open', self.file_path])
 
+    def print_extracted_text(self, max_chars: Optional[int] = None) -> None:
+        console.print(self._filename_panel())
+        console.print(self._extracted_str())
+
+    def _extracted_str(self, max_chars: Optional[int] = None) -> str:
+        """Raw string version of extracted text but truncated to max_chars if provided."""
+        txt = self.extracted_text()
+
+        if txt is None:
+            txt = "<No extracted text>"
+        else:
+            if max_chars is not None:
+                txt = txt[0:MAX_EXTRACTION_LENGTH]
+
+        return txt
+
+    def _extracted_text_panel(self) -> Panel:
+        """Panelized version of the extracted text for display."""
+        return Panel(self._extracted_str(MAX_EXTRACTION_LENGTH), expand=True, style='dim')
+
+    def _filename_panel(self) -> Panel:
+        return Panel(str(self.file_path), expand=False, style='bright_white reverse')
+
     def _log_copy_file(self, destination_path: Path, match: Optional[re.Match] = None) -> None:
         """Log info about a file copy."""
         if Config.debug:
@@ -246,15 +269,10 @@ class SortableFile:
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         """Rich text method."""
         yield Text("\n\n")
-        yield Panel(str(self.file_path), expand=False, style='bright_white reverse')
+        yield self._filename_panel()
 
         if Config.debug:
-            if self.extracted_text() is None:
-                txt = "<No extracted text>"
-            else:
-                txt = self.extracted_text()[0:MAX_EXTRACTION_LENGTH]
-
-            yield Panel(txt, expand=True, style='dim')
+            yield self._extracted_text_panel()
 
         if self._filename_extractor is not None:
             if self._filename_extractor._is_tweet():
