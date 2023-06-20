@@ -1,7 +1,9 @@
 # NEXT RELEASE
+* Actually make `extract_text_from_files` executable
 
 # 1.8.0
-* Add a script to 
+* Add a script to extract files
+* More default sort rules
 
 ### 1.7.1
 * Handle 0 byte PDF error

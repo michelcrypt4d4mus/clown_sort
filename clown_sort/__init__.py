@@ -1,3 +1,4 @@
+import sys
 from glob import glob
 from os import environ, getcwd, path
 from pathlib import Path
@@ -40,7 +41,34 @@ def sort_screenshots():
             file_to_sort.sort_file()
 
 
-def set_screenshot_timestamps():
+def extract_text_from_files() -> None:
+    """
+    Extract text from a single file or from all files in a given directory. Can accept
+    multiple paths as arguments on the command line.
+
+    TODO: replace with an option parser
+    """
+    console.line()
+
+    if len(sys.argv) <= 1:
+        print("Provide at least one filename to extract.")
+        sys.exit()
+
+    files_to_process = []
+
+    for file_path in sys.argv[1:]:
+        if Path(file_path).is_dir():
+            files_to_process.extend(files_in_dir(file_path))
+        else:
+            files_to_process.append(file_path)
+
+    for file_path in files_to_process:
+        build_sortable_file(file_path).print_extracted_text()
+        console.line(2)
+
+
+def set_screenshot_timestamps_from_filenames():
+    """Parse the filenames to reset the file creation timestamps."""
     Config.configure()
 
     for image in screenshot_paths(Config.screenshots_dir):
@@ -86,6 +114,7 @@ def screenshot_paths(dir: Path) -> List[SortableFile]:
 
 
 def build_sortable_file(file_path: Union[str, Path]) -> SortableFile:
+    """Decide if it's a PDF, image, or other type of file."""
     if is_image(file_path):
         return ImageFile(file_path)
     elif is_pdf(file_path):

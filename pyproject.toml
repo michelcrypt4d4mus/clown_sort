@@ -68,4 +68,5 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 sort_screenshots = 'clown_sort:sort_screenshots'
-set_screenshot_timestamps = 'clown_sort:set_screenshot_timestamps'
+set_screenshot_timestamps_from_filenames = 'clown_sort:set_screenshot_timestamps_from_filenames'
+extract_text_from_files = 'clown_sort:extract_text_from_files'

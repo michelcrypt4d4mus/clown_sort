@@ -135,11 +135,11 @@ pipx install clown_sort[gui]
 ![](doc/manual_select_box.png)
 
 
-## One Offs
-There is a script you can use to extract text from a single file (or a bunch of files, or all the files in a given directory). Just run:
+## One Off Extractions
+Sometimes you just want to see the extracted text from a PDF or image and aren't trying to sort anything. There is a convenience script ou can use to extract text from a single file, multiple files, or all the files in a given directory. Just run `extract_text_from_files MY_FILE` to extract a single file. As an example for extracting multiple files and/or directories:
 
 ```
-scripts/extract_text_from_files.py MY_FILE1 MY_FILE2 SOME_DIR3
+extract_text_from_files MY_FILE1 MY_FILE2 SOME_DIR3
 ```
 
 This will parse and display the text in `MY_FILE1`, `MY_FILE2`, and all the files in `SOME_DIR3`.
