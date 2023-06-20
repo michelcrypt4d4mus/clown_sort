@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.8.1
 * Actually make `extract_text_from_files` executable
 
 # 1.8.0
