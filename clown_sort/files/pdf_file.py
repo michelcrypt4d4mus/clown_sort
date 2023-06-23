@@ -1,17 +1,22 @@
 """
 Wrapper for PDF files.
 """
+import io
 import logging
 from sys import exit
 from typing import Optional
 
+import pytesseract
+from PIL import Image
+from PIL.ExifTags import TAGS
 from pypdf import PdfReader
 from pypdf.errors import DependencyError, EmptyFileError
 
 from clown_sort.config import check_for_pymupdf, log_optional_module_warning
-from clown_sort.util.rich_helper import WARNING, console
-from clown_sort.util.logging import log
+from clown_sort.files.image_file import ImageFile
 from clown_sort.files.sortable_file import SortableFile
+from clown_sort.util.logging import log
+from clown_sort.util.rich_helper import WARNING, console, warning_text
 
 MAX_DISPLAY_HEIGHT = 600
 SCALE_FACTOR = 0.4
@@ -42,6 +47,10 @@ class PdfFile(SortableFile):
 
         if self._extracted_text is not None:
             self._extracted_text = self._extracted_text.strip()
+
+        if self._extracted_text is None or len(self._extracted_text):
+            log.warn("Attempting PDF image extraction for '{self.file_path}'...")
+            self._extracted_text = self._extract_text_from_images_pdf()
 
         self.text_extraction_attempted = True
         return self._extracted_text
@@ -84,3 +93,42 @@ class PdfFile(SortableFile):
 
     def __repr__(self) -> str:
         return f"PdfFile('{self.file_path}')"
+
+    def _extract_text_from_images_pdf(self) -> str:
+        """Some PDFs have a big image for each page instead of extractable text."""
+        import fitz
+        pdf_file = fitz.open(self.file_path)
+        extracted_pages = []
+
+        #iterate over PDF pages
+        for page_index in range(pdf_file.page_count):
+            page = pdf_file[page_index]
+            image_li = page.get_images()
+
+            if image_li:
+                log.debug(f"[+] Found a total of {len(image_li)} images in page {page_index + 1}")
+            else:
+                log.debug(f"[!] No images found on page {page_index + 1}")
+
+            for image_index, img in enumerate(page.get_images(), start=1):
+                xref = img[0]
+                base_image = pdf_file.extract_image(xref)
+                image_extension = base_image["ext"]
+                image = Image.open(io.BytesIO(base_image["image"]))
+                image_name =  f"PAGE_{page_index+1}_Image_{image_index}.{image_extension}"
+
+                try:
+                    extracted_pages.append(ImageFile.extract_text(image, image_name))
+                except OSError as e:
+                    if 'truncated' in str(e):
+                        console.print(warning_text(f"Truncated image file! '{self.file_path}'!"))
+                    else:
+                        console.print_exception()
+                        console.print(f"Error while extracting '{self.file_path}'!", style='bright_red')
+                        raise e
+                except Exception as e:
+                    console.print_exception()
+                    console.print(f"Error while extracting '{self.file_path}'!", style='bright_red')
+                    raise e
+
+        return '\\n\\n'.join(extracted_pages)
