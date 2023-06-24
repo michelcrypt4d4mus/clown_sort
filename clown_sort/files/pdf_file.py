@@ -40,28 +40,29 @@ class PdfFile(SortableFile):
             pdf_reader = PdfReader(self.file_path)
 
             for page_number, page in enumerate(pdf_reader.pages):
-                console_buffer.print(Panel(f"*** PAGE {page_number} ***", width=50))
+                console_buffer.print(Panel(f"PAGE {page_number + 1}", padding=(0, 15), expand=False))
                 console_buffer.print(page.extract_text().strip())
 
                 for image_number, image in enumerate(page.images, start=1):
-                    image_name = f"Page.{page_number + 1} Image.{image_number}"
-                    image_header = Panel(f"Page.{page_number + 1} Img.{image_number}", expand=False)
+                    image_name = f"Page {page_number + 1}, Image {image_number}"
+                    image_header = Panel(image_name, expand=False)
                     console_buffer.print(image_header)
                     image_obj = Image.open(io.BytesIO(image.data))
-                    image_text = ImageFile.extract_text(image_obj, f"{self.file_path} ({image_name})") or ''
-                    console_buffer.print(image_text.strip())
+                    image_text = ImageFile.extract_text(image_obj, f"{self.file_path} ({image_name})")
+                    console_buffer.print(image_text.strip() or '')
 
                 page_text = console_buffer.file.getvalue()
+                console.print(page_text)
                 log.debug(page_text)
                 extracted_pages.append(page_text)
         except DependencyError:
             log_optional_module_warning('pdf')
         except EmptyFileError:
             log.warn("Skipping empty file!")
-        except (KeyError, TypeError):
+        except (KeyError, TypeError) as e:
             # TODO: failure on KeyError: '/Root' seems to have been fixed but not released yet
             # https://github.com/py-pdf/pypdf/pull/1784
-            log.warn(f"Failed to parse PDF: '{self.file_path}'!")
+            log.warn(f"Failed to parse PDF: '{self.file_path}' because of {e}!")
 
         self.text_extraction_attempted = True
         self._extracted_text = "\n\n".join(extracted_pages).strip()
