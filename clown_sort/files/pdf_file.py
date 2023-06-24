@@ -11,6 +11,7 @@ from PIL import Image
 from PIL.ExifTags import TAGS
 from pypdf import PdfReader
 from pypdf.errors import DependencyError, EmptyFileError
+from rich.console import Console
 from rich.panel import Panel
 
 from clown_sort.config import check_for_pymupdf, log_optional_module_warning
@@ -32,21 +33,23 @@ class PdfFile(SortableFile):
             return self._extracted_text
 
         log.debug(f"Extracting text from '{self.file_path}'...")
+        console_buffer = Console(file=io.StringIO())
         extracted_pages = []
 
         try:
             pdf_reader = PdfReader(self.file_path)
 
             for page_number, page in enumerate(pdf_reader.pages):
-                page_text = str(Panel(f"Page {page_number}", style='reverse', width=30)) + "\n"
-                page_text += page.extract_text().strip()
+                console_buffer.print(Panel(f"Page {page_number}", style='reverse', width=30))
+                console_buffer.print(page.extract_text().strip() + "\n\n")
 
                 for image_number, image in enumerate(page.images, start=1):
                     image_name = f"PAGE_{page_number + 1}_Image_{image_number}"
                     image_obj = Image.open(io.BytesIO(image.data))
                     image_text = ImageFile.extract_text(image_obj, image_name) or ''
-                    page_text += f"\n\n{image_name}\n-------------------\n{image_text.strip()}"
+                    console_buffer.print(f"\n\n{image_name}\n-------------------\n{image_text.strip()}")
 
+                page_text = console_buffer.file.getvalue()
                 console.print(page_text)
                 extracted_pages.append(page_text)
         except DependencyError:
