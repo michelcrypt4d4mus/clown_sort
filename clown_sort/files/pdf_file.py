@@ -11,6 +11,7 @@ from PIL import Image
 from PIL.ExifTags import TAGS
 from pypdf import PdfReader
 from pypdf.errors import DependencyError, EmptyFileError
+from rich.panel import Panel
 
 from clown_sort.config import check_for_pymupdf, log_optional_module_warning
 from clown_sort.files.image_file import ImageFile
@@ -33,11 +34,11 @@ class PdfFile(SortableFile):
         log.debug(f"Extracting text from '{self.file_path}'...")
         extracted_pages = []
 
-
         try:
             pdf_reader = PdfReader(self.file_path)
 
             for page_number, page in enumerate(pdf_reader.pages):
+                page_text = str(Panel(f"Page {page_number}", style='reverse', width=30))
                 page_text = page.extract_text().strip()
 
                 for image_number, image in enumerate(page.images, start=1):
