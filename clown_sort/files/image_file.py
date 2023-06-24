@@ -8,7 +8,7 @@ Tags: https://exiftool.org/TagNames/EXIF.html
 import io
 import re
 from pathlib import Path
-from typing import Optional
+from typing import Optional, Union
 
 import pytesseract
 from PIL import Image

@@ -30,12 +30,24 @@ class PdfFile(SortableFile):
         if self.text_extraction_attempted:
             return self._extracted_text
 
-        self._extracted_text = None
         log.debug(f"Extracting text from '{self.file_path}'...")
+        extracted_pages = []
+
 
         try:
             pdf_reader = PdfReader(self.file_path)
-            self._extracted_text = '\\n\\n'.join([page.extract_text() for page in pdf_reader.pages])
+
+            for page_number, page in enumerate(pdf_reader.pages):
+                page_text = page.extract_text().strip()
+
+                for image_number, image in enumerate(page.images, start=1):
+                    image_name = f"PAGE_{page_number + 1}_Image_{image_number}"
+                    image_obj = Image.open(io.BytesIO(image.data))
+                    image_text = ImageFile.extract_text(image_obj, image_name) or ''
+                    page_text += f"\n\n{image_name}\n-------------------\n{image_text.strip()}"
+
+                console.print(page_text)
+                extracted_pages.append(page_text)
         except DependencyError:
             log_optional_module_warning('pdf')
         except EmptyFileError:
@@ -43,16 +55,10 @@ class PdfFile(SortableFile):
         except (KeyError, TypeError):
             # TODO: failure on KeyError: '/Root' seems to have been fixed but not released yet
             # https://github.com/py-pdf/pypdf/pull/1784
-            log.warn("Failed to parse PDF!")
-
-        if self._extracted_text is not None:
-            self._extracted_text = self._extracted_text.strip()
-
-        if self._extracted_text is None or len(self._extracted_text):
-            log.warn("Attempting PDF image extraction for '{self.file_path}'...")
-            self._extracted_text = self._extract_text_from_images_pdf()
+            log.warn(f"Failed to parse PDF: '{self.file_path}'!")
 
         self.text_extraction_attempted = True
+        self._extracted_text = "\n\n".join(extracted_pages).strip()
         return self._extracted_text
 
     def thumbnail_bytes(self) -> Optional[bytes]:
@@ -93,42 +99,3 @@ class PdfFile(SortableFile):
 
     def __repr__(self) -> str:
         return f"PdfFile('{self.file_path}')"
-
-    def _extract_text_from_images_pdf(self) -> str:
-        """Some PDFs have a big image for each page instead of extractable text."""
-        import fitz
-        pdf_file = fitz.open(self.file_path)
-        extracted_pages = []
-
-        #iterate over PDF pages
-        for page_index in range(pdf_file.page_count):
-            page = pdf_file[page_index]
-            image_li = page.get_images()
-
-            if image_li:
-                log.debug(f"[+] Found a total of {len(image_li)} images in page {page_index + 1}")
-            else:
-                log.debug(f"[!] No images found on page {page_index + 1}")
-
-            for image_index, img in enumerate(page.get_images(), start=1):
-                xref = img[0]
-                base_image = pdf_file.extract_image(xref)
-                image_extension = base_image["ext"]
-                image = Image.open(io.BytesIO(base_image["image"]))
-                image_name =  f"PAGE_{page_index+1}_Image_{image_index}.{image_extension}"
-
-                try:
-                    extracted_pages.append(ImageFile.extract_text(image, image_name))
-                except OSError as e:
-                    if 'truncated' in str(e):
-                        console.print(warning_text(f"Truncated image file! '{self.file_path}'!"))
-                    else:
-                        console.print_exception()
-                        console.print(f"Error while extracting '{self.file_path}'!", style='bright_red')
-                        raise e
-                except Exception as e:
-                    console.print_exception()
-                    console.print(f"Error while extracting '{self.file_path}'!", style='bright_red')
-                    raise e
-
-        return '\\n\\n'.join(extracted_pages)
