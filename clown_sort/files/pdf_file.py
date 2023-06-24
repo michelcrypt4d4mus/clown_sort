@@ -40,15 +40,15 @@ class PdfFile(SortableFile):
             pdf_reader = PdfReader(self.file_path)
 
             for page_number, page in enumerate(pdf_reader.pages):
-                console_buffer.print(Panel(f"Page {page_number}", width=50))
+                console_buffer.print(Panel(f"*** PAGE {page_number} ***", width=50))
                 console_buffer.print(page.extract_text().strip())
 
                 for image_number, image in enumerate(page.images, start=1):
-                    image_name = f"PAGE_{page_number + 1}_Image_{image_number}"
-                    image_header = Panel(f"PAGE_{page_number + 1} IMG {image_number}", expand=False)
-                    image_obj = Image.open(io.BytesIO(image.data))
-                    image_text = ImageFile.extract_text(image_obj, image_name) or ''
+                    image_name = f"Page.{page_number + 1} Image.{image_number}"
+                    image_header = Panel(f"Page.{page_number + 1} Img.{image_number}", expand=False)
                     console_buffer.print(image_header)
+                    image_obj = Image.open(io.BytesIO(image.data))
+                    image_text = ImageFile.extract_text(image_obj, f"{self.file_path} ({image_name})") or ''
                     console_buffer.print(image_text.strip())
 
                 page_text = console_buffer.file.getvalue()

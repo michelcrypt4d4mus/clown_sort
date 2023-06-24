@@ -81,7 +81,7 @@ class ImageFile(SortableFile):
         if self.text_extraction_attempted:
             return self._extracted_text
 
-        self._extracted_text = ImageFile.extract_text(self.pillow_image_obj())
+        self._extracted_text = ImageFile.extract_text(self.pillow_image_obj(), str(self.file_path))
         self.text_extraction_attempted = True
         return self._extracted_text
 
