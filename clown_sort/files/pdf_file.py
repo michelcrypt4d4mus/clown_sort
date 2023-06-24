@@ -38,8 +38,8 @@ class PdfFile(SortableFile):
             pdf_reader = PdfReader(self.file_path)
 
             for page_number, page in enumerate(pdf_reader.pages):
-                page_text = str(Panel(f"Page {page_number}", style='reverse', width=30))
-                page_text = page.extract_text().strip()
+                page_text = str(Panel(f"Page {page_number}", style='reverse', width=30)) + "\n"
+                page_text += page.extract_text().strip()
 
                 for image_number, image in enumerate(page.images, start=1):
                     image_name = f"PAGE_{page_number + 1}_Image_{image_number}"
