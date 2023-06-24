@@ -50,7 +50,7 @@ class PdfFile(SortableFile):
                     console_buffer.print(f"\n\n{image_name}\n-------------------\n{image_text.strip()}")
 
                 page_text = console_buffer.file.getvalue()
-                console.print(page_text)
+                print(page_text)
                 extracted_pages.append(page_text)
         except DependencyError:
             log_optional_module_warning('pdf')
