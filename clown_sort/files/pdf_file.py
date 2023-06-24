@@ -49,7 +49,7 @@ class PdfFile(SortableFile):
                     console_buffer.print(image_header)
                     image_obj = Image.open(io.BytesIO(image.data))
                     image_text = ImageFile.extract_text(image_obj, f"{self.file_path} ({image_name})")
-                    console_buffer.print(image_text.strip() or '')
+                    console_buffer.print((image_text or '').strip())
 
                 page_text = console_buffer.file.getvalue()
                 console.print(page_text)
