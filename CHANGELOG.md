@@ -1,5 +1,6 @@
 # NEXT RELEASE
 * Parse text from images in PDFs (some PDFs have no text only images)
+* Improve `extract_text_from_files` functionality
 
 ### 1.8.1
 * Actually make `extract_text_from_files` executable

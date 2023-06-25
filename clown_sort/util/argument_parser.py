@@ -80,12 +80,10 @@ parser.add_argument('--debug', action='store_true',
 # Parse args for extract_text_from_files() #
 ############################################
 
-EXTRACTION_SCRIPT_DESCRIPTION = "Extract the text from one or more files or directories. " \
-    "If a directory is provided all files in that directory will be extracted"
-
 extraction_parser = ArgumentParser(
     formatter_class=RichHelpFormatterPlus,
-    description=EXTRACTION_SCRIPT_DESCRIPTION
+    description="Extract the text from one or more files or directories.",
+    epilog="If FILE_OR_DIR is a directory all files in that directory will be extracted."
 )
 
 extraction_parser.add_argument('file_or_dir', nargs='+', metavar='FILE_OR_DIR')
