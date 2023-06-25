@@ -3,12 +3,9 @@ Wrapper for PDF files.
 """
 import io
 import logging
-from sys import exit
 from typing import Optional
 
-import pytesseract
 from PIL import Image
-from PIL.ExifTags import TAGS
 from pypdf import PdfReader
 from pypdf.errors import DependencyError, EmptyFileError
 from rich.console import Console
@@ -18,7 +15,7 @@ from clown_sort.config import check_for_pymupdf, log_optional_module_warning
 from clown_sort.files.image_file import ImageFile
 from clown_sort.files.sortable_file import SortableFile
 from clown_sort.util.logging import log
-from clown_sort.util.rich_helper import WARNING, console, warning_text
+from clown_sort.util.rich_helper import WARNING, console
 
 MAX_DISPLAY_HEIGHT = 600
 SCALE_FACTOR = 0.4
@@ -59,10 +56,6 @@ class PdfFile(SortableFile):
             log_optional_module_warning('pdf')
         except EmptyFileError:
             log.warn("Skipping empty file!")
-        except (KeyError, TypeError) as e:
-            # TODO: failure on KeyError: '/Root' seems to have been fixed but not released yet
-            # https://github.com/py-pdf/pypdf/pull/1784
-            log.warn(f"Failed to parse PDF: '{self.file_path}' because of {e}!")
 
         self.text_extraction_attempted = True
         self._extracted_text = "\n\n".join(extracted_pages).strip()
@@ -70,7 +63,7 @@ class PdfFile(SortableFile):
 
     def thumbnail_bytes(self) -> Optional[bytes]:
         """Return bytes for a thumbnail."""
-        import fitz
+        import fitz  # TODO: Can we do this without PyMuPDF dependency?
         log.debug(f"Getting bytes for '{self.file_path}'...")
 
         try:

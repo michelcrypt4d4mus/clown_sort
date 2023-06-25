@@ -83,7 +83,7 @@ parser.add_argument('--debug', action='store_true',
 extraction_parser = ArgumentParser(
     formatter_class=RichHelpFormatterPlus,
     description="Extract the text from one or more files or directories.",
-    epilog="If FILE_OR_DIR is a directory all files in that directory will be extracted."
+    epilog="If any of the FILE_OR_DIRs is a directory all files in that directory will be extracted."
 )
 
 extraction_parser.add_argument('file_or_dir', nargs='+', metavar='FILE_OR_DIR')
