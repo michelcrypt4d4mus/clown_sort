@@ -66,6 +66,7 @@ FalconX,falconx
 First Digital,First[-_\s.]*Digital\b
 Flip Filipkowski,filipkowski
 Finblox,finblox
+Fintech,Mercury\b(Chime(bank)|Nibiru|Brex|Pinwheel|Lithic|Unit21|Synapse|LendingClub|Piermont|Burling|Bangor|Klarna|Afterpay|Zeta|FirstDollar|Alto|Marqeta|Grasshopper|CheckOut|Allpoint|ArrowEye|C2Fo)\b|Treasury[-_\s.]*Prime|Chris[-_\s.]*Dean|Jim[-_\s.]*Brusstar\b
 Fireblocks,fireblocks
 Frax,\bFrax\b|\bFRX|[\b#$]FXS
 Friedlander Group,Friedlander|Agro[-_\s.]*Bank|\ball[-_\s.]*year\b|\bbrock\b|brockpierce|litvishhocker|Yecheskel|Swift[-_\s.]*Staffing
@@ -126,7 +127,7 @@ Paxos,paxos|BUSD|USDP|PAXG
 Payrnet,Payrnet|Rails(r|bank)\b
 Pi,\$PI[^\w]|Pi[-_\s.]*Network
 Politics,\bted[-_\s.]*cruz
-Prime Trust,Prime[-\s_]*Trust|\b(Banq|PrimeX|Sroge|anonalyx)\b|Scott[-\s_]*Purcell|(Planet|Fortress)[-\s_]*(Xyz|Trust|NFT)|George[-\s_]*Georgiades|Kevin[-\s_]*Lehtiniitty
+Prime Trust,Prime[-\s_]*Trust|\b(Banq|PrimeX|Sroge|anonalyx|Kasidie)\b|Scott[-\s_]*Purcell|(Planet|Fortress)[-\s_]*(Xyz|Trust|NFT)|George[-\s_]*Georgiades|Kevin[-\s_]*Lehtiniitty
 PVBC,PVBC|BankProv
 Quadriga,Quadriga|Gerald[-_\s.]*Cotten|0xsifu\b|michael[-_\s.]*patryn|wonderland|daniele[-_\s.]*sesta\b
 Revolut,\bRevolut\b
