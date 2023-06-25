@@ -42,14 +42,12 @@ class PdfFile(SortableFile):
 
                 for image_number, image in enumerate(page.images, start=1):
                     image_name = f"Page {page_number + 1}, Image {image_number}"
-                    image_header = Panel(image_name, expand=False)
-                    console_buffer.print(image_header)
+                    console_buffer.print(Panel(image_name, expand=False))
                     image_obj = Image.open(io.BytesIO(image.data))
                     image_text = ImageFile.extract_text(image_obj, f"{self.file_path} ({image_name})")
                     console_buffer.print((image_text or '').strip())
 
                 page_text = console_buffer.file.getvalue()
-                console.print(page_text)
                 log.debug(page_text)
                 extracted_pages.append(page_text)
         except DependencyError:
