@@ -49,12 +49,11 @@ def extract_text_from_files() -> None:
     multiple paths as arguments on the command line.
     """
     args: Namespace = extraction_parser.parse_args()
+    console.line()
+    files_to_process = []
 
     if args.debug:
         Config.enable_debug_mode()
-
-    console.line()
-    files_to_process = []
 
     for file_or_dir in args.file_or_dir:
         file_path = Path(file_or_dir)
