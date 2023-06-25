@@ -4,7 +4,7 @@ folder,regex
 A16Z,a16z|Andreessen|Packym|Arianna[-_\s1]*Simpson|Ben[-_\s.]*Horowitz|\bAXS\b
 Aave,\bAave
 Abra,\bAbra\b|\bPlutus\b|\bBarhydt
-AAX,\baax
+AAX,\bAAX
 Algorand,\bAlgorand|\b[$#]ALGO\b
 Arbitrum,Arbitrum|[$#]ARB\b
 Amber Group,Amber[-_\s.]*Group|\btiantian\b|\bkullander\b|\btony[-_\s.]*he\b|\bbo[-_\s.]*shen\b
@@ -61,7 +61,7 @@ El Salvador,El[-_\s.]*Salvador|Bukele|Max[-_\s.]*Keiser
 Elon Musk,\bTesla\b|\bTSLA\b|\bElon\b|\bElmo\b
 EOS,\bEOS\b|\bBlumer\b|\bLarimer\b|@B1\b|Block[-_\.\s]One
 Evertas,\bEvertas\b|Ryan[-_\s.]*Lackey
-Euler Finance,\beuler\b
+Euler Finance,\bEuler\b
 FalconX,falconx
 First Digital,First[-_\s.]*Digital\b
 Flip Filipkowski,filipkowski
@@ -118,12 +118,12 @@ Olympus DAO,\bOlympus\b|OlympusDAO|\bOHM\b
 Ooki DAO,\bOoki(DAO)?\b
 OneCoin,\bOne(Coin|Life)\b
 OpenPayd,openpayd|CFD\s?Team
-OpenSea,OpenSea
+OpenSea,OpenSea\b
 PAG,\bpag\b|Weijian[-_\s.]*Shan
 Paradigm,Fred[-_\s.]*Ehrsam|paradigm\b
 Paxful,paxful|Ray[-_\s.]*(Youssef|Savant)|Artur[-_\s.]*Schaback
 Paxos,paxos|BUSD|USDP|PAXG
-Payrnet,payrnet|railsr|railsbank
+Payrnet,Payrnet|Rails(r|bank)\b
 Pi,\$PI[^\w]|Pi[-_\s.]*Network
 Politics,\bted[-_\s.]*cruz
 Prime Trust,Prime[-\s_]*Trust|\b(Banq|PrimeX|Sroge|anonalyx)\b|Scott[-\s_]*Purcell|(Planet|Fortress)[-\s_]*(Xyz|Trust|NFT)|George[-\s_]*Georgiades|Kevin[-\s_]*Lehtiniitty
@@ -154,7 +154,7 @@ TrueUSD,TUSD|TrueUSD|TrueFi|TrustExplorer|Techteryx
 Vauld,Vauld
 VCs,venture[-_\s.]*capital|\bVCs?\b|calacanis|@jason\b|david[-_\s.]*sacks|\bthiel\b|sequoia|founders[-_\s.]*fund|Valar[-_\s.]*Ventures|6th[-_\s.]*Man[-_\s.]*Ventures|Northzone|Warburg[-_\s.]*Serres|Alan[-_\s.]*Howard|Tiger[-_\s.]*Global
 Vitalik Buterin,\bvitalik\b
-Voyager,voyager
+Voyager,Voyager\b
 Wanxiang Group,wanxiang|\bFeng[-_\s.]*Xiao
 Wallet Addresses BCH,bitcoincash:q.*\b
 Wallet Addresses Bitcoin,\b(bc1|[13])[a-zA-HJ-NP-Z0-9]{25,39}\b
@@ -168,7 +168,7 @@ Wallet Addresses Polkadot,\b1[0-9a-zA-Z]{47}
 Wallet Addresses Ripple,\br[0-9a-zA-Z]{33}
 Wallet Addresses Stellar,\bG[0-9A-Z]{40,60}\b
 Waves,sasha35625|sasha\.waves|\bvires|sasha[-_\s.]*ivanov|boris[-_\s.]*titov|[$#]waves\b
-Wintermute,wintermute|\bbebop\b
-Wirecard,wirecard|\bmarsalek\b|\bBafin\b
+Wintermute,Wintermute|\b(Bebop|Evgeny)\b
+Wirecard,\b(Bafin|Marsalek|Wirecard)\b|Markus[-_\s.]*Braun
 Worldcoin,Worldcoin|\borb\b
 Wyre,\bwyre|sendwyre|\bLead[-_\s.]*Bank\b|Steven[-_\s.]*Huynh
