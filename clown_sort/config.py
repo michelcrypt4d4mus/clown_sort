@@ -56,8 +56,7 @@ class Config:
         args: Namespace = parser.parse_args()
 
         if args.debug:
-            Config.debug = True
-            set_log_level('DEBUG')
+            cls.enable_debug_mode()
 
         rules_csvs = args.rules_csv or DEFAULT_RULES_CSV_PATHS
         rules_csvs = [CRYPTO_RULES_CSV_PATH if arg == CRYPTO else arg for arg in rules_csvs]
@@ -137,6 +136,11 @@ class Config:
     def get_sort_dirs(cls) -> List[str]:
         """Returns a list of the subdirectories already created for sorted images."""
         return sorted(subdirs_of_dir(cls.sorted_screenshots_dir), key=lambda d: d.lower())
+
+    @classmethod
+    def enable_debug_mode(cls) -> None:
+        Config.debug = True
+        set_log_level('DEBUG')
 
     @classmethod
     def _load_rules_csv(cls, file_path: Union[Path, str]) -> List[SortRule]:

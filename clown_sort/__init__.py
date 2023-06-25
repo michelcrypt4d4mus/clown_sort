@@ -1,4 +1,5 @@
 import sys
+from argparse import Namespace
 from glob import glob
 from os import environ, getcwd, path
 from pathlib import Path
@@ -13,6 +14,7 @@ if not environ.get('INVOKED_BY_PYTEST', False):
             load_dotenv(dotenv_path=dotenv_file)
             break
 
+from clown_sort.util.argument_parser import extraction_parser
 from clown_sort.config import Config
 from clown_sort.files.image_file import ImageFile
 from clown_sort.files.pdf_file import PdfFile
@@ -45,19 +47,22 @@ def extract_text_from_files() -> None:
     """
     Extract text from a single file or from all files in a given directory. Can accept
     multiple paths as arguments on the command line.
-
-    TODO: replace with an option parser
     """
+    args: Namespace = extraction_parser.parse_args()
+
+    if args.debug:
+        Config.enable_debug_mode()
+
     console.line()
-
-    if len(sys.argv) <= 1:
-        print("Provide at least one filename to extract.")
-        sys.exit()
-
     files_to_process = []
 
-    for file_path in sys.argv[1:]:
-        if Path(file_path).is_dir():
+    for file_or_dir in args.file_or_dir:
+        file_path = Path(file_or_dir)
+
+        if not file_path.exists():
+            console.print(f"File '{file_path}' doesn't exist!")
+            sys.exit()
+        elif file_path.is_dir():
             files_to_process.extend(files_in_dir(file_path))
         else:
             files_to_process.append(file_path)

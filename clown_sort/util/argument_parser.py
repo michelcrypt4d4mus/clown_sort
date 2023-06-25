@@ -1,3 +1,6 @@
+"""
+Parse arguments for both the main sort_screenshots() as well as extract_text_from_files().
+"""
 from argparse import ArgumentParser
 from os import environ
 from pathlib import Path
@@ -71,3 +74,19 @@ parser.add_argument('--show-rules', action='store_true',
 
 parser.add_argument('--debug', action='store_true',
                     help='turn on debug level logging')
+
+
+############################################
+# Parse args for extract_text_from_files() #
+############################################
+
+EXTRACTION_SCRIPT_DESCRIPTION = "Extract the text from one or more files or directories. " \
+    "If a directory is provided all files in that directory will be extracted"
+
+extraction_parser = ArgumentParser(
+    formatter_class=RichHelpFormatterPlus,
+    description=EXTRACTION_SCRIPT_DESCRIPTION
+)
+
+extraction_parser.add_argument('file_or_dir', nargs='+', metavar='FILE_OR_DIR')
+extraction_parser.add_argument('--debug', action='store_true', help='turn on debug level logging')
