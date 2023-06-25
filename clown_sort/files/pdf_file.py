@@ -1,17 +1,24 @@
 """
 Wrapper for PDF files.
 """
+import io
 import logging
 from sys import exit
 from typing import Optional
 
+import pytesseract
+from PIL import Image
+from PIL.ExifTags import TAGS
 from pypdf import PdfReader
 from pypdf.errors import DependencyError, EmptyFileError
+from rich.console import Console
+from rich.panel import Panel
 
 from clown_sort.config import check_for_pymupdf, log_optional_module_warning
-from clown_sort.util.rich_helper import WARNING, console
-from clown_sort.util.logging import log
+from clown_sort.files.image_file import ImageFile
 from clown_sort.files.sortable_file import SortableFile
+from clown_sort.util.logging import log
+from clown_sort.util.rich_helper import WARNING, console, warning_text
 
 MAX_DISPLAY_HEIGHT = 600
 SCALE_FACTOR = 0.4
@@ -25,25 +32,40 @@ class PdfFile(SortableFile):
         if self.text_extraction_attempted:
             return self._extracted_text
 
-        self._extracted_text = None
         log.debug(f"Extracting text from '{self.file_path}'...")
+        console_buffer = Console(file=io.StringIO())
+        extracted_pages = []
 
         try:
             pdf_reader = PdfReader(self.file_path)
-            self._extracted_text = '\\n\\n'.join([page.extract_text() for page in pdf_reader.pages])
+
+            for page_number, page in enumerate(pdf_reader.pages):
+                console_buffer.print(Panel(f"PAGE {page_number + 1}", padding=(0, 15), expand=False))
+                console_buffer.print(page.extract_text().strip())
+
+                for image_number, image in enumerate(page.images, start=1):
+                    image_name = f"Page {page_number + 1}, Image {image_number}"
+                    image_header = Panel(image_name, expand=False)
+                    console_buffer.print(image_header)
+                    image_obj = Image.open(io.BytesIO(image.data))
+                    image_text = ImageFile.extract_text(image_obj, f"{self.file_path} ({image_name})")
+                    console_buffer.print((image_text or '').strip())
+
+                page_text = console_buffer.file.getvalue()
+                console.print(page_text)
+                log.debug(page_text)
+                extracted_pages.append(page_text)
         except DependencyError:
             log_optional_module_warning('pdf')
         except EmptyFileError:
             log.warn("Skipping empty file!")
-        except (KeyError, TypeError):
+        except (KeyError, TypeError) as e:
             # TODO: failure on KeyError: '/Root' seems to have been fixed but not released yet
             # https://github.com/py-pdf/pypdf/pull/1784
-            log.warn("Failed to parse PDF!")
-
-        if self._extracted_text is not None:
-            self._extracted_text = self._extracted_text.strip()
+            log.warn(f"Failed to parse PDF: '{self.file_path}' because of {e}!")
 
         self.text_extraction_attempted = True
+        self._extracted_text = "\n\n".join(extracted_pages).strip()
         return self._extracted_text
 
     def thumbnail_bytes(self) -> Optional[bytes]:

@@ -8,7 +8,7 @@ Tags: https://exiftool.org/TagNames/EXIF.html
 import io
 import re
 from pathlib import Path
-from typing import Optional
+from typing import Optional, Union
 
 import pytesseract
 from PIL import Image
@@ -81,23 +81,7 @@ class ImageFile(SortableFile):
         if self.text_extraction_attempted:
             return self._extracted_text
 
-        try:
-            self._extracted_text = pytesseract.image_to_string(self.pillow_image_obj())
-        except OSError as e:
-            if 'truncated' in str(e):
-                console.print(warning_text(f"Truncated image file! '{self.file_path}'!"))
-            else:
-                console.print_exception()
-                console.print(f"Error while extracting '{self.file_path}'!", style='bright_red')
-                raise e
-        except Exception as e:
-            console.print_exception()
-            console.print(f"Error while extracting '{self.file_path}'!", style='bright_red')
-            raise e
-
-        if self._extracted_text is not None:
-            self._extracted_text = self._extracted_text.strip()
-
+        self._extracted_text = ImageFile.extract_text(self.pillow_image_obj(), str(self.file_path))
         self.text_extraction_attempted = True
         return self._extracted_text
 
@@ -123,3 +107,23 @@ class ImageFile(SortableFile):
     # def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
     #     super().__rich_console__(console, options)
     #     log.debug(f"RAW EXIF: {self.raw_exif_dict()}")
+
+    @staticmethod
+    def extract_text(image: Image.Image, image_name: str) -> Optional[str]:
+        text = None
+
+        try:
+            text = pytesseract.image_to_string(image)
+        except OSError as e:
+            if 'truncated' in str(e):
+                console.print(warning_text(f"Truncated image file! '{image_name}'!"))
+            else:
+                console.print_exception()
+                console.print(f"Error while extracting '{image_name}'!", style='bright_red')
+                raise e
+        except Exception as e:
+            console.print_exception()
+            console.print(f"Error while extracting '{image_name}'!", style='bright_red')
+            raise e
+
+        return None if text is None else text.strip()

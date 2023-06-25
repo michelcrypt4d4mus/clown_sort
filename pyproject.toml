@@ -42,7 +42,7 @@ filedate = "^2.0"
 python-dotenv = "^0.21.1"
 rich-argparse-plus = "^0.3.1.4"
 pyexiftool = "^0.5.5"
-pypdf = "^3.4.1"
+pypdf = "^3.8.0"
 pycryptodome = {version = "^3.17", optional = true}
 PyMuPDF = {version = "^1.22.3", optional = true}
 

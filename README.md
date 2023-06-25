@@ -136,7 +136,11 @@ pipx install clown_sort[gui]
 
 
 ## One Off Extractions
-Sometimes you just want to see the extracted text from a PDF or image and aren't trying to sort anything. There is a convenience script ou can use to extract text from a single file, multiple files, or all the files in a given directory. Just run `extract_text_from_files MY_FILE` to extract a single file. As an example for extracting multiple files and/or directories:
+`extract_text_from_files` (installed at the same time) is a convenient script you can use to extract text from a single file, multiple files, or all the files in a given directory using Google's best in class Tesseract library.
+
+![](doc/extract_text_from_files_help.png)
+
+As an example for extracting multiple files and/or directories:
 
 ```
 extract_text_from_files MY_FILE1 MY_FILE2 SOME_DIR3
