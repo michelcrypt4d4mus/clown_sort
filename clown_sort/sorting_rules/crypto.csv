@@ -66,7 +66,7 @@ FalconX,falconx
 First Digital,First[-_\s.]*Digital\b
 Flip Filipkowski,filipkowski
 Finblox,finblox
-Fintech,Mercury\b(Chime(bank)|Nibiru|Brex|Pinwheel|Lithic|Unit21|Synapse|LendingClub|Piermont|Burling|Bangor|Klarna|Afterpay|Zeta|FirstDollar|Alto|Marqeta|Grasshopper|CheckOut|Allpoint|ArrowEye|C2Fo)\b|Treasury[-_\s.]*Prime|Chris[-_\s.]*Dean|Jim[-_\s.]*Brusstar\b
+Fintech,Mercury\b(Azibo|\bChime(bank)|Nibiru|Brex|Pinwheel|Lithic|Unit21|Synapse|LendingClub|Piermont|Burling|Bangor|Klarna|Afterpay|Zeta|FirstDollar|Alto|Marqeta|Grasshopper|CheckOut|Allpoint|ArrowEye|C2Fo)\b|Treasury[-_\s.]*Prime|Chris[-_\s.]*Dean\b|Jim[-_\s.]*Brusstar|(Bangor|Third[-_\s.]*Coast|First[-_\s.]*Internet|Emprise)[-_\s.]*Bank
 Fireblocks,fireblocks
 Frax,\bFrax\b|\bFRX|[\b#$]FXS
 Friedlander Group,Friedlander|Agro[-_\s.]*Bank|\ball[-_\s.]*year\b|\bbrock\b|brockpierce|litvishhocker|Yecheskel|Swift[-_\s.]*Staffing
