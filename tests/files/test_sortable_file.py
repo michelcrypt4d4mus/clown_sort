@@ -50,6 +50,8 @@ def test_get_sort_folder():
     check_folders('fuck justinsuntron it sucks', ['Justin Sun'])
     check_folders('fuck DAI ', ['MakerDAO'])
     check_folders('fuck #DAI ', ['MakerDAO'])
+    check_folders('fuck Matthew  Roszak he sucks', ['Matthew Roszak'])
+    check_folders('fuck MatthewRoszak he sucks', ['Matthew Roszak'])
     check_folders('fuck $MCB', ['Metropolitan Commercial Bank'])
     check_folders('fuck $HUT it sucks', ['Miners'])
     check_folders('fuck $CORZ it sucks', ['Miners'])
