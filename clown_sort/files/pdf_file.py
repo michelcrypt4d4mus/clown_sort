@@ -39,13 +39,21 @@ class PdfFile(SortableFile):
             for page_number, page in enumerate(pdf_reader.pages):
                 console_buffer.print(Panel(f"PAGE {page_number + 1}", padding=(0, 15), expand=False))
                 console_buffer.print(page.extract_text().strip())
+                image_enumerator = enumerate(page.images, start=1)
+                image_number = 1
 
-                for image_number, image in enumerate(page.images, start=1):
-                    image_name = f"Page {page_number + 1}, Image {image_number}"
-                    console_buffer.print(Panel(image_name, expand=False))
-                    image_obj = Image.open(io.BytesIO(image.data))
-                    image_text = ImageFile.extract_text(image_obj, f"{self.file_path} ({image_name})")
-                    console_buffer.print((image_text or '').strip())
+                while True:
+                    try:
+                        (image_number, image) = next(image_enumerator)
+                        image_name = f"Page {page_number + 1}, Image {image_number}"
+                        console_buffer.print(Panel(image_name, expand=False))
+                        image_obj = Image.open(io.BytesIO(image.data))
+                        image_text = ImageFile.extract_text(image_obj, f"{self.file_path} ({image_name})")
+                        console_buffer.print((image_text or '').strip())
+                    except ValueError as e:
+                        log.warn(f"Error '{e}' while parsing embedded image {image_number} on page {page_number}, skipping...")
+                    except StopIteration:
+                        break
 
                 page_text = console_buffer.file.getvalue()
                 log.debug(page_text)
