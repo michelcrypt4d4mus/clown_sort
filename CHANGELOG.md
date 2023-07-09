@@ -1,5 +1,6 @@
 # NEXT RELEASE
-* Upgrade to `Pillow` 10.0.0.
+* Allow `Pillow` 10.0.0
+* Reduce required python version to 3.8
 
 ### 1.9.1
 * Output progress notifications to STDERR when parsing text from very large PDFs
