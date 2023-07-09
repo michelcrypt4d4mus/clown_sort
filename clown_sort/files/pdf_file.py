@@ -58,6 +58,9 @@ class PdfFile(SortableFile):
                     except (NotImplementedError, UnboundLocalError, ValueError) as e:
                         stderr_console.print_exception()
                         print(f"WARNING: {type(e).__name__}: {e} while parsing embedded image {image_number} on page {page_number}...")
+                    except Exception as e:
+                        stderr_console.print_exception()
+                        print(f"WARNING: UNKNOWN exception {type(e).__name__}: {e} while parsing embedded image {image_number} on page {page_number}...")
 
                 page_text = console_buffer.file.getvalue()
                 log.debug(page_text)
