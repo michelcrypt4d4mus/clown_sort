@@ -8,6 +8,7 @@
    * `ValueError: not enough image data`
    * `TypeError: unhashable type: 'ArrayObject'`
    * `TypeError: unhashable type: 'IndirectObject'`
+
 # 1.9.0
 * Parse text from images in PDFs (some PDFs have no text only images)
 * Improve `extract_text_from_files` functionality
