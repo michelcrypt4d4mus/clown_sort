@@ -88,3 +88,7 @@ extraction_parser = ArgumentParser(
 
 extraction_parser.add_argument('file_or_dir', nargs='+', metavar='FILE_OR_DIR')
 extraction_parser.add_argument('--debug', action='store_true', help='turn on debug level logging')
+
+extraction_parser.add_argument('--print-when-parsed', '-p',
+                                action='store_true',
+                                help='print pages as they are parsed instead of waiting until document is fully parsed')

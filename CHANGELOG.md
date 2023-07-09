@@ -1,4 +1,12 @@
 # NEXT RELEASE
+* Output progress notifications to STDERR when parsing text from very large PDFs
+* Fix issue that caused explosive memory growth when parsing large PDFs
+* `--print-when-parsed` command line option for `extract_text_from_files`
+* PDFs: Handle various exceptions when enumerating embedded images:
+   * `OSError: cannot write mode CMYK as PNG`
+   * `ValueError: not enough image data`
+   * `TypeError: unhashable type: 'ArrayObject'`
+   * `TypeError: unhashable type: 'IndirectObject'`
 
 # 1.9.0
 * Parse text from images in PDFs (some PDFs have no text only images)
