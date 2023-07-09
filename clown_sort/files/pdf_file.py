@@ -38,11 +38,11 @@ class PdfFile(SortableFile):
         try:
             pdf_reader = PdfReader(self.file_path)
 
-            for page_number, page in enumerate(pdf_reader.pages):
+            for page_number, page in enumerate(pdf_reader.pages, start=1):
                 if log_progress_to_stderr:
                     print(f"Parsing page {page_number}...", file=stderr)
 
-                console_buffer.print(Panel(f"PAGE {page_number + 1}", padding=(0, 15), expand=False))
+                console_buffer.print(Panel(f"PAGE {page_number}", padding=(0, 15), expand=False))
                 console_buffer.print(page.extract_text().strip())
                 image_enumerator = enumerate(page.images, start=1)
                 image_number = 1
@@ -50,7 +50,11 @@ class PdfFile(SortableFile):
                 while True:
                     try:
                         (image_number, image) = next(image_enumerator)
-                        image_name = f"Page {page_number + 1}, Image {image_number}"
+                        image_name = f"Page {page_number}, Image {image_number}"
+
+                        if log_progress_to_stderr:
+                            print(f"   Processing {image_name}...", file=stderr)
+
                         console_buffer.print(Panel(image_name, expand=False))
                         image_obj = Image.open(io.BytesIO(image.data))
                         image_text = ImageFile.extract_text(image_obj, f"{self.file_path} ({image_name})")
