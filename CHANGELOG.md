@@ -1,10 +1,11 @@
 # NEXT RELEASE
+* Upgrade to `Pillow` 10.0.0.
 
 ### 1.9.1
 * Output progress notifications to STDERR when parsing text from very large PDFs
 * Fix issue that caused explosive memory growth when parsing large PDFs
 * `--print-when-parsed` command line option for `extract_text_from_files`
-* Upgrade `pypdf` to `3.12.0` to resolve various PDF parsing failures
+* Upgrade `pypdf` to 3.12.0 to resolve various PDF parsing failures
 * PDFs: Handle various exceptions when enumerating embedded images:
    * `OSError: cannot write mode CMYK as PNG`
    * `ValueError: not enough image data`
