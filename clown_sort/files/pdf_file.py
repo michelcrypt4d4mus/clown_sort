@@ -30,7 +30,6 @@ class PdfFile(SortableFile):
         if self.text_extraction_attempted:
             return self._extracted_text
 
-        log_progress_to_stderr = self.file_size() >= MIN_PDF_SIZE_TO_LOG_PROGRESS_TO_STDERR
         log.debug(f"Extracting text from '{self.file_path}'...")
         console_buffer = Console(file=io.StringIO())
         extracted_pages = []
@@ -39,9 +38,7 @@ class PdfFile(SortableFile):
             pdf_reader = PdfReader(self.file_path)
 
             for page_number, page in enumerate(pdf_reader.pages, start=1):
-                if log_progress_to_stderr:
-                    print(f"Parsing page {page_number}...", file=stderr)
-
+                self._log_to_stderr(f"Parsing page {page_number}...", file=stderr)
                 console_buffer.print(Panel(f"PAGE {page_number}", padding=(0, 15), expand=False))
                 console_buffer.print(page.extract_text().strip())
                 image_enumerator = enumerate(page.images, start=1)
@@ -51,10 +48,7 @@ class PdfFile(SortableFile):
                     try:
                         (image_number, image) = next(image_enumerator)
                         image_name = f"Page {page_number}, Image {image_number}"
-
-                        if log_progress_to_stderr:
-                            print(f"   Processing {image_name}...", file=stderr)
-
+                        self._log_to_stderr(f"   Processing {image_name}...")
                         console_buffer.print(Panel(image_name, expand=False))
                         image_obj = Image.open(io.BytesIO(image.data))
                         image_text = ImageFile.extract_text(image_obj, f"{self.file_path} ({image_name})")
@@ -111,6 +105,13 @@ class PdfFile(SortableFile):
             console.print(msg)
 
         return type(self).is_presentable_in_popup
+
+    def _log_to_stderr(self, msg: str) -> None:
+        """When parsing very large PDFs it can be useful to log progress and other messages to STDERR."""
+        if self.file_size() < MIN_PDF_SIZE_TO_LOG_PROGRESS_TO_STDERR:
+            return
+
+        print(msg, file=stderr)
 
     def __repr__(self) -> str:
         return f"PdfFile('{self.file_path}')"
