@@ -39,40 +39,29 @@ class PdfFile(SortableFile):
             log.debug(f"PDF Page count: {page_count}")
 
             for page_number, page in enumerate(pdf_reader.pages, start=1):
+                if page_number >= 6 and page_number <= 9:
+                    continue
+
                 self._log_to_stderr(f"Parsing page {page_number}...")
                 page_buffer = Console(file=io.StringIO())
                 page_buffer.print(Panel(f"PAGE {page_number}", padding=(0, 15), expand=False))
                 page_buffer.print(page.extract_text().strip())
 
-                # Extract images
-                image_enumerator = enumerate(page.images, start=1)
-                image_number = 1
-
-                # Iterate like this because the page enumerator sometimes barfs with a handleable exception
-                while True:
-                    iterator_exception = True
-
-                    try:
-                        (image_number, image) = next(image_enumerator)
-                        iterator_exception = False
+                # Extracting images is a bit fraught (lots of PIL and pypdf exceptions have come from here)
+                try:
+                    for image_number, image in enumerate(page.images, start=1):
                         image_name = f"Page {page_number}, Image {image_number}"
                         self._log_to_stderr(f"   Processing {image_name}...")
-                        document_console_buffer.print(Panel(image_name, expand=False))
+                        page_buffer.print(Panel(image_name, expand=False))
                         image_obj = Image.open(io.BytesIO(image.data))
                         image_text = ImageFile.extract_text(image_obj, f"{self.file_path} ({image_name})")
-                        document_console_buffer.print((image_text or '').strip())
-                    except StopIteration:
-                        break
-                    except (NotImplementedError, UnboundLocalError, ValueError) as e:
-                        stderr_console.print_exception()
-                        print(f"WARNING: {type(e).__name__}: {e} while parsing embedded image {image_number} on page {page_number}...")
-                    except Exception as e:
-                        stderr_console.print_exception()
-                        print(f"WARNING: UNKNOWN exception {type(e).__name__}: {e} while parsing embedded image {image_number} on page {page_number}...")
-
-                        # If the iterator threw the exception we need to stop iterating
-                        if iterator_exception:
-                            break
+                        page_buffer.print((image_text or '').strip())
+                except (NotImplementedError, UnboundLocalError, ValueError) as e:
+                    stderr_console.print_exception()
+                    print(f"WARNING: {type(e).__name__}: {e} while parsing embedded image {image_number} on page {page_number}...")
+                except Exception as e:
+                    stderr_console.print_exception()
+                    print(f"WARNING: UNKNOWN exception {type(e).__name__}: {e} while parsing embedded image {image_number} on page {page_number}...")
 
                 page_text = page_buffer.file.getvalue()
                 log.debug(page_text)
