@@ -44,6 +44,7 @@ class PdfFile(SortableFile):
                 image_enumerator = enumerate(page.images, start=1)
                 image_number = 1
 
+                # Iterate like this because the page enumerator sometimes barfs with a handleable exception
                 while True:
                     try:
                         (image_number, image) = next(image_enumerator)
