@@ -31,7 +31,6 @@ class PdfFile(SortableFile):
             return self._extracted_text
 
         log.debug(f"Extracting text from '{self.file_path}'...")
-        console_buffer = Console(file=io.StringIO())
         extracted_pages = []
 
         try:
@@ -41,8 +40,11 @@ class PdfFile(SortableFile):
 
             for page_number, page in enumerate(pdf_reader.pages, start=1):
                 self._log_to_stderr(f"Parsing page {page_number}...")
-                console_buffer.print(Panel(f"PAGE {page_number}", padding=(0, 15), expand=False))
-                console_buffer.print(page.extract_text().strip())
+                page_buffer = Console(file=io.StringIO())
+                page_buffer.print(Panel(f"PAGE {page_number}", padding=(0, 15), expand=False))
+                page_buffer.print(page.extract_text().strip())
+
+                # Extract images
                 image_enumerator = enumerate(page.images, start=1)
                 image_number = 1
 
@@ -55,16 +57,15 @@ class PdfFile(SortableFile):
                         iterator_exception = False
                         image_name = f"Page {page_number}, Image {image_number}"
                         self._log_to_stderr(f"   Processing {image_name}...")
-                        console_buffer.print(Panel(image_name, expand=False))
+                        document_console_buffer.print(Panel(image_name, expand=False))
                         image_obj = Image.open(io.BytesIO(image.data))
                         image_text = ImageFile.extract_text(image_obj, f"{self.file_path} ({image_name})")
-                        console_buffer.print((image_text or '').strip())
+                        document_console_buffer.print((image_text or '').strip())
                     except StopIteration:
                         break
                     except (NotImplementedError, UnboundLocalError, ValueError) as e:
                         stderr_console.print_exception()
                         print(f"WARNING: {type(e).__name__}: {e} while parsing embedded image {image_number} on page {page_number}...")
-
                     except Exception as e:
                         stderr_console.print_exception()
                         print(f"WARNING: UNKNOWN exception {type(e).__name__}: {e} while parsing embedded image {image_number} on page {page_number}...")
@@ -73,7 +74,7 @@ class PdfFile(SortableFile):
                         if iterator_exception:
                             break
 
-                page_text = console_buffer.file.getvalue()
+                page_text = page_buffer.file.getvalue()
                 log.debug(page_text)
                 extracted_pages.append(page_text)
 
