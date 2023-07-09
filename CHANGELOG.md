@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Fix issue that caused explosive memory growth when parsing large PDFs
 * `--print-when-parsed` command line option for `extract_text_from_files`
 * PDFs: Handle various exceptions when enumerating embedded images:
    * `OSError: cannot write mode CMYK as PNG`
