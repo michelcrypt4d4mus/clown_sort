@@ -50,10 +50,12 @@ class PdfFile(SortableFile):
                         image_obj = Image.open(io.BytesIO(image.data))
                         image_text = ImageFile.extract_text(image_obj, f"{self.file_path} ({image_name})")
                         console_buffer.print((image_text or '').strip())
-                    except ValueError as e:
-                        log.warn(f"Error '{e}' while parsing embedded image {image_number} on page {page_number}, skipping...")
                     except StopIteration:
                         break
+                    except ValueError as e:
+                        log.warning(f"Error '{e}' while parsing embedded image {image_number} on page {page_number}, skipping...")
+                    except NotImplementedError as e:
+                        log.warning(f"{type(e).__name__}: {e}")
 
                 page_text = console_buffer.file.getvalue()
                 log.debug(page_text)
