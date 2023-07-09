@@ -39,13 +39,11 @@ class PdfFile(SortableFile):
             log.debug(f"PDF Page count: {page_count}")
 
             for page_number, page in enumerate(pdf_reader.pages, start=1):
-                if page_number >= 6 and page_number <= 9:
-                    continue
-
                 self._log_to_stderr(f"Parsing page {page_number}...")
                 page_buffer = Console(file=io.StringIO())
                 page_buffer.print(Panel(f"PAGE {page_number}", padding=(0, 15), expand=False))
                 page_buffer.print(page.extract_text().strip())
+                image_number = 1
 
                 # Extracting images is a bit fraught (lots of PIL and pypdf exceptions have come from here)
                 try:
@@ -56,12 +54,9 @@ class PdfFile(SortableFile):
                         image_obj = Image.open(io.BytesIO(image.data))
                         image_text = ImageFile.extract_text(image_obj, f"{self.file_path} ({image_name})")
                         page_buffer.print((image_text or '').strip())
-                except (NotImplementedError, UnboundLocalError, ValueError) as e:
+                except (NotImplementedError, TypeError, ValueError) as e:
                     stderr_console.print_exception()
-                    print(f"WARNING: {type(e).__name__}: {e} while parsing embedded image {image_number} on page {page_number}...")
-                except Exception as e:
-                    stderr_console.print_exception()
-                    print(f"WARNING: UNKNOWN exception {type(e).__name__}: {e} while parsing embedded image {image_number} on page {page_number}...")
+                    stderr_console.print(f"WARNING: {type(e).__name__}: {e} while parsing embedded image {image_number} on page {page_number}...")
 
                 page_text = page_buffer.file.getvalue()
                 log.debug(page_text)
