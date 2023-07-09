@@ -35,6 +35,8 @@ class PdfFile(SortableFile):
 
         try:
             pdf_reader = PdfReader(self.file_path)
+            page_count = len(pdf_reader.pages)
+            log.debug(f"PDF Page count: {page_count}")
 
             for page_number, page in enumerate(pdf_reader.pages, start=1):
                 self._log_to_stderr(f"Parsing page {page_number}...")
@@ -45,8 +47,11 @@ class PdfFile(SortableFile):
 
                 # Iterate like this because the page enumerator sometimes barfs with a handleable exception
                 while True:
+                    iterator_exception = True
+
                     try:
                         (image_number, image) = next(image_enumerator)
+                        iterator_exception = False
                         image_name = f"Page {page_number}, Image {image_number}"
                         self._log_to_stderr(f"   Processing {image_name}...")
                         console_buffer.print(Panel(image_name, expand=False))
@@ -58,11 +63,18 @@ class PdfFile(SortableFile):
                     except (NotImplementedError, UnboundLocalError, ValueError) as e:
                         stderr_console.print_exception()
                         print(f"WARNING: {type(e).__name__}: {e} while parsing embedded image {image_number} on page {page_number}...")
+
                     except Exception as e:
                         stderr_console.print_exception()
                         print(f"WARNING: UNKNOWN exception {type(e).__name__}: {e} while parsing embedded image {image_number} on page {page_number}...")
 
+                        # If the iterator threw the exception we need to stop iterating
+                        if iterator_exception:
+                            break
+
                 page_text = console_buffer.file.getvalue()
+                # TODO: add CLI option to print as we go
+                # print(f"{page_text}")
                 log.debug(page_text)
                 extracted_pages.append(page_text)
         except DependencyError:
