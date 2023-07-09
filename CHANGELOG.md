@@ -1,6 +1,7 @@
 # NEXT RELEASE
 * Handle `NotImplementedError` on `/JBIG2Decode` encoded embedded PDF images
 * Handle not even bytes error on embedded PDF images
+* `--print-when-parsed option` command line option for `extract_text_from_files`
 
 # 1.9.0
 * Parse text from images in PDFs (some PDFs have no text only images)
