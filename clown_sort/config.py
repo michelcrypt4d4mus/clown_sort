@@ -44,6 +44,7 @@ class Config:
     delete_originals: bool = False
     rescan_sorted: bool = False
     yes_overwrite: bool = False
+    print_when_parsed: bool = False
     sort_rules: List[SortRule] = []
     filename_regex: re.Pattern
 

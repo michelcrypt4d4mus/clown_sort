@@ -11,7 +11,8 @@ from pypdf.errors import DependencyError, EmptyFileError
 from rich.console import Console
 from rich.panel import Panel
 
-from clown_sort.config import MIN_PDF_SIZE_TO_LOG_PROGRESS_TO_STDERR, check_for_pymupdf, log_optional_module_warning
+from clown_sort.config import (MIN_PDF_SIZE_TO_LOG_PROGRESS_TO_STDERR, Config, check_for_pymupdf,
+     log_optional_module_warning)
 from clown_sort.files.image_file import ImageFile
 from clown_sort.files.sortable_file import SortableFile
 from clown_sort.util.logging import log
@@ -73,10 +74,11 @@ class PdfFile(SortableFile):
                             break
 
                 page_text = console_buffer.file.getvalue()
-                # TODO: add CLI option to print as we go
-                # print(f"{page_text}")
                 log.debug(page_text)
                 extracted_pages.append(page_text)
+
+                if Config.print_when_parsed:
+                    print(f"{page_text}")
         except DependencyError:
             log_optional_module_warning('pdf')
         except EmptyFileError:

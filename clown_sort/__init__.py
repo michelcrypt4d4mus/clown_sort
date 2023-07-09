@@ -54,6 +54,8 @@ def extract_text_from_files() -> None:
 
     if args.debug:
         Config.enable_debug_mode()
+    if args.print_when_parsed:
+        Config.print_when_parsed = True
 
     for file_or_dir in args.file_or_dir:
         file_path = Path(file_or_dir)
