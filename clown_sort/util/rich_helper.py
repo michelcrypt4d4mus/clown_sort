@@ -1,4 +1,5 @@
 from pathlib import Path
+from sys import stderr
 from typing import List, Optional, Union
 
 from rich.console import Console
@@ -47,6 +48,7 @@ INDENT_SPACES = 4
 
 # Main rich text output object.
 console = Console(theme=COLOR_THEME, color_system='256')
+stderr_console = Console(theme=COLOR_THEME, color_system='256', file=stderr)
 
 
 def indented_bullet(msg: Union[str, Text], style: Optional[str] = None) -> Text:

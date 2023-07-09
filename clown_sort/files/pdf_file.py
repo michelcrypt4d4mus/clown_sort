@@ -3,7 +3,6 @@ Wrapper for PDF files.
 """
 import io
 import logging
-from sys import stderr
 from typing import Optional
 
 from PIL import Image
@@ -16,7 +15,7 @@ from clown_sort.config import MIN_PDF_SIZE_TO_LOG_PROGRESS_TO_STDERR, check_for_
 from clown_sort.files.image_file import ImageFile
 from clown_sort.files.sortable_file import SortableFile
 from clown_sort.util.logging import log
-from clown_sort.util.rich_helper import WARNING, console
+from clown_sort.util.rich_helper import WARNING, console, stderr_console
 
 MAX_DISPLAY_HEIGHT = 600
 SCALE_FACTOR = 0.4
@@ -38,7 +37,7 @@ class PdfFile(SortableFile):
             pdf_reader = PdfReader(self.file_path)
 
             for page_number, page in enumerate(pdf_reader.pages, start=1):
-                self._log_to_stderr(f"Parsing page {page_number}...", file=stderr)
+                self._log_to_stderr(f"Parsing page {page_number}...")
                 console_buffer.print(Panel(f"PAGE {page_number}", padding=(0, 15), expand=False))
                 console_buffer.print(page.extract_text().strip())
                 image_enumerator = enumerate(page.images, start=1)
@@ -57,6 +56,7 @@ class PdfFile(SortableFile):
                     except StopIteration:
                         break
                     except (NotImplementedError, UnboundLocalError, ValueError) as e:
+                        stderr_console.print_exception()
                         print(f"WARNING: {type(e).__name__}: {e} while parsing embedded image {image_number} on page {page_number}...")
 
                 page_text = console_buffer.file.getvalue()
@@ -112,7 +112,7 @@ class PdfFile(SortableFile):
         if self.file_size() < MIN_PDF_SIZE_TO_LOG_PROGRESS_TO_STDERR:
             return
 
-        print(msg, file=stderr)
+        stderr_console.print(msg)
 
     def __repr__(self) -> str:
         return f"PdfFile('{self.file_path}')"
