@@ -3,6 +3,7 @@ Wrapper for PDF files.
 """
 import io
 import logging
+from sys import stderr
 from typing import Optional
 
 from PIL import Image
@@ -11,7 +12,7 @@ from pypdf.errors import DependencyError, EmptyFileError
 from rich.console import Console
 from rich.panel import Panel
 
-from clown_sort.config import check_for_pymupdf, log_optional_module_warning
+from clown_sort.config import MIN_PDF_SIZE_TO_LOG_PROGRESS_TO_STDERR, check_for_pymupdf, log_optional_module_warning
 from clown_sort.files.image_file import ImageFile
 from clown_sort.files.sortable_file import SortableFile
 from clown_sort.util.logging import log
@@ -29,6 +30,7 @@ class PdfFile(SortableFile):
         if self.text_extraction_attempted:
             return self._extracted_text
 
+        log_progress_to_stderr = self.file_size() >= MIN_PDF_SIZE_TO_LOG_PROGRESS_TO_STDERR
         log.debug(f"Extracting text from '{self.file_path}'...")
         console_buffer = Console(file=io.StringIO())
         extracted_pages = []
@@ -37,6 +39,9 @@ class PdfFile(SortableFile):
             pdf_reader = PdfReader(self.file_path)
 
             for page_number, page in enumerate(pdf_reader.pages):
+                if log_progress_to_stderr:
+                    print(f"Parsing page {page_number}...", file=stderr)
+
                 console_buffer.print(Panel(f"PAGE {page_number + 1}", padding=(0, 15), expand=False))
                 console_buffer.print(page.extract_text().strip())
                 image_enumerator = enumerate(page.images, start=1)
@@ -52,10 +57,8 @@ class PdfFile(SortableFile):
                         console_buffer.print((image_text or '').strip())
                     except StopIteration:
                         break
-                    except ValueError as e:
-                        log.warning(f"Error '{e}' while parsing embedded image {image_number} on page {page_number}, skipping...")
-                    except NotImplementedError as e:
-                        log.warning(f"{type(e).__name__}: {e}")
+                    except (NotImplementedError, UnboundLocalError, ValueError) as e:
+                        print(f"WARNING: {type(e).__name__}: {e} while parsing embedded image {image_number} on page {page_number}...")
 
                 page_text = console_buffer.file.getvalue()
                 log.debug(page_text)

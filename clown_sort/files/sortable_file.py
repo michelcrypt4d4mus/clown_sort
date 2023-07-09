@@ -190,6 +190,9 @@ class SortableFile:
         console.print(self._filename_panel())
         console.print(self._extracted_str())
 
+    def file_size(self) -> int:
+        return self.file_path.stat().st_size
+
     def _extracted_str(self, max_chars: Optional[int] = None) -> str:
         """Raw string version of extracted text but truncated to max_chars if provided."""
         txt = self.extracted_text()

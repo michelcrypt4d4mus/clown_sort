@@ -24,6 +24,7 @@ from clown_sort.util.logging import log, set_log_level
 StringOrPath = Union[str, Path]
 SortRule = namedtuple('SortRule', ['folder', 'regex'])
 
+MIN_PDF_SIZE_TO_LOG_PROGRESS_TO_STDERR = 1024 * 1024 * 20
 RULES_CSV_PATHS = 'RULES_CSV_PATHS'
 
 if RULES_CSV_PATHS in environ:
