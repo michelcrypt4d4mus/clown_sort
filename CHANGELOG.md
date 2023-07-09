@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.9.2
 * Allow `Pillow` 10.0.0
 * Reduce required python version to 3.8
 
