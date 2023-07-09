@@ -54,13 +54,13 @@ class PdfFile(SortableFile):
                         image_obj = Image.open(io.BytesIO(image.data))
                         image_text = ImageFile.extract_text(image_obj, f"{self.file_path} ({image_name})")
                         page_buffer.print((image_text or '').strip())
-                except (NotImplementedError, TypeError, ValueError) as e:
-                    stderr_console.print_exception()
+                except (NotImplementedError, OSError, TypeError, ValueError) as e:
                     stderr_console.print(f"WARNING: {type(e).__name__}: {e} while parsing embedded image {image_number} on page {page_number}...")
+                    stderr_console.print_exception()
 
                 page_text = page_buffer.file.getvalue()
-                log.debug(page_text)
                 extracted_pages.append(page_text)
+                log.debug(page_text)
 
                 if Config.print_when_parsed:
                     print(f"{page_text}")
@@ -69,8 +69,8 @@ class PdfFile(SortableFile):
         except EmptyFileError:
             log.warn("Skipping empty file!")
 
-        self.text_extraction_attempted = True
         self._extracted_text = "\n\n".join(extracted_pages).strip()
+        self.text_extraction_attempted = True
         return self._extracted_text
 
     def thumbnail_bytes(self) -> Optional[bytes]:
