@@ -76,13 +76,14 @@ class PdfFile(SortableFile):
     def thumbnail_bytes(self) -> Optional[bytes]:
         """Return bytes for a thumbnail."""
         import fitz  # TODO: Can we do this without PyMuPDF dependency?
-        log.debug(f"Getting bytes for '{self.file_path}'...")
-
         try:
             doc = fitz.open(self.file_path)
         except fitz.fitz.EmptyFileError:
+            log.warning(f"Failed to get bytes for '{self.file_path}'")
             return None
 
+        # Resize the thumbnail to fit the screen
+        log.debug(f"Getting bytes for '{self.file_path}'...")
         zoom_matrix = fitz.Matrix(fitz.Identity).prescale(SCALE_FACTOR, SCALE_FACTOR)
         page = doc[0]
         bottom_right = page.rect.br
@@ -91,7 +92,7 @@ class PdfFile(SortableFile):
 
         # Check for PDFs with very long pages and crop them
         if SCALE_FACTOR * page_height > MAX_DISPLAY_HEIGHT:
-            logging.debug(f"PDF page is {page_height} pixels high so cropping...")
+            log.debug(f"PDF page is {page_height} pixels high so cropping...")
             clip = fitz.Rect((0, 0), (MAX_DISPLAY_HEIGHT / SCALE_FACTOR, page_width))
         else:
             clip = fitz.Rect((0, 0), bottom_right)
