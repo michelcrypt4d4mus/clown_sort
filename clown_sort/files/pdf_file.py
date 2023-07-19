@@ -54,7 +54,12 @@ class PdfFile(SortableFile):
                         image_obj = Image.open(io.BytesIO(image.data))
                         image_text = ImageFile.extract_text(image_obj, f"{self.file_path} ({image_name})")
                         page_buffer.print((image_text or '').strip())
-                except (NotImplementedError, OSError, TypeError, ValueError) as e:
+                except NotImplementedError as e:
+                    stderr_console.print(f"WARNING: {type(e).__name__}: {e} while parsing embedded image {image_number} on page {page_number}...")
+
+                    if 'JBIG2Decode' not in str(e):
+                        stderr_console.print_exception()
+                except (OSError, TypeError, ValueError) as e:
                     stderr_console.print(f"WARNING: {type(e).__name__}: {e} while parsing embedded image {image_number} on page {page_number}...")
                     stderr_console.print_exception()
 

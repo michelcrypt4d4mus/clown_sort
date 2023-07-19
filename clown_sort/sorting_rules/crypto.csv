@@ -30,7 +30,7 @@ Blockchain8,Blockchain8|tom[-_\s.]*emmer|ritchie[-_\s.]*torres|repritchie|Warren
 Blockchain Capital,Blockchain[-_\s.]*Capital|\bbrock\b|brockpierce
 BlockFi,BlockFi|Zac[-_\s.]*Prince|Brian[-_\s.]*Oliver
 Blockstream,Blockstream
-Bored Ape Yacht Club,BAYC|Bored[-_\s.]*Ape|yuga[-_\s.]*labs
+Bored Ape Yacht Club,\bBAYC\b|Bored[-_\s.]*Ape|yuga[-_\s.]*labs
 Bros,cryptomanran|\bRan[-_\s.]*Neuner|trillionUSD|nic[-_\s.]*carter|bitboy|ben[-_\s.]*armstrong|basedkarbon|thecryptolark|adam([-_\s.]*back|3us)|@DegenSp|APompliano|IIICapital|\bMeltem\b|algodtrading|whatbitcoindid|CryptoKaleo|Mike[-_\s.]*Alfred|natbrunell|natalie[-_\s.]*brunell|stackersatoshi|Max[-_\s.]*Keiser|Cowboy[-_\s.]*Crypto|minimalcsgo|greg16676935420|@Aridavidpaul|\bAri[-_\s.]*Paul\b|raoul(gmi|[-_\s.]*pal)|mccormack|andr3w|andrew[-_\s.]*wang|\b(JW)?[-_\s.]*Verret\b|@FlurETH\b|wolf[-_\s.]*of[-_\s.]*all[-_\s.]*streets|scott[-_\s.]*melker
 Broettes,Nicole[-_\s.]*Behnam|natbrunell
 Bybit,\bBybit\b|Ben[-_\s.]*Zhou|InvestByBit|TravelByBit
@@ -64,10 +64,10 @@ EOS,\bEOS\b|\bBlumer\b|\bLarimer\b|@B1\b|Block[-_\.\s]One
 Evertas,\bEvertas\b|Ryan[-_\s.]*Lackey
 Euler Finance,\bEuler\b
 FalconX,falconx
-First Digital,First[-_\s.]*Digital\b|Legacy[-_\s.]*Trust\b
 Finblox,finblox
-Fintech,Mercury|\b(Afterpay|Alto|Allpoint|ArrowEye|Azibo|Brex|Burling|Bangor|Klarna|Checkout\.com|Chime(bank)?|FirstDollar|Grasshopper|Holyheld|LendingClub|Lithic|Marqeta|Nibiru|Piermont|Pinwheel|Synapse|Unit21|Unlimin?t|Wagestream|Zeta)\b|Treasury[-_\s.]*Prime|Chris[-_\s.]*Dean\b|Jim[-_\s.]*Brusstar|(Bangor|Third[-_\s.]*Coast|First[-_\s.]*Internet|Emprise)[-_\s.]*Bank|C2F(O|0)
+Fintech,Mercury|\b(Afterpay|Alto|Allpoint|ArrowEye|Azibo|Brex|Burling|Bangor|Fintech|Klarna|Checkout\.com|Chime(bank)?|FirstDollar|Grasshopper|Holyheld|LendingClub|Lithic|Marqeta|Nibiru|Piermont|Pinwheel|Synapse|Unit21|Unlimin?t|Wagestream|Zeta)\b|Treasury[-_\s.]*Prime|Chris[-_\s.]*Dean\b|Jim[-_\s.]*Brusstar|(Bangor|Third[-_\s.]*Coast|First[-_\s.]*Internet|Emprise)[-_\s.]*Bank|C2F(O|0)|Transact[-_\s.]*Payments
 Fireblocks,fireblocks
+First Digital,First[-_\s.]*Digital\b|Legacy[-_\s.]*Trust\b
 Flip Filipkowski,filipkowski
 Frax,\bFrax\b|\bFRX|[\b#$]FXS
 Friedlander Group,Friedlander|Agro[-_\s.]*Bank|\ball[-_\s.]*year\b|\bbrock\b|brockpierce|litvishhocker|Yecheskel|Swift[-_\s.]*Staffing
@@ -85,7 +85,7 @@ Hoo,Hoo[-_\s.]*(Research|Exchange)|[#$]Hoo\b|Rexy[-_\s.]*(Hoo|Wang)|\bhoo\b
 Huobi,huobi|jiao_newlife|jiaojiao|Leon[-_\s.]*Li\b|\b(GoPlus|Walken)\b
 Iran,\bIran\b|\bIranian\b|Nobitex|\bCoinNik|\bWallex\b|Sarmayex|\bRabex\b
 Jump Trading,Jump[-_\s.]*Trading|@jump_
-Justin Sun,justin[-_\s.]*sun|USDD|USDJ|pgala|sunswap|sunyuchentron|poloniex|web3nina|\bR(ebo|ible)\b|Love[-_\s.]*Letters[-_\s.]*Limited|Objectivists[-_\s.]*Limited
+Justin Sun,justin[-_\s.]*sun|\b(USDD|USDJ|pgala|sunswap|sunyuchentron|poloniex|web3nina)\b|\bR(ebo|ible)\b|Love[-_\s.]*Letters[-_\s.]*Limited|Objectivists[-_\s.]*Limited|JUST[-_\s.]*(Foundation|Lend)
 Kazakhstan,\bkazakh|Freedom[-_\s.]*Holding|\balmaty|Timor[-_\s.]*Turlov|\bFFIN[-_\s.]*brokerage
 Kinesis,kinesis|\bKVT\b|\bABX\b|\bKAG\b
 Kraken,kraken|payward|\bjespow\b|Jesse[-_\s.]*Powell
@@ -110,7 +110,7 @@ Founders Bank,Michael[-_\s.]*Bianchi|Founders[-_\s.]*Bank
 Miles Guo,\bguo\b|\bhcoin|himalaya[-_\s.]*exchange|\bbannon\b|\bfjb|\bkwok\b|brother[-_\s.]*seven|kin[-_\s.]*ming[-_\s.]*je|william[-_\s.]*je\b|\bHaoyun\b|\bLi[-_\s.]*You\b
 Miners,bitcoin[-_\s.]*min(ing|er)|\$(CORZ|IRIS|ARGO|HUT|HIVE|CAN|BLOK|BTCM)|Core[-_\s.]*Scientific|Iris[-_\s.]*Energy|Blockstream
 Moonpay,\bmoonpay
-MSTR,Saylor|MSTR
+MSTR,\b(Saylor|MSTR|MicroStrategy)\b
 MtGox,Mt[-_\s.]*Gox|\bwilly[-_\s.]*bot
 Near Protocol,NEAR[-_\s.]*Protocol|[$#]near\b|\bavichal\b|Rebecca[-_\s.]*Rettig
 Nexo,\bNexo\b|Antoni[-_\s.]*Trenchev|Georgi[-_\s.]*Shulev|Lydia[-_\s.]*Shuleva|\bNDS[-_\s.]*EOD\b
@@ -122,13 +122,14 @@ OneCoin,\bOne(Coin|Life)\b
 OpenPayd,openpayd|CFD\s?Team
 OpenSea,OpenSea\b
 PAG,\bpag\b|Weijian[-_\s.]*Shan
+Pantera Capital,\b(Morehead|Pantera)\b
 Paradigm,Fred[-_\s.]*Ehrsam|paradigm\b
 Paxful,paxful|Ray[-_\s.]*(Youssef|Savant)|Artur[-_\s.]*Schaback
 Paxos,paxos|BUSD|USDP|PAXG
 Payrnet,Rails(r|bank)\b|\b(Wirex|Cryptopay|Payrnet)\b
 Pi,\$PI[^\w]|Pi[-_\s.]*Network
 Politics,\bted[-_\s.]*cruz
-Prime Trust,\bPrime[-\s_]*(Trust|Core|IRA|Digital)\b|\b(Banq|PrimeX|Sroge|anonalyx|Kasidie)\b|Scott[-\s_]*Purcell|(Planet|Fortress)[-\s_]*(Xyz|Trust|NFT)|George[-\s_]*Georgiades|Kevin[-\s_]*Lehtiniitty|\bLODE(Pay)?\b
+Prime Trust,\bPrime[-\s_]*(Trust|Core|IRA|Digital)\b|\b(anonalyx|Banq|Kasidie|PrimeX|Sroge|PrimeTrustCo)\b|Scott[-\s_]*Purcell|(Planet|Fortress)[-\s_]*(Xyz|Trust|NFT)|George[-\s_]*Georgiades|Kevin[-\s_]*Lehtiniitty|\bLODE(Pay)?\b
 PVBC,PVBC|BankProv
 Quadriga,Quadriga|Gerald[-_\s.]*Cotten|0xsifu\b|michael[-_\s.]*patryn|wonderland|daniele[-_\s.]*sesta\b
 Revolut,\bRevolut\b
@@ -170,7 +171,7 @@ Wallet Addresses Polkadot,\b1[0-9a-zA-Z]{47}
 Wallet Addresses Ripple,\br[0-9a-zA-Z]{33}
 Wallet Addresses Stellar,\bG[0-9A-Z]{40,60}\b
 Waves,sasha[-_\s.]*(35625|ivanov|\.waves)|\bVires\b|boris[-_\s.]*titov|[$#]WAVES\b|USDN
-Wintermute,Wintermute|\b(Bebop|Evgeny)\b
+Wintermute,Wintermute|\b(Bebop|Evgeny(Gaevoy)?)\b|Wishful[-_\s.]*Cynic
 Wirecard,\b(Bafin|Marsalek|Wirecard)\b|Markus[-_\s.]*Braun
 Worldcoin,Worldcoin|\borb\b
 Wyre,\bwyre|sendwyre|\bLead[-_\s.]*Bank\b|Steven[-_\s.]*Huynh

@@ -1,4 +1,6 @@
 # NEXT RELEASE
+* Suppress `/JBIG2Decode` warning output
+* New crypto sort rules
 
 ### 1.9.2
 * Allow `Pillow` 10.0.0
