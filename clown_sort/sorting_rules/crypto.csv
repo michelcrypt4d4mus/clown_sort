@@ -66,7 +66,7 @@ Euler Finance,\bEuler\b
 FalconX,falconx
 First Digital,First[-_\s.]*Digital\b|Legacy[-_\s.]*Trust\b
 Finblox,finblox
-Fintech,Mercury\b(Azibo|\bChime(bank)|Nibiru|Brex|Checkout\.com|Holyheld|Pinwheel|Lithic|Unit21|Unlimin?t|Synapse|LendingClub|Piermont|Burling|Bangor|Klarna|Afterpay|Zeta|FirstDollar|Alto|Marqeta|Grasshopper|CheckOut|Allpoint|ArrowEye|C2Fo|Wagestream)\b|Treasury[-_\s.]*Prime|Chris[-_\s.]*Dean\b|Jim[-_\s.]*Brusstar|(Bangor|Third[-_\s.]*Coast|First[-_\s.]*Internet|Emprise)[-_\s.]*Bank
+Fintech,Mercury|\b(Afterpay|Alto|Allpoint|ArrowEye|Azibo|Brex|Burling|Bangor|Klarna|Checkout\.com|Chime(bank)?|FirstDollar|Grasshopper|Holyheld|LendingClub|Lithic|Marqeta|Nibiru|Piermont|Pinwheel|Synapse|Unit21|Unlimin?t|Wagestream|Zeta)\b|Treasury[-_\s.]*Prime|Chris[-_\s.]*Dean\b|Jim[-_\s.]*Brusstar|(Bangor|Third[-_\s.]*Coast|First[-_\s.]*Internet|Emprise)[-_\s.]*Bank|C2F(O|0)
 Fireblocks,fireblocks
 Flip Filipkowski,filipkowski
 Frax,\bFrax\b|\bFRX|[\b#$]FXS
@@ -128,7 +128,7 @@ Paxos,paxos|BUSD|USDP|PAXG
 Payrnet,Rails(r|bank)\b|\b(Wirex|Cryptopay|Payrnet)\b
 Pi,\$PI[^\w]|Pi[-_\s.]*Network
 Politics,\bted[-_\s.]*cruz
-Prime Trust,\bPrime[-\s_]*(Trust|Core|IRA|Digital)\b|\b(Banq|PrimeX|Sroge|anonalyx|Kasidie)\b|Scott[-\s_]*Purcell|(Planet|Fortress)[-\s_]*(Xyz|Trust|NFT)|George[-\s_]*Georgiades|Kevin[-\s_]*Lehtiniitty
+Prime Trust,\bPrime[-\s_]*(Trust|Core|IRA|Digital)\b|\b(Banq|PrimeX|Sroge|anonalyx|Kasidie)\b|Scott[-\s_]*Purcell|(Planet|Fortress)[-\s_]*(Xyz|Trust|NFT)|George[-\s_]*Georgiades|Kevin[-\s_]*Lehtiniitty|\bLODE(Pay)?\b
 PVBC,PVBC|BankProv
 Quadriga,Quadriga|Gerald[-_\s.]*Cotten|0xsifu\b|michael[-_\s.]*patryn|wonderland|daniele[-_\s.]*sesta\b
 Revolut,\bRevolut\b
@@ -137,9 +137,9 @@ RIOT,[$#]RIOT\b|Riot[-\s_]*(Block|Platform)|Bioptix
 Safemoon,Safemoon
 Satoshi,Satoshi|Nakamoto
 SEC,\bSEC(Gov)?\b|\b(Gary)?Gensler|CFTC|Securities.{0,6}Exchange.{0,6}Commission
-Signature Bank,SBNY|Signature[-_\s.]*Bank|Signet|Scott[-_\s.]*Shay\b|(Joseph|Joe)[-_\s.]*DePaolo|\bKushner\b
+Signature Bank,SBNY|Signature[-_\s.]*Bank|Scott[-_\s.]*Shay\b|(Joseph|Joe)[-_\s.]*DePaolo|\b(Kushner|Signet)\b
 Silicon Valley Bank,si?vb|Silicon[-_\s.]*Valley[-_\s.]*Bank
-Silk Road,Silk[-_\s.]*Road|\bulbricht|\bDPR\b
+Silk Road,Silk[-_\s.]*Road|\b(DPR|Ulbricht|DreadPirateRoberts)\b
 Silvergate,\$SI|Silvergate|Alan[-_\s.]*Lane|Eisele|\bSEN\b|SENnetwork|Rebecca[-_\s.]*Rettig
 Skrill,\bSkrill\b
 Solana,(Solana|Serum)\b
