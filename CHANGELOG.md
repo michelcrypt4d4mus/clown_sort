@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Better handling of sort rules that fail to parse
 * Suppress `/JBIG2Decode` warning output
 * New crypto sort rules
 
