@@ -6,7 +6,8 @@ import pytest
 
 environ['INVOKED_BY_PYTEST'] = 'True'
 from clown_sort.config import Config
-from clown_sort.util.constants import CRYPTO_RULES_CSV_PATH, PACKAGE_NAME
+from clown_sort.sort_rule import CRYPTO_RULES_CSV_PATH
+from clown_sort.util.constants import PACKAGE_NAME
 
 PROJECT_DIR = path.join(str(importlib.resources.files(PACKAGE_NAME)), pardir)
 TESTS_DIR = Path(PROJECT_DIR).joinpath('tests')

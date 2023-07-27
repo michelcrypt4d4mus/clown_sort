@@ -7,10 +7,9 @@ from pathlib import Path
 
 from rich_argparse_plus import RichHelpFormatterPlus
 
-from clown_sort.util.constants import (DEFAULT_SCREENSHOTS_DIR, DEFAULT_DESTINATION_DIR,
+from clown_sort.util.constants import (CRYPTO, DEFAULT_SCREENSHOTS_DIR, DEFAULT_DESTINATION_DIR,
      DEFAULT_FILENAME_REGEX)
 
-CRYPTO = 'crypto'
 DESCRIPTION = "Sort, rename, and tag screenshots (and the occasional PDF) according to rules."
 EPILOG = "Defaults are focused on crypto related screenshots."
 

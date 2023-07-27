@@ -11,10 +11,10 @@ from pypdf.errors import DependencyError, EmptyFileError
 from rich.console import Console
 from rich.panel import Panel
 
-from clown_sort.config import (MIN_PDF_SIZE_TO_LOG_PROGRESS_TO_STDERR, Config, check_for_pymupdf,
-     log_optional_module_warning)
+from clown_sort.config import Config, check_for_pymupdf, log_optional_module_warning
 from clown_sort.files.image_file import ImageFile
 from clown_sort.files.sortable_file import SortableFile
+from clown_sort.util.constants import MIN_PDF_SIZE_TO_LOG_PROGRESS_TO_STDERR
 from clown_sort.util.logging import log
 from clown_sort.util.rich_helper import WARNING, console, stderr_console
 

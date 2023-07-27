@@ -16,7 +16,7 @@ Banks,SEBA[^a-z]|Credit[-_\s.]*Suisse|SJMBT|Sygnum|Celtic[-_\s.]*Bank|\bMercury\
 Bankless,Bankless|David[-_\s.]*Hoffman
 Biconomy,\bBiconomy|Omchain
 Binary Options,binary[-_\s.]*options
-Binance,bi(nance|conomy|llance|finity|naryx)|\b(BNB|BSC|BUSD|Cpz|CZ|Changpeng|joselito|paysafe|keyway|TrustWallet|Coley|nuvei|orum|Worldpay|Winind)\b|\bSwipe[-_\s.]*(IO|Wallet)|\bkey[-_\s.]*vision|\boztures|Kaiser[-_\s.]*Ng|InvestByBit|Swyftx|Guangying[-_\s.]*Chen|\bBAM[-_\s.]*(Trading|Management)\b|\bFlowbank|Bijie[-_\s.]*(Network|Tech)|Venus[-_\s.]*(Protocol|Community)|Merit[-_\s.]*Peak|(Optic|Blockone|Winind|Unison)[-_\s.]*Technolog
+Binance,bi(nance|conomy|llance|finity|naryx)|\b(BNB|BSC|BUSD|Cpz|CZ|Changpeng|joselito|paysafe|keyway|TrustWallet|Coley|nuvei|orum|Worldpay|Winind)\b|\bSwipe[-_\s.]*(IO|Wallet)|\bkey[-_\s.]*vision|\boztures|Kaiser[-_\s.]*Ng|InvestByBit|Swyftx|Guangying[-_\s.]*Chen|\bBAM[-_\s.]*(Trading|Management)\b|\bFlowbank|Bijie[-_\s.]*(Network|Tech)|Venus[-_\s.]*(Protocol|Community)|Merit[-_\s.]*Peak|(Optic|Blockone|Winind|Unison)[-_\s.]*Technolog|Sakura[-_\s.]*Exchange
 Bitdeer,Bitdeer
 BitGet,Bitget
 Bithumb,\bbithumb
@@ -108,7 +108,7 @@ Metropolitan Commercial Bank,MCB\b|MCBankNY|Metropolitan[-_\s.]*(Bank|Commercial
 Multichain,Multichain\b
 Founders Bank,Michael[-_\s.]*Bianchi|Founders[-_\s.]*Bank
 Miles Guo,\bguo\b|\bhcoin|himalaya[-_\s.]*exchange|\bbannon\b|\bfjb|\bkwok\b|brother[-_\s.]*seven|kin[-_\s.]*ming[-_\s.]*je|william[-_\s.]*je\b|\bHaoyun\b|\bLi[-_\s.]*You\b
-Miners,bitcoin[-_\s.]*min(ing|er)|\$(CORZ|IRIS|ARGO|HUT|HIVE|CAN|BLOK|BTCM)|Core[-_\s.]*Scientific|Iris[-_\s.]*Energy|Blockstream
+Miners,bitcoin[-_\s.]*min(ing|er)|\$(CORZ|IRIS|ARGO|HUT|HIVE|CAN|BLOK|BTCM|WULF)|\bCore[-_\s.]*Scientific|\bIris[-_\s.]*Energy|Blockstream|Terawulf
 Moonpay,\bmoonpay
 MSTR,\b(Saylor|MSTR|MicroStrategy)\b
 MtGox,Mt[-_\s.]*Gox|\bwilly[-_\s.]*bot

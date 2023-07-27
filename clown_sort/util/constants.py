@@ -1,7 +1,6 @@
 """
 Constants in use across the application pulled from the environment as appropriate.
 """
-import importlib.resources
 import re
 from os import environ
 from pathlib import Path
@@ -9,7 +8,11 @@ from pathlib import Path
 PACKAGE_NAME = 'clown_sort'
 MAC_DEFAULT_SCREENSHOTS_DIR = Path.home().joinpath('Pictures', 'Screenshots')
 
+# Miscellaneous strings
+CRYPTO = 'crypto'
 
+
+### Environment variables
 # build_env_var_string('XYZ') => 'CLOWN_SORT_XYZ'
 build_env_var_string = lambda label: f"{PACKAGE_NAME.upper()}_{label}"
 
@@ -19,15 +22,9 @@ build_env_var_dir_string = lambda label: build_env_var_string(f"{label}_DIR")
 # Check in env for a value for CLOWN_SORT_SCREENSHOTS_DIR etc, default to MAC_DEFAULT_SCREENSHOTS_DIR
 get_dir_from_env_var = lambda label: Path(environ.get(build_env_var_dir_string(label), MAC_DEFAULT_SCREENSHOTS_DIR))
 
-
 # Source and destination dirs
 DEFAULT_SCREENSHOTS_DIR = get_dir_from_env_var('SCREENSHOTS')
 DEFAULT_DESTINATION_DIR = get_dir_from_env_var('DESTINATION')
-
-
-# Sorting rules stuff
-SORTING_RULES_DIR = importlib.resources.files(PACKAGE_NAME).joinpath('sorting_rules')
-CRYPTO_RULES_CSV_PATH = str(SORTING_RULES_DIR.joinpath('crypto.csv'))
 
 
 # Filename regex stuff
@@ -39,3 +36,8 @@ if ENV_FILENAME_REGEX is None:
     DEFAULT_FILENAME_REGEX = MAC_SCREENSHOT_REGEX
 else:
     DEFAULT_FILENAME_REGEX = re.compile(ENV_FILENAME_REGEX)
+
+
+# PDF related
+# TODO: make this an argument
+MIN_PDF_SIZE_TO_LOG_PROGRESS_TO_STDERR = 1024 * 1024 * 20

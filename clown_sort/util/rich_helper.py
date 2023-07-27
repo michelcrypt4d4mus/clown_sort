@@ -7,8 +7,6 @@ from rich.panel import Panel
 from rich.text import Text
 from rich.theme import Theme
 
-from clown_sort.config import Config
-
 ARROW_BULLET = '➤ '
 INDENTED_BULLET = f"  {ARROW_BULLET}"
 NOT = Text('').append('(Not) ', style='dim')
@@ -49,6 +47,7 @@ INDENT_SPACES = 4
 # Main rich text output object.
 console = Console(theme=COLOR_THEME, color_system='256')
 stderr_console = Console(theme=COLOR_THEME, color_system='256', file=stderr)
+is_dry_run = True  # TODO: this being set in Config sucks
 
 
 def indented_bullet(msg: Union[str, Text], style: Optional[str] = None) -> Text:
@@ -107,6 +106,15 @@ def warning_text(text: Union[str, Text]) -> Text:
         return msg + text
     else:
         return msg.append(text)
+
+
+def print_error(text: Union[str, Text]) -> Text:
+    msg = Text('').append(f"ERROR", style='bright_red').append(": ")
+
+    if isinstance(text, Text):
+        console.print(msg + text)
+    else:
+        console.print(msg.append(text))
 
 
 def comma_join(strs: List[str], style: str) -> Text:

@@ -1,7 +1,6 @@
 """
 Global configuration.
 """
-import csv
 import re
 import sys
 from argparse import Namespace
@@ -16,21 +15,12 @@ from rich.console import Console
 from rich.table import Table
 from rich.text import Text
 
-from clown_sort.util.argument_parser import CRYPTO, parser
-from clown_sort.util.constants import CRYPTO_RULES_CSV_PATH, PACKAGE_NAME
+from clown_sort.sort_rule import SortRule, SortRuleParseError
+from clown_sort.util import rich_helper
+from clown_sort.util.argument_parser import parser
+from clown_sort.util.constants import PACKAGE_NAME
 from clown_sort.util.filesystem_helper import subdirs_of_dir
 from clown_sort.util.logging import log, set_log_level
-
-StringOrPath = Union[str, Path]
-SortRule = namedtuple('SortRule', ['folder', 'regex'])
-
-MIN_PDF_SIZE_TO_LOG_PROGRESS_TO_STDERR = 1024 * 1024 * 20
-RULES_CSV_PATHS = 'RULES_CSV_PATHS'
-
-if RULES_CSV_PATHS in environ:
-    DEFAULT_RULES_CSV_PATHS = str(environ.get(RULES_CSV_PATHS)).split(':')
-else:
-    DEFAULT_RULES_CSV_PATHS = [CRYPTO_RULES_CSV_PATH]
 
 
 class Config:
@@ -60,13 +50,6 @@ class Config:
         if args.debug:
             cls.enable_debug_mode()
 
-        rules_csvs = args.rules_csv or DEFAULT_RULES_CSV_PATHS
-        rules_csvs = [CRYPTO_RULES_CSV_PATH if arg == CRYPTO else arg for arg in rules_csvs]
-        log.debug(f"Rules CSVs: {rules_csvs}")
-
-        screenshots_dir = Path(args.screenshots_dir).expanduser()
-        destination_dir = Path(args.destination_dir or args.screenshots_dir).expanduser()
-        Config.set_directories(screenshots_dir, destination_dir, rules_csvs)
         Config.filename_regex = re.compile(args.filename_regex)
         Config.leave_in_place = True if args.leave_in_place else False
         Config.only_if_match = True if args.only_if_match else False
@@ -74,9 +57,15 @@ class Config:
         Config.rescan_sorted = True if args.rescan_sorted else False
         Config.yes_overwrite = True if args.yes_overwrite else False
 
+        screenshots_dir = Path(args.screenshots_dir).expanduser()
+        destination_dir = Path(args.destination_dir or args.screenshots_dir).expanduser()
+        rules_csvs = SortRule.sort_rules_csvs(args.rules_csv)
+        log.debug(f"Rules CSVs: {rules_csvs}")
+        Config.set_directories(screenshots_dir, destination_dir, rules_csvs)
+
         if Config.leave_in_place and Config.delete_originals:
             Console().print("--leave-in-place and --delete-originals are mutually exclusive.", style='red')
-            sys.exit()
+            sys.exit(-1)
 
         if args.show_rules:
             Console().print(cls._rules_table())
@@ -84,6 +73,7 @@ class Config:
 
         if args.execute:
             Config.dry_run = False
+            rich_helper.is_dry_run = False
         else:
             print("Dry run...")
 
@@ -99,16 +89,16 @@ class Config:
             if args.manual_fallback:
                 if Config.only_if_match:
                     Console().print('Only one of --manual-fallback and --only-if-match can be specified.', style='red')
-                    sys.exit()
+                    sys.exit(-1)
 
                 Config.manual_fallback = True
 
     @classmethod
     def set_directories(
             cls,
-            screenshots_dir: StringOrPath,
-            destination_dir: StringOrPath,
-            rules_csv_paths: List[StringOrPath]
+            screenshots_dir: Path,
+            destination_dir: Path,
+            rules_csv_paths: List[Path]
     ) -> None:
         """Set the directories to find screenshots in and sort screenshots to."""
         screenshots_dir = Path(screenshots_dir)
@@ -117,10 +107,13 @@ class Config:
 
         for csv_path in rules_csv_paths:
             if not csv_path.is_file():
-                print(f"'{csv_path}' is not a file.")
-                sys.exit()
-            else:
-                cls.sort_rules += cls._load_rules_csv(csv_path)
+                print(f"ERROR: '{csv_path}' is not a file.")
+                sys.exit(-1)
+
+            try:
+                cls.sort_rules += SortRule.load_rules_csv(csv_path)
+            except SortRuleParseError:
+                sys.exit(-1)
 
         cls.screenshots_dir: Path = Path(screenshots_dir)
         cls.destination_dir: Path = Path(destination_dir or screenshots_dir)
@@ -145,17 +138,6 @@ class Config:
         set_log_level('DEBUG')
 
     @classmethod
-    def _load_rules_csv(cls, file_path: Union[Path, str]) -> List[SortRule]:
-        with open(Path(file_path), mode='r') as csvfile:
-            return [
-                SortRule(row['folder'], re.compile(row['regex'], re.IGNORECASE | re.MULTILINE))
-                for row in csv.DictReader(
-                    filter(lambda _row: len(_row) > 0 and _row.lstrip()[0] != '#', csvfile),
-                    delimiter=','
-                )
-            ]
-
-    @classmethod
     def _rules_table(cls) -> Table:
         """Generate a table of the sort rules in effect."""
         table = Table(
@@ -165,7 +147,8 @@ class Config:
             header_style='color(245)',
             box=box.SIMPLE,
             show_edge=False,
-            collapse_padding=True)
+            collapse_padding=True
+        )
 
         for sort_rule in Config.sort_rules:
             table.add_row(sort_rule.folder, sort_rule.regex.pattern)
@@ -225,3 +208,5 @@ def log_optional_module_warning(module_name: str, msg: Optional[Text] = None) ->
     console.print(f"     pipx install clown_sort\\[{module_name}] --force", style='bright_cyan')
     console.line()
     console.print(f"'pip install' works if you're not using pipx. Use 'poetry install --all-extras' if you're in a development environment.")
+
+

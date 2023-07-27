@@ -62,7 +62,7 @@ def extract_text_from_files() -> None:
 
         if not file_path.exists():
             console.print(f"File '{file_path}' doesn't exist!")
-            sys.exit()
+            sys.exit(-1)
         elif file_path.is_dir():
             files_to_process.extend(files_in_dir(file_path))
         else:
