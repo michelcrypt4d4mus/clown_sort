@@ -63,9 +63,12 @@ class SortableFile:
 
         # Handle the case where there are no matches to any configured folders.
         if len(rule_matches) == 0:
-            if Config.manual_fallback and self._can_be_presented_in_popup():
-                process_file_with_popup(self)
-                return
+            if Config.manual_fallback:
+                if self._can_be_presented_in_popup():
+                    process_file_with_popup(self)
+                    return
+
+                print_dim_bullet(f"'{self.file_path}' cannot be displayed in a popup window yet.")
             elif Config.only_if_match:
                 print_dim_bullet('No folder match and --only-if-match option selected. Skipping...')
                 return
