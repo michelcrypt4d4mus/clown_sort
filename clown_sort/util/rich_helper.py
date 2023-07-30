@@ -28,7 +28,6 @@ PURPLE = 'color(20)'
 YELLOW_ON_RED = 'color(190) on red'
 
 COLOR_THEME_DICT = {
-    # colors
     'dark_orange': 'color(58)',
     'file': FILE_STYLE,
     'grey': GREY,
