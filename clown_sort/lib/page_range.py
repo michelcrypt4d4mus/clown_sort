@@ -26,7 +26,12 @@ class PageRange:
         if self.last_page <= self.first_page:
             raise ValueError(f"Invalid page range {self.__repr__()}")
 
+    def in_range(self, page_number) -> bool:
+        """Returns True if page_number is in this range."""
+        return page_number >= self.first_page and page_number < self.last_page
+
     def file_suffix(self) -> str:
+        """String that can be used as file suffix."""
         if self.first_page + 1 == self.last_page:
             return f"page_{self.first_page}"
         else:

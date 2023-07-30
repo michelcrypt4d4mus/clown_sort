@@ -29,7 +29,7 @@ SCALE_FACTOR = 0.4
 class PdfFile(SortableFile):
     is_presentable_in_popup = None
 
-    def extracted_text(self) -> Optional[str]:
+    def extracted_text(self, page_range: Optional[PageRange] = None) -> Optional[str]:
         """Use Tesseract to OCR the text in the image, which is returned as a string."""
         if self.text_extraction_attempted:
             return self._extracted_text
@@ -44,6 +44,10 @@ class PdfFile(SortableFile):
             log.debug(f"PDF Page count: {page_count}")
 
             for page_number, page in enumerate(pdf_reader.pages, start=1):
+                if page_range and not page_range.in_range(page_number):
+                    self._log_to_stderr(f"Skipping page {page_number}...")
+                    continue
+
                 self._log_to_stderr(f"Parsing page {page_number}...")
                 page_buffer = Console(file=io.StringIO())
                 page_buffer.print(Panel(f"PAGE {page_number}", padding=(0, 15), expand=False))
@@ -116,7 +120,7 @@ class PdfFile(SortableFile):
         destination_dir = destination_dir or DEFAULT_PDF_ERRORS_DIR
         extracted_pages_pdf_basename = insert_suffix_before_extension(self.file_path, page_range.file_suffix()).name
         extracted_pages_pdf_path = destination_dir.joinpath(extracted_pages_pdf_basename)
-        stderr_console.print(f"Attempting to extract {page_range.file_suffix()} from '{self.file_path}' to '{extracted_pages_pdf_path}'...")
+        stderr_console.print(f"Extracting {page_range.file_suffix()} from '{self.file_path}' to '{extracted_pages_pdf_path}'...")
         pdf_writer = PdfWriter()
 
         with open(self.file_path, 'rb') as source_pdf:
@@ -131,7 +135,7 @@ class PdfFile(SortableFile):
 
     def print_extracted_text(self, page_range: Optional[PageRange] = None) -> None:
         console.print(self._filename_panel())
-        console.print(self._extracted_str())
+        console.print(self.extracted_text(page_range=page_range))
 
     def _can_be_presented_in_popup(self) -> bool:
         if type(self).is_presentable_in_popup is None:
