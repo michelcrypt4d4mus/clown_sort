@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+# 1.10.0
 * New script `extract_pages_from_pdf` lets you easily rip pages out of a PDF
 * Add `--page-range` argument to both `extract_pages_from_pdf` and `extract_text_from_files`
 * `pypdf` exceptions will trigger the offending page to be extracted and a suggestion made to the user that they submit the page to the `pypdf` team
