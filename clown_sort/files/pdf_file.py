@@ -118,6 +118,7 @@ class PdfFile(SortableFile):
     def extract_page_range(self, page_range: PageRange, destination_dir: Optional[Path] = None) -> Path:
         """Extract a range of pages to a new PDF file (or 1 page if last_page_number not provided.)"""
         destination_dir = destination_dir or DEFAULT_PDF_ERRORS_DIR
+        create_dir_if_it_does_not_exist(destination_dir)
         extracted_pages_pdf_basename = insert_suffix_before_extension(self.file_path, page_range.file_suffix()).name
         extracted_pages_pdf_path = destination_dir.joinpath(extracted_pages_pdf_basename)
         stderr_console.print(f"Extracting {page_range.file_suffix()} from '{self.file_path}' to '{extracted_pages_pdf_path}'...")
@@ -158,7 +159,6 @@ class PdfFile(SortableFile):
     def _handle_extraction_error(self, page_number: int) -> None:
         """Rip the offending page to a new file and suggest that user """
         if 'pdf_errors_dir' in dir(Config):
-            create_dir_if_it_does_not_exist(Config.pdf_errors_dir)
             destination_dir = Config.pdf_errors_dir
         else:
             destination_dir = DEFAULT_PDF_ERRORS_DIR
