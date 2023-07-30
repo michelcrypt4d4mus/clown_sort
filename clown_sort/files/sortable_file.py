@@ -22,7 +22,7 @@ from clown_sort.sort_selector import process_file_with_popup
 from clown_sort.util.filesystem_helper import copy_file_creation_time
 from clown_sort.util.logging import log
 from clown_sort.util.rich_helper import (bullet_text, comma_join, console, copying_file_log_message,
-     indented_bullet, mild_warning, moving_file_log_message, print_dim_bullet)
+     indented_bullet, mild_warning, moving_file_log_message, print_dim_bullet, stderr_console)
 
 RuleMatch = namedtuple('RuleMatch', ['folder', 'match'])
 
@@ -299,16 +299,16 @@ class SortableFile:
         if not file_path.exists() or Config.yes_overwrite:
             return True
 
-        msg = Text('').append(f"WARNING", style='bright_yellow').append(f": File ")
+        msg = Text('').append(f"\nWARNING", style='bright_yellow').append(f": File ")
         msg.append(file_path.name, style='cyan').append(" already exists in ")
         msg.append(str(file_path.parent), style='sort_folder')
-        console.print(msg)
+        stderr_console.print(msg)
 
         if Config.rescan_sorted:
-            console.print(f"--rescan-sorted flag is on; skipping...", style='dim')
+            stderr_console.print(f"--rescan-sorted flag is on; skipping...", style='dim')
             return False
-        elif Confirm.ask(f"Overwrite?"):
+        elif Confirm.ask(f"Overwrite?", console=stderr_console):
             return True
         else:
-            console.print("Skipping...", style='dim')
+            stderr_console.print("Skipping...", style='dim')
             return False

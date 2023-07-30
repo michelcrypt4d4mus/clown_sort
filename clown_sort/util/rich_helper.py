@@ -3,6 +3,7 @@ from sys import stderr
 from typing import List, Optional, Union
 
 from rich.console import Console
+from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
 from rich.theme import Theme
@@ -19,14 +20,17 @@ BYTES_BRIGHTEST = 'color(220)'
 BYTES_BRIGHTER = 'orange1'
 BYTES_HIGHLIGHT = 'color(136)'
 DARK_GREY = 'color(236)'
+FILE_STYLE = 'underline color(81)'
 GREY = 'color(239)'
 GREY_ADDRESS = 'color(238)'
 PEACH = 'color(215)'
 PURPLE = 'color(20)'
+YELLOW_ON_RED = 'color(190) on red'
 
 COLOR_THEME_DICT = {
     # colors
     'dark_orange': 'color(58)',
+    'file': FILE_STYLE,
     'grey': GREY,
     'grey.dark': DARK_GREY,
     'grey.dark_italic': f"{DARK_GREY} italic",
@@ -111,6 +115,11 @@ def print_error(text: Union[str, Text]) -> Text:
 
 def comma_join(strs: List[str], style: str) -> Text:
     return Text(", ").join([Text(s, style) for s in strs])
+
+
+def attention_getting_panel(text: Text, title: str, style: str = 'white on red') -> Padding:
+    p = Panel(text, padding=(2), title=title, style=style)
+    return Padding(p, pad=(1, 10, 2, 10))
 
 
 def _file_operation_log_message(basename: str, new_file: Path, log_msg: str) -> Text:

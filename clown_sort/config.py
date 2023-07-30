@@ -176,7 +176,7 @@ def _check_for_pysimplegui():
         )
 
         log_optional_module_warning('gui', msg)
-        console = Console()
+        console = Console(color_system='256')
         #console.line()
         console.print(f"You make also need to install 'python-tk'. In macOS this can be installed with 'brew install python-tk'.")
         sys.exit()
@@ -200,7 +200,7 @@ def log_optional_module_warning(module_name: str, msg: Optional[Text] = None) ->
             style='bright_white'
         )
 
-    console = Console()
+    console = Console(color_system='256')
     console.line()
     console.print(msg)
     console.line()

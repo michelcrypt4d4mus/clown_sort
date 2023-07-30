@@ -7,6 +7,7 @@
 * New crypto sort rules
 * Rename `--print-when-parsed` command line option to `--print-as-parsed`
 * Suppress `/JBIG2Decode` warning output when decoding PDFs
+* Refactor overwrite confirmation, use stderr
 
 ### 1.9.2
 * Allow `Pillow` 10.0.0

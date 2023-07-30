@@ -11,6 +11,7 @@ from pypdf import PdfReader, PdfWriter
 from pypdf.errors import DependencyError, EmptyFileError
 from rich.console import Console
 from rich.panel import Panel
+from rich.text import Text
 
 from clown_sort.config import Config, check_for_pymupdf, log_optional_module_warning
 from clown_sort.files.image_file import ImageFile
@@ -19,7 +20,8 @@ from clown_sort.lib.page_range import PageRange
 from clown_sort.util.constants import MIN_PDF_SIZE_TO_LOG_PROGRESS_TO_STDERR, PDF_ERRORS
 from clown_sort.util.filesystem_helper import create_dir_if_it_does_not_exist, insert_suffix_before_extension
 from clown_sort.util.logging import log
-from clown_sort.util.rich_helper import WARNING, console, mild_warning, stderr_console
+from clown_sort.util.rich_helper import WARNING, attention_getting_panel, console, mild_warning, stderr_console
+from clown_sort.util.string_helper import exception_str
 
 DEFAULT_PDF_ERRORS_DIR = Path.cwd().joinpath(PDF_ERRORS)
 MAX_DISPLAY_HEIGHT = 600
@@ -64,7 +66,8 @@ class PdfFile(SortableFile):
                         image_text = ImageFile.extract_text(image_obj, f"{self.file_path} ({image_name})")
                         page_buffer.print((image_text or '').strip())
                 except (OSError, NotImplementedError, TypeError, ValueError) as e:
-                    msg = f"{type(e).__name__}: {e} while parsing embedded image {image_number} on page {page_number}..."
+                    error_str = exception_str(e)
+                    msg = f"{error_str} while parsing embedded image {image_number} on page {page_number}..."
                     mild_warning(msg)
 
                     # Dump an error PDF and encourage user to report to pypdf team.
@@ -72,7 +75,8 @@ class PdfFile(SortableFile):
                         stderr_console.print_exception()
 
                         if page_number not in self.page_numbers_of_errors:
-                            self._handle_extraction_error(page_number)
+                            self._handle_extraction_error(page_number, error_str)
+                            self.page_numbers_of_errors.append(page_number)
 
                 page_text = page_buffer.file.getvalue()
                 extracted_pages.append(page_text)
@@ -115,11 +119,22 @@ class PdfFile(SortableFile):
 
         return page.get_pixmap(matrix=zoom_matrix, clip= clip, alpha=False).tobytes()
 
-    def extract_page_range(self, page_range: PageRange, destination_dir: Optional[Path] = None) -> Path:
+    def extract_page_range(
+            self,
+            page_range: PageRange,
+            destination_dir: Optional[Path] = None,
+            extra_file_suffix: Optional[str] = None
+        ) -> Path:
         """Extract a range of pages to a new PDF file (or 1 page if last_page_number not provided.)"""
         destination_dir = destination_dir or DEFAULT_PDF_ERRORS_DIR
         create_dir_if_it_does_not_exist(destination_dir)
-        extracted_pages_pdf_basename = insert_suffix_before_extension(self.file_path, page_range.file_suffix()).name
+
+        if extra_file_suffix is None:
+            file_suffix = page_range.file_suffix()
+        else:
+            file_suffix = f"{page_range.file_suffix()}__{extra_file_suffix}"
+
+        extracted_pages_pdf_basename = insert_suffix_before_extension(self.file_path, file_suffix).name
         extracted_pages_pdf_path = destination_dir.joinpath(extracted_pages_pdf_basename)
         stderr_console.print(f"Extracting {page_range.file_suffix()} from '{self.file_path}' to '{extracted_pages_pdf_path}'...")
         pdf_writer = PdfWriter()
@@ -156,18 +171,29 @@ class PdfFile(SortableFile):
 
         stderr_console.print(msg)
 
-    def _handle_extraction_error(self, page_number: int) -> None:
-        """Rip the offending page to a new file and suggest that user """
+    def _handle_extraction_error(self, page_number: int, error_msg: str) -> None:
+        """Rip the offending page to a new file and suggest that user report bug to PyPDF."""
         if 'pdf_errors_dir' in dir(Config):
             destination_dir = Config.pdf_errors_dir
         else:
             destination_dir = DEFAULT_PDF_ERRORS_DIR
 
-        extracted_file = self.extract_page_range(PageRange(str(page_number)), destination_dir=destination_dir)
-        stderr_console.print(f"Extracted page causing the issue to '{extracted_file}'.")
-        stderr_console.print(f"Please visit 'https://github.com/py-pdf/pypdf/issues' to report a bug.", style='bold')
-        stderr_console.print(f"Providing the devs with the extracted page will help improve pypdf.")
-        self.page_numbers_of_errors.append(page_number)
+        extracted_file = self.extract_page_range(PageRange(str(page_number)), destination_dir, error_msg)
+
+        blink_txt = Text('', style='bright_white')
+        blink_txt.append("An error (", style='blink color(154)').append(error_msg, style='color(11) blink')
+        blink_txt.append(') ', style='blink color(154)')
+        blink_txt.append("was encountered while processing a PDF file.\n\n", style='blink color(154)')
+
+        txt = Text(f"The error was of a type such that it probably came from a bug in ", style='bright_white')
+        txt.append('PyPDF', style='underline bright_green').append('. It was encountered processing the file ')
+        txt.append(str(self.file_path), style='file').append('. You should see a stack trace above this box.\n\n')
+
+        txt.append('The offending page will be extracted to ', style='bright_white')
+        txt.append(str(extracted_file), style='file').append('.\n\n')
+        txt.append(f"Please visit 'https://github.com/py-pdf/pypdf/issues' to report a bug. ", style='bold')
+        txt.append(f"Providing the devs with the extracted page and the stack trace help improve pypdf.")
+        stderr_console.print(attention_getting_panel(blink_txt + txt, title='PyPDF Error'))
 
     def __repr__(self) -> str:
         return f"PdfFile('{self.file_path}')"
