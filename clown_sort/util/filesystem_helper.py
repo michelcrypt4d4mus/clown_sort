@@ -21,8 +21,8 @@ from clown_sort.util.logging import log
 from clown_sort.util.string_helper import spaces_to_underscores
 
 PDF_EXTENSION = '.pdf'
-IMAGE_FILE_EXTENSIONS = [f".{ext}" for ext in 'tiff jpg jpeg png heic'.split()]
 MOVIE_FILE_EXTENSIONS = ['.mov', '.flv', '.avi']
+IMAGE_FILE_EXTENSIONS = [f".{ext}" for ext in 'tiff jpg jpeg png heic'.split()]
 SORTABLE_FILE_EXTENSIONS = IMAGE_FILE_EXTENSIONS + [PDF_EXTENSION, '.mov']
 MAC_SCREENSHOT_TIMESTAMP_FORMAT = '%Y-%m-%d at %I.%M.%S %p'
 
