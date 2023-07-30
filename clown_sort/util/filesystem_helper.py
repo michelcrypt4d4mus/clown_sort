@@ -14,9 +14,11 @@ from typing import List, Optional, Union
 from filedate.Utils import Copy
 from filedate import File
 from rich.console import Console
+from rich.prompt import Confirm
 from rich.text import Text
 
 from clown_sort.util.constants import MAC_SCREENSHOT_REGEX, SCREENSHOT_REGEX
+from clown_sort.util.logging import log
 from clown_sort.util.string_helper import spaces_to_underscores
 
 PDF_EXTENSION = '.pdf'
@@ -71,13 +73,22 @@ def is_pdf(file_path: Union[str, Path]) -> bool:
 
 
 def is_sortable(file_path: Union[str, Path]) -> bool:
+    """Return True if it's a file clown_sort knows how to process."""
     return Path(file_path).suffix in SORTABLE_FILE_EXTENSIONS
 
 
 def insert_suffix_before_extension(file_path: Path, suffix: str, separator: str = '__') -> Path:
+    """Inserting 'page 1' suffix in 'path/to/file.jpg' -> '/path/to/file__page_1.jpg'."""
     suffix = spaces_to_underscores(strip_bad_chars(suffix))
     file_path_without_extension = file_path.with_suffix('')
     return Path(f"{file_path_without_extension}{separator}{suffix}{file_path.suffix}")
+
+
+def create_dir_if_it_does_not_exist(dir: Path) -> None:
+    """Like it says on the tin."""
+    if not dir.is_dir():
+        log.warning(f"Need to create '{dir}'")
+        dir.mkdir(parents=True, exist_ok=True)
 
 
 def copy_file_creation_time(source_file: Path, destination_file: Path) -> None:

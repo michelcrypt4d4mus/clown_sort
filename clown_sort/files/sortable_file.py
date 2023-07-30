@@ -107,14 +107,7 @@ class SortableFile:
                     mild_warning(f"'{destination_path.name}' already exists in {folder}, skipping...")
                     continue
 
-                console.line()
-                msg = Text('').append(f"WARNING", style='bright_yellow').append(f": File ")
-                msg.append(destination_path.name, style='cyan').append(" already exists in ")
-                msg.append(folder, style='sort_folder')
-                console.print(msg)
-
-                if not (Config.yes_overwrite or Confirm.ask(f"Overwrite?")):
-                    console.print("Skipping...", style='dim')
+                if not SortableFile.confirm_file_overwrite(destination_path):
                     continue
 
             self._paths_of_sorted_copies.append(destination_path)
@@ -299,3 +292,23 @@ class SortableFile:
         if Config.debug:
             yield bullet_text('EXIF: ')
             yield f"   {self.exif_dict()}\n\n"
+
+    @staticmethod
+    def confirm_file_overwrite(file_path: Path) -> bool:
+        """Check if a path exists when about to write to it and ask for confirmation if it does."""
+        if not file_path.exists() or Config.yes_overwrite:
+            return True
+
+        msg = Text('').append(f"WARNING", style='bright_yellow').append(f": File ")
+        msg.append(file_path.name, style='cyan').append(" already exists in ")
+        msg.append(str(file_path.parent), style='sort_folder')
+        console.print(msg)
+
+        if Config.rescan_sorted:
+            console.print(f"--rescan-sorted flag is on; skipping...", style='dim')
+            return False
+        elif Confirm.ask(f"Overwrite?"):
+            return True
+        else:
+            console.print("Skipping...", style='dim')
+            return False

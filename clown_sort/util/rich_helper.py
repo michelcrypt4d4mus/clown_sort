@@ -75,14 +75,6 @@ def print_indented(msg: str, style: str = '', indent_level: int = 1) -> None:
     console.print(f"{indent_whitespace(indent_level)}{msg}", style=style)
 
 
-def ask_for_confirmation(msg: Text) -> None:
-    """Primitive user confirmation"""
-    console.print(msg.append("\n('y' to continue, any other key to exit)", style='white dim'))
-
-    if input().lower() != 'y':
-        exit()
-
-
 def indent_whitespace(indent_level: int = 1):
     return ' ' * INDENT_SPACES * indent_level
 
