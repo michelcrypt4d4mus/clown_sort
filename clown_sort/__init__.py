@@ -1,4 +1,6 @@
-import sys
+"""
+Entry point for all of the clown_sort scripts.
+"""
 from argparse import Namespace
 from glob import glob
 from os import environ, getcwd, path
