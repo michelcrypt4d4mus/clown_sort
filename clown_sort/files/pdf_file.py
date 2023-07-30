@@ -110,10 +110,14 @@ class PdfFile(SortableFile):
 
         if last_page_number < first_page_number:
             raise ValueError(f"last_page_number {last_page_number} is before first_page_number {first_page_number}")
-        elif last_page_number == first_page_number:
+        elif last_page_number <= first_page_number + 1:
+            if last_page_number == first_page_number:
+                log.warning(f"First and last pages are both {first_page_number}. Adjusting to extract 1 page...")
+
+            last_page_number = first_page_number + 1
             file_suffix = f"page {first_page_number}"
         else:
-            file_suffix = f"pages {first_page_number}-{last_page_number}"
+            file_suffix = f"pages {first_page_number}-{last_page_number - 1}"
 
         extracted_pages_pdf_basename = insert_suffix_before_extension(self.file_path, file_suffix).name
         extracted_pages_pdf_path = Config.pdf_errors_dir.joinpath(extracted_pages_pdf_basename)
