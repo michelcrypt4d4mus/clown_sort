@@ -152,7 +152,8 @@ extract_text_from_files MY_FILE1 MY_FILE2 SOME_DIR3
 This will parse and display the text in `MY_FILE1`, `MY_FILE2`, and all the files in `SOME_DIR3`.
 
 #### Extracting pages of a PDF to a new PDF
-`extract_pages_from_pdf` is a small script that is
+`extract_pages_from_pdf` is a small script that can extract page ranges (e.g. "10-25") from PDFs on the command line.
+![](dpc/extract_pages_from_pdf_help.png)
 
 
 # Contributing
