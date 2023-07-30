@@ -28,7 +28,7 @@ MAC_SCREENSHOT_TIMESTAMP_FORMAT = '%Y-%m-%d at %I.%M.%S %p'
 
 
 def files_in_dir(dir: Union[os.PathLike, str], with_extname: Optional[str] = None) -> List[str]:
-    """Paths for non-hidden, non-directory files, optionally ending in 'with_extname'"""
+    """Paths for non-hidden, non-directory files, optionally ending in 'with_extname'."""
     files = [file for file in _non_hidden_files_in_dir(dir) if not path.isdir(file)]
 
     if with_extname:
@@ -85,9 +85,11 @@ def insert_suffix_before_extension(file_path: Path, suffix: str, separator: str 
 
 def create_dir_if_it_does_not_exist(dir: Path) -> None:
     """Like it says on the tin."""
-    if not dir.is_dir():
-        log.warning(f"Need to create '{dir}'")
-        dir.mkdir(parents=True, exist_ok=True)
+    if dir.exists():
+        return
+
+    log.warning(f"Need to create '{dir}'")
+    dir.mkdir(parents=True, exist_ok=True)
 
 
 def copy_file_creation_time(source_file: Path, destination_file: Path) -> None:
@@ -104,6 +106,7 @@ def copy_file_creation_time(source_file: Path, destination_file: Path) -> None:
 
 
 def set_timestamp_based_on_screenshot_filename(file_path: Path) -> None:
+    """Infer a timestamp based on the filename and then change the 'Last Modified' property to match."""
     file_timestamp = extract_timestamp_from_filename(str(file_path))
     print(f"Parsed {file_timestamp} from '{file_path.name}'")
     print("    last modified: %s" % time.ctime(os.path.getmtime(file_path)))
@@ -114,6 +117,7 @@ def set_timestamp_based_on_screenshot_filename(file_path: Path) -> None:
 
 
 def extract_timestamp_from_filename(filename: str) -> datetime:
+    """Infer a timestamp based on the filename. Assumes there is an iso8601 section in filename."""
     filename = os.path.basename(filename)
     match = MAC_SCREENSHOT_REGEX.match(filename)
 
