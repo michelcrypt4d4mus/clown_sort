@@ -33,7 +33,7 @@ class Config:
     delete_originals: bool = False
     rescan_sorted: bool = False
     yes_overwrite: bool = False
-    print_when_parsed: bool = False
+    print_as_parsed: bool = False
     sort_rules: List[SortRule] = []
     filename_regex: re.Pattern
 
@@ -161,6 +161,7 @@ class Config:
         log.debug(f"destination_dir: {cls.destination_dir}")
         log.debug(f"sorted_screenshots_dir: {cls.sorted_screenshots_dir}")
         log.debug(f"processed_screenshots_dir: {cls.processed_screenshots_dir}")
+        log.debug(f"pdf_errors_dir: {cls.pdf_errors_dir}")
 
 
 def _check_for_pysimplegui():

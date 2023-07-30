@@ -14,7 +14,6 @@ from typing import List, Optional, Union
 from filedate.Utils import Copy
 from filedate import File
 from rich.console import Console
-from rich.prompt import Confirm
 from rich.text import Text
 
 from clown_sort.util.constants import MAC_SCREENSHOT_REGEX, SCREENSHOT_REGEX
