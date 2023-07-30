@@ -182,7 +182,7 @@ class SortableFile:
         else:
             run(['open', self.file_path])
 
-    def print_extracted_text(self, max_chars: Optional[int] = None) -> None:
+    def print_extracted_text(self) -> None:
         console.print(self._filename_panel())
         console.print(self._extracted_str())
 

@@ -3,33 +3,23 @@ Parse arguments for both the main sort_screenshots() as well as extract_text_fro
 """
 import re
 import sys
-from argparse import ArgumentParser, ArgumentTypeError, Namespace, FileType
+from argparse import ArgumentParser, Namespace
 from os import environ
 from pathlib import Path
 
 from rich_argparse_plus import RichHelpFormatterPlus
 
+from clown_sort.lib.page_range import PageRange, PageRangeArgumentValidator
 from clown_sort.util.constants import (CRYPTO, DEFAULT_SCREENSHOTS_DIR, DEFAULT_DESTINATION_DIR,
      DEFAULT_FILENAME_REGEX)
-from clown_sort.util.filesystem_helper import is_pdf
+from clown_sort.util.filesystem_helper import files_in_dir, is_pdf
 from clown_sort.util.logging import log
 
 DESCRIPTION = "Sort, rename, and tag screenshots (and the occasional PDF) according to rules."
 EPILOG = "Defaults are focused on crypto related screenshots."
-
-
-class ArgumentRegexValidator(object):
-    def __init__(self, pattern):
-        self._pattern = re.compile(pattern)
-
-    def __call__(self, value):
-        if not self._pattern.match(value):
-            raise ArgumentTypeError("Argument has to match '{}'".format(self._pattern.pattern))
-
-        return value
-
-
+page_range_validator = PageRangeArgumentValidator()
 RichHelpFormatterPlus.choose_theme('prince')
+
 
 parser = ArgumentParser(
     formatter_class=RichHelpFormatterPlus,
@@ -102,9 +92,35 @@ extract_text_parser = ArgumentParser(
 extract_text_parser.add_argument('file_or_dir', nargs='+', metavar='FILE_OR_DIR')
 extract_text_parser.add_argument('--debug', action='store_true', help='turn on debug level logging')
 
+extract_text_parser.add_argument('--page-range', '-r',
+                                 type=page_range_validator,
+                                 help=f"[PDFs only] {page_range_validator.HELP_MSG}")
+
 extract_text_parser.add_argument('--print-as-parsed', '-p',
                                  action='store_true',
                                  help='print pages as they are parsed instead of waiting until document is fully parsed')
+
+
+def parse_text_extraction_args() -> Namespace:
+    args = extract_text_parser.parse_args()
+    args.files_to_process = []
+
+    for file_or_dir in args.file_or_dir:
+        file_path = Path(file_or_dir)
+
+        if not file_path.exists():
+            log.error(f"File '{file_path}' doesn't exist!")
+            sys.exit(-1)
+        elif file_path.is_dir():
+            args.files_to_process.extend(files_in_dir(file_path))
+        else:
+            args.files_to_process.append(file_path)
+
+    if args.page_range and (len(args.files_to_process) > 1 or not is_pdf(args.files_to_process[0])):
+        log.error(f"--page-range can only be specified for a single PDF")
+        sys.exit(-1)
+
+    return args
 
 
 ###########################################
@@ -118,12 +134,11 @@ extract_pdf_parser = ArgumentParser(
 extract_pdf_parser.add_argument('pdf_file', metavar='PDF_FILE', help='PDF to extract pages from')
 
 extract_pdf_parser.add_argument('--page-range', '-r',
-                                type=ArgumentRegexValidator('\\d(-\\d)?'),
-                                help="either a single digit like '11' or a range like '11-15' (WILL NOT extract the last page)",
+                                type=page_range_validator,
+                                help=page_range_validator.HELP_MSG,
                                 required=True)
 
 extract_pdf_parser.add_argument('--destination-dir', '-d',
-                                #type=FileType,
                                 help="directory to write the new PDF to",
                                 default=Path.cwd())
 
@@ -133,16 +148,11 @@ extract_pdf_parser.add_argument('--debug', action='store_true', help='turn on de
 def parse_pdf_page_extraction_args() -> Namespace:
     args = extract_pdf_parser.parse_args()
 
-    if args.page_range is None:
-        log.error('--page-range not provided; exiting.')
-        sys.exit(-1)
-    elif not is_pdf(args.pdf_file):
+    if not is_pdf(args.pdf_file):
         log.error(f"'{args.pdf_file}' is not a PDF.")
         sys.exit(-1)
-
-    if '-' in args.page_range:
-        (args.first_page_number, args.last_page_number) = [int(p) for p in args.page_range.split('-')]
-    else:
-        args.first_page_number = int(args.page_range)
+    elif not Path(args.destination_dir).exists():
+        log.error(f"Destination dir '{args.destination_dir}' does not exist.")
+        sys.exit(1)
 
     return args

@@ -14,7 +14,7 @@ if not environ.get('INVOKED_BY_PYTEST', False):
             load_dotenv(dotenv_path=dotenv_file)
             break
 
-from clown_sort.util.argument_parser import extract_text_parser, parse_pdf_page_extraction_args
+from clown_sort.util.argument_parser import parse_text_extraction_args, parse_pdf_page_extraction_args
 from clown_sort.config import Config
 from clown_sort.files.image_file import ImageFile
 from clown_sort.files.pdf_file import PdfFile
@@ -48,34 +48,28 @@ def extract_text_from_files() -> None:
     Extract text from a single file or from all files in a given directory. Can accept
     multiple paths as arguments on the command line.
     """
-    args: Namespace = extract_text_parser.parse_args()
+    args: Namespace = parse_text_extraction_args()
     console.line()
-    files_to_process = []
 
     if args.debug:
         Config.enable_debug_mode()
     if args.print_as_parsed:
         Config.print_as_parsed = True
 
-    for file_or_dir in args.file_or_dir:
-        file_path = Path(file_or_dir)
+    for file_path in args.files_to_process:
+        sortable_file = build_sortable_file(file_path)
 
-        if not file_path.exists():
-            console.print(f"File '{file_path}' doesn't exist!")
-            sys.exit(-1)
-        elif file_path.is_dir():
-            files_to_process.extend(files_in_dir(file_path))
+        if isinstance(sortable_file, PdfFile):
+            sortable_file.print_extracted_text(page_range=args.page_range)
         else:
-            files_to_process.append(file_path)
+            sortable_file.print_extracted_text()
 
-    for file_path in files_to_process:
-        build_sortable_file(file_path).print_extracted_text()
         console.line(2)
 
 
 def extract_pages_from_pdf() -> None:
     args = parse_pdf_page_extraction_args()
-    PdfFile(args.pdf_file).extract_page_range(args.first_page_number, args.last_page_number)
+    PdfFile(args.pdf_file).extract_page_range(args.page_range, destination_dir=args.destination_dir)
 
 
 def set_screenshot_timestamps_from_filenames():
