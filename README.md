@@ -153,7 +153,7 @@ This will parse and display the text in `MY_FILE1`, `MY_FILE2`, and all the file
 
 #### Extracting pages of a PDF to a new PDF
 `extract_pages_from_pdf` is a small script that can extract page ranges (e.g. "10-25") from PDFs on the command line.
-![](dpc/extract_pages_from_pdf_help.png)
+![](doc/extract_pages_from_pdf_help.png)
 
 
 # Contributing
