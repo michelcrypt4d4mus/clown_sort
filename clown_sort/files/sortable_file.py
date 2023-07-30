@@ -22,7 +22,7 @@ from clown_sort.sort_selector import process_file_with_popup
 from clown_sort.util.filesystem_helper import copy_file_creation_time
 from clown_sort.util.logging import log
 from clown_sort.util.rich_helper import (bullet_text, comma_join, console, copying_file_log_message,
-     indented_bullet, mild_warning, moving_file_log_message, print_dim_bullet)
+     indented_bullet, mild_warning, moving_file_log_message, print_dim_bullet, stderr_console)
 
 RuleMatch = namedtuple('RuleMatch', ['folder', 'match'])
 
@@ -107,14 +107,7 @@ class SortableFile:
                     mild_warning(f"'{destination_path.name}' already exists in {folder}, skipping...")
                     continue
 
-                console.line()
-                msg = Text('').append(f"WARNING", style='bright_yellow').append(f": File ")
-                msg.append(destination_path.name, style='cyan').append(" already exists in ")
-                msg.append(folder, style='sort_folder')
-                console.print(msg)
-
-                if not (Config.yes_overwrite or Confirm.ask(f"Overwrite?")):
-                    console.print("Skipping...", style='dim')
+                if not SortableFile.confirm_file_overwrite(destination_path):
                     continue
 
             self._paths_of_sorted_copies.append(destination_path)
@@ -189,7 +182,7 @@ class SortableFile:
         else:
             run(['open', self.file_path])
 
-    def print_extracted_text(self, max_chars: Optional[int] = None) -> None:
+    def print_extracted_text(self) -> None:
         console.print(self._filename_panel())
         console.print(self._extracted_str())
 
@@ -299,3 +292,23 @@ class SortableFile:
         if Config.debug:
             yield bullet_text('EXIF: ')
             yield f"   {self.exif_dict()}\n\n"
+
+    @staticmethod
+    def confirm_file_overwrite(file_path: Path) -> bool:
+        """Check if a path exists when about to write to it and ask for confirmation if it does."""
+        if not file_path.exists() or Config.yes_overwrite:
+            return True
+
+        msg = Text('').append(f"\nWARNING", style='bright_yellow').append(f": File ")
+        msg.append(file_path.name, style='cyan').append(" already exists in ")
+        msg.append(str(file_path.parent), style='sort_folder')
+        stderr_console.print(msg)
+
+        if Config.rescan_sorted:
+            stderr_console.print(f"--rescan-sorted flag is on; skipping...", style='dim')
+            return False
+        elif Confirm.ask(f"Overwrite?", console=stderr_console):
+            return True
+        else:
+            stderr_console.print("Skipping...", style='dim')
+            return False

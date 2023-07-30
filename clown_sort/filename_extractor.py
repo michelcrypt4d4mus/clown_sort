@@ -5,11 +5,8 @@ import re
 from difflib import SequenceMatcher
 from typing import Optional
 
-from rich.text import Text
-
 from clown_sort.util.logging import log
-from clown_sort.util.rich_helper import console
-from clown_sort.util.string_helper import strip_bad_chars, strip_mac_screenshot
+from clown_sort.util.filesystem_helper import strip_bad_chars, strip_mac_screenshot
 
 TWEET_REPLY_REGEX = re.compile(
     'Replying to (@\\w{3,15}).*?\\n(?P<body>.*)',

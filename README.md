@@ -136,7 +136,10 @@ pipx install clown_sort[gui]
 
 
 ## One Off Extractions
-`extract_text_from_files` (installed at the same time) is a convenient script you can use to extract text from a single file, multiple files, or all the files in a given directory using Google's best in class Tesseract library.
+There are several utilities / convenience scripts / whatever you want to call them that are installed along with `clown_sort`. They work with the same toolset as `sort_screenshots` but use it to simplify the extraction of text from images (or PDFs that are actually just a set of page sized images).
+
+#### Extracting text
+`extract_text_from_files` is a convenient script you can use to extract text from a single file, multiple files, or all the files in a given directory using Google's best in class Tesseract library.
 
 ![](doc/extract_text_from_files_help.png)
 
@@ -147,6 +150,10 @@ extract_text_from_files MY_FILE1 MY_FILE2 SOME_DIR3
 ```
 
 This will parse and display the text in `MY_FILE1`, `MY_FILE2`, and all the files in `SOME_DIR3`.
+
+#### Extracting pages of a PDF to a new PDF
+`extract_pages_from_pdf` is a small script that can extract page ranges (e.g. "10-25") from PDFs on the command line.
+![](doc/extract_pages_from_pdf_help.png)
 
 
 # Contributing

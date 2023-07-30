@@ -4,7 +4,6 @@ Global configuration.
 import re
 import sys
 from argparse import Namespace
-from collections import namedtuple
 from importlib.metadata import version
 from os import environ
 from pathlib import Path
@@ -19,7 +18,7 @@ from clown_sort.sort_rule import SortRule, SortRuleParseError
 from clown_sort.util import rich_helper
 from clown_sort.util.argument_parser import parser
 from clown_sort.util.constants import PACKAGE_NAME
-from clown_sort.util.filesystem_helper import subdirs_of_dir
+from clown_sort.util.filesystem_helper import create_dir_if_it_does_not_exist, subdirs_of_dir
 from clown_sort.util.logging import log, set_log_level
 
 
@@ -34,7 +33,7 @@ class Config:
     delete_originals: bool = False
     rescan_sorted: bool = False
     yes_overwrite: bool = False
-    print_when_parsed: bool = False
+    print_as_parsed: bool = False
     sort_rules: List[SortRule] = []
     filename_regex: re.Pattern
 
@@ -119,11 +118,10 @@ class Config:
         cls.destination_dir: Path = Path(destination_dir or screenshots_dir)
         cls.sorted_screenshots_dir = cls.destination_dir.joinpath('Sorted')
         cls.processed_screenshots_dir = cls.destination_dir.joinpath('Processed')
+        cls.pdf_errors_dir = cls.destination_dir.joinpath('PDF Errors')
 
         for dir in [cls.destination_dir, cls.sorted_screenshots_dir, cls.processed_screenshots_dir]:
-            if not dir.is_dir():
-                log.warning(f"Need to create '{dir}'")
-                dir.mkdir(parents=True, exist_ok=True)
+            create_dir_if_it_does_not_exist(dir)
 
         cls._log_configured_paths()
 
@@ -163,6 +161,7 @@ class Config:
         log.debug(f"destination_dir: {cls.destination_dir}")
         log.debug(f"sorted_screenshots_dir: {cls.sorted_screenshots_dir}")
         log.debug(f"processed_screenshots_dir: {cls.processed_screenshots_dir}")
+        log.debug(f"pdf_errors_dir: {cls.pdf_errors_dir}")
 
 
 def _check_for_pysimplegui():
@@ -177,7 +176,7 @@ def _check_for_pysimplegui():
         )
 
         log_optional_module_warning('gui', msg)
-        console = Console()
+        console = Console(color_system='256')
         #console.line()
         console.print(f"You make also need to install 'python-tk'. In macOS this can be installed with 'brew install python-tk'.")
         sys.exit()
@@ -201,7 +200,7 @@ def log_optional_module_warning(module_name: str, msg: Optional[Text] = None) ->
             style='bright_white'
         )
 
-    console = Console()
+    console = Console(color_system='256')
     console.line()
     console.print(msg)
     console.line()

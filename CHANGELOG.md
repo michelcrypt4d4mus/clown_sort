@@ -1,7 +1,13 @@
 # NEXT RELEASE
+* New script `extract_pages_from_pdf` lets you easily rip pages out of a PDF
+* Add `--page-range` argument to both `extract_pages_from_pdf` and `extract_text_from_files`
+* `pypdf` exceptions will trigger the offending page to be extracted and a suggestion made to the user that they submit the page to the `pypdf` team
+* Bump `pypdf` to version 3.14.0 (fixes for many bugs on edge case PDFs)
 * Better handling of sort rules that fail to parse
-* Suppress `/JBIG2Decode` warning output
 * New crypto sort rules
+* Rename `--print-when-parsed` command line option to `--print-as-parsed`
+* Suppress `/JBIG2Decode` warning output when decoding PDFs
+* Refactor overwrite confirmation, use stderr
 
 ### 1.9.2
 * Allow `Pillow` 10.0.0

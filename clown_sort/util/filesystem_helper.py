@@ -16,17 +16,19 @@ from filedate import File
 from rich.console import Console
 from rich.text import Text
 
-from clown_sort.util.constants import MAC_SCREENSHOT_REGEX
+from clown_sort.util.constants import MAC_SCREENSHOT_REGEX, SCREENSHOT_REGEX
+from clown_sort.util.logging import log
+from clown_sort.util.string_helper import spaces_to_underscores
 
 PDF_EXTENSION = '.pdf'
-IMAGE_FILE_EXTENSIONS = [f".{ext}" for ext in 'tiff jpg jpeg png heic'.split()]
 MOVIE_FILE_EXTENSIONS = ['.mov', '.flv', '.avi']
+IMAGE_FILE_EXTENSIONS = [f".{ext}" for ext in 'tiff jpg jpeg png heic'.split()]
 SORTABLE_FILE_EXTENSIONS = IMAGE_FILE_EXTENSIONS + [PDF_EXTENSION, '.mov']
 MAC_SCREENSHOT_TIMESTAMP_FORMAT = '%Y-%m-%d at %I.%M.%S %p'
 
 
 def files_in_dir(dir: Union[os.PathLike, str], with_extname: Optional[str] = None) -> List[str]:
-    """Paths for non-hidden, non-directory files, optionally ending in 'with_extname'"""
+    """Paths for non-hidden, non-directory files, optionally ending in 'with_extname'."""
     files = [file for file in _non_hidden_files_in_dir(dir) if not path.isdir(file)]
 
     if with_extname:
@@ -45,37 +47,16 @@ def timestamp_for_filename() -> str:
     return datetime.now().strftime("%Y-%m-%dT%H.%M.%S")
 
 
-def copy_file_creation_time(source_file: Path, destination_file: Path) -> None:
-    """Copy the file creation timestamp from source_file to destination_file."""
-    try:
-        Copy(str(source_file), str(destination_file)).all()
-    except FileNotFoundError:
-        msg = Text("WARNING! couldn't copy file creation timestamp because file does not exist for ")
-        msg.append(f"'{destination_file}'!")
-        Console().print(msg, style='bright_yellow')
-        return
-
-    _set_permissions(destination_file)
+def strip_bad_chars(text: str) -> str:
+    """Remove chars that don't work well in filenames."""
+    text = ' '.join(text.splitlines()).replace('\\s+', ' ')
+    text = re.sub('’', "'", text).replace('|', 'I').replace(',', ',')
+    return re.sub('[^-0-9a-zA-Z@.,?_:=#\'\\$" ()]+', '_', text).replace('  ', ' ')
 
 
-def set_timestamp_based_on_screenshot_filename(file_path: Path) -> None:
-    file_timestamp = extract_timestamp_from_filename(str(file_path))
-    print(f"Parsed {file_timestamp} from '{file_path.name}'")
-    print("    last modified: %s" % time.ctime(os.path.getmtime(file_path)))
-    print("    created: %s" % time.ctime(os.path.getctime(file_path)))
-    file_date = File(file_path)
-    file_date.set(created = file_timestamp, modified = file_timestamp)
-    _set_permissions(file_path)
-
-
-def extract_timestamp_from_filename(filename: str) -> datetime:
-    filename = os.path.basename(filename)
-    match = MAC_SCREENSHOT_REGEX.match(filename)
-
-    if not match:
-        raise ValueError(f"'{filename}' is not a timestamped screenshot file")
-
-    return datetime.strptime(match.group(1), MAC_SCREENSHOT_TIMESTAMP_FORMAT)
+def strip_mac_screenshot(text: str) -> str:
+    """Strip default macOS screenshot format from filename."""
+    return re.sub(SCREENSHOT_REGEX, '', text).strip()
 
 
 def is_image(file_path: Union[str, Path]) -> bool:
@@ -91,7 +72,59 @@ def is_pdf(file_path: Union[str, Path]) -> bool:
 
 
 def is_sortable(file_path: Union[str, Path]) -> bool:
+    """Return True if it's a file clown_sort knows how to process."""
     return Path(file_path).suffix in SORTABLE_FILE_EXTENSIONS
+
+
+def insert_suffix_before_extension(file_path: Path, suffix: str, separator: str = '__') -> Path:
+    """Inserting 'page 1' suffix in 'path/to/file.jpg' -> '/path/to/file__page_1.jpg'."""
+    suffix = spaces_to_underscores(strip_bad_chars(suffix))
+    file_path_without_extension = file_path.with_suffix('')
+    return Path(f"{file_path_without_extension}{separator}{suffix}{file_path.suffix}")
+
+
+def create_dir_if_it_does_not_exist(dir: Path) -> None:
+    """Like it says on the tin."""
+    if dir.exists():
+        return
+
+    log.warning(f"Need to create '{dir}'")
+    dir.mkdir(parents=True, exist_ok=True)
+
+
+def copy_file_creation_time(source_file: Path, destination_file: Path) -> None:
+    """Copy the file creation timestamp from source_file to destination_file."""
+    try:
+        Copy(str(source_file), str(destination_file)).all()
+    except FileNotFoundError:
+        msg = Text("WARNING! couldn't copy file creation timestamp because file does not exist for ")
+        msg.append(f"'{destination_file}'!")
+        Console().print(msg, style='bright_yellow')
+        return
+
+    _set_permissions(destination_file)
+
+
+def set_timestamp_based_on_screenshot_filename(file_path: Path) -> None:
+    """Infer a timestamp based on the filename and then change the 'Last Modified' property to match."""
+    file_timestamp = extract_timestamp_from_filename(str(file_path))
+    print(f"Parsed {file_timestamp} from '{file_path.name}'")
+    print("    last modified: %s" % time.ctime(os.path.getmtime(file_path)))
+    print("    created: %s" % time.ctime(os.path.getctime(file_path)))
+    file_date = File(file_path)
+    file_date.set(created = file_timestamp, modified = file_timestamp)
+    _set_permissions(file_path)
+
+
+def extract_timestamp_from_filename(filename: str) -> datetime:
+    """Infer a timestamp based on the filename. Assumes there is an iso8601 section in filename."""
+    filename = os.path.basename(filename)
+    match = MAC_SCREENSHOT_REGEX.match(filename)
+
+    if not match:
+        raise ValueError(f"'{filename}' is not a timestamped screenshot file")
+
+    return datetime.strptime(match.group(1), MAC_SCREENSHOT_TIMESTAMP_FORMAT)
 
 
 def _non_hidden_files_in_dir(dir: Union[os.PathLike, str]) -> List[str]:
