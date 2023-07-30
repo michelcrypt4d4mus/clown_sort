@@ -1,5 +1,6 @@
 # NEXT RELEASE
 * Better handling of sort rules that fail to parse
+* Bump `pypdf` to version 3.14.0 (fixes for many bugs on edge case PDFs)
 * Suppress `/JBIG2Decode` warning output
 * New crypto sort rules
 

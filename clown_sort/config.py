@@ -119,6 +119,7 @@ class Config:
         cls.destination_dir: Path = Path(destination_dir or screenshots_dir)
         cls.sorted_screenshots_dir = cls.destination_dir.joinpath('Sorted')
         cls.processed_screenshots_dir = cls.destination_dir.joinpath('Processed')
+        cls.pdf_errors_dir = cls.destination_dir.joinpath('PDF Errors')
 
         for dir in [cls.destination_dir, cls.sorted_screenshots_dir, cls.processed_screenshots_dir]:
             if not dir.is_dir():

@@ -2,11 +2,10 @@
 Wrapper for PDF files.
 """
 import io
-import logging
 from typing import Optional
 
 from PIL import Image
-from pypdf import PdfReader
+from pypdf import PdfReader, PdfWriter
 from pypdf.errors import DependencyError, EmptyFileError
 from rich.console import Console
 from rich.panel import Panel
@@ -15,6 +14,7 @@ from clown_sort.config import Config, check_for_pymupdf, log_optional_module_war
 from clown_sort.files.image_file import ImageFile
 from clown_sort.files.sortable_file import SortableFile
 from clown_sort.util.constants import MIN_PDF_SIZE_TO_LOG_PROGRESS_TO_STDERR
+from clown_sort.util.filesystem_helper import insert_suffix_before_extension
 from clown_sort.util.logging import log
 from clown_sort.util.rich_helper import WARNING, console, stderr_console
 
@@ -103,6 +103,30 @@ class PdfFile(SortableFile):
             clip = fitz.Rect((0, 0), bottom_right)
 
         return page.get_pixmap(matrix=zoom_matrix, clip= clip, alpha=False).tobytes()
+
+    def extract_page_range(self, first_page_number: int, last_page_number: Optional[int] = None) -> None:
+        """Extract a range of pages to a new PDF file."""
+        last_page_number = last_page_number or first_page_number + 1
+
+        if last_page_number < first_page_number:
+            raise ValueError(f"last_page_number {last_page_number} is before first_page_number {first_page_number}")
+        if last_page_number == first_page_number:
+            file_suffix = f"page {last_page_number}"
+        else:
+            file_suffix = f"pages {first_page_number}-{last_page_number}"
+
+        extracted_pages_pdf_basename = insert_suffix_before_extension(self.file_path, file_suffix).name
+        extracted_pages_pdf_path = Config.pdf_errors_dir.joinpath(extracted_pages_pdf_basename)
+        log.info(f"Attempting to extract {file_suffix} from '{self.file_path}' to '{extracted_pages_pdf_path}'...")
+        pdf_writer = PdfWriter()
+
+        with open(self.file_path, 'rb') as source_pdf:
+            pdf_writer.append(fileobj=source_pdf, pages=(first_page_number, last_page_number))
+
+        with open(extracted_pages_pdf_path, 'wb') as extracted_pages_pdf:
+            pdf_writer.write(extracted_pages_pdf)
+
+        log.info(f"Wrote new PDF '{extracted_pages_pdf_path}'.")
 
     def _can_be_presented_in_popup(self) -> bool:
         if type(self).is_presentable_in_popup is None:

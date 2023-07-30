@@ -16,7 +16,8 @@ from filedate import File
 from rich.console import Console
 from rich.text import Text
 
-from clown_sort.util.constants import MAC_SCREENSHOT_REGEX
+from clown_sort.util.constants import MAC_SCREENSHOT_REGEX, SCREENSHOT_REGEX
+from clown_sort.util.string_helper import spaces_to_underscores
 
 PDF_EXTENSION = '.pdf'
 IMAGE_FILE_EXTENSIONS = [f".{ext}" for ext in 'tiff jpg jpeg png heic'.split()]
@@ -43,6 +44,40 @@ def subdirs_of_dir(dir: Union[os.PathLike, str]) -> List[str]:
 def timestamp_for_filename() -> str:
     """Returns a string showing current time in a file name friendly format."""
     return datetime.now().strftime("%Y-%m-%dT%H.%M.%S")
+
+
+def strip_bad_chars(text: str) -> str:
+    """Remove chars that don't work well in filenames."""
+    text = ' '.join(text.splitlines()).replace('\\s+', ' ')
+    text = re.sub('’', "'", text).replace('|', 'I').replace(',', ',')
+    return re.sub('[^-0-9a-zA-Z@.,?_:=#\'\\$" ()]+', '_', text).replace('  ', ' ')
+
+
+def strip_mac_screenshot(text: str) -> str:
+    """Strip default macOS screenshot format from filename."""
+    return re.sub(SCREENSHOT_REGEX, '', text).strip()
+
+
+def is_image(file_path: Union[str, Path]) -> bool:
+    return Path(file_path).suffix in IMAGE_FILE_EXTENSIONS
+
+
+def is_movie(file_path: Union[str, Path]) -> bool:
+    return Path(file_path).suffix in MOVIE_FILE_EXTENSIONS
+
+
+def is_pdf(file_path: Union[str, Path]) -> bool:
+    return Path(file_path).suffix == PDF_EXTENSION
+
+
+def is_sortable(file_path: Union[str, Path]) -> bool:
+    return Path(file_path).suffix in SORTABLE_FILE_EXTENSIONS
+
+
+def insert_suffix_before_extension(file_path: Path, suffix: str, separator: str = '__') -> Path:
+    suffix = spaces_to_underscores(strip_bad_chars(suffix))
+    file_path_without_extension = file_path.with_suffix('')
+    return Path(f"{file_path_without_extension}{separator}{suffix}{file_path.suffix}")
 
 
 def copy_file_creation_time(source_file: Path, destination_file: Path) -> None:
@@ -76,22 +111,6 @@ def extract_timestamp_from_filename(filename: str) -> datetime:
         raise ValueError(f"'{filename}' is not a timestamped screenshot file")
 
     return datetime.strptime(match.group(1), MAC_SCREENSHOT_TIMESTAMP_FORMAT)
-
-
-def is_image(file_path: Union[str, Path]) -> bool:
-    return Path(file_path).suffix in IMAGE_FILE_EXTENSIONS
-
-
-def is_movie(file_path: Union[str, Path]) -> bool:
-    return Path(file_path).suffix in MOVIE_FILE_EXTENSIONS
-
-
-def is_pdf(file_path: Union[str, Path]) -> bool:
-    return Path(file_path).suffix == PDF_EXTENSION
-
-
-def is_sortable(file_path: Union[str, Path]) -> bool:
-    return Path(file_path).suffix in SORTABLE_FILE_EXTENSIONS
 
 
 def _non_hidden_files_in_dir(dir: Union[os.PathLike, str]) -> List[str]:
