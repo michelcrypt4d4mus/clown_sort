@@ -40,7 +40,8 @@ Celsius,celsius|mashinsky|levity[-_\s.]*and[-_\s.]*love|\bcelsian|Artur[-_\s.]*A
 China,fentanyl|\bchin(a|ese)|Hong[-_\s.]*Kong|BANK[-_\s.]*OF[-_\s.]*COMMUNICATIONS
 Circle,[@#]circle|usdc|circle[-_\s.]*internet|disparte|\ballaire|jerallaire|Macromedia
 CMCC Global,CMCC[-_\s.]*Global
-Coinbase,Coinbase|\$COIN|brian[-_\s.]*armstrong|grewal\b|Asiff[-_\s.]*Hirji|\bbalaji|Fred[-_\s.]*Ehrsam|\bremitly\b|\$RELY\b
+Coinbase,Coinbase|\$COIN|brian[-_\s.]*armstrong|grewal\b|Asiff[-_\s.]*Hirji|\bbalaji|Fred[-_\s.]*Ehrsam|\bremitly\b|\$RELY\b|Aggarwal|Emilie[-_\s.]*Choi\b
+CoinField,\b(CoinField|CFC|Manticore|Lightman)\b|Sologenic|\bBob[-_\s.]\bRas\b
 Coinflex,Mark[-_\s.]*Lamb|Roger[-_\s.]*Ver|coinflex|Doug[-_\s.]*Polk|OPNX|flexusd|Leslie[-_\s.]*Lamb|dougpolkvids
 CoinLoan,coinloan|Faliushin\b
 CompoundFi,compoundfi|leshner|\bgonen\b
@@ -53,6 +54,7 @@ Cumberland,cumberland
 Curve Finance,\b(CRV|Curve(Finance)?|Egorov|crvUSD|michwill)\b
 Custodia,custodia\b|caitlin[-_\s.]*long
 dalle,craiyon|midjourney|\bdall[-_\s.]*e\b
+DAOs,\b(aragon(project)?|augur(project)?|gopartyparrot|nounsdao|ParrotDAO|Spartacus_Fi)\b|\$(PRT|REP|ROOK|SPA)\b
 DCG,DCG|digital[-_\s.]*currency[-_\s.]*group|sh?ill?bert|Grayscale|GBTC|\bkraines\b|hq[-_\s.]*digital|Alana[-_\s.]*Ackerson|Jennifer[-_\s.]*Mitrenga|Emily[-_\s.]*(Heather[-_\s.]*)?Goodman|Founders[-_\s.]*Liquidity[-_\s.]*Fund
 DeFi,\b(1inch|Apex|Balancer|crvUSD|Curve|defi|DODO|dYdX|Egorov|Kine|MCDEX|Multichain|WOOFi)\b|decentralized[-_\s.]*finance|(Baby|Cro|Defi|IceCream|Leet|Pancake|Para|Quick|Sake|Shiba|Sushi|Sun|SWFT|Sync|Uni)Swap|(Apex|Maverick|Perpetual)[-_\s.]*Protocol|Trader[-_\s.]*Joe[^']|Compound[-_\s.]*Fi
 Dragonfly Capital,Dragonfly[-_\s.]*Capital
@@ -154,7 +156,7 @@ Stifel Bank,\bStifel\b|[#$]SF\b
 Symbolic Capital,Symbolic[-_\s.]*Capital|Lev[-_\s]Livnev
 Synapse,Synapse(fi|labs|protocol)?\b
 TerraLuna,\bluna\b|do[-_\s.]*kwon|stablekwon|\bTerra(form|Luna)?\b|Macedo|\bLuna[-_\s.]*Foundation\b|Mirror[-_\s.]*Protocol
-Tether,\b(Abraxas|BFXNA|BFXWW|BlueBit|Chesham|Coinapult|D10e|Devasini|Elysium|Frontini|Eqonex|Frontini|GoCoin|Evertune|Friedberg|GamesTV|Hoegner|Huashun|Heka(Funds)?|IGEL|Infomatec|Ludovicus|(Master|Real)coin|Mallers|Noblex|Paolo(Ardoino)?|Playsino|Renrenbee|SFP|Sinopec|SJMBT|Stablehouse|Sunlot|Tackett|Tether|Tuxia|urwhatyouknow|USDT|XBTO|Xfire|Yantis)\b|Noble[-_\s.]*Bank|\bDeltec[^\']|\b(B[ei]t|i|Digi?|Eth)f?inex[^e']|\bbrock([-_\s.]*pierce)?\b|Clearstone[-_\s.]*Global|Capital[-_\s.]*Union|Global[-_\s.]*Trad(ing|e)[-_\s.]*Solutions|[$#]LEO\b|Phil[-_\s.]*Potter|Samson[-_\s.]*Mow|Gabor[-_\s.]*Gurbacs|Paul[-_\s.]*Eisma|Philippe[-_\s.]*Bekhazi|Reeve[-_\s.]*Collins|phil(ip)?[-_\s.]*potter\b|Van[-_\s.]*der[-_\s.]*Velde|Perpetual[-_\s.]*Action[-_\s.]*Group|Global[-_\s.]*Trade[-_\s.]*Solutions|reginald[-_\s.]*fowler|Amos[-_\s.]*Ltd|William[-_\s.]*Quigley|Blade[-_\s.]*payments|Five[-_\s.]*Delta|gabriel[-_\s.]*sukenik|R(ondell|[ho][ho]n)[-_\s.]*(Clyde)?[-_\s.]*Monroe|Mainstreet[-_\s.]*Partners|Far[-_\s.]*Eastern[-_\s.]*International|White[-_\s.]*Plains[-_\s.]*Capital|BANK[-_\s.]*OF[-_\s.]*COMMUNICATIONS|Josue[-_\s.]*Lopez|Stacy[-_\s.]*Herbert
+Tether,\b(Abraxas|BFXNA|BFXWW|BlueBit|Britannia|Chesham|Coinapult|D10e|Devasini|Elysium|Frontini|Eqonex|Frontini|GoCoin|Evertune|Friedberg|GamesTV|Hoegner|Huashun|Heka(Funds)?|IGEL|Infomatec|Lagorio|Ludovicus|(Master|Real)coin|Mallers|Noblex|Paolo(Ardoino)?|Playsino|Renrenbee|SFP|Sinopec|SJMBT|Spectrocoin|Stablehouse|Sunlot|Tackett|Tether|Tuxia|urwhatyouknow|USDT|XBTO|Xfire|Yantis)\b|Noble[-_\s.]*Bank|\bDeltec[^\']|\b(B[ei]t|i|Digi?|Eth)f?inex[^e']|\bbrock([-_\s.]*pierce)?\b|Clearstone[-_\s.]*Global|Capital[-_\s.]*Union|Global[-_\s.]*Trad(ing|e)[-_\s.]*Solutions|[$#]LEO\b|Phil[-_\s.]*Potter|Samson[-_\s.]*Mow|Gabor[-_\s.]*Gurbacs|Paul[-_\s.]*Eisma|Philippe[-_\s.]*Bekhazi|Reeve[-_\s.]*Collins|phil(ip)?[-_\s.]*potter\b|Van[-_\s.]*der[-_\s.]*Velde|Perpetual[-_\s.]*Action[-_\s.]*Group|Global[-_\s.]*Trade[-_\s.]*Solutions|reginald[-_\s.]*fowler|Amos[-_\s.]*Ltd|William[-_\s.]*Quigley|Blade[-_\s.]*payments|Five[-_\s.]*Delta|gabriel[-_\s.]*sukenik|R(ondell|[ho][ho]n)[-_\s.]*(Clyde)?[-_\s.]*Monroe|Mainstreet[-_\s.]*Partners|Far[-_\s.]*Eastern[-_\s.]*International|White[-_\s.]*Plains[-_\s.]*Capital|BANK[-_\s.]*OF[-_\s.]*COMMUNICATIONS|Josue[-_\s.]*Lopez|Stacy[-_\s.]*Herbert
 Tornado Cash,tornado[-_\s.]*cash
 Transactive Systems UAB,Transactive[-_\s.]*Systems
 Tron,\btron\b|tron(block|[-_\s.]*)?chain|trondao|TRX\b
