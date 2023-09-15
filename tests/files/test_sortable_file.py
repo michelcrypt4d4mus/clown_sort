@@ -86,6 +86,7 @@ def test_get_sort_folder():
     check_folders('fuck tron it sucks', ['Tron'])
     check_folders('fuck tronchain it sucks', ['Tron'])
     check_folders('fuck tron chain it sucks', ['Tron'])
+    check_folders('cs I TGBP_implementat (ethereum: Q@xaa912f203dcc1f5b6f862c0e0da3254cfc08a1d9) I I FUNCTIONS - allowance(owner: address, spender: address) -_ _uint25', ['TrueUSD'])
     check_folders('fuck @jason dipshit coin', ['VCs'])
     check_folders('fuck founders fund coin', ['VCs'])
     check_folders('fuck 0xe85c4D91DC0D9dB0a59300e18acFA2A498419E83 coin', ['Wallet Addresses Ethereum'])
