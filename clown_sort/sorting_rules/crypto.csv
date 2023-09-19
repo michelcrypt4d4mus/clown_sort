@@ -12,12 +12,13 @@ Arbitrum,\b(Arbitrum|ARB)\b
 Art,\boccult\b
 Atomic Wallet,Atomic[-_\s.]*Wallet
 Avalanche,\b(AVAXc?|avalanche)\b|\bava[-_\s.]*labs
+Axos Financial,\b(AxPay|Axos)\b|\$AX\b
 Babel Finance,Babel[-_\s.]*Finance
 Banks,SEBA[^a-z]|Credit[-_\s.]*Suisse|\b(SJMBT|Sygnum|Mercury|HBAN|UTB|Metabank|DBS)|Celtic[-_\s.]*Bank|Choice[-_\s.]*Financial[-_\s.]*Group|\$FRC|Commercium[-_\s.]*Financial|Huntington[-_\s.]*Bancshares|United[-_\s.]*Texas|Craig[-_\s.]*Sellars
 Bankless,Bankless|David[-_\s.]*Hoffman
 Biconomy,\b(Biconomy|Omchain)\b
 Binary Options,binary[-_\s.]*options
-Binance,bi(nance|conomy|llance|finity|naryx)|\b(Biniverse|BNB|BSC|BSCN|BUSD|Ceffu|Cpz|CZ|Changpeng|FDUSD|joselito|Helio|keyway|Mandala|paysafe|TrustWallet|Coley|nuvei|orum|Worldpay|Winind)\b|\bSwipe[-_\s.]*(IO|Wallet)|\bkey[-_\s.]*vision|\boztures|Kaiser[-_\s.]*Ng|InvestByBit|Swyftx|Guangying[-_\s.]*Chen|\bBAM[-_\s.]*(Trading|Management)\b|\bFlowbank|Bijie[-_\s.]*(Network|Tech)|Venus[-_\s.]*(Protocol|Community)|Merit[-_\s.]*Peak|(Optic|Blockone|Winind|Unison)[-_\s.]*Technolog|(Wombat|Sakura)[-_\s.]*Exchange|\$HAY\b|Synclub
+Binance,bi(nance|conomy|llance|finity|naryx)|\b(Biniverse|BNB|BSC|BSCN|BUSD|Ceffu|Cpz|CZ|Changpeng|FDUSD|joselito|Helio|keyway|Mandala|paysafe|TrustWallet|Coley|nuvei|orum|PNK|Worldpay|Winind)\b|\bSwipe[-_\s.]*(IO|Wallet)|\bkey[-_\s.]*vision|\boztures|Kaiser[-_\s.]*Ng|InvestByBit|Swyftx|Guangying[-_\s.]*Chen|\bBAM[-_\s.]*(Trading|Management)\b|\bFlowbank|Bijie[-_\s.]*(Network|Tech)|Venus[-_\s.]*(Protocol|Community)|Merit[-_\s.]*Peak|(Optic|Blockone|Winind|Unison)[-_\s.]*Technolog|(Wombat|Sakura)[-_\s.]*Exchange|\$HAY\b|Synclub
 Bitdeer,Bitdeer
 Bitforex,\bBitforex\b
 BitGet,\bBitget\b
@@ -120,7 +121,7 @@ Moonpay,\bmoonpay
 MSTR,\b(Saylor|MSTR|MicroStrategy)\b
 MtGox,Mt[-_\s.]*Gox|\bwilly[-_\s.]*bot
 Near Protocol,NEAR[-_\s.]*Protocol|[$#]near\b|\bavichal\b|Rebecca[-_\s.]*Rettig
-Nexo,\bNexo\b|Antoni[-_\s.]*Trenchev|Georgi[-_\s.]*Shulev|Lydia[-_\s.]*Shuleva|\bNDS[-_\s.]*EOD\b
+Nexo,\bNexo\b|Antoni[-_\s.]*Trenchev|Georgi[-_\s.]*Shulev|Lydia[-_\s.]*Shuleva|\bNDS[-_\s.]*EOD\b|Metodiev
 NFTs,crypto[-_\s.]*punk|pudgy[-_\s.]*penguin|\bDeGods\b
 North Korea,lazarus|North[-_\s.]*Korea|pyongyang|\bDPRK|puuurtbubv|@fast4release
 OKX,oke?[cx]\b|star[-_\s.]*xu|\blennix[-_\s.]*lai\b|\bOKcoin|\bHong[-_\s.]*Fang\b
