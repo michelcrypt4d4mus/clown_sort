@@ -12,7 +12,7 @@ Arbitrum,\b(Arbitrum|ARB)\b
 Art,\boccult\b
 Atomic Wallet,Atomic[-_\s.]*Wallet
 Avalanche,\b(AVAXc?|avalanche)\b|\bava[-_\s.]*labs
-Axos Financial,\b(AxPay|Axos)\b|\$AX\b
+Axos Financial,\b(AxPay|Axos|Bank[-_\s.]*of[-_\s.]*Internet|COR[-_\s.]Clearing)\b|\$AX\b
 Babel Finance,Babel[-_\s.]*Finance
 Banks,SEBA[^a-z]|Credit[-_\s.]*Suisse|\b(SJMBT|Sygnum|Mercury|HBAN|UTB|Metabank|DBS)|Celtic[-_\s.]*Bank|Choice[-_\s.]*Financial[-_\s.]*Group|\$FRC|Commercium[-_\s.]*Financial|Huntington[-_\s.]*Bancshares|United[-_\s.]*Texas|Craig[-_\s.]*Sellars
 Bankless,Bankless|David[-_\s.]*Hoffman
@@ -67,7 +67,7 @@ Evolve Bank,getevolved|\bevolve[-_\s.]*bank\b
 Effective Altruism,\bE\.?A\.?\b|effective[-_\s.]*altruism
 El Salvador,El[-_\s.]*Salvador|Bukele|Max[-_\s.]*Keiser
 Elon Musk,\bTesla\b|\bTSLA\b|\bElon\b|\bElmo\b
-EOS,\bEOS\b|\bBlumer\b|\bLarimer\b|@B1\b|Block[-_\.\s]One
+EOS,\bEOS\b|\bBlumer\b|\bLarimer\b|@B1\b|Block[-_\.\s]One|Northern[-_\s.]*Data\b
 Evertas,\bEvertas\b|Ryan[-_\s.]*Lackey
 Euler Finance,\bEuler\b
 FalconX,Falconx
@@ -79,7 +79,7 @@ Flip Filipkowski,filipkowski
 Frax,\b(Frax|Kazemian)\b|\bFRX|[\b#$](FXS|FEI)
 Friedlander Group,Friedlander|Agro[-_\s.]*Bank|\ball[-_\s.]*year\b|\bbrock\b|brockpierce|litvishhocker|Yecheskel|Swift[-_\s.]*Staffing
 FTX,FTX|\b(Bankman|FTT|SBF|Trabucco|Ellison|Nishad|Redline|Ryne|Tackett|Xuchong|ZUBR)\b|Moonstone|Friedberg|autism[-_\s.]*capital|clifton[-_\s.]*bay|Alameda|Luke[-_\s.]*Ting|Redline[-_\s.]*DAO|Jean[-_\s.]*Tallin|Tara[-_\s.]*MacAulay
-Galaxy Digital,novogratz|Alex[-_\s.]*Thorn
+Galaxy Digital,novogratz|Alex[-_\s.]*Thorn|Cryptology|angermayer
 Gate.io,Gate[-_\s.]*IO
 Gelato Network,Gelato[-_\s.]*Network|\bSorbet[-_\s.]*Finance|@gitpusha|hilmar[-_\s.]*x|\bmistx\b|@_alchemistcoin|@ChaosLabs_NFT|Arrakis[-_\s.]*Finance|Dave[-_\s.]*Leibowitz|Hilmar[-_\s.]*Orth|joehquak
 Gemini,Gemini|winklev|@cameron
