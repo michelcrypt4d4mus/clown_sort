@@ -207,5 +207,3 @@ def log_optional_module_warning(module_name: str, msg: Optional[Text] = None) ->
     console.print(f"     pipx install clown_sort\\[{module_name}] --force", style='bright_cyan')
     console.line()
     console.print(f"'pip install' works if you're not using pipx. Use 'poetry install --all-extras' if you're in a development environment.")
-
-
