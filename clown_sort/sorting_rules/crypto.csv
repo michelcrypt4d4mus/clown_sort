@@ -60,8 +60,9 @@ Curve Finance,\b(CRV|Curve(Finance)?|Egorov|crvUSD|michwill)\b
 Custodia,custodia\b|caitlin[-_\s.]*long
 dalle,craiyon|midjourney|\bdall[-_\s.]*e\b
 DAOs,\b(aragon(project)?|augur(project)?|gopartyparrot|nounsdao|ParrotDAO|Spartacus_Fi)\b|\$(PRT|REP|ROOK|SPA)\b
-DCG,DCG|digital[-_\s.]*currency[-_\s.]*group|sh?ill?bert|Grayscale|GBTC|\bkraines\b|hq[-_\s.]*digital|Alana[-_\s.]*Ackerson|Jennifer[-_\s.]*Mitrenga|Emily[-_\s.]*(Heather[-_\s.]*)?Goodman|Founders[-_\s.]*Liquidity[-_\s.]*Fund
+DCG,DCG|digital[-_\s.]*currency[-_\s.]*group|sh?ill?bert|Grayscale|GBTC|\bkraines\b|hq[-_\s.]*digital|Alana[-_\s.]*Ackerson|Jennifer[-_\s.]*Mitrenga|Emily[-_\s.]*(Heather[-_\s.]*)?Goodman|Founders[-_\s.]*Liquidity[-_\s.]*Fund|Zcash
 DeFi,\b(1inch|Apex|Balancer|crvUSD|Curve|defi|DODO|dYdX|Egorov|Kine|MCDEX|Multichain|WOOFi)\b|decentralized[-_\s.]*finance|(Baby|Cro|Defi|IceCream|Leet|Pancake|Para|Quick|Sake|Shiba|Sushi|Sun|SWFT|Sync|Uni)Swap|(Apex|Maverick|Perpetual)[-_\s.]*Protocol|Trader[-_\s.]*Joe[^']|Compound[-_\s.]*Fi
+Deribit,deribit\b
 Dragonfly Capital,Dragonfly[-_\s.]*Capital
 DWF,DWF|Andrey[-_\s.]*Grachev|\bgrachev\b
 EqiFi,\b(SHRM|Eqi(Fi|Prime))\b
@@ -95,6 +96,7 @@ Hoo,\bHoo[-_\s.]*(Research|Exchange|Smart)|\bHoo\b|Rexy[-_\s.]*(Hoo|Wang)
 Huobi,huobi|jiao_newlife|jiaojiao|Leon[-_\s.]*Li\b|\b(GoPlus|Walken)\b
 Internet Computer,\bICP\b|Dominic[-_\s.]*Williams
 Iran,\bIran\b|\bIranian\b|Nobitex|\bCoinNik|\bWallex\b|Sarmayex|\bRabex\b
+JPEX,\b(FUBT|FUC|JPC|JPEX)\b
 Jump Trading,Jump[-_\s.]*Trading|@jump_
 Justin Sun,justin[-_\s.]*sun|sun[-_\s.]*yuchen|[\b_](APENFT|pgala|sunswap|poloniex|web3nina|whitebit|WBT|stUSDT|USDD|USDJ|JST)\b|\bR(ebo|ible)[\b_]|Love[-_\s.]*Letters[-_\s.]*Limited|Objectivists[-_\s.]*Limited|JUST[-_\s.]*(Foundation|Lend)|His[-_\s.]*Excellency|stUSDT
 Kazakhstan,\bkazakh|Freedom[-_\s.]*Holding|\balmaty|Timor[-_\s.]*Turlov|\bFFIN[-_\s.]*brokerage
@@ -131,14 +133,15 @@ OKX,oke?[cx]\b|star[-_\s.]*xu|\blennix[-_\s.]*lai\b|\bOKcoin|\bHong[-_\s.]*Fang\
 Olympus DAO,\bOlympus\b|OlympusDAO|\bOHM\b
 Ooki DAO,\bOoki(DAO)?\b
 OneCoin,\bOne(Coin|Life)\b
-OpenPayd,openpayd|CFD\s?Team
+OpenPayd,openpayd|CFD[-_\s.]*Team
 OpenSea,OpenSea\b
 PAG,\bpag\b|Weijian[-_\s.]*Shan
 Pantera Capital,\b(Morehead|Pantera)\b
 Paradigm,Fred[-_\s.]*Ehrsam|paradigm\b
+Paul LeRoux,leroux
 Paxful,paxful|Ray[-_\s.]*(Youssef|Savant)|Artur[-_\s.]*Schaback
 Paxos,paxos|BUSD|USDP|PAXG
-Paul LeRoux,leroux
+Paybis,\b(Paybis)\b
 Payrnet,Rails(r|bank)\b|\b(Wirex|Cryptopay|Payrnet)\b
 Pi,\$PI[^\w]|Pi[-_\s.]*Network
 Politics,\bted[-_\s.]*cruz
@@ -147,6 +150,7 @@ Prime Trust,\bPrime[-\s_]*(Trust|Core|IRA|Digital)\b|\b(anonalyx|Banq|Kasidie|Pr
 Prisma Finance,\b(Prisma(Finance)?|mkUSD)\b
 PVBC,PVBC|BankProv
 Quadriga,Quadriga|Gerald[-_\s.]*Cotten|0xsifu\b|michael[-_\s.]*patryn|wonderland|daniele[-_\s.]*sesta\b
+Remitano,Remitano
 Revolut,\bRevolut\b
 Ripple,XRP|garlinghouse|\bripple\b
 RIOT,[$#]RIOT\b|Riot[-\s_]*(Block|Platform)|Bioptix|\bMidas[-_\s.]*Immersion
