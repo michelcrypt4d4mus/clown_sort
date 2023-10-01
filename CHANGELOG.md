@@ -1,4 +1,6 @@
 # NEXT RELEASE
+* Bump PyPDF to 3.16.2
+* New default sorting rules
 
 # 1.10.0
 * New script `extract_pages_from_pdf` lets you easily rip pages out of a PDF
