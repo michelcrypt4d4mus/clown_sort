@@ -13,13 +13,13 @@ Arbitrum,\b(Arbitrum|ARB)\b
 Art,\boccult\b
 Atomic Wallet,Atomic[-_\s.]*Wallet
 Avalanche,\b(AVAXc?|avalanche)\b|\bava[-_\s.]*labs
-Axos Financial,\b(AxPay|Axos|Bank[-_\s.]*of[-_\s.]*Internet|COR[-_\s.]Clearing)\b|\$AX\b
+Axos Financial,\b(AxPay|Axos|Bank[-_\s.]*of[-_\s.]*Internet|COR[-_\s.]Clearing|Garrabrants|BOI)\b|\$AX\b
 Babel Finance,Babel[-_\s.]*Finance
 Banks,SEBA[^a-z]|Credit[-_\s.]*Suisse|\b(SJMBT|Sygnum|Mercury|HBAN|UTB|Metabank|DBS)|Celtic[-_\s.]*Bank|Choice[-_\s.]*Financial[-_\s.]*Group|\$FRC|Commercium[-_\s.]*Financial|Huntington[-_\s.]*Bancshares|United[-_\s.]*Texas|Craig[-_\s.]*Sellars
 Bankless,Bankless|David[-_\s.]*Hoffman
 Biconomy,\b(Biconomy|Omchain)\b
 Binary Options,binary[-_\s.]*options
-Binance,bi(nance|conomy|llance|finity|naryx)|\b(AdvCash|Biniverse|BNB|BSC|BSCN|BUSD|Ceffu|Commex|Cpz|CZ|Changpeng|FDUSD|joselito|Helio|keyway|Mandala|Mercuryo|paysafe|TrustWallet|Coley|nuvei|orum|PNK|Worldpay|Winind)\b|\bSwipe[-_\s.]*(IO|Wallet)|\bkey[-_\s.]*vision|\boztures|Kaiser[-_\s.]*Ng|InvestByBit|Swyftx|Guangying[-_\s.]*Chen|\bBAM[-_\s.]*(Trading|Management)\b|\bFlowbank|Bijie[-_\s.]*(Network|Tech)|Venus[-_\s.]*(Protocol|Community)|Merit[-_\s.]*Peak|(Optic|Blockone|Winind|Unison)[-_\s.]*Technolog|(Wombat|Sakura)[-_\s.]*Exchange|\$HAY\b|Synclub
+Binance,bi(nance|conomy|llance|finity|naryx)|\b(AdvCash|Biniverse|BNB|BSC|BSCN|BUSD|Ceffu|Commex|Cpz|CZ|Changpeng|FDUSD|joselito|Helio|keyway|Mandala|Mercuryo|paysafe|TrustWallet|Coley|nuvei|orum|PNK|Worldpay|Winind)\b|\bSwipe[-_\s.]*(IO|Wallet)|\bkey[-_\s.]*vision|\boztures|Kaiser[-_\s.]*Ng|InvestByBit|Swyftx|Guangying[-_\s.]*Chen|\bBAM[-_\s.]*(Trading|Management)\b|\bFlowbank|Bijie[-_\s.]*(Network|Tech)|Venus[-_\s.]*(Protocol|Community)|Merit[-_\s.]*Peak|(Optic|Blockone|Winind|Unison)[-_\s.]*Technolog|(Wombat|Sakura)[-_\s.]*Exchange|\$HAY\b|Synclub|Jasmine?[-_\s.]*Lee|Erik[-_\s.]*Kellogg|Sara[-_\s.]*Sisenwein|Tao[-_\s.]*Zhang|Matthew[-_\s.]*Beville|Tyrell[-_\s.]*Long|Katrina[-_\s.]*Fava
 Bitdeer,Bitdeer
 Bitforex,\bBitforex\b
 BitGet,\bBitget\b
