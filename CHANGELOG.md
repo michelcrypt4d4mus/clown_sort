@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.10.1
 * New default sorting rules
 
 # 1.10.0

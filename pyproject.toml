@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "clown_sort"
-version = "1.10.0"
+version = "1.10.1"
 description = "Sort screenshots based on rules or through individual review."
 authors = ["Michel de Cryptadamus <michel@cryptadamus.com>"]
 readme = "README.md"
