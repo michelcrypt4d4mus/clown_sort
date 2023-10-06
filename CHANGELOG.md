@@ -1,5 +1,4 @@
 # NEXT RELEASE
-* Bump PyPDF to 3.16.2
 * New default sorting rules
 
 # 1.10.0
