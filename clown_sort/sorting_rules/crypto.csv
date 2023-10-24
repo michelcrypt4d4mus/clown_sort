@@ -51,6 +51,7 @@ Coinflex,Mark[-_\s.]*Lamb|Roger[-_\s.]*Ver|coinflex|Doug[-_\s.]*Polk|OPNX|flexus
 CoinLoan,coinloan|Faliushin\b
 CompoundFi,compoundfi|leshner|\bgonen\b
 ConsenSys,ConsenSys
+Crime,\b(Kinahan)\b
 Cross River Bank,\bCRB|Cross[-_\s.]*River|Prestige[-_\s.]*Capital|\bbae[-_\s.]*communications|Zenfi\b|PeerIQ|\bupstart\b|\bUPST\b|\bLeumi\b|Hapoalim|BetterFin|\bMANTL\b|\bLvnv|\bKabbage|\bAFRM\b|\bMomnt
 Crypto Capital,Global[-_\s.]*Transaction[-_\s.]*Services|Crypto[-_\s.]*Capital\b
 Crypto.com,crypto[._]?com|CDC|[$#]CRO|\sCRO\s|Doug(las)?[-_\s.]*Ching\b|Bobby[-_\s.]*Bao\b|Gary[-_\s.]*Or\b|Marszalek|Rafael[-_\s.]*Melo\b
@@ -92,7 +93,7 @@ GSR,\b(GSR|Rich[-_\s.]*Rosenblum)\b
 Hamas,\bHamas\b|Al[-_\s.]*Qassam
 Haru Invest,\bHaru(invest)?\b|\b(happy)?Delio\b
 Hex,\bHex\b|[#$]Hex|Pulsechain|Richard[-_\s.]*Heart|Hexican
-Hoo,\bHoo[-_\s.]*(Research|Exchange|Smart)|\bHoo\b|Rexy[-_\s.]*(Hoo|Wang)
+Hoo,\bHoo[-_\s.]*(Research|Exchange|Smart)|\b(AEX|Hoo)\b|Rexy[-_\s.]*(Hoo|Wang)
 Huobi,huobi|jiao_newlife|jiaojiao|Leon[-_\s.]*Li\b|\b(GoPlus|Walken)\b
 Internet Computer,\bICP\b|Dominic[-_\s.]*Williams
 Iran,\bIran\b|\bIranian\b|Nobitex|\bCoinNik|\bWallex\b|Sarmayex|\bRabex\b
