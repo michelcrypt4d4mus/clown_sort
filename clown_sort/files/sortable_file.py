@@ -22,7 +22,7 @@ from clown_sort.sort_selector import process_file_with_popup
 from clown_sort.util.filesystem_helper import copy_file_creation_time
 from clown_sort.util.logging import log
 from clown_sort.util.rich_helper import (bullet_text, comma_join, console, copying_file_log_message,
-     indented_bullet, mild_warning, moving_file_log_message, print_dim_bullet, stderr_console)
+     indented_bullet, mild_warning, moving_file_log_message, print_dim_bullet, print_headline, stderr_console)
 
 RuleMatch = namedtuple('RuleMatch', ['folder', 'match'])
 
@@ -64,6 +64,9 @@ class SortableFile:
         # Handle the case where there are no matches to any configured folders.
         if len(rule_matches) == 0:
             if Config.manual_fallback:
+                console.print(Panel('Extracted Text', expand=False))
+                console.print(self._extracted_text_panel())
+
                 if self._can_be_presented_in_popup():
                     process_file_with_popup(self)
                     return
