@@ -103,13 +103,17 @@ def warning_text(text: Union[str, Text]) -> Text:
         return msg.append(text)
 
 
-def print_error(text: Union[str, Text]) -> Text:
+def error_text(text: Union[str, Text]) -> Text:
     msg = Text('').append(f"ERROR", style='bright_red').append(": ")
 
     if isinstance(text, Text):
-        console.print(msg + text)
+        return msg + text
     else:
-        console.print(msg.append(text))
+        return msg.append(text)
+
+
+def print_error(text: Union[str, Text]) -> Text:
+    console.print(error_text(text))
 
 
 def comma_join(strs: List[str], style: str) -> Text:

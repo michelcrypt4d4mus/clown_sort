@@ -1,4 +1,6 @@
 # NEXT RELEASE
+* Upgrade PyPDF to 3.16.4
+* Handle exceptions arising when trying to extract pages for submission as `PyPDF` bugs
 
 ### 1.10.1
 * New default sorting rules
