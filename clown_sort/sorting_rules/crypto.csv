@@ -19,8 +19,8 @@ Banks,SEBA[^a-z]|Credit[-_\s.]*Suisse|\b(SJMBT|Sygnum|Mercury|HBAN|UTB|Metabank|
 Bankless,Bankless|David[-_\s.]*Hoffman
 Biconomy,\b(Biconomy|Omchain)\b
 Binary Options,binary[-_\s.]*options
-Binance,bi(nance|conomy|llance|finity|naryx)|\b(AdvCash|Biniverse|BNB|BSC|BSCN|BUSD|Ceffu|Commex|Cpz|CZ|Changpeng|FDUSD|joselito|Helio|keyway|Mandala|Mercuryo|paysafe|TrustWallet|Coley|nuvei|orum|PNK|Worldpay|Winind)\b|\bSwipe[-_\s.]*(IO|Wallet)|\bkey[-_\s.]*vision|\boztures|Kaiser[-_\s.]*Ng|InvestByBit|Swyftx|Guangying[-_\s.]*Chen|\bBAM[-_\s.]*(Trading|Management)\b|\bFlowbank|Bijie[-_\s.]*(Network|Tech)|Venus[-_\s.]*(Protocol|Community)|Merit[-_\s.]*Peak|(Optic|Blockone|Winind|Unison)[-_\s.]*Technolog|(Wombat|Sakura)[-_\s.]*Exchange|\$HAY\b|Synclub|Jasmine?[-_\s.]*Lee|Erik[-_\s.]*Kellogg|Sara[-_\s.]*Sisenwein|Tao[-_\s.]*Zhang|Matthew[-_\s.]*Beville|Tyrell[-_\s.]*Long|Katrina[-_\s.]*Fava
-Bitdeer,Bitdeer
+Binance,bi(nance|conomy|llance|finity|naryx)|\b(AdvCash|Anndy|Biniverse|BNB|BSC|BSCN|BUSD|Ceffu|Commex|Cpz|CZ|Changpeng|FDUSD|joselito|Helio|keyway|Mandala|Mercuryo|paysafe|TrustWallet|Coley|nuvei|orum|PNK|Worldpay|Winind)\b|\bSwipe[-_\s.]*(IO|Wallet)|\bkey[-_\s.]*vision|\boztures|Kaiser[-_\s.]*Ng|InvestByBit|Swyftx|Guangying[-_\s.]*Chen|\bBAM[-_\s.]*(Trading|Management)\b|\bFlowbank|Bijie[-_\s.]*(Network|Tech)|Venus[-_\s.]*(Protocol|Community)|Merit[-_\s.]*Peak|(Optic|Blockone|Winind|Unison)[-_\s.]*Technolog|(Wombat|Sakura)[-_\s.]*Exchange|\$HAY\b|Synclub|Jasmine?[-_\s.]*Lee|Erik[-_\s.]*Kellogg|Sara[-_\s.]*Sisenwein|Tao[-_\s.]*Zhang|Matthew[-_\s.]*Beville|Tyrell[-_\s.]*Long|Katrina[-_\s.]*Fava
+Bitdeer,Bitdeer|Blue[-_\s.]*Safari
 Bitforex,\bBitforex\b
 BitGet,\bBitget\b
 Bithumb,\bbithumb
@@ -42,6 +42,7 @@ Bybit,\bBybit\b|Ben[-_\s.]*Zhou|InvestByBit|TravelByBit
 Cardano,Cardano|[$\s]ADA[^\w]|Hoskinson|\bIOHK
 Cathie Wood,Cathie[-_\s.]*Wood|\bARK(F|G|K|[-_\s.]*Innovation|[-_\s.]*Invest)|\bIZRL
 Celsius,celsius|mashinsky|levity[-_\s.]*and[-_\s.]*love|\bcelsian|Artur[-_\s.]*Abreu|ronpaulbot|\bnuke[-_\s.]*gold(stein)?
+Chainalysis,chainalysis
 China,fentanyl|\bchin(a|ese)|Hong[-_\s.]*Kong|BANK[-_\s.]*OF[-_\s.]*COMMUNICATIONS
 Circle,[@#]circle|usdc|circle[-_\s.]*internet|disparte|\ballaire|jerallaire|Macromedia
 CMCC Global,CMCC[-_\s.]*Global
@@ -51,7 +52,6 @@ Coinflex,Mark[-_\s.]*Lamb|Roger[-_\s.]*Ver|coinflex|Doug[-_\s.]*Polk|OPNX|flexus
 CoinLoan,coinloan|Faliushin\b
 CompoundFi,compoundfi|leshner|\bgonen\b
 ConsenSys,ConsenSys
-Crime,\b(Kinahan)\b
 Cross River Bank,\bCRB|Cross[-_\s.]*River|Prestige[-_\s.]*Capital|\bbae[-_\s.]*communications|Zenfi\b|PeerIQ|\bupstart\b|\bUPST\b|\bLeumi\b|Hapoalim|BetterFin|\bMANTL\b|\bLvnv|\bKabbage|\bAFRM\b|\bMomnt
 Crypto Capital,Global[-_\s.]*Transaction[-_\s.]*Services|Crypto[-_\s.]*Capital\b
 Crypto.com,crypto[._]?com|CDC|[$#]CRO|\sCRO\s|Doug(las)?[-_\s.]*Ching\b|Bobby[-_\s.]*Bao\b|Gary[-_\s.]*Or\b|Marszalek|Rafael[-_\s.]*Melo\b
@@ -93,7 +93,7 @@ GSR,\b(GSR|Rich[-_\s.]*Rosenblum)\b
 Hamas,\bHamas\b|Al[-_\s.]*Qassam
 Haru Invest,\bHaru(invest)?\b|\b(happy)?Delio\b
 Hex,\bHex\b|[#$]Hex|Pulsechain|Richard[-_\s.]*Heart|Hexican
-Hoo,\bHoo[-_\s.]*(Research|Exchange|Smart)|\b(AEX|Hoo)\b|Rexy[-_\s.]*(Hoo|Wang)
+Hoo,\bHoo[-_\s.]*(Research|Exchange|Smart)|\bHoo\b|Rexy[-_\s.]*(Hoo|Wang)
 Huobi,huobi|jiao_newlife|jiaojiao|Leon[-_\s.]*Li\b|\b(GoPlus|Walken)\b
 Internet Computer,\bICP\b|Dominic[-_\s.]*Williams
 Iran,\bIran\b|\bIranian\b|Nobitex|\bCoinNik|\bWallex\b|Sarmayex|\bRabex\b
@@ -158,7 +158,7 @@ RIOT,[$#]RIOT\b|Riot[-\s_]*(Block|Platform)|Bioptix|\bMidas[-_\s.]*Immersion
 Rollbit,\b(Rollbit|RLB)\b
 Safemoon,Safemoon
 Satoshi,Satoshi|Nakamoto
-SEC,\bSEC(Gov)?\b|\b(Gary)?Gensler|CFTC|Securities.{0,6}Exchange.{0,6}Commission
+SEC,\bSEC(Gov)?\b|\b(Gary)?Gensler|CFTC|Securities.{0,6}Exchange.{0,6}Commission|FinCEN\b
 Signature Bank,SBNY|Signature[-_\s.]*Bank|Scott[-_\s.]*Shay\b|(Joseph|Joe)[-_\s.]*DePaolo|\b(Kushner|Signet)\b
 Silicon Valley Bank,\bsi?vb|Silicon[-_\s.]*Valley[-_\s.]*Bank
 Silk Road,Silk[-_\s.]*Road|\b(DPR|Ulbricht|DreadPirateRoberts)\b
