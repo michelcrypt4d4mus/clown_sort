@@ -76,3 +76,6 @@ class SortRule:
     def default_rules_csv_paths() -> List[Path]:
         """Check for RULES_CSV_PATHS in env vars otherwise return default crypto rules."""
         return SortRule.sort_rules_csvs(environ.get(RULES_CSV_PATHS, CRYPTO_RULES_CSV_PATH))
+
+    def __eq__(self, other: 'SortRule') -> bool:
+        return self.folder == other.folder and self.regex == other.regex

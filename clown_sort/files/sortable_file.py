@@ -18,13 +18,12 @@ from rich.text import Text
 
 from clown_sort.config import Config
 from clown_sort.filename_extractor import FilenameExtractor
+from clown_sort.lib.rule_match import RuleMatch
 from clown_sort.sort_selector import process_file_with_popup
 from clown_sort.util.filesystem_helper import copy_file_creation_time
 from clown_sort.util.logging import log
 from clown_sort.util.rich_helper import (bullet_text, comma_join, console, copying_file_log_message,
      indented_bullet, mild_warning, moving_file_log_message, print_dim_bullet, print_headline, stderr_console)
-
-RuleMatch = namedtuple('RuleMatch', ['folder', 'match'])
 
 MAX_EXTRACTION_LENGTH = 4096
 NOT_MOVING_FILE = "Not moving file to processed dir because it's"
@@ -43,25 +42,11 @@ class SortableFile:
         self._filename_extractor: Optional[FilenameExtractor] = None
         self._paths_of_sorted_copies: List[Path] = []
 
-    @classmethod
-    def get_sort_folders(cls, search_text: Optional[str]) -> List[RuleMatch]:
-        """Find any folders that could be relevant."""
-        if search_text is None:
-            return []
-
-        # \b word boundary doesn't match underscores so we replace with spaces
-        search_text = search_text.replace('_', ' ')
-
-        return [
-            RuleMatch(sr.folder, sr.regex.search(search_text))
-            for sr in Config.sort_rules if sr.regex.search(search_text)
-        ]
-
     def sort_file(self) -> None:
         """Sort the file to destination_dir subdir."""
         console.print(self)
         search_text = self.basename_without_ext + ' ' + (self.extracted_text() or '')
-        rule_matches = type(self).get_sort_folders(search_text)
+        rule_matches = RuleMatch.get_rule_matches(search_text)
         sort_folders = [rm.folder for rm in rule_matches]
 
         # Handle the case where there are no matches to any configured folders.
