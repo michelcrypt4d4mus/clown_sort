@@ -1,7 +1,7 @@
 # NEXT RELEASE
 
 ### 1.10.2
-* Replace underscores with spaces when searching text because `\b` word boundary does not match underscores otherwise
+* Make `\b` word boundary in a configured `SortRule` also match against underscores (which it doesn't by default)
 * New default sorting rules
 * Make `RuleMatch` a real class
 
