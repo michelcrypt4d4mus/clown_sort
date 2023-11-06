@@ -8,7 +8,6 @@ Abra,\bAbra\b|\bPlutus\b|\bBarhydt
 Algorand,\bAlgorand|\b[$#]ALGO\b
 Amber Group,Amber[-\s.]*Group|\btiantian\b|\bkullander\b|\btony[-\s.]*he\b|\bbo[-\s.]*shen\b
 Amir Capital,Amir[-\s.]*Capital|ghost_of_novorussia
-Chain Analytics Companies,\b(BitOK|Bitrace|Dune[-\s.]*Analytics|dune\.com|Elliptic|Chainalysis|Flipside.xyz|Inca[-\s.]*Digital|TRM[-\s.]*Labs)\b
 AP Capital,AP[-\s.]*Capital|\b(andyrcon|carrod|Mamoru|Zahl(an)?|Pintu[-\s.]*Digital)\b
 Aptos,\bAptos\b
 Arbitrum,\b(Arbitrum|ARB)\b
@@ -44,7 +43,7 @@ Bybit,\bBybit\b|Ben[-\s.]*Zhou|InvestByBit|TravelByBit
 Cardano,Cardano|[$\s]ADA[^\w]|Hoskinson|\bIOHK
 Cathie Wood,Cathie[-\s.]*Wood|\bARK(F|G|K|[-\s.]*Innovation|[-\s.]*Invest)|\bIZRL
 Celsius,celsius|mashinsky|levity[-\s.]*and[-\s.]*love|\bcelsian|Artur[-\s.]*Abreu|ronpaulbot|\bnuke[-\s.]*gold(stein)?
-Chainalysis,chainalysis
+Chain Analytics Companies,\b(BitOK|Bitrace|Chainalysis|Dune[-\s.]*Analytics|dune\.com|Elliptic|Chainalysis|Flipside.xyz|Inca[-\s.]*Digital|TRM[-\s.]*Labs)\b
 China,fentanyl|\bchin(a|ese)|Hong[-\s.]*Kong|BANK[-\s.]*OF[-\s.]*COMMUNICATIONS
 Circle,[@#]circle|usdc|circle[-\s.]*internet|disparte|\ballaire|jerallaire|Macromedia
 CMCC Global,CMCC[-\s.]*Global
