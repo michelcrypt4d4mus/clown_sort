@@ -55,7 +55,7 @@ CompoundFi,compoundfi|leshner|\bgonen\b
 ConsenSys,ConsenSys
 Cross River Bank,\bCRB|Cross[-_\s.]*River|Prestige[-_\s.]*Capital|\bbae[-_\s.]*communications|Zenfi\b|PeerIQ|\bupstart\b|\bUPST\b|\bLeumi\b|Hapoalim|BetterFin|\bMANTL\b|\bLvnv|\bKabbage|\bAFRM\b|\bMomnt
 Crypto Capital,Global[-_\s.]*Transaction[-_\s.]*Services|Crypto[-_\s.]*Capital\b
-Crypto.com,crypto[._]?com|CDC|[$#]CRO|\sCRO\s|Doug(las)?[-_\s.]*Ching\b|Bobby[-_\s.]*Bao\b|Gary[-_\s.]*Or\b|Marszalek|Rafael[-_\s.]*Melo\b
+Crypto.com,crypto[._\s]?com\b|CDC|[$#]CRO|\sCRO\s|Doug(las)?[-_\s.]*Ching\b|Bobby[-_\s.]*Bao\b|Gary[-_\s.]*Or\b|Marszalek|Rafael[-_\s.]*Melo\b
 CUBI,\bCUBI\b|Customers[-_\s.]*Ban(k|corp)
 Cumberland,cumberland
 Curve Finance,\b(CRV|Curve(Finance)?|Egorov|crvUSD|michwill)\b
@@ -161,6 +161,7 @@ Ripple,XRP|garlinghouse|\bripple\b
 RIOT,[$#]RIOT\b|Riot[-\s_]*(Block|Platform)|Bioptix|\bMidas[-_\s.]*Immersion
 Rollbit,\b(Rollbit|RLB)\b
 Safemoon,Safemoon
+Saitama,SAITAMA
 Satoshi,Satoshi|Nakamoto
 SEC,\bSEC(Gov)?\b|\b(Gary)?Gensler|CFTC|Securities.{0,6}Exchange.{0,6}Commission|FinCEN\b
 Signature Bank,SBNY|Signature[-_\s.]*Bank|Scott[-_\s.]*Shay\b|(Joseph|Joe)[-_\s.]*DePaolo|\b(Kushner|Signet)\b
@@ -200,6 +201,6 @@ Wallet Addresses Ripple,\br[0-9a-zA-Z]{33}
 Wallet Addresses Stellar,\bG[0-9A-Z]{40,60}\b
 Waves,sasha[-_\s.]*(35625|ivanov|\.waves)|\bVires\b|boris[-_\s.]*titov|[$#]WAVES\b|USDN
 Wintermute,Wintermute|\b(Bebop|Evgeny(Gaevoy)?)\b|Wishful[-_\s.]*Cynic
-Wirecard,\b(Bafin|Bellenhaus|G(ö|o)rres|Marsalek|Wirecard)\b|Markus[-_\s.]*Braun
+Wirecard,\b(Bafin|Bellenhaus|Buchholz|DISTEFORA|e\-devinvent|G(ö|o)rres|Marsalek|Paygea|Paysafe|Trautmann|Wirecard)\b|Markus[-_\s.]*Braun
 Worldcoin,\b(orb|Worldcoin)\b
 Wyre,\bwyre|sendwyre|\bLead[-_\s.]*Bank\b|Steven[-_\s.]*Huynh

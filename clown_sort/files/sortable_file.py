@@ -49,6 +49,9 @@ class SortableFile:
         if search_text is None:
             return []
 
+        # \b word boundary doesn't match underscores so we replace with spaces
+        search_text = search_text.replace('_', ' ')
+
         return [
             RuleMatch(sr.folder, sr.regex.search(search_text))
             for sr in Config.sort_rules if sr.regex.search(search_text)
