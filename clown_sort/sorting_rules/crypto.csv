@@ -39,7 +39,7 @@ Blockstream,Blockstream
 Bored Ape Yacht Club,\bBAYC\b|Bored[-\s.]*Ape|yuga[-\s.]*labs
 Bros,ashcryptoreal|cryptomanran|\bRan[-\s.]*Neuner|trillionUSD|nic[-\s.]*carter|bitboy|ben[-\s.]*armstrong|basedkarbon|julianhosp|thecryptolark|adam([-\s.]*back|3us)|@DegenSp|APompliano|IIICapital|\bMeltem\b|algodtrading|whatbitcoindid|CryptoKaleo|Mike[-\s.]*Alfred|natbrunell|natalie[-\s.]*brunell|stackersatoshi|Max[-\s.]*Keiser|Cowboy[-\s.]*Crypto|minimalcsgo|\bParish\b|AP_Archpublic|greg16676935420|@Aridavidpaul|\bAri[-\s.]*Paul\b|raoul(gmi|[-\s.]*pal)|mccormack|andr3w|andrew[-\s.]*wang|\b(JW)?[-\s.]*Verret\b|@FlurETH\b|wolf[-\s.]*of[-\s.]*all[-\s.]*streets|scott[-\s.]*melker|\bKaleo\b
 Broettes,Nicole[-\s.]*Behnam|natbrunell
-Bybit,\bBybit\b|Ben[-\s.]*Zhou|InvestByBit|TravelByBit
+Bybit,\b(Ben[-\s.]*Zhou|(Invest|Travel)?ByBit|Mirana|Time[-\s.]*Research|Sean[-\s.]*Tan|Germaine[-\s.]*Tan|Weizheng[-\s.]*Ye|Nashon[-\s.]*Loo)\b
 Cardano,Cardano|[$\s]ADA[^\w]|Hoskinson|\bIOHK
 Cathie Wood,Cathie[-\s.]*Wood|\bARK(F|G|K|[-\s.]*Innovation|[-\s.]*Invest)|\bIZRL
 Celsius,celsius|mashinsky|levity[-\s.]*and[-\s.]*love|\bcelsian|Artur[-\s.]*Abreu|ronpaulbot|\bnuke[-\s.]*gold(stein)?
@@ -114,6 +114,7 @@ Lifeboat Foundation,Lifeboat[-\s.]*Foundation
 MakerDAO,makerdao|[$#\s]DAI[^\w]
 Marathon,\b(MARA|marathon)\b
 Mario Nawfal,mario[-\s.]*nawfal
+Matrixport,\b(Matrixport|Smart[-\s.]*Vega)\b
 Matthew Roszak,\b(Beauregard|Bloq|Capital6|Garzik|GoCoin|Sunlot|Veriblock)\b|(matthew)?[-\s.]*roszak|Calvin[-\s.]*Cheng|Advent[-\s.]*International|Keystone[-\s.]*Capital[-\s.]*Partners|Tally[-\s.]*Capital|Peter[-\s.]*Vessenes
 Messari,Ryan[-\s.]*Selkis|twobitidiot|messari|@robustus|Dan[-\s.]*McArdle
 Memes,\bmeme\b

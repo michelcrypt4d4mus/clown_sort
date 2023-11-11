@@ -20,6 +20,8 @@ def test_get_rule_matches():
     check_folders('fuck Ted Cruz ', ['Blockchain8'])
     check_folders('fuck $ADA ', ['Cardano'])
     check_folders('fuck ADA coin', ['Cardano'])
+    check_folders('fuck InvestBybit coin', ['Binance', 'Bybit'])
+    check_folders('fuck Bybit coin', ['Bybit'])
     check_folders('fuck CathieWood coin', ['Cathie Wood'])
     check_folders('fuck ARKK coin', ['Cathie Wood'])
     check_folders('fuck ARK Invest coin', ['Cathie Wood'])
