@@ -1,7 +1,7 @@
 folder,regex
 1mdb,1mdb|jho[-\s.]*low|Victor[-\s.]*Hoo
 3ac,3ac|Three[-\s.]*Arrows[-\s.]*Capital|su[-\s.]*zhu|zhu[-\s.]*su|kyle[-\s.]*davies|OPNX
-A16Z,a16z|Andreessen|Packym|Arianna[-\s1]*Simpson|Ben[-\s.]*Horowitz|\bAXS\b
+A16Z,a16z|Andreessen|Packym|Arianna[-\s1]*Simpson|Ben[-\s.]*Horowitz|\bAXS\b|\bAli[-\s.]*Yahya
 AAX,\bAAX(Exchange)\b
 Aave,\b(Aave|Stani|Kulechov)\b
 Abra,\bAbra\b|\bPlutus\b|\bBarhydt
@@ -65,7 +65,7 @@ DAOs,\b(aragon(project)?|augur(project)?|gopartyparrot|nounsdao|ParrotDAO|Sparta
 DCG,DCG|digital[-\s.]*currency[-\s.]*group|sh?ill?bert|Grayscale|GBTC|\bkraines\b|hq[-\s.]*digital|Alana[-\s.]*Ackerson|Jennifer[-\s.]*Mitrenga|Emily[-\s.]*(Heather[-\s.]*)?Goodman|Founders[-\s.]*Liquidity[-\s.]*Fund|Zcash
 DeFi,\b(1inch|Apex|Balancer|crvUSD|Curve|defi|DODO|dYdX|Egorov|Kine|MCDEX|Multichain|WOOFi)\b|decentralized[-\s.]*finance|(Baby|Cro|Defi|IceCream|Leet|Pancake|Para|Quick|Sake|Shiba|Sushi|Sun|SWFT|Sync|Uni)Swap|(Apex|Maverick|Perpetual)[-\s.]*Protocol|Trader[-\s.]*Joe[^']|Compound[-\s.]*Fi
 Deribit,deribit\b
-Dragonfly Capital,Dragonfly[-\s.]*Capital
+Dragonfly Capital,Dragonfly[-\s.]*Capital|\bQureshi\b
 DWF,DWF|Andrey[-\s.]*Grachev|\bgrachev\b
 EqiFi,\b(SHRM|Eqi(Fi|Prime))\b
 Evolve Bank,getevolved|\bevolve[-\s.]*bank\b
@@ -94,6 +94,7 @@ Goldfinch,Goldfinch
 GSR,\b(GSR|Rich[-\s.]*Rosenblum)\b
 Hamas,\bHamas\b|Al[-\s.]*Qassam
 Haru Invest,\bHaru(invest)?\b|\b(happy)?Delio\b
+Hela Labs,\b(Ting[-\s.]*Shang[-\s.]*Ping|Andy[-\s.]*Ting)\b
 Hex,\bHex\b|[#$]Hex|Pulsechain|Richard[-\s.]*Heart|Hexican
 Hoo,\bHoo[-\s.]*(Research|Exchange|Smart)|\bHoo\b|Rexy[-\s.]*(Hoo|Wang)
 Huobi,huobi|jiao_newlife|jiaojiao|Leon[-\s.]*Li\b|\b(GoPlus|Walken|HTX)\b
@@ -123,7 +124,7 @@ Metropolitan Commercial Bank,MCB\b|MCBankNY|Metropolitan[-\s.]*(Bank|Commercial)
 Multichain,Multichain\b
 Multicoin,\b(MultiCoin|Kyle[-\s.]*Samani)\b
 Founders Bank,Michael[-\s.]*Bianchi|Founders[-\s.]*Bank
-Memecoins,\b(PEPE|SHIB(arium|Token)?|ShytoshiKusama)\b
+Memecoins,\b(PEPE|SHIB(arium|Token)?|ShytoshiKusama|CorgiAI)\b
 Michael Gastauer,\b(Gastauer|WB21)\b
 Miles Guo,\bguo\b|\bhcoin|himalaya[-\s.]*exchange|\bbannon\b|\bfjb|\bkwok\b|brother[-\s.]*seven|kin[-\s.]*ming[-\s.]*je|william[-\s.]*je\b|\bHaoyun\b|\bLi[-\s.]*You\b
 Miners,bitcoin[-\s.]*min(ing|er)|\$(CORZ|IRIS|ARGO|HUT|HIVE|CAN|BLOK|BTCM|WULF)|\bCore[-\s.]*Scientific|\bIris[-\s.]*Energy|Blockstream|Terawulf|\bHUT8
