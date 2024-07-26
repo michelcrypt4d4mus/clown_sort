@@ -1,4 +1,6 @@
 # NEXT RELEASE
+* Fix displaying contents of PDF text by escaping text that looks like a `rich` markup tag
+* New default sorting rules
 
 ### 1.10.2
 * Make `\b` word boundary in a configured `SortRule` also match against underscores (which it doesn't by default)

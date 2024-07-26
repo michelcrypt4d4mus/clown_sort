@@ -10,6 +10,7 @@ from PIL import Image
 from pypdf import PdfReader, PdfWriter
 from pypdf.errors import DependencyError, EmptyFileError
 from rich.console import Console
+from rich.markup import escape
 from rich.panel import Panel
 from rich.text import Text
 
@@ -53,7 +54,7 @@ class PdfFile(SortableFile):
                 self._log_to_stderr(f"Parsing page {page_number}...")
                 page_buffer = Console(file=io.StringIO())
                 page_buffer.print(Panel(f"PAGE {page_number}", padding=(0, 15), expand=False))
-                page_buffer.print(page.extract_text().strip())
+                page_buffer.print(escape(page.extract_text().strip()))
                 image_number = 1
 
                 # Extracting images is a bit fraught (lots of PIL and pypdf exceptions have come from here)
@@ -96,6 +97,7 @@ class PdfFile(SortableFile):
     def thumbnail_bytes(self) -> Optional[bytes]:
         """Return bytes for a thumbnail."""
         import fitz  # TODO: Can we do this without PyMuPDF dependency?
+
         try:
             doc = fitz.open(self.file_path)
         except fitz.fitz.EmptyFileError:
