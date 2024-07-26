@@ -21,7 +21,7 @@ Bankless,Bankless|David[-\s.]*Hoffman
 Biconomy,\b(Biconomy|Omchain)\b
 Binary Options,binary[-\s.]*options
 Binance,bi(nance|conomy|llance|finity|naryx)|\b(AdvCash|Anndy|Biniverse|BNB|BSC|BSCN|BUSD|Ceffu|Commex|Cpz|CZ|Changpeng|FDUSD|joselito|Helio|keyway|Mandala|Mercuryo|Monetley|MoneyAmber|MoneyMaple|MoneyTea|paysafe|Sigma\s*Chain|TrustWallet|Coley|nuvei|orum|PNK|Worldpay|Winind)\b|\bSwipe[-\s.]*(IO|Wallet)|\bkey[-\s.]*vision|\boztures|Kaiser[-\s.]*Ng|InvestByBit|Swyftx|Guangying[-\s.]*Chen|\bBAM[-\s.]*(Trading|Management)\b|\bFlowbank|Bijie[-\s.]*(Network|Tech)|Venus[-\s.]*(Protocol|Community)|Merit[-\s.]*Peak|(Optic|Blockone|Winind|Unison)[-\s.]*Technolog|(Wombat|Sakura)[-\s.]*Exchange|\$HAY\b|Synclub|Jasmine?[-\s.]*Lee|Erik[-\s.]*Kellogg|Sara[-\s.]*Sisenwein|Tao[-\s.]*Zhang|Matthew[-\s.]*Beville|Tyrell[-\s.]*Long|Katrina[-\s.]*Fava
-Bitcoin ETFs,\b(BITW|BTCM|BTCX|EBIT|EBTC|EBTCG|EBTH|EBTHC|EBTHG|EBTHI|EBTHJ|EBTHK|EBTHL|EBTHM|EBTHN|EBTHO|EBTHP|EBTHQ|EBTHR|EBTHS|EBTHT|EBTHU|EBTHV|EBTHW|EBTHX|EBTHY|EBTHZ|EBTC|EBTCG|EBTCH|EBTCI|EBTCJ|EBTCK|EBTCL|EBTCM|EBTCN|EBTCO|EBTCP|EBTCQ|EBTCR|EBTCS|EBTCT|EBTCU|EBTCV|EBTCW|EBTCX|EBTCY|EBTCZ|EBTD|EBTDC|EBTDD|EBTDE|EBTDF|EBTDG|EBTDH|EBTDI|EBTDJ|EBTDK|EBTDL|EBTDM|EBTDN|EBTDO|EBTDP|EBTDQ|EBTDR|EBTDS|EBTDT|EBTDU|EBTDV|EBTDW|EBTDX|EBTDY|EBTDZ|EBTE|EBTEC|EBTED|EBTEE|EBTEF|EBTEG|EBTEH|EBTEI|EBTEJ|EBTEK|EBTEL|EBTEM|EBTEN|EBTEO|EBTEP|EBTEQ|EBTER|EBTES|EBTET|EBTEU|EBTEV|EBTEW|EBTEX|EBTEY|EBTEZ|EBTF|EBTFC|EBTFD|EBTFE|EBTFF|EBTFG|EBTFH|EBTFI|EBTFJ|EBTFK|EBTFL|EBTFM|EBTFN|EBTFO|EBTFP|EBTFQ|EBTFR|EBTFS|EBTFT|EBTFU|EBTFV|EBTFW|EBTFX|EBTFY|EBTFZ|EBTG|EBTGC|EBTGD|EBTGE|EBTGF|EBTGG|EB|Bitcoin[-\s.]*ETFs?)\b
+Bitcoin ETFs,\b(BITW|BTCM|BTCX|EBIT|EBTC|EBTCG|EBTH|EBTHC|EBTHG|EBTHI|EBTHJ|EBTHK|EBTHL|EBTHM|EBTHN|EBTHO|EBTHP|EBTHQ|EBTHR|EBTHS|EBTHT|EBTHU|EBTHV|EBTHW|EBTHX|EBTHY|EBTHZ|EBTC|EBTCG|EBTCH|EBTCI|EBTCJ|EBTCK|EBTCL|EBTCM|EBTCN|EBTCO|EBTCP|EBTCQ|EBTCR|EBTCS|EBTCT|EBTCU|EBTCV|EBTCW|EBTCX|EBTCY|EBTCZ|EBTD|EBTDC|EBTDD|EBTDE|EBTDF|EBTDG|EBTDH|EBTDI|EBTDJ|EBTDK|EBTDL|EBTDM|EBTDN|EBTDO|EBTDP|EBTDQ|EBTDR|EBTDS|EBTDT|EBTDU|EBTDV|EBTDW|EBTDX|EBTDY|EBTDZ|EBTE|EBTEC|EBTED|EBTEE|EBTEF|EBTEG|EBTEH|EBTEI|EBTEJ|EBTEK|EBTEL|EBTEM|EBTEN|EBTEO|EBTEP|EBTEQ|EBTER|EBTES|EBTET|EBTEU|EBTEV|EBTEW|EBTEX|EBTEY|EBTEZ|EBTF|EBTFC|EBTFD|EBTFE|EBTFF|EBTFG|EBTFH|EBTFI|EBTFJ|EBTFK|EBTFL|EBTFM|EBTFN|EBTFO|EBTFP|EBTFQ|EBTFR|EBTFS|EBTFT|EBTFU|EBTFV|EBTFW|EBTFX|EBTFY|EBTFZ|EBTG|EBTGC|EBTGD|EBTGE|EBTGF|EBTGG|Bitcoin[-\s.]*ETFs?)\b
 Bitdeer,Bitdeer|Blue[-\s.]*Safari
 Bitforex,\bBitforex\b
 BitGet,\bBitget\b
@@ -45,6 +45,7 @@ Cardano,Cardano|[$\s]ADA[^\w]|Hoskinson|\bIOHK
 Cathie Wood,Cathie[-\s.]*Wood|\bARK(F|G|K|[-\s.]*Innovation|[-\s.]*Invest)|\bIZRL
 Celsius,celsius|mashinsky|levity[-\s.]*and[-\s.]*love|\bcelsian|Artur[-\s.]*Abreu|ronpaulbot|\bnuke[-\s.]*gold(stein)?
 Chain Analytics Companies,\b(BitOK|Bitrace|Chainalysis|Dune[-\s.]*Analytics|dune\.com|Elliptic|Chainalysis|Flipside.xyz|Inca[-\s.]*Digital|TRM[-\s.]*Labs)\b
+Changelly,Changelly
 China,fentanyl|\bchin(a|ese)|Hong[-\s.]*Kong|BANK[-\s.]*OF[-\s.]*COMMUNICATIONS
 Circle,[@#]circle|usdc|circle[-\s.]*internet|disparte|\ballaire|jerallaire|Macromedia
 CMCC Global,CMCC[-\s.]*Global
@@ -63,6 +64,7 @@ Curve Finance,\b(CRV|Curve(Finance)?|Egorov|crvUSD|michwill)\b
 Custodia,custodia\b|caitlin[-\s.]*long
 dalle,craiyon|midjourney|\bdall[-\s.]*e\b
 DAOs,\b(aragon(project)?|augur(project)?|gopartyparrot|nounsdao|ParrotDAO|Spartacus_Fi)\b|\$(PRT|REP|ROOK|SPA)\b
+Darknet Markets,\b(Alphabay|DNM|darknet)\b|(Dream|Empire|Evolution|Hansa)[-\s.]*Market
 DCG,DCG|digital[-\s.]*currency[-\s.]*group|sh?ill?bert|Grayscale|GBTC|\bkraines\b|hq[-\s.]*digital|Alana[-\s.]*Ackerson|Jennifer[-\s.]*Mitrenga|Emily[-\s.]*(Heather[-\s.]*)?Goodman|Founders[-\s.]*Liquidity[-\s.]*Fund|Zcash
 DeFi,\b(1inch|Apex|Balancer|crvUSD|Curve|defi|DODO|dYdX|Egorov|Kine|MCDEX|Multichain|WOOFi)\b|decentralized[-\s.]*finance|(Baby|Cro|Defi|IceCream|Leet|Pancake|Para|Quick|Sake|Shiba|Sushi|Sun|SWFT|Sync|Uni)Swap|(Apex|Maverick|Perpetual)[-\s.]*Protocol|Trader[-\s.]*Joe[^']|Compound[-\s.]*Fi
 Deribit,deribit\b
@@ -83,6 +85,7 @@ Fireblocks,Fireblocks|Shaulov
 First Digital,First[-\s.]*Digital\b|Legacy[-\s.]*Trust\b
 Flip Filipkowski,filipkowski
 Flowbank,flowbank
+Founders Bank,Michael[-\s.]*Bianchi|Founders[-\s.]*Bank
 Frax,\b(Frax|Kazemian)\b|\bFRX|[\b#$](FXS|FEI)
 Friedlander Group,Friedlander|Agro[-\s.]*Bank|\ball[-\s.]*year\b|\bbrock\b|brockpierce|litvishhocker|Yecheskel|Swift[-\s.]*Staffing
 Friend.tech,Friend\.tech|\$FRIEND\b
@@ -116,6 +119,7 @@ Lead Bank,\bLead[-\s.]*Bank\b|Finzly
 LBRY,\b(LBC|LBRY|LBRYcom)\b
 Lexpunk Army,lexpunk|gabriel[-\s.]*shapiro|_gabrielShapir0|\blex_node\b
 Lifeboat Foundation,Lifeboat[-\s.]*Foundation
+Lobbying,Chamber[-\s.]*of[-\s.]*Digital[-\s.]*Commerce|Fairshake|Fintech[-\s.]*(Alliance|Association|Innovators|Policy|Sandbox|Task[-\s.]*Force|Working[-\s.]*Group)
 MakerDAO,makerdao|[$#\s]DAI[^\w]
 Marathon,\b(MARA|marathon)\b
 Mario Nawfal,mario[-\s.]*nawfal
@@ -127,7 +131,6 @@ Metallicus,FBBT|Nauvoo|Metallicus|Bitcoinwalking|Bruce[-\s.]*Stewart|\bHayner\b
 Metropolitan Commercial Bank,MCB\b|MCBankNY|Metropolitan[-\s.]*(Bank|Commercial)|Mission[-\s.]*Gateway|Aryeh[-\s.]*Realty
 Multichain,Multichain\b
 Multicoin,\b(MultiCoin|Kyle[-\s.]*Samani)\b
-Founders Bank,Michael[-\s.]*Bianchi|Founders[-\s.]*Bank
 Memecoins,\b(PEPE|SHIB(arium|Token)?|ShytoshiKusama|CorgiAI)\b
 Michael Gastauer,\b(Gastauer|WB21)\b
 Miles Guo,\bguo\b|\bhcoin|himalaya[-\s.]*exchange|\bbannon\b|\bfjb|\bkwok\b|brother[-\s.]*seven|kin[-\s.]*ming[-\s.]*je|william[-\s.]*je\b|\bHaoyun\b|\bLi[-\s.]*You\b

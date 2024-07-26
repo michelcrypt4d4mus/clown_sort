@@ -16,7 +16,7 @@ RADIO_COLS = 11
 SELECT_SIZE = 45
 DELETE = 'Delete'
 OK = 'Move'
-OPEN = 'Preview Image'
+OPEN = 'Preview File'
 SKIP = 'Skip'
 EXIT = 'Exit'
 
