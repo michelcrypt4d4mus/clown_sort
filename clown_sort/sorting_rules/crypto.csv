@@ -81,6 +81,7 @@ Fintech,Mercury|\b(Afterpay|Alto|Allpoint|ArrowEye|Azibo|Brex|Burling|Bangor|Fin
 Fireblocks,Fireblocks|Shaulov
 First Digital,First[-\s.]*Digital\b|Legacy[-\s.]*Trust\b
 Flip Filipkowski,filipkowski
+Flowbank,flowbank
 Frax,\b(Frax|Kazemian)\b|\bFRX|[\b#$](FXS|FEI)
 Friedlander Group,Friedlander|Agro[-\s.]*Bank|\ball[-\s.]*year\b|\bbrock\b|brockpierce|litvishhocker|Yecheskel|Swift[-\s.]*Staffing
 FTX,FTX|\b(Bankman|FBH|FTT|SBF|Trabucco|Ellison|Nishad|Redline|Ryne|Tackett|Xuchong|ZUBR)\b|Moonstone|Friedberg|autism[-\s.]*capital|clifton[-\s.]*bay|Alameda|Luke[-\s.]*Ting|Redline[-\s.]*DAO|Jean[-\s.]*Tallin|Tara[-\s.]*MacAulay
