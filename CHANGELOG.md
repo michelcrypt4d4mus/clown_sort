@@ -1,5 +1,5 @@
 # NEXT RELEASE
-* Upgrade PyPDF to 3.16.4
+* Upgrade `PyPDF` to 3.16.4
 * Handle exceptions arising when trying to extract pages for submission as `PyPDF` bugs
 * Fix displaying contents of PDF text by escaping text that looks like a `rich` markup tag
 * New default sorting rules
