@@ -120,7 +120,7 @@ Lead Bank,\bLead[-\s.]*Bank\b|Finzly
 LBRY,\b(LBC|LBRY|LBRYcom)\b
 Lexpunk Army,lexpunk|gabriel[-\s.]*shapiro|_gabrielShapir0|\blex_node\b
 Lifeboat Foundation,Lifeboat[-\s.]*Foundation
-Lobbying,Chamber[-\s.]*of[-\s.]*Digital[-\s.]*Commerce|Fairshake|Stand[-\s.]*With[-\s.]*Crypto|Fintech[-\s.]*(Alliance|Association|Innovators|Policy|Sandbox|Task[-\s.]*Force|Working[-\s.]*Group)
+Lobbying,Chamber[-\s.]*of[-\s.]*Digital[-\s.]*Commerce|Defend[-\s.]*American[-\s.]*Jobs|Fairshake|Stand[-\s.]*With[-\s.]*Crypto|Fintech[-\s.]*(Alliance|Association|Innovators|Policy|Sandbox|Task[-\s.]*Force|Working[-\s.]*Group)
 MakerDAO,makerdao|[$#\s]DAI[^\w]
 Marathon,\b(MARA|marathon)\b
 Mario Nawfal,mario[-\s.]*nawfal
