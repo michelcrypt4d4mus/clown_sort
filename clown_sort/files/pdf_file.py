@@ -21,7 +21,8 @@ from clown_sort.lib.page_range import PageRange
 from clown_sort.util.constants import MIN_PDF_SIZE_TO_LOG_PROGRESS_TO_STDERR, PDF_ERRORS
 from clown_sort.util.filesystem_helper import create_dir_if_it_does_not_exist, insert_suffix_before_extension
 from clown_sort.util.logging import log
-from clown_sort.util.rich_helper import WARNING, attention_getting_panel, console, mild_warning, stderr_console
+from clown_sort.util.rich_helper import (WARNING, attention_getting_panel, console, error_text, mild_warning,
+     print_error, stderr_console)
 from clown_sort.util.string_helper import exception_str
 
 DEFAULT_PDF_ERRORS_DIR = Path.cwd().joinpath(PDF_ERRORS)
@@ -180,7 +181,11 @@ class PdfFile(SortableFile):
         else:
             destination_dir = DEFAULT_PDF_ERRORS_DIR
 
-        extracted_file = self.extract_page_range(PageRange(str(page_number)), destination_dir, error_msg)
+        try:
+            extracted_file = self.extract_page_range(PageRange(str(page_number)), destination_dir, error_msg)
+        except Exception as e:
+            stderr_console.print(error_text(f"Failed to extract a page for submission to PyPDF team."))
+            extracted_file = None
 
         blink_txt = Text('', style='bright_white')
         blink_txt.append("An error (", style='blink color(154)').append(error_msg, style='color(11) blink')

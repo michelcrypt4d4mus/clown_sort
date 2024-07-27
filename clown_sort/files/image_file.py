@@ -13,13 +13,14 @@ from typing import Optional, Union
 import pytesseract
 from PIL import Image
 from PIL.ExifTags import TAGS
+from rich.pretty import pprint
 
 from clown_sort.config import Config
 from clown_sort.filename_extractor import FilenameExtractor
 from clown_sort.files.sortable_file import RuleMatch, SortableFile
 from clown_sort.util.filesystem_helper import copy_file_creation_time
 from clown_sort.util.logging import log
-from clown_sort.util.rich_helper import console, warning_text
+from clown_sort.util.rich_helper import console, error_text, warning_text
 
 THUMBNAIL_DIMENSIONS = (512, 512)
 IMAGE_DESCRIPTION = 'ImageDescription'
@@ -38,8 +39,10 @@ class ImageFile(SortableFile):
         of the configured :destination_dir. Returns new file path.
         """
         exif_data = self.raw_exif_dict()
-        exif_data.update([(EXIF_CODES[IMAGE_DESCRIPTION], self.extracted_text())])
         self._log_copy_file(destination_path, match)
+
+        if self.extracted_text() is not None:
+            exif_data.update([(EXIF_CODES[IMAGE_DESCRIPTION], self.extracted_text())])
 
         if Config.dry_run:
             return
@@ -47,9 +50,13 @@ class ImageFile(SortableFile):
         try:
             self.pillow_image_obj().save(destination_path, exif=exif_data)
             copy_file_creation_time(self.file_path, destination_path)
-        except ValueError as e:
+        except (TypeError, ValueError) as e:
             console.print_exception()
-            console.print(f"ERROR while processing '{self.file_path}'", style='bright_red')
+            console.print(error_text(f"Failed to save '{self.file_path}'").append("\nEXIF DATA:"))
+
+            for k, v in exif_data.items():
+                console.print(exif_data, expand_all=True, indent_guides=False)
+
             raise e
 
     def new_basename(self) -> str:
@@ -114,9 +121,12 @@ class ImageFile(SortableFile):
 
         try:
             text = pytesseract.image_to_string(image)
+        except pytesseract.pytesseract.TesseractError as e:
+            console.print_exception()
+            console.print(warning_text(f"Tesseract OCR failure '{image_name}'! No OCR text extracted..."))
         except OSError as e:
             if 'truncated' in str(e):
-                console.print(warning_text(f"Truncated image file! '{image_name}'!"))
+                console.print(warning_text(f"Truncated image file '{image_name}'!"))
             else:
                 console.print_exception()
                 console.print(f"Error while extracting '{image_name}'!", style='bright_red')
