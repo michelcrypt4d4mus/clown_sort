@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.10.3
 * Upgrade `PyPDF` to `4.3.1`
 * Handle exceptions arising when trying to extract pages for submission as `PyPDF` bugs
 * Fix displaying contents of PDF text by escaping text that looks like a `rich` markup tag
