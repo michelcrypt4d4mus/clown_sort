@@ -212,6 +212,7 @@ Wallet Addresses Ripple,\br[0-9a-zA-Z]{33}
 Wallet Addresses Stellar,\bG[0-9A-Z]{40,60}\b
 Wallet Addresses Tron,\bT[a-zA-Z0-9]{33}\b
 Waves,sasha[-\s.]*(35625|ivanov|\.waves)|\bVires\b|boris[-\s.]*titov|[$#]WAVES\b|USDN
+WazirX,WazirX|\bShetty\b
 Wintermute,Wintermute|\b(Bebop|Evgeny(Gaevoy)?)\b|Wishful[-\s.]*Cynic
 Wirecard,\b(Bafin|Bellenhaus|Buchholz|DISTEFORA|e\-devinvent|G(ö|o)rres|Marsalek|Paygea|Paysafe|Trautmann|Wirecard)\b|Markus[-\s.]*Braun
 Worldcoin,\b(orb|Worldcoin)\b
