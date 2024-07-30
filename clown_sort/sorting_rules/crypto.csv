@@ -193,7 +193,7 @@ Tornado Cash,tornado[-\s.]*cash
 Transactive Systems UAB,Transactive[-\s.]*Systems
 Tron,\btron\b|tron(block|[-\s.]*)?chain|trondao|TRX\b
 TrueUSD,\b(TGBP|TUSD|TCNH|TAUD|TrueCoin|TrueUSD|TrueFi|TrustExplorer|Techteryx|Jaiyong|TrustLabs)\b
-Trump,\bTrump\b
+Trump,\b((real)?(donald)?Trump|(J\.?D\.?)?Vance)\b
 Vauld,Vauld
 VCs,\b(amy(tong|[-\s.]*)Wu|Calacanis|Maguire|Northzone|sequoia|thiel|VCs?)\b|venture[-\s.]*capital|@jason\b|david[-\s.]*sacks|founders[-\s.]*fund|Valar[-\s.]*Ventures|6th[-\s.]*Man[-\s.]*Ventures|Warburg[-\s.]*Serres|Alan[-\s.]*Howard|Tiger[-\s.]*Global|Variant[-\s.]*Fund
 Vitalik Buterin,\bvitalik\b
