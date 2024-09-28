@@ -70,14 +70,15 @@ DeFi,\b(1inch|Apex|Balancer|crvUSD|Curve|defi|DODO|dYdX|Egorov|Kine|MCDEX|Multic
 Deribit,deribit\b
 Dragonfly Capital,Dragonfly[-\s_.]*(xyz|Capital)|\bQureshi\b
 DWF,DWF|Andrey[-\s.]*Grachev|\b(grachev|Eug_Ng|Eugene[-\s.]*Ng)\b
-EqiFi,\b(SHRM|Eqi(Fi|Prime))\b
-Evolve Bank,getevolved|\bevolve[-\s.]*bank\b
 Effective Altruism,\bE\.?A\.?\b|effective[-\s.]*altruism
 El Salvador,El[-\s.]*Salvador|Bukele|Max[-\s.]*Keiser
 Elon Musk,\bTesla\b|\bTSLA\b|\bElon\b|\bElmo\b
+EqiFi,\b(SHRM|Eqi(Fi|Prime))\b
+Eric Adams,(Eric|Mayor)[-\s.]*Adams|Mermelstein|Felipe\-Adams|Tania[-\s.]*Kinsella|Fabien[-\s.]*Levy|\b(Carone|Eisdorfer)\b
 EOS,\b(EOS|(Brendan)?Blumer|Larimer|@B1|Block[-.\s]?One|Northern[-.\s]*Data)\b
-Evertas,\bEvertas\b|Ryan[-\s.]*Lackey
 Euler Finance,\bEuler\b
+Evertas,\bEvertas\b|Ryan[-\s.]*Lackey
+Evolve Bank,getevolved|\bevolve[-\s.]*bank\b
 FalconX,Falconx
 Finblox,Finblox
 Fintech,Mercury|\b(Afterpay|Alto|Allpoint|ArrowEye|Azibo|Brex|Burling|Bangor|Fintech|Klarna|Checkout\.com|Chime(bank)?|FirstDollar|Grasshopper|Holyheld|LendingClub|Lithic|Marqeta|Nibiru|Piermont|Pinwheel|Synapse|Unit21|Unlimin?t|Wagestream|Zeta)\b|Treasury[-\s.]*Prime|Chris[-\s.]*Dean\b|Jim[-\s.]*Brusstar|(Bangor|Third[-\s.]*Coast|First[-\s.]*Internet|Emprise)[-\s.]*Bank|C2F(O|0)|Transact[-\s.]*Payments
