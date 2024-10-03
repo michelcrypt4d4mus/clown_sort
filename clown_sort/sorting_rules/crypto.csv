@@ -34,10 +34,11 @@ Bittrex,Bittrex|Ritchie[-\s.]*Lai|Kiran[-\s.]*Raj|John[-\s.]*Roth\b|\bAquila\b
 Bitzlato,Bitzlato
 Blockchain.com,\bblockchain\.com\b|@blockchain\b|@AskBlockchain\b|Patrick[-\s.]*McHenry
 Blockchain8,Blockchain8|tom[-\s.]*emmer|GOPMajorityWhip|ritchie[-\s.]*torres|repritchie|Warren[-\s.]*Davidson|Byron[-\s.]*Donalds|Ted[-\s.]*(Budd|Cruz)|Josh[-\s.]*Gotheimer|Jake[-\s.]*Auchincloss|Darren[-\s.]*Soto|ro[-\s.]*khanna|KMSmithDC|Kristin[-\s.]*Smith\b|Warren[-\s.]*Davidson|PerianneDC
-Blockchain Capital,Blockchain[-\s.]*Capital|\bbrock\b|brockpierce
+Blockchain Capital,Blockchain[-\s.]*Capital|\bbrock\b|brockpierce|Friedlander
 BlockFi,BlockFi|Zac[-\s.]*Prince|Brian[-\s.]*Oliver
 Blockstream,Blockstream
 Bored Ape Yacht Club,\bBAYC\b|Bored[-\s.]*Ape|yuga[-\s.]*labs
+Brock Pierce,\b(Bywire|IGE|R3T|Ying)\b|brock[-\s.]*pierce|Karla[-\s.]*Ballard|Brittany[-\s.]*Kaiser|Medici[-\s.]*Bank
 Bros,\bAnsem\b|ashcryptoreal|cryptomanran|gainzy|\bRan[-\s.]*Neuner|trillionUSD|nic[-\s.]*carter|bitboy|ben[-\s.]*armstrong|basedkarbon|julianhosp|thecryptolark|adam([-\s.]*back|3us)|@DegenSp|APompliano|IIICapital|\bMeltem\b|algodtrading|whatbitcoindid|CryptoKaleo|Mike[-\s.]*Alfred|natbrunell|natalie[-\s.]*brunell|stackersatoshi|Max[-\s.]*Keiser|Cowboy[-\s.]*Crypto|minimalcsgo|\bParish\b|AP[-\s.]*(Archpublic|Abacus)|greg16676935420|@Aridavidpaul|\bAri[-\s.]*Paul\b|raoul(gmi|[-\s.]*pal)|mccormack|andr3w|andrew[-\s.]*wang|\b(JW)?[-\s.]*Verret\b|@FlurETH\b|wolf[-\s.]*of[-\s.]*all[-\s.]*streets|scott[-\s.]*melker|\bKaleo\b
 Broettes,Nicole[-\s.]*Behnam|natbrunell
 Bybit,\b(Ben[-\s.]*Zhou|(Invest|Travel)?ByBit|Mirana|Time[-\s.]*Research|Sean[-\s.]*Tan|Germaine[-\s.]*Tan|Weizheng[-\s.]*Ye|Nashon[-\s.]*Loo)\b
@@ -73,9 +74,9 @@ DWF,DWF|Andrey[-\s.]*Grachev|\b(grachev|Eug_Ng|Eugene[-\s.]*Ng)\b
 Effective Altruism,\bE\.?A\.?\b|effective[-\s.]*altruism
 El Salvador,El[-\s.]*Salvador|Bukele|Max[-\s.]*Keiser
 Elon Musk,\bTesla\b|\bTSLA\b|\bElon\b|\bElmo\b
+EOS,\b(Bitshares|EOS|(Brendan)?Blumer|Larimer|@B1|Block[-.\s]?One|Northern[-.\s]*Data|Steemit)\b
 EqiFi,\b(SHRM|Eqi(Fi|Prime))\b
-Eric Adams,(Eric|Mayor)[-\s.]*Adams|Mermelstein|Felipe\-Adams|Tania[-\s.]*Kinsella|Fabien[-\s.]*Levy|\b(Carone|Eisdorfer)\b
-EOS,\b(EOS|(Brendan)?Blumer|Larimer|@B1|Block[-.\s]?One|Northern[-.\s]*Data)\b
+Eric Adams,(Abbasova|Eric|Mayor)[-\s.]*Adams|Mermelstein|Brianna[-\s.]*Suggs|Felipe\-Adams|David[-\s.]*Greenfield|Oaktree|Molly[-\s.]*Schaeffer|Tusk[-\s.]*Strategies|One[-\s.]*&[-\s.]*Only[-\s.]*(Realty|Holdings)|Ryan[-\s.]*Lynch|Dawn[-\s.]*Miller|Madeline[-\s.]*Labadie|Eric[-\s.]*Ulrich|Tania[-\s.]*Kinsella|Fabien[-\s.]*Levy|Menashe[-\s.]*Shapiro|Tiffany[-\s.]*Raspberry|Tatiana[-\s.]*Kudina|Richie[-\s.]*Taylor|Ezras[-\s.]*Yisroel|\b(Caban|Carone|Eisdorfer|Kreizman|Tamaqua)\b
 Euler Finance,\bEuler\b
 Evertas,\bEvertas\b|Ryan[-\s.]*Lackey
 Evolve Bank,getevolved|\bevolve[-\s.]*bank\b
@@ -88,8 +89,9 @@ Flip Filipkowski,filipkowski
 Flowbank,flowbank
 Flow Traders,Flow[-\s.]*Traders
 Founders Bank,Michael[-\s.]*Bianchi|Founders[-\s.]*Bank
+Francis Suarez,Dreamer[-\s.]*Capital|MiamiCoin|Redivider|(Francis|Mayor)[-\s.]*Suarez|Citycoins|Krillion|Melissa[-\s.]*Krinzman|Miami[-\s.]*Angels|Patrick[-\s.]*Stanley
 Frax,\b(Frax|Kazemian)\b|\bFRX|[\b#$](FXS|FEI)
-Friedlander Group,Friedlander|Agro[-\s.]*Bank|\ball[-\s.]*year\b|\bbrock\b|brockpierce|litvishhocker|Yecheskel|Swift[-\s.]*Staffing
+Friedlander Group,Friedlander|Agro[-\s.]*Bank|\ball[-\s.]*year\b|\bbrock\b|brockpierce|litvishhocker|Yecheskel|Swift[-\s.]*Staffing|Eisdorfer
 Friend.tech,Friend\.tech|\$FRIEND\b
 FTX,FTX|\b(Bankman|FBH|FTT|SBF|Trabucco|Ellison|Nishad|Redline|Ryne|Tackett|Xuchong|ZUBR)\b|Moonstone|Friedberg|autism[-\s.]*capital|clifton[-\s.]*bay|Alameda|Luke[-\s.]*Ting|Redline[-\s.]*DAO|Jean[-\s.]*Tallin|Tara[-\s.]*MacAulay
 Galaxy Digital,novogratz|Alex[-\s.]*Thorn|Cryptology|angermayer
@@ -196,7 +198,7 @@ Tornado Cash,tornado[-\s.]*cash
 Transactive Systems UAB,Transactive[-\s.]*Systems
 Tron,\btron\b|tron(block|[-\s.]*)?chain|trondao|TRX\b
 TrueUSD,\b(TGBP|TUSD|TCNH|TAUD|TrueCoin|TrueUSD|TrueFi|TrustExplorer|Techteryx|Jaiyong|TrustLabs)\b
-Trump,\b((real)?(donald)?Trump|(J\.?D\.?)?Vance)\b
+Trump,\b((real)?(donald)?Trump|(J\.?D\.?)?Vance|WLFI)\b|World[-\s.]*Liberty[-\s.]*Fi
 Vauld,Vauld
 VCs,\b(amy(tong|[-\s.]*)Wu|Calacanis|Maguire|Northzone|sequoia|thiel|VCs?)\b|venture[-\s.]*capital|@jason\b|david[-\s.]*sacks|founders[-\s.]*fund|Valar[-\s.]*Ventures|6th[-\s.]*Man[-\s.]*Ventures|Warburg[-\s.]*Serres|Alan[-\s.]*Howard|Tiger[-\s.]*Global|Variant[-\s.]*Fund|JTLonsdale|Joe[-\s.]*Lonsdale
 Vitalik Buterin,\bvitalik\b
@@ -217,6 +219,6 @@ Wallet Addresses Tron,\bT[a-zA-Z0-9]{33}\b
 Waves,sasha[-\s.]*(35625|ivanov|\.waves)|\bVires\b|boris[-\s.]*titov|[$#]WAVES\b|USDN
 WazirX,WazirX|\bShetty\b
 Wintermute,Wintermute|\b(Bebop|Evgeny(Gaevoy)?)\b|Wishful[-\s.]*Cynic
-Wirecard,\b(Bafin|Bellenhaus|Buchholz|DISTEFORA|e\-devinvent|G(ö|o)rres|Marsalek|Paygea|Paysafe|Trautmann|Wirecard)\b|Markus[-\s.]*Braun
+Wirecard,\b(Aktif[-\s.]*Bank|Bafin|Bellenhaus|Buchholz|DISTEFORA|e\-devinvent|G(ö|o)rres|Marsalek|Paygea|Paysafe|Trautmann|Wirecard)\b|Markus[-\s.]*Braun
 Worldcoin,\b(orb|Worldcoin)\b
 Wyre,\bwyre|sendwyre|\bLead[-\s.]*Bank\b|Steven[-\s.]*Huynh

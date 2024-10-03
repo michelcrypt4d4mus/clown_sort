@@ -16,7 +16,7 @@ def test_get_rule_matches():
     check_folders('fuck Seba Bank', ['Banks'])
     check_folders('fuck Swipe Wallet ', ['Binance'])
     check_folders('fuck the brock coin', ['Blockchain Capital', 'Friedlander Group', 'Tether'])
-    check_folders('fuck the brockpierce coin', ['Blockchain Capital','Friedlander Group', 'Tether'])
+    check_folders('fuck the brockpierce coin', ['Blockchain Capital', 'Brock Pierce', 'Friedlander Group', 'Tether'])
     check_folders('fuck Ted Cruz ', ['Blockchain8'])
     check_folders('fuck $ADA ', ['Cardano'])
     check_folders('fuck ADA coin', ['Cardano'])
