@@ -32,19 +32,22 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.8"
+
 exif = "^1.5.0"
-PySimpleGUI = {version = "^4.60.4", optional = true}
-pytesseract = "^0.3.10"
-rich = "^13.0.1"
+filedate = "^2.0"
 piexif = "^1.1.3"
 pillow = ">=9.5.0,<11.0.0"
-filedate = "^2.0"
-python-dotenv = "^0.21.1"
-rich-argparse-plus = "^0.3.1.4"
+PySimpleGUI = {version = "^4.60.4", optional = true}
 pycryptodome = {version = "^3.17", optional = true}
 pyexiftool = "^0.5.5"
 PyMuPDF = {version = "^1.22.3", optional = true}
-pypdf = "^4.3.1"
+pypdf = "^5.0.1"
+pytesseract = "^0.3.10"
+python-dotenv = "^0.21.1"
+rich = "^13.0.1"
+rich-argparse-plus = "^0.3.1.4"
+
+
 
 [tool.poetry.extras]
 pdf = ['pycryptodome', 'PyMuPDF']
