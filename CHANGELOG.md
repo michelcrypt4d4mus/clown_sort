@@ -1,4 +1,6 @@
 # NEXT RELEASE
+* Bump `PyPDF` to `5.0.1`
+* More default sorting rules
 
 ### 1.10.3
 * Upgrade `PyPDF` to `4.3.1`
