@@ -113,6 +113,7 @@ Hoo,\bHoo[-\s.]*(Research|Exchange|Smart)|\bHoo\b|Rexy[-\s.]*(Hoo|Wang)
 Huobi,huobi|jiao_newlife|jiaojiao|Leon[-\s.]*Li\b|\b(GoPlus|Walken|HTX)\b
 Internet Computer,\bICP\b|Dominic[-\s.]*Williams
 Iran,\b(Iran|Iranian|Nobitex|CoinNik|Wallex|Sarmayex|Rabex)\b
+Islamic Coin,islamic[-\s.]*coin
 Journalists,Eleanor[-\s.]*Terrett
 JPEX,\b(FUBT|FUC|JPC|JPEX)\b
 Jump Trading,Jump[-\s.]*Trading|@jump_|\bKariya\b
