@@ -60,7 +60,7 @@ CompoundFi,compoundfi|leshner|\bgonen\b
 ConsenSys,ConsenSys
 Cross River Bank,\bCRB|Cross[-\s.]*River|Prestige[-\s.]*Capital|\bbae[-\s.]*communications|Zenfi\b|\bBrix|PeerIQ|\bupstart\b|\bUPST\b|\bLeumi\b|Hapoalim|BetterFin|\bMANTL\b|\bLvnv|\bKabbage|\bAFRM\b|\bMomnt
 Crypto Capital,Global[-\s.]*Transaction[-\s.]*Services|Crypto[-\s.]*Capital\b
-Crypto.com,crypto[._]?com\b|CDC|[$#]CRO|\sCRO\s|Doug(las)?[-\s.]*Ching\b|Bobby[-\s.]*Bao\b|Gary[-\s.]*Or\b|Marszalek|Rafael[-\s.]*Melo\b|\bAltrady
+Crypto.com,\b(crypto[-._]?com|CDC|CRO(nos)?)\b|Doug(las)?[-\s.]*Ching\b|Bobby[-\s.]*Bao\b|Gary[-\s.]*Or\b|Marszalek|Rafael[-\s.]*Melo\b|\bAltrady
 CUBI,\bCUBI\b|Customers[-\s.]*Ban(k|corp)
 Cumberland,cumberland|\bMarea\b
 Curve Finance,\b(CRV|Curve(Finance)?|Egorov|crvUSD|michwill)\b
@@ -128,12 +128,14 @@ Lexpunk Army,lexpunk|gabriel[-\s.]*shapiro|_gabrielShapir0|\blex_node\b
 Lifeboat Foundation,Lifeboat[-\s.]*Foundation
 Lobbying,Chamber[-\s.]*of[-\s.]*Digital[-\s.]*Commerce|Defend[-\s.]*American[-\s.]*Jobs|Fairshake|Protect[-\s.]*Progress|Stand[-\s.]*With[-\s.]*Crypto|Fintech[-\s.]*(Alliance|Association|Innovators|Policy|Sandbox|Task[-\s.]*Force|Working[-\s.]*Group)
 MakerDAO,makerdao|[$#\s]DAI[^\w]|SkyEcosystem
+Malta,\bMalt(a|ese)\b
 Marathon,\b(MARA|marathon)\b
 Mario Nawfal,mario[-\s.]*nawfal
 Matrixport,\b(Matrixport|Smart[-\s.]*Vega)\b
 Matthew Roszak,\b(Beauregard|Bloq|Capital6|Garzik|GoCoin|Sunlot|Veriblock)\b|(matthew)?[-\s.]*roszak|Calvin[-\s.]*Cheng|Advent[-\s.]*International|Keystone[-\s.]*Capital[-\s.]*Partners|Tally[-\s.]*Capital|Peter[-\s.]*Vessenes
 Memecoins,\b(CATDOG|CorgiAI|CrownTokenPEPE|memecoins?|SAITAMA|SHIB(arium|Token)?|ShytoshiKusama)\b|CLS[-\s.]*Global|Archana[-\s.]*Nambiar
 Memes,\bmeme\b
+Mercantile Bank,Mercantile[-\s.]*(Bank|Trust)|@MercantileBank
 Messari,Ryan[-\s.]*Selkis|twobitidiot|messari|@robustus|Dan[-\s.]*McArdle
 Metallicus,FBBT|Nauvoo|Metallicus|Bitcoinwalking|Bruce[-\s.]*Stewart|\bHayner\b
 Metropolitan Commercial Bank,MCB\b|MCBankNY|Metropolitan[-\s.]*(Bank|Commercial)|Mission[-\s.]*Gateway|Aryeh[-\s.]*Realty
@@ -197,6 +199,7 @@ Stake.com,\bstake\.com\b|@(stake|@bijantehrani)
 Stifel Bank,\bStifel\b|[#$]SF\b
 Symbolic Capital,Symbolic[-\s.]*Capital|Lev[-\s]Livnev
 Synapse,Synapse(fi|labs|protocol)?\b
+TassatPay,\bTassat(Pay)?\b
 Telegram,\b(Ton[-\s.]*(Network|(Block)?chain)|Telegram|(Pavel)?Durov|Toncoin)\b|[$#]TON\b
 TerraLuna,\bluna\b|do[-\s.]*kwon|stablekwon|\bTerra(form|Luna)?\b|Macedo|\bLuna[-\s.]*Foundation\b|Mirror[-\s.]*Protocol
 Tether,\b(Abraxas|Adecoagro|Apeiron|Barrai|BFX(NA|WW|[-\s.]*Ventures)|Bitfinex|BlueBit|Britannia|Chesham|CityPay|Coinapult|CoinMENA|D10e|Danieletto|Devasini|DeversiFi|Elysium|Eqonex|Ethfinex|Evertune|Fincluster|Friedberg|Frontini|Frontini|GamesTV|GoCoin|Harborne|Hoegner|Huashun|Heka(Funds)?|IGEL|Infomatec|Lagorio|Liquidity[-\s.]*Labs|Ludovicus|(Master|Real)coin|Mallers|Mincione|Noblex|Pairstech|Paolo(Ardoino)?|Pirro|Playsino|Renrenbee|Rhino\.fi|Sakulkrit|Sakunkrit|Satellogic|Sestagalli|SFP|SHRM|Sinopec|SJMBT|Spectrocoin|Stablehouse|Sunlot|Tackett|Tether|Todaro|Tuxia|urwhatyouknow|USDT|Velutini|XBTO|Xfire|Yantis|Ypsilon[-\s.]*Holding|Zuaiter)\b|Noble[-\s.]*Bank|\bDeltec[^\']|\b(B[ei]t|i|Digi?|Eth)f?inex[^e']|\bbrock([-\s.]*pierce)?\b|Clearstone[-\s.]*Global|Capital[-\s.]*Union|Global[-\s.]*Trad(ing|e)[-\s.]*Solutions|[$#]LEO\b|Phil[-\s.]*Potter|Samson[-\s.]*Mow|Gabor[-\s.]*Gurbacs|Paul[-\s.]*Eisma|Philippe[-\s.]*Bekhazi|Reeve[-\s.]*Collins|phil(ip)?[-\s.]*potter\b|Van[-\s.]*der[-\s.]*Velde|Perpetual[-\s.]*Action[-\s.]*Group|Global[-\s.]*Trade[-\s.]*Solutions|reginald[-\s.]*fowler|Amos[-\s.]*Ltd|William[-\s.]*Quigley|Blade[-\s.]*payments|Five[-\s.]*Delta|gabriel[-\s.]*sukenik|R(ondell|[ho][ho]n)[-\s.]*(Clyde)?[-\s.]*Monroe|Mainstreet[-\s.]*Partners|Far[-\s.]*Eastern[-\s.]*International|White[-\s.]*Plains[-\s.]*Capital|BANK[-\s.]*OF[-\s.]*COMMUNICATIONS|Josue[-\s.]*Lopez|Stacy[-\s.]*Herbert|Sunrise[-\s.]*Technology|Bao[-\s.]*Ying[-\s.]*Cao|Northern[-.\s]*Data|Zettahash|Cantor[-\s.]*Fitzgerald|UQUID
@@ -206,6 +209,7 @@ Transactive Systems UAB,Transactive[-\s.]*Systems
 Tron,\btron\b|tron(block|[-\s.]*)?chain|trondao|TRX\b
 TrueUSD,\b(TGBP|TUSD|TCNH|TAUD|TrueCoin|TrueUSD|TrueFi|TrustExplorer|Techteryx|Jaiyong|TrustLabs)\b
 Trump,\b((real)?(donald)?Trump|(J\.?D\.?)?Vance|WLFI)\b|World[-\s.]*Liberty[-\s.]*Fi
+Uniswap,\b(Hayden[-\s.]*Adams|UNI|Uniswap)\b
 Vauld,Vauld
 VCs,\b(amy(tong|[-\s.]*)Wu|Calacanis|Maguire|Northzone|sequoia|sjdedic|thiel|VCs?)\b|venture[-\s.]*capital|@jason\b|david[-\s.]*sacks|founders[-\s.]*fund|Valar[-\s.]*Ventures|6th[-\s.]*Man[-\s.]*Ventures|Warburg[-\s.]*Serres|Alan[-\s.]*Howard|Tiger[-\s.]*Global|Variant[-\s.]*Fund|JTLonsdale|Joe[-\s.]*Lonsdale|VanEck[-\s.]*Ventures|Moonrock[-\s.]*Capital
 Vietnam,\b(Vietnam|Hanoi|Ho[-\s.]*Chi[-\s.]*Minh)

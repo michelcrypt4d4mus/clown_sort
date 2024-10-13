@@ -32,6 +32,7 @@ def test_get_rule_matches():
     check_folders('fuck crypto_com it sucks', ['Crypto.com'])
     check_folders('fuck $cro it sucks', ['Crypto.com'])
     check_folders('fuck #cro it sucks', ['Crypto.com'])
+    check_folders('fuck Cronos chain it sucks', ['Crypto.com'])
     check_folders('fuck $CUBI', ['CUBI'])
     check_folders('fuck Block.One ', ['EOS'])
     check_folders('fuck BlockOne ', ['EOS'])
