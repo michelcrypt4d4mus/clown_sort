@@ -75,6 +75,7 @@ Deribit,deribit\b
 Dragonfly Capital,Dragonfly[-\s_.]*(xyz|Capital)|\bQureshi\b
 DWF,DWF|Andrey[-\s.]*Grachev|\b(grachev|Eug_Ng|Eugene[-\s.]*Ng)\b
 Effective Altruism,\bE\.?A\.?\b|effective[-\s.]*altruism
+Eigenlayer,Eigenlayer
 El Salvador,El[-\s.]*Salvador|Bukele|Max[-\s.]*Keiser
 Electric Capital,Electric[-\s_.]*Capital|Avichal[-\s_.]*Garg|Curtis[-\s_.]*Spencer|NEAR[-\s_.]*Protocol|@avichal|@curtis|@electriccapital|@nearprotocol|@near|@electriccapital|@avichalgarg|@curtisspencer|@nearprotocol|@electriccapital|@avichal|@curtis|@electriccapital|@nearprotocol|@near|@electriccapital|@avichalgarg|@curtisspencer|@nearprotocol
 Elon Musk,\bTesla\b|\bTSLA\b|\bElon\b|\bElmo\b
@@ -116,10 +117,12 @@ Huobi,huobi|jiao_newlife|jiaojiao|Leon[-\s.]*Li\b|\b(GoPlus|Walken|HTX)\b
 Internet Computer,\bICP\b|Dominic[-\s.]*Williams
 Iran,\b(Iran|Iranian|Nobitex|CoinNik|Wallex|Sarmayex|Rabex)\b
 Islamic Coin,islamic[-\s.]*coin
+Israel,\b(Gvir|Aryeh)\b
 Journalists,Eleanor[-\s.]*Terrett
 JPEX,\b(FUBT|FUC|JPC|JPEX)\b
 Jump Trading,Jump[-\s.]*Trading|@jump_|\bKariya\b
 Justin Sun,BitGlobal|justin[-\s.]*sun|sun[-\s.]*(pump|yuchen)|\b(APENFT|pgala|sunswap|poloniex|web3nina|whitebit|WBT|stUSDT|USDD|USDJ|JST)\b|\bR(ebo|ible)[\b_]|Love[-\s.]*Letters[-\s.]*Limited|Objectivists[-\s.]*Limited|JUST[-\s.]*(Foundation|Lend)|His[-\s.]*Excellency|stUSDT
+Kado,\bKado\b
 Kazakhstan,\bkazakh|Freedom[-\s.]*Holding|\balmaty|Timor[-\s.]*Turlov|\bFFIN[-\s.]*brokerage
 Kinesis,kinesis|\bKVT\b|\bABX\b|\bKAG\b
 Kraken,kraken|payward|\bjespow\b|Jesse[-\s.]*Powell|\bBit[-\s.]*Trade[-\s.]*Pty\b
