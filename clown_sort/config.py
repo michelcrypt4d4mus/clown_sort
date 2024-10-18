@@ -31,6 +31,7 @@ class Config:
     leave_in_place: bool = False
     screenshots_only: bool = True
     delete_originals: bool = False
+    hide_dirs: bool = False
     rescan_sorted: bool = False
     yes_overwrite: bool = False
     print_as_parsed: bool = False
@@ -50,9 +51,10 @@ class Config:
             cls.enable_debug_mode()
 
         Config.filename_regex = re.compile(args.filename_regex)
+        Config.hide_dirs = True if args.hide_dirs else False
+        Config.delete_originals = True if args.delete_originals else False
         Config.leave_in_place = True if args.leave_in_place else False
         Config.only_if_match = True if args.only_if_match else False
-        Config.delete_originals = True if args.delete_originals else False
         Config.rescan_sorted = True if args.rescan_sorted else False
         Config.yes_overwrite = True if args.yes_overwrite else False
 

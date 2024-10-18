@@ -67,6 +67,9 @@ parser.add_argument('-mf', '--manual-fallback', action='store_true',
 parser.add_argument('-y', '--yes-overwrite', action='store_true',
                     help='skip confirmation prompt and always overwrite if a file with the same name already exists')
 
+parser.add_argument('--hide-dirs', action='store_true',
+                    help='hide directories in log output')
+
 parser.add_argument('--rescan-sorted', action='store_true',
                     help="rescan already sorted files (useful if you updated your sorting rules)")
 

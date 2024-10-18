@@ -209,15 +209,17 @@ class SortableFile:
 
         if destination_path.parent == Config.destination_dir:
             console.print(indented_bullet(log_msg.append('root sorted dir...')))
-        else:
-            log_msg.append(str(destination_path.parent), style='sort_destination')
+            return
 
-            if match is not None:
-                log_msg.append(f" (matched '", style='dim')
-                log_msg.append(match.group(0).strip(), style='magenta dim')
-                log_msg.append("')", style='dim')
+        dirname = destination_path.parent.name if Config.hide_dirs else destination_path.parent
+        log_msg.append(str(dirname), style='sort_destination')
 
-            console.print(indented_bullet(log_msg))
+        if match is not None:
+            log_msg.append(f" (matched '", style='dim')
+            log_msg.append(match.group(0).strip(), style='magenta dim')
+            log_msg.append("')", style='dim')
+
+        console.print(indented_bullet(log_msg))
 
     def _move_to_processed_dir(self) -> None:
         """Relocate the original file to the [SCREENSHOTS_DIR]/Processed/ folder."""
