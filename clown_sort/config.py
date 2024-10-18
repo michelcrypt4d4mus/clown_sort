@@ -51,6 +51,7 @@ class Config:
             cls.enable_debug_mode()
 
         Config.filename_regex = re.compile(args.filename_regex)
+        Config.anonymize_user_dir = True if args.anonymize_user_dir else False
         Config.hide_dirs = True if args.hide_dirs else False
         Config.delete_originals = True if args.delete_originals else False
         Config.leave_in_place = True if args.leave_in_place else False
