@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* New `--hide-dirs` option
 * Bump `PyPDF` to `5.0.1`
 * More default sorting rules
 
