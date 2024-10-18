@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+# 1.11.0
 * New `--hide-dirs` option
 * New `--anonymize-user-dir` option
 * Bump `PyPDF` to `5.0.1`
