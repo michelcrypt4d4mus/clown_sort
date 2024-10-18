@@ -22,8 +22,9 @@ from clown_sort.lib.rule_match import RuleMatch
 from clown_sort.sort_selector import process_file_with_popup
 from clown_sort.util.filesystem_helper import copy_file_creation_time
 from clown_sort.util.logging import log
-from clown_sort.util.rich_helper import (bullet_text, comma_join, console, copying_file_log_message,
-     indented_bullet, mild_warning, moving_file_log_message, print_dim_bullet, print_headline, stderr_console)
+from clown_sort.util.rich_helper import (bullet_text, comma_join, console,
+     copying_file_log_message, indented_bullet, mild_warning, moving_file_log_message,
+     print_dim_bullet, stderr_console)
 
 MAX_EXTRACTION_LENGTH = 4096
 NOT_MOVING_FILE = "Not moving file to processed dir because it's"
@@ -197,7 +198,8 @@ class SortableFile:
         return Panel(self._extracted_str(MAX_EXTRACTION_LENGTH), expand=True, style='dim')
 
     def _filename_panel(self) -> Panel:
-        return Panel(str(self.file_path), expand=False, style='bright_white reverse')
+        filename = self.file_path.name if Config.hide_dirs else str(self.file_path)
+        return Panel(filename, expand=False, style='bright_white reverse')
 
     def _log_copy_file(self, destination_path: Path, match: Optional[re.Match] = None) -> None:
         """Log info about a file copy."""
