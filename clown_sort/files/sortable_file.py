@@ -20,10 +20,11 @@ from clown_sort.config import Config
 from clown_sort.filename_extractor import FilenameExtractor
 from clown_sort.lib.rule_match import RuleMatch
 from clown_sort.sort_selector import process_file_with_popup
-from clown_sort.util.filesystem_helper import copy_file_creation_time
+from clown_sort.util.filesystem_helper import copy_file_creation_time, loggable_filename
 from clown_sort.util.logging import log
-from clown_sort.util.rich_helper import (bullet_text, comma_join, console, copying_file_log_message,
-     indented_bullet, mild_warning, moving_file_log_message, print_dim_bullet, print_headline, stderr_console)
+from clown_sort.util.rich_helper import (bullet_text, comma_join, console,
+     copying_file_log_message, indented_bullet, mild_warning, moving_file_log_message,
+     print_dim_bullet, stderr_console)
 
 MAX_EXTRACTION_LENGTH = 4096
 NOT_MOVING_FILE = "Not moving file to processed dir because it's"
@@ -197,7 +198,9 @@ class SortableFile:
         return Panel(self._extracted_str(MAX_EXTRACTION_LENGTH), expand=True, style='dim')
 
     def _filename_panel(self) -> Panel:
-        return Panel(str(self.file_path), expand=False, style='bright_white reverse')
+        """Panelized version of the filename for display."""
+        filename = loggable_filename(self.file_path, Config)
+        return Panel(filename, expand=False, style='bright_white reverse')
 
     def _log_copy_file(self, destination_path: Path, match: Optional[re.Match] = None) -> None:
         """Log info about a file copy."""
@@ -209,15 +212,17 @@ class SortableFile:
 
         if destination_path.parent == Config.destination_dir:
             console.print(indented_bullet(log_msg.append('root sorted dir...')))
-        else:
-            log_msg.append(str(destination_path.parent), style='sort_destination')
+            return
 
-            if match is not None:
-                log_msg.append(f" (matched '", style='dim')
-                log_msg.append(match.group(0).strip(), style='magenta dim')
-                log_msg.append("')", style='dim')
+        dirname = loggable_filename(destination_path.parent, Config)
+        log_msg.append(str(dirname), style='sort_destination')
 
-            console.print(indented_bullet(log_msg))
+        if match is not None:
+            log_msg.append(f" (matched '", style='dim')
+            log_msg.append(match.group(0).strip(), style='magenta dim')
+            log_msg.append("')", style='dim')
+
+        console.print(indented_bullet(log_msg))
 
     def _move_to_processed_dir(self) -> None:
         """Relocate the original file to the [SCREENSHOTS_DIR]/Processed/ folder."""

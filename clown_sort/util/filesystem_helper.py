@@ -7,6 +7,7 @@ import re
 import stat
 import time
 from datetime import datetime
+from getpass import getuser
 from os import path
 from pathlib import Path
 from typing import List, Optional, Union
@@ -25,6 +26,9 @@ MOVIE_FILE_EXTENSIONS = ['.mov', '.flv', '.avi']
 IMAGE_FILE_EXTENSIONS = [f".{ext}" for ext in 'tiff jpg jpeg png heic'.split()]
 SORTABLE_FILE_EXTENSIONS = IMAGE_FILE_EXTENSIONS + [PDF_EXTENSION, '.mov']
 MAC_SCREENSHOT_TIMESTAMP_FORMAT = '%Y-%m-%d at %I.%M.%S %p'
+
+ANONYMIZED_USERNAME = 'uzor'
+CURRENT_USERNAME = getuser()
 
 
 def files_in_dir(dir: Union[os.PathLike, str], with_extname: Optional[str] = None) -> List[str]:
@@ -125,6 +129,21 @@ def extract_timestamp_from_filename(filename: str) -> datetime:
         raise ValueError(f"'{filename}' is not a timestamped screenshot file")
 
     return datetime.strptime(match.group(1), MAC_SCREENSHOT_TIMESTAMP_FORMAT)
+
+
+def loggable_filename(file_path: Path, config: 'Config') -> str:
+    """Return a loggable version of the filename."""
+    if config.hide_dirs:
+        return Path(file_path).name
+
+    filename = str(file_path)
+
+    if config.anonymize_user_dir:
+        username_str = f"{path.sep}{CURRENT_USERNAME}{path.sep}"
+        anonuser_str = f"{path.sep}{ANONYMIZED_USERNAME}{path.sep}"
+        return filename.replace(username_str, anonuser_str)
+    else:
+        return filename
 
 
 def _non_hidden_files_in_dir(dir: Union[os.PathLike, str]) -> List[str]:

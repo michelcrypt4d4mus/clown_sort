@@ -1,7 +1,7 @@
 folder,regex
 1mdb,1mdb|jho[-\s.]*low|Victor[-\s.]*Hoo
 3ac,\b3ac\b|Three[-\s.]*Arrows[-\s.]*Capital|su[-\s.]*zhu|zhu[-\s.]*su|kyle[-\s.]*davies|OPNX|Kyle[-\s.]*Davies
-A16Z,a16z|Andreessen|Packym|Arianna[-\s1]*Simpson|Ben[-\s.]*Horowitz|\bAXS\b|\bAli[-\s.]*Yahya|Bitclout
+A16Z,a16z|Andreessen|Packym|Arianna[-\s1]*Simpson|B(en)?[-\s.]*Horowitz|\bAXS\b|\bAli[-\s.]*Yahya|Bitclout
 Aave,\b(Aave|Stani|Kulechov)\b
 AAX,\bAAX(Exchange)?\b
 AEX,\bAEX(Global)?\b
@@ -53,7 +53,7 @@ Changelly,Changelly
 China,fentanyl|\bchin(a|ese)|Hong[-\s.]*Kong|BANK[-\s.]*OF[-\s.]*COMMUNICATIONS|Wan[-\s.]*Kuok|Broken[-\s.]*Tooth|baiyun91586947
 Circle,[@#]circle|usdc|circle[-\s.]*internet|disparte|\ballaire|jerallaire|Macromedia
 CMCC Global,CMCC[-\s.]*Global
-Coinbase,Coinbase|\$COIN\b|brian[-\s.]*armstrong|\b(Aggarwal|grewal|remitly|Venovate)\b|Asiff[-\s.]*Hirji|\bbalaji|Fred[-\s.]*Ehrsam|\$RELY\b|Emilie[-\s.]*Choi\b|BuildOnBase|Digital[-\s.]*Wealth|Asiff[-\s.]*Hirji|Keystone[-\s.]*Capital
+Coinbase,Coinbase|\$COIN\b|brian[-\s.]*armstrong|\b(Aggarwal|grewal|remitly|Venovate)\b|Asiff[-\s.]*Hirji|\bbalaji|Fred[-\s.]*Ehrsam|\$RELY\b|Emilie[-\s.]*Choi\b|BuildOnBase|Digital[-\s.]*Wealth|Asiff[-\s.]*Hirji|Keystone[-\s.]*Capital|jesse[-\s.]*pollak
 CoinField,\b(CoinField|CFC|Manticore|FlaxNFT|Lightman)\b|Sologenic|\bBob[-\s.]\bRas\b
 Coinflex,Mark[-\s.]*Lamb|Roger[-\s.]*Ver|coinflex|Doug[-\s.]*Polk|OPNX|flexusd|Leslie[-\s.]*Lamb|dougpolkvids
 CoinLoan,coinloan|Faliushin\b
