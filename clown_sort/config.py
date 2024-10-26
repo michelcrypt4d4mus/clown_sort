@@ -23,20 +23,23 @@ from clown_sort.util.logging import log, set_log_level
 
 
 class Config:
+    # Non-boolean config vars
+    filename_regex: re.Pattern
+    sort_rules: List[SortRule] = []
+    # Boolean config vars
+    anonymize_user_dir: bool = False
+    delete_originals: bool = False
     debug: bool = False
     dry_run: bool = True
+    hide_dirs: bool = False
+    leave_in_place: bool = False
     manual_sort: bool = False
     manual_fallback: bool = False
     only_if_match: bool = False
-    leave_in_place: bool = False
-    screenshots_only: bool = True
-    delete_originals: bool = False
-    hide_dirs: bool = False
-    rescan_sorted: bool = False
-    yes_overwrite: bool = False
     print_as_parsed: bool = False
-    sort_rules: List[SortRule] = []
-    filename_regex: re.Pattern
+    rescan_sorted: bool = False
+    screenshots_only: bool = True
+    yes_overwrite: bool = False
 
     @classmethod
     def configure(cls):
@@ -52,8 +55,8 @@ class Config:
 
         Config.filename_regex = re.compile(args.filename_regex)
         Config.anonymize_user_dir = True if args.anonymize_user_dir else False
-        Config.hide_dirs = True if args.hide_dirs else False
         Config.delete_originals = True if args.delete_originals else False
+        Config.hide_dirs = True if args.hide_dirs else False
         Config.leave_in_place = True if args.leave_in_place else False
         Config.only_if_match = True if args.only_if_match else False
         Config.rescan_sorted = True if args.rescan_sorted else False

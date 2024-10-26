@@ -129,8 +129,9 @@ def _file_operation_log_message(basename: str, new_file: Path, log_msg: str) -> 
     log_msg += ' '
     log_msg = Text(log_msg)
 
-    if Config.dry_run:
-        log_msg = NOT + log_msg
+    # TODO: pass the Config in here somehow to check for dry_run?
+    # if Config.dry_run:
+    #     log_msg = NOT + log_msg
 
     txt = Text(f"➤ ") + log_msg + Text(basename, style='color(221)')
     txt.append(' to ').append(str(new_file), style='cyan')
