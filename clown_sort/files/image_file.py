@@ -83,7 +83,7 @@ class ImageFile(SortableFile):
         image.save(_thumbnail_bytes, format="PNG")
         return _thumbnail_bytes.getvalue()
 
-    def extract_text(self) -> Optional[str]:
+    def extracted_text(self) -> Optional[str]:
         """Use Tesseract to OCR the text in the image, which is returned as a string."""
         if self.text_extraction_attempted:
             return self._extracted_text

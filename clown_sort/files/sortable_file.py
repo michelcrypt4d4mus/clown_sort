@@ -46,9 +46,9 @@ class SortableFile:
         self._paths_of_sorted_copies: List[Path] = []
 
     def sort_file(self) -> None:
-        """Sort the file to destination_dir subdir."""
+        """Sort the file to destination_dir subdir based on the filename and any extracted text."""
         console.print(self)
-        search_text = self.basename_without_ext + ' ' + (self.extracted_text() or '')
+        search_text = unidecode(self.basename_without_ext + ' ' + (self.extracted_text() or ''))
         rule_matches = RuleMatch.get_rule_matches(search_text)
         sort_folders = [rm.folder for rm in rule_matches]
 
@@ -132,11 +132,6 @@ class SortableFile:
 
     def extracted_text(self) -> Optional[str]:
         """Only PdfFiles and ImageFiles have extracted text; other files are sorted on filename."""
-        txt = self.extract_text()
-        return None if txt is None else unidecode(txt)
-
-    def extract_text(self) -> Optional[str]:
-        """Overridden by PdfFile/ImageFile subclasses. All other files are sorted on filename."""
         return self.basename
 
     def exif_dict(self) -> dict:
