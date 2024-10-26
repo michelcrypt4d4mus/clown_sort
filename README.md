@@ -56,10 +56,10 @@ sort_screenshots --screenshots-dir /Users/hrollins/Pictures/get_in_the_van/tourp
 # Sort with custom rules
 sort_screenshots --rules-csv /Users/hrollins/my_war.csv --execute
 
-# Sort pdfs
+# Sort PDFs
 sort_screenshots -f '.*pdf$' -e
 
-# Sort all but put up the manual folder / filename selector window if file doesn't match any sort rules
+# Sort all files; use the manual folder selector window if file doesn't match any sort rules (may only work on macOS)
 sort_screenshots -a -mf -e
 ```
 
