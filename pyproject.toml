@@ -30,6 +30,10 @@ classifiers = [
 ]
 
 
+[tool.poetry.urls]
+Changelog = "https://github.com/michelcrypt4d4mus/clown_sort/blob/main/CHANGELOG.md"
+
+
 [tool.poetry.dependencies]
 python = "^3.8"
 
