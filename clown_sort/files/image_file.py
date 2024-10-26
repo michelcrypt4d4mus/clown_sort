@@ -117,6 +117,7 @@ class ImageFile(SortableFile):
 
     @staticmethod
     def ocr_text(image: Image.Image, image_name: str) -> Optional[str]:
+        """Use pytesseract to OCR the text in the image and return it as a string."""
         text = None
 
         try:
