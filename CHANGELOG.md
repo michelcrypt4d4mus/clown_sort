@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+# 1.12.0
 * Sort files based on unidecoded ASCII text (i.e. without diacritics, accents, umlauts, etc.)
 * More default sorting rules
 
