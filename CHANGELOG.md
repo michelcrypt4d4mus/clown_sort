@@ -1,4 +1,6 @@
 # NEXT RELEASE
+* Sort files based on unidecoded ASCII text (i.e. without diacritics, accents, umlauts, etc.)
+* More default sorting rules
 
 # 1.11.0
 * New `--hide-dirs` option

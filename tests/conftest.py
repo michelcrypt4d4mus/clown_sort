@@ -45,3 +45,8 @@ def parrot_retweet():
 @pytest.fixture(scope='session')
 def three_of_swords_file():
     return FIXTURES_DIR.joinpath('3 of swords occult.jpeg')
+
+
+@pytest.fixture(scope='session')
+def unicode_filename():
+    return FIXTURES_DIR.joinpath('Déltèç_bank_sücks.png')
