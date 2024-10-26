@@ -15,6 +15,7 @@ from rich.console import Console, ConsoleOptions, RenderResult
 from rich.panel import Panel
 from rich.prompt import Confirm
 from rich.text import Text
+from unidecode import unidecode
 
 from clown_sort.config import Config
 from clown_sort.filename_extractor import FilenameExtractor
@@ -38,6 +39,7 @@ class SortableFile:
         self.basename_without_ext: str = str(Path(self.basename).with_suffix(''))
         self.extname: str = self.file_path.suffix
         self.text_extraction_attempted: bool = False
+
         self._extracted_text: Optional[str] = None
         self._new_basename: Optional[str] = None
         self._filename_extractor: Optional[FilenameExtractor] = None
@@ -124,12 +126,17 @@ class SortableFile:
 
         self._move_to_processed_dir()
 
-    def extracted_text(self) -> Optional[str]:
-        """Only PdfFiles and ImageFiles have extracted text; other files are sorted on filename."""
+    def new_basename(self) -> str:
+        """Basename to rename this file to. Overridden in ImageFile for images with OCR text."""
         return self.basename
 
-    def new_basename(self) -> str:
-        """Return the original basename."""
+    def extracted_text(self) -> Optional[str]:
+        """Only PdfFiles and ImageFiles have extracted text; other files are sorted on filename."""
+        txt = self.extract_text()
+        return None if txt is None else unidecode(txt)
+
+    def extract_text(self) -> Optional[str]:
+        """Overridden by PdfFile/ImageFile subclasses. All other files are sorted on filename."""
         return self.basename
 
     def exif_dict(self) -> dict:
@@ -165,7 +172,7 @@ class SortableFile:
         return destination_path.joinpath(self.new_basename())
 
     def preview(self) -> None:
-        """Attempt to open a separate application to view the image."""
+        """Attempt to open a separate application to view the image (Preview on macOS)."""
         log.info(f"Opening '{self.file_path}'")
 
         if platform.system() == 'Windows':
@@ -175,10 +182,12 @@ class SortableFile:
             run(['open', self.file_path])
 
     def print_extracted_text(self) -> None:
+        """Pretty print the filename and extracted text."""
         console.print(self._filename_panel())
         console.print(self._extracted_str())
 
     def file_size(self) -> int:
+        """Returns file size in bytes."""
         return self.file_path.stat().st_size
 
     def _extracted_str(self, max_chars: Optional[int] = None) -> str:

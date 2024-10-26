@@ -96,7 +96,12 @@ def test_get_rule_matches():
     for hoo in ['Rexy Wang', 'Rexy Hoo', '#Hoo', 'Hoo Exchange', 'HooExchange']:
         check_folders(f"fuck {hoo} yo", ['Hoo'])
 
-    # Non-matches
+
+def test_unicode_matches():
+    check_folders('fuck Déltèç it sücks', ['Tether'])
+
+
+def test_non_rule_matches():
     check_folders("fuck Deltec'ed it sucks", [])
     check_folders('fuck bitfinexed it sucks', [])
     check_folders('fuck DAIS ', [])

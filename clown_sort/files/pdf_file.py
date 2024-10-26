@@ -33,8 +33,8 @@ SCALE_FACTOR = 0.4
 class PdfFile(SortableFile):
     is_presentable_in_popup = None
 
-    def extracted_text(self, page_range: Optional[PageRange] = None) -> Optional[str]:
-        """Use Tesseract to OCR the text in the image, which is returned as a string."""
+    def extract_text(self, page_range: Optional[PageRange] = None) -> Optional[str]:
+        """Use PyPDF to extract text page by page and use Tesseract to OCR any embedded images."""
         if self.text_extraction_attempted:
             return self._extracted_text
 
@@ -65,7 +65,7 @@ class PdfFile(SortableFile):
                         self._log_to_stderr(f"   Processing {image_name}...")
                         page_buffer.print(Panel(image_name, expand=False))
                         image_obj = Image.open(io.BytesIO(image.data))
-                        image_text = ImageFile.extract_text(image_obj, f"{self.file_path} ({image_name})")
+                        image_text = ImageFile.ocr_text(image_obj, f"{self.file_path} ({image_name})")
                         page_buffer.print((image_text or '').strip())
                 except (OSError, NotImplementedError, TypeError, ValueError) as e:
                     error_str = exception_str(e)
@@ -96,7 +96,7 @@ class PdfFile(SortableFile):
         return self._extracted_text
 
     def thumbnail_bytes(self) -> Optional[bytes]:
-        """Return bytes for a thumbnail."""
+        """Return bytes for a thumbnail image."""
         import fitz  # TODO: Can we do this without PyMuPDF dependency?
 
         try:

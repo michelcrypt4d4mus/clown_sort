@@ -83,12 +83,12 @@ class ImageFile(SortableFile):
         image.save(_thumbnail_bytes, format="PNG")
         return _thumbnail_bytes.getvalue()
 
-    def extracted_text(self) -> Optional[str]:
+    def extract_text(self) -> Optional[str]:
         """Use Tesseract to OCR the text in the image, which is returned as a string."""
         if self.text_extraction_attempted:
             return self._extracted_text
 
-        self._extracted_text = ImageFile.extract_text(self.pillow_image_obj(), str(self.file_path))
+        self._extracted_text = ImageFile.ocr_text(self.pillow_image_obj(), str(self.file_path))
         self.text_extraction_attempted = True
         return self._extracted_text
 
@@ -116,7 +116,7 @@ class ImageFile(SortableFile):
     #     log.debug(f"RAW EXIF: {self.raw_exif_dict()}")
 
     @staticmethod
-    def extract_text(image: Image.Image, image_name: str) -> Optional[str]:
+    def ocr_text(image: Image.Image, image_name: str) -> Optional[str]:
         text = None
 
         try:
