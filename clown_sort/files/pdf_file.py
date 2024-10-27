@@ -154,7 +154,7 @@ class PdfFile(SortableFile):
 
     def print_extracted_text(self, page_range: Optional[PageRange] = None) -> None:
         console.print(self._filename_panel())
-        console.print(self.extract_text(page_range=page_range))
+        console.print(self.extracted_text(page_range=page_range))
 
     def _can_be_presented_in_popup(self) -> bool:
         if type(self).is_presentable_in_popup is None:
