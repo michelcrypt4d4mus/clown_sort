@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.12.1
 * Fix bug with `extract_text_from_files` helper tool
 
 # 1.12.0
