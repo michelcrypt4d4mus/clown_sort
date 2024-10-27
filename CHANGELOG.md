@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Fix bug with `extract_text_from_files` helper tool
 
 # 1.12.0
 * Sort files based on unidecoded ASCII text (i.e. without diacritics, accents, umlauts, etc.)
