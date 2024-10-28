@@ -78,7 +78,7 @@ Dragonfly Capital,Dragonfly[-\s_.]*(xyz|Capital)|\bQureshi\b
 DWF,DWF|Andrey[-\s.]*Grachev|\b(grachev|Eug_Ng|Eugene[-\s.]*Ng)\b
 Effective Altruism,\bE\.?A\.?\b|effective[-\s.]*altruism
 Eigenlayer,Eigenlayer
-El Salvador,El[-\s.]*Salvador|Bukele|Max[-\s.]*Keiser
+El Salvador,Bukele|El[-\s.]*Salvador|eNor[-\s.]*Securities|IBenorsecuritiesMaker[-\s.]*X|Max[-\s.]*Keiser|\b(CNAD|Ditobanx|ECOFFEE|ESOY|ESUGAR|GREE3|Inverglag)\b
 Electric Capital,Electric[-\s_.]*Capital|Avichal[-\s_.]*Garg|Curtis[-\s_.]*Spencer|NEAR[-\s_.]*Protocol|@avichal|@curtis|@electriccapital|@nearprotocol|@near|@electriccapital|@avichalgarg|@curtisspencer|@nearprotocol|@electriccapital|@avichal|@curtis|@electriccapital|@nearprotocol|@near|@electriccapital|@avichalgarg|@curtisspencer|@nearprotocol
 Elon Musk,\bTesla\b|\bTSLA\b|\bElon\b|\bElmo\b
 EOS,\b(Bitshares|EOS|(Brendan)?Blumer|Larimer|@B1|Block[-.\s]?One|Northern[-.\s]*Data|Steemit)\b
@@ -125,7 +125,7 @@ JPEX,\b(FUBT|FUC|JPC|JPEX)\b
 Jump Trading,Jump[-\s.]*Trading|@jump_|\bKariya\b
 Justin Sun,BitGlobal|justin[-\s.]*sun|sun[-\s.]*(pump|yuchen)|\b(APENFT|pgala|sunswap|poloniex|web3nina|whitebit|WBT|stUSDT|USDD|USDJ|JST)\b|\bR(ebo|ible)[\b_]|Love[-\s.]*Letters[-\s.]*Limited|Objectivists[-\s.]*Limited|JUST[-\s.]*(Foundation|Lend)|His[-\s.]*Excellency|stUSDT
 Kado,\bKado\b
-Kazakhstan,\b(kazakh|Astana)|Freedom[-\s.]*Holding|\balmaty|Timor[-\s.]*Turlov|\bFFIN[-\s.]*brokerage
+Kazakhstan,\b(kazakh|Astana)|Freedom[-\s.]*Holding|\balmaty|Timor[-\s.]*Turlov|\bFFIN[-\s.]*brokerage|QuantDart
 Kinesis,kinesis|\bKVT\b|\bABX\b|\bKAG\b
 Kraken,kraken|payward|\bjespow\b|Jesse[-\s.]*Powell|\bBit[-\s.]*Trade[-\s.]*Pty\b
 KuCoin,KuCoin
@@ -134,6 +134,7 @@ LBRY,\b(LBC|LBRY|LBRYcom)\b
 Lead Bank,\bLead[-\s.]*Bank\b|Finzly
 Lexpunk Army,lexpunk|gabriel[-\s.]*shapiro|_gabrielShapir0|\blex_node\b
 Lifeboat Foundation,Lifeboat[-\s.]*Foundation
+Lithuania,Lithuania|Vilnius|Paytend
 Lobbying,Chamber[-\s.]*of[-\s.]*Digital[-\s.]*Commerce|Defend[-\s.]*American[-\s.]*Jobs|Fairshake|Protect[-\s.]*Progress|Stand[-\s.]*With[-\s.]*Crypto|Fintech[-\s.]*(Alliance|Association|Innovators|Policy|Sandbox|Task[-\s.]*Force|Working[-\s.]*Group)
 MakerDAO,makerdao|[$#\s]DAI[^\w]|SkyEcosystem
 Malta,\bMalt(a|ese)\b
@@ -147,6 +148,7 @@ Mercantile Bank,Mercantile[-\s.]*(Bank|Trust)|@MercantileBank
 Messari,Ryan[-\s.]*Selkis|twobitidiot|messari|@robustus|Dan[-\s.]*McArdle
 Metallicus,FBBT|Nauvoo|Metallicus|Bitcoinwalking|Bruce[-\s.]*Stewart|\bHayner\b
 Metropolitan Commercial Bank,MCB\b|MCBankNY|Metropolitan[-\s.]*(Bank|Commercial)|Mission[-\s.]*Gateway|Aryeh[-\s.]*Realty
+MEXC,MEXC|John[-\s.]*Chen\b|Yichen[-\s.]*Peng|Ljudmila[-\s.]*Budnikova
 Michael Gastauer,\b(Gastauer|WB21)\b
 Miles Guo,\bguo\b|\bhcoin|himalaya[-\s.]*exchange|\bbannon\b|\bfjb|\bkwok\b|brother[-\s.]*seven|kin[-\s.]*ming[-\s.]*je|william[-\s.]*je\b|\bHaoyun\b|\bLi[-\s.]*You\b
 Miners,bitcoin[-\s.]*min(ing|er)|\$(ARGO|BLOK|BTCM|CAN|CLSK|CORZ|IRIS|IREN|HUT|HIVE|WULF)|Core[-\s.]*Scientific|\bIris[-\s.]*Energy|Blockstream|Terawulf|HUT8|Northern[-.\s]*Data|\b(Cathedra|MineOne|Bison[-\s.]*Blockchain|Cloverpool|BTCom)\b|Northern[-.\s]*Data
@@ -209,13 +211,13 @@ Synapse,Synapse(fi|labs|protocol)?\b
 TassatPay,\bTassat(Pay)?\b
 Telegram,\b(Ton[-\s.]*(Network|(Block)?chain)|Telegram|(Pavel)?Durov|Toncoin)\b|[$#]TON\b
 TerraLuna,\bluna\b|do[-\s.]*kwon|stablekwon|\bTerra(form|Luna)?\b|Macedo|\bLuna[-\s.]*Foundation\b|Mirror[-\s.]*Protocol
-Tether,\b(Abraxas|Adecoagro|Apeiron|Barrai|BFX(NA|WW|[-\s.]*Ventures)|FMX|Lutnick|Bitfinex|BlueBit|Britannia|Chesham|CityPay|Coinapult|CoinMENA|D10e|Danieletto|Devasini|DeversiFi|Elysium|Eqonex|Ethfinex|Evertune|Fincluster|Friedberg|Frontini|GamesTV|GoCoin|Harborne|Hoegner|Huashun|Heka(Funds)?|IGEL|Infomatec|Lagorio|Liquidity[-\s.]*Labs|Ludovicus|(Master|Real)coin|Mallers|Mincione|Noblex|Pairstech|Paolo(Ardoino)?|Pirro|Playsino|Renrenbee|Rhino\.fi|Sakulkrit|Sakunkrit|Satellogic|Sestagalli|SFP|SHRM|Sinopec|SJMBT|Spectrocoin|Stablehouse|Sunlot|Tackett|Tether|Todaro|Tuxia|urwhatyouknow|USDT|Velutini|XBTO|Xfire|Yantis|Ypsilon[-\s.]*Holding|Zuaiter)\b|Noble[-\s.]*Bank|\bDeltec[^\']|\b(B[ei]t|i|Digi?|Eth)f?inex[^e']|\bbrock([-\s.]*pierce)?\b|Clearstone[-\s.]*Global|Capital[-\s.]*Union|Global[-\s.]*Trad(ing|e)[-\s.]*Solutions|[$#]LEO\b|Phil[-\s.]*Potter|Samson[-\s.]*Mow|Gabor[-\s.]*Gurbacs|Paul[-\s.]*Eisma|Philippe[-\s.]*Bekhazi|Reeve[-\s.]*Collins|phil(ip)?[-\s.]*potter\b|Van[-\s.]*der[-\s.]*Velde|Perpetual[-\s.]*Action[-\s.]*Group|Global[-\s.]*Trade[-\s.]*Solutions|reginald[-\s.]*fowler|Amos[-\s.]*Ltd|William[-\s.]*Quigley|Blade[-\s.]*payments|Five[-\s.]*Delta|gabriel[-\s.]*sukenik|R(ondell|[ho][ho]n)[-\s.]*(Clyde)?[-\s.]*Monroe|Mainstreet[-\s.]*Partners|Far[-\s.]*Eastern[-\s.]*International|White[-\s.]*Plains[-\s.]*Capital|BANK[-\s.]*OF[-\s.]*COMMUNICATIONS|Josue[-\s.]*Lopez|Stacy[-\s.]*Herbert|Sunrise[-\s.]*Technology|Bao[-\s.]*Ying[-\s.]*Cao|Northern[-.\s]*Data|Zettahash|Cantor[-\s.]*Fitzgerald|UQUID
+Tether,\b(Abraxas|AbT|Adecoagro|Apeiron|Barrai|BFX(NA|WW|[-\s.]*Ventures)|FMX|Lutnick|Bitfinex|BlueBit|Britannia|Chesham|CityPay|Coinapult|CoinMENA|D10e|Danieletto|Devasini|DeversiFi|Elysium|Eqonex|Ethfinex|Evertune|Fincluster|Friedberg|Frontini|GamesTV|GoCoin|Harborne|Hoegner|Huashun|Heka(Funds)?|IGEL|Infomatec|Lagorio|Liquidity[-\s.]*Labs|Ludovicus|(Master|Real)coin|Mallers|Mincione|Noblex|Pairstech|Paolo(Ardoino)?|Pirro|Playsino|Renrenbee|Rhino\.fi|Sakulkrit|Sakunkrit|Satellogic|Sestagalli|SFP|SHRM|Sinopec|SJMBT|Spectrocoin|Stablehouse|Sunlot|Tackett|Tether|Todaro|Tuxia|urwhatyouknow|USDT|Velutini|XBTO|Xfire|Yantis|Ypsilon[-\s.]*Holding|Zuaiter)\b|Noble[-\s.]*Bank|\bDeltec[^\']|\b(B[ei]t|i|Digi?|Eth)f?inex[^e']|\bbrock([-\s.]*pierce)?\b|Clearstone[-\s.]*Global|Capital[-\s.]*Union|Global[-\s.]*Trad(ing|e)[-\s.]*Solutions|[$#]LEO\b|Phil[-\s.]*Potter|Samson[-\s.]*Mow|Gabor[-\s.]*Gurbacs|Paul[-\s.]*Eisma|Philippe[-\s.]*Bekhazi|Reeve[-\s.]*Collins|phil(ip)?[-\s.]*potter\b|Van[-\s.]*der[-\s.]*Velde|Perpetual[-\s.]*Action[-\s.]*Group|Global[-\s.]*Trade[-\s.]*Solutions|reginald[-\s.]*fowler|Amos[-\s.]*Ltd|William[-\s.]*Quigley|Blade[-\s.]*payments|Five[-\s.]*Delta|gabriel[-\s.]*sukenik|R(ondell|[ho][ho]n)[-\s.]*(Clyde)?[-\s.]*Monroe|Mainstreet[-\s.]*Partners|Far[-\s.]*Eastern[-\s.]*International|White[-\s.]*Plains[-\s.]*Capital|BANK[-\s.]*OF[-\s.]*COMMUNICATIONS|Josue[-\s.]*Lopez|Stacy[-\s.]*Herbert|Sunrise[-\s.]*Technology|Bao[-\s.]*Ying[-\s.]*Cao|Northern[-.\s]*Data|Zettahash|Cantor[-\s.]*Fitzgerald|UQUID|TG[-\s.]*Commodities
 Thailand,\b(Thailand|Bangkok|Thai)\b
 Tornado Cash,tornado[-\s.]*cash
 Transactive Systems UAB,Transactive[-\s.]*Systems
 Tron,\btron\b|tron(block|[-\s.]*)?chain|trondao|TRX\b
 TrueUSD,\b(TGBP|TUSD|TCNH|TAUD|TrueCoin|TrueUSD|TrueFi|TrustExplorer|Techteryx|Jaiyong|TrustLabs)\b
-Trump,\b((real)?(donald)?Trump|(J\.?D\.?)?Vance|9mm_?SMG|BehizyTweets|Cynical[-\s.]*Publius|MattWalshBlog|ScottPresler|WLFI)\b|World[-\s.]*Liberty[-\s.]*Fi
+Trump,\b((real)?(donald)?Trump|(J\.?D\.?)?Vance|9mm_?SMG|BehizyTweets|Cynical[-\s.]*Publius|MattWalshBlog|ScottPresler|WLFI)\b|World[-\s.]*Liberty[-\s.]*Fi|FiveTimesAugust
 Uniswap,\b(Hayden[-\s.]*Adams|UNI|Uniswap)\b
 Uzbekistan,Uzbekistan|UzNEX
 Vauld,Vauld
