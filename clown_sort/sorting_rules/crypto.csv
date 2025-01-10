@@ -151,7 +151,7 @@ Metropolitan Commercial Bank,MCB\b|MCBankNY|Metropolitan[-\s.]*(Bank|Commercial)
 MEXC,MEXC|John[-\s.]*Chen\b|Yichen[-\s.]*Peng|Ljudmila[-\s.]*Budnikova
 Michael Gastauer,\b(Gastauer|WB21)\b
 Miles Guo,\bguo\b|\bhcoin|himalaya[-\s.]*exchange|\bbannon\b|\bfjb|\bkwok\b|brother[-\s.]*seven|kin[-\s.]*ming[-\s.]*je|william[-\s.]*je\b|\bHaoyun\b|\bLi[-\s.]*You\b
-Miners,bitcoin[-\s.]*min(ing|er)|\$(ARGO|BLOK|BTCM|CAN|Cango|CLSK|CORZ|IRIS|IREN|HUT|HIVE|WULF)|Core[-\s.]*Scientific|\bIris[-\s.]*Energy|Blockstream|Terawulf|HUT8|Northern[-.\s]*Data|\b(Cathedra|MineOne|Bison[-\s.]*Blockchain|Cloverpool|BTCom)\b|Northern[-.\s]*Data
+Miners,bitcoin[-\s.]*min(ing|er)|\$(ARGO|BLOK|BTCM|CAN|CLSK|CORZ|IRIS|IREN|HUT|HIVE|WULF)|\b(Bison[-\s.]*Blockchain|BitFuFu|Blockstream|BTCom|Cathedra|Cloverpool|Core[-\s.]*Scientific|HUT8|Iris[-\s.]*Energy|MineOne|Northern[-.\s]*Data|Terawulf)\b
 Moneta,\b(Krypital|Moneta|MMXN|Trubit)\b
 Moonpay,\bmoonpay
 MSTR,\b(Saylor|MSTR|MicroStrategy)\b
