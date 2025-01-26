@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+# 1.13.0
 * `purge_non_images_from_dir()` script
 
 ### 1.12.1
