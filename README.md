@@ -156,6 +156,9 @@ This will parse and display the text in `MY_FILE1`, `MY_FILE2`, and all the file
 `extract_pages_from_pdf` is a small script that can extract page ranges (e.g. "10-25") from PDFs on the command line.
 ![](doc/extract_pages_from_pdf_help.png)
 
+#### Purging PDFs for a directory
+`purge_non_images_from_dir` is a small script that will remove PDFs from a directory as long as there is at least one other copy of that PDF in the sorted file hierarchy.
+
 
 # Contributing
 Feel free to file issues or open pull requests.

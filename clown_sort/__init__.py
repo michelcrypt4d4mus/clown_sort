@@ -1,6 +1,7 @@
 """
 Entry point for all of the clown_sort scripts.
 """
+import shutil
 from argparse import Namespace
 from glob import glob
 from os import environ, getcwd, path
@@ -16,7 +17,8 @@ if not environ.get('INVOKED_BY_PYTEST', False):
             load_dotenv(dotenv_path=dotenv_file)
             break
 
-from clown_sort.util.argument_parser import parse_text_extraction_args, parse_pdf_page_extraction_args
+from clown_sort.util.argument_parser import (parse_text_extraction_args, parse_pdf_page_extraction_args,
+     purge_arg_parser)
 from clown_sort.config import Config
 from clown_sort.files.image_file import ImageFile
 from clown_sort.files.pdf_file import PdfFile
@@ -24,7 +26,7 @@ from clown_sort.files.sortable_file import SortableFile
 from clown_sort.sort_selector import process_file_with_popup
 from clown_sort.util.filesystem_helper import (IMAGE_FILE_EXTENSIONS, files_in_dir, is_image,
       is_pdf, set_timestamp_based_on_screenshot_filename)
-from clown_sort.util.logging import log
+from clown_sort.util.logging import log, set_log_level
 from clown_sort.util.rich_helper import console
 
 
@@ -128,3 +130,32 @@ def build_sortable_file(file_path: Union[str, Path]) -> SortableFile:
         return PdfFile(file_path)
     else:
         return SortableFile(file_path)
+
+
+def purge_non_images_from_dir() -> None:
+    """Find all non images in a dir and purge them if they appear elsewhere in the sorted hierarchy."""
+    args = Config.configure(purge_arg_parser)
+    sorted_files = SortableFile.all_sorted_files()
+    set_log_level('INFO')
+
+    for subdir in args.subdirs_to_purge:
+        console.print(f"Purging '{subdir}' of non-images...")
+
+        for file_path in files_in_dir(Config.sorted_screenshots_dir.joinpath(subdir)):
+            if not is_pdf(file_path):
+                log.debug(f"Skipping image '{file_path}'...")
+                continue
+
+            basename = path.basename(file_path)
+            console.print(f"Checking for '{basename}' in sorted files...")
+            matching_files = [f for f in sorted_files if f.name == basename]
+
+            if len(matching_files) <= 1:
+                console.print(f" -> Only {len(matching_files)} copies of '{basename}'...", style="dim")
+                continue
+
+            processed_file_path = Config.processed_screenshots_dir.joinpath(basename)
+            shutil.move(file_path, processed_file_path)
+            console.print(f"    Found {len(matching_files)} copies of '{basename}'...")
+            console.print(f"    Moved '{file_path}' to '{processed_file_path}'...", style="red")
+            console.line()

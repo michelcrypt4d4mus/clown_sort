@@ -162,3 +162,19 @@ def parse_pdf_page_extraction_args() -> Namespace:
         sys.exit(1)
 
     return args
+
+
+##############################################
+# Parse args for purge_non_images_from_dir() #
+##############################################
+purge_arg_parser = ArgumentParser(
+    add_help=False,
+    description="Check if a file exists in the sorted directory structure.",
+    parents=[parser],
+)
+
+purge_arg_parser.add_argument(
+    'subdirs_to_purge',
+    help='Sorted subdirectories to purge non-image files from',
+    metavar='DIR',
+    nargs='+')

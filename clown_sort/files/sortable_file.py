@@ -5,6 +5,7 @@ import re
 import platform
 import shutil
 from collections import namedtuple
+from glob import glob
 from os import path, remove
 from pathlib import Path
 from subprocess import run
@@ -292,6 +293,17 @@ class SortableFile:
         if Config.debug:
             yield bullet_text('EXIF: ')
             yield f"   {self.exif_dict()}\n\n"
+
+    @classmethod
+    def all_sorted_files(cls) -> List[Path]:
+        """Return all the files in the sorted directory."""
+        file_paths = []
+
+        for pattern in ['*', '**/*']:
+            glob_pattern = Config.sorted_screenshots_dir.joinpath(pattern)
+            file_paths.extend(glob(str(glob_pattern)))
+
+        return [Path(f) for f in file_paths]
 
     @staticmethod
     def confirm_file_overwrite(file_path: Path) -> bool:

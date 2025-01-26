@@ -3,7 +3,7 @@ Global configuration.
 """
 import re
 import sys
-from argparse import Namespace
+from argparse import ArgumentParser, Namespace
 from importlib.metadata import version
 from os import environ
 from pathlib import Path
@@ -42,13 +42,13 @@ class Config:
     yes_overwrite: bool = False
 
     @classmethod
-    def configure(cls):
+    def configure(cls, _parser: Optional[ArgumentParser] = None) -> Namespace:
         """Parse arguments and configure."""
         if '--version' in sys.argv:
             print(f"{PACKAGE_NAME} {version(PACKAGE_NAME)}")
             sys.exit()
 
-        args: Namespace = parser.parse_args()
+        args: Namespace = (_parser or parser).parse_args()
 
         if args.debug:
             cls.enable_debug_mode()
@@ -97,6 +97,8 @@ class Config:
                     sys.exit(-1)
 
                 Config.manual_fallback = True
+
+        return args
 
     @classmethod
     def set_directories(

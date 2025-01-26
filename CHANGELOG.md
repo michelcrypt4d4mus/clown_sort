@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* `purge_non_images_from_dir()` script
 
 ### 1.12.1
 * Fix bug with `extract_text_from_files` helper tool
