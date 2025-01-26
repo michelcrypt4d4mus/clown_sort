@@ -62,7 +62,7 @@ class PdfFile(SortableFile):
                 try:
                     for image_number, image in enumerate(page.images, start=1):
                         image_name = f"Page {page_number}, Image {image_number}"
-                        self._log_to_stderr(f"   Processing {image_name}...")
+                        self._log_to_stderr(f"   Processing {image_name}...", "dim")
                         page_buffer.print(Panel(image_name, expand=False))
                         image_obj = Image.open(io.BytesIO(image.data))
                         image_text = ImageFile.ocr_text(image_obj, f"{self.file_path} ({image_name})")
@@ -167,12 +167,12 @@ class PdfFile(SortableFile):
 
         return type(self).is_presentable_in_popup
 
-    def _log_to_stderr(self, msg: str) -> None:
+    def _log_to_stderr(self, msg: str, style: Optional[str] = None) -> None:
         """When parsing very large PDFs it can be useful to log progress and other messages to STDERR."""
         if self.file_size() < MIN_PDF_SIZE_TO_LOG_PROGRESS_TO_STDERR:
             return
 
-        stderr_console.print(msg)
+        stderr_console.print(msg, style=style or "")
 
     def _handle_extraction_error(self, page_number: int, error_msg: str) -> None:
         """Rip the offending page to a new file and suggest that user report bug to PyPDF."""
