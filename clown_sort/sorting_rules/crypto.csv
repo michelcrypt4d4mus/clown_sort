@@ -1,7 +1,7 @@
 folder,regex
 1mdb,1mdb|jho[-\s_.]*low|Victor[-\s_.]*Hoo
 3ac,\b3ac\b|Three[-\s_.]*Arrows[-\s_.]*Capital|su[-\s_.]*zhu|zhu[-\s_.]*su|kyle[-\s_.]*davies|OPNX|Kyle[-\s_.]*Davies
-A16Z,a16z|Andreessen|Packym|Arianna[-\s1]*Simpson|B(en)?[-\s_.]*Horowitz|\bAXS\b|\bAli[-\s_.]*Yahya|Bitclout|Pronomos|Chris[-\s_.]*Dixon
+A16Z,a16z|Andreessen|Packym|Arianna[-\s1]*Simpson|B(en)?[-\s_.]*Horowitz|\bAXS\b|\bAli[-\s_.]*Yahya|Bitclout|Pronomos|Chris[-\s_.]*Dixon|\bSolano\b
 Aave,\b(Aave|Stani|Kulechov)\b
 AAX,\bAAX(Exchange)?\b
 AEX,\bAEX(Global)?\b
@@ -49,6 +49,7 @@ Bybit,\b(Ben[-\s_.]*Zhou|(Invest|Travel)?ByBit|Mirana|Time[-\s_.]*Research|Sean[
 Cambodia,Cambodia|\bkhmer\b|Prince[-\s_.]*Group
 Cardano,Cardano|[$\s]ADA[^\w]|Hoskinson|\bIOHK
 Cathie Wood,Cathie[-\s_.]*Wood|\bARK(F|G|K|[-\s_.]*Innovation|[-\s_.]*Invest)|\bIZRL
+CFPB,CFPB|Consumer[-\s_.]*Financial[-\s_.]*Protection[-\s_.]*Bureau|consumerfinance\.gov
 Celsius,celsius|mashinsky|levity[-_\s.]*and[-_\s.]*love|\bcelsian|Artur[-_\s.]*Abreu|ronpaulbot|\bnuke[-_\s.]*gold(stein)?|Cohen\-Pavon|FXVC
 Chain Analytics Companies,\b(BitOK|Bitrace|Chainalysis|Dune[-\s_.]*Analytics|dune\.com|Elliptic|Chainalysis|Flipside.xyz|Inca[-\s_.]*Digital|TRM[-\s_.]*Labs)\b
 Changelly,Changelly
@@ -73,6 +74,7 @@ dalle,craiyon|midjourney|\bdall[-\s_.]*e\b
 DAOs,\b(aragon(project)?|augur(project)?|gopartyparrot|nounsdao|ParrotDAO|Spartacus_Fi)\b|\$(PRT|REP|ROOK|SPA)\b
 Darknet Markets,\b(Alphabay|DNM|darknet)\b|(Dream|Empire|Evolution|Hansa)[-\s_.]*Market
 DCG,DCG|digital[-\s_.]*currency[-\s_.]*group|sh?ill?bert|Grayscale|GBTC|\bkraines\b|hq[-\s_.]*digital|Alana[-\s_.]*Ackerson|Jennifer[-\s_.]*Mitrenga|Emily[-\s_.]*(Heather[-\s_.]*)?Goodman|Founders[-\s_.]*Liquidity[-\s_.]*Fund|Zcash|\bYuma\b
+DeepSeek,DeepSeek|High[-\s_.]*Flyer|\bWenfeng
 DeFi,\b(1inch|Apex|Balancer|crvUSD|Curve|defi|DODO|dYdX|Egorov|Kine|MCDEX|Multichain|WOOFi)\b|decentralized[-\s_.]*finance|(Baby|Cro|Defi|IceCream|Leet|Pancake|Para|Quick|Sake|Shiba|Sushi|Sun|SWFT|Sync|Uni)Swap|(Apex|Maverick|Perpetual)[-\s_.]*Protocol|Trader[-\s_.]*Joe[^']|Compound[-\s_.]*Fi
 Deribit,deribit\b
 Dragonfly Capital,Dragonfly[-\s_.]*(xyz|Capital)|\bQureshi\b
@@ -148,7 +150,7 @@ Memes,\bmeme\b
 Mercantile Bank,Mercantile[-\s_.]*(Bank|Trust)|@MercantileBank
 Messari,Ryan[-\s_.]*Selkis|twobitidiot|messari|@robustus|Dan[-\s_.]*McArdle
 Metallicus,FBBT|Nauvoo|Metallicus|Bitcoinwalking|Bruce[-\s_.]*Stewart|\bHayner\b
-Metropolitan Commercial Bank,MCB\b|MCBankNY|Metropolitan[-\s_.]*(Bank|Commercial)|Mission[-\s_.]*Gateway|Aryeh[-\s_.]*Realty
+Metropolitan Commercial Bank,MCB\b|MCBankNY|Metropolitan[-\s_.]*(Bank|Commercial)|Mission[-\s_.]*Gateway|Aryeh[-\s_.]*Realty|MovoCash
 MEXC,MEXC|John[-\s_.]*Chen\b|Yichen[-\s_.]*Peng|Ljudmila[-\s_.]*Budnikova
 Michael Gastauer,\b(Gastauer|WB21)\b
 Miles Guo,\bguo\b|\bhcoin|himalaya[-\s_.]*exchange|\bbannon\b|\bfjb|\bkwok\b|brother[-\s_.]*seven|kin[-\s_.]*ming[-\s_.]*je|william[-\s_.]*je\b|\bHaoyun\b|\bLi[-\s_.]*You\b
@@ -172,7 +174,7 @@ OpenPayd,openpayd|CFD[-\s_.]*Team
 OpenSea,OpenSea\b
 PAG,\bpag\b|Weijian[-\s_.]*Shan
 Pantera Capital,\b(Morehead|Pantera)\b
-Paradigm,Fred[-\s_.]*Ehrsam|paradigm\b
+Paradigm,Fred[-\s_.]*Ehrsam|paradigm\b|caitlinxyz
 Paul LeRoux,leroux
 Paxful,paxful|Ray[-\s_.]*(Youssef|Savant)|Artur[-\s_.]*Schaback
 Paxos,\b(paxos|BUSD|USDP|PAXG|PYUSD)\b
@@ -192,7 +194,7 @@ RIOT,[$#]RIOT\b|Riot[-\s]*(Block|Platform)|Bioptix|\bMidas[-\s_.]*Immersion|Whin
 Ripple,XRP|garlinghouse|\bripple\b
 Rollbit,\b(Rollbit|RLB)\b
 Russia,\b(Bankoff|Bitriver|Cryptomus|Diamville|Moscow|Prigozhin|Putin|Rosbank|Russian?|Service[-\s_.]*K|Troitskaya)\b|Wagner[-\s_.]*(Group|Network)|Afanasyeva|Terekhova
-Safemoon,Safemoon
+Safemoon,Safemoon|(John)?[-\s_.]*Karony\b
 Saitama,SAITAMA
 Satoshi,Satoshi|Nakamoto
 Saudi Arabia,\bSaudi(Arabia)?\b
