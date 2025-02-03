@@ -11,7 +11,7 @@ from pathlib import Path
 from typing import Optional, Union
 
 import pytesseract
-from PIL import Image
+from PIL import Image, TiffImagePlugin
 from PIL.ExifTags import TAGS
 from rich.pretty import pprint
 
@@ -50,12 +50,13 @@ class ImageFile(SortableFile):
         try:
             self.pillow_image_obj().save(destination_path, exif=exif_data)
             copy_file_creation_time(self.file_path, destination_path)
-        except (TypeError, ValueError) as e:
+        except (NotImplementedError, TypeError, ValueError) as e:
             console.print_exception()
             console.print(error_text(f"Failed to save '{self.file_path}'").append("\nEXIF DATA:"))
+            pprint(self.printable_exif_dict(), expand_all=True, indent_guides=False)
 
-            for k, v in exif_data.items():
-                console.print(exif_data, expand_all=True, indent_guides=False)
+            if self.extname.lower().startswith('.tif'):
+                console.print(error_text("TIFF files are sometimes not supported."))
 
             raise e
 
@@ -100,6 +101,22 @@ class ImageFile(SortableFile):
     def raw_exif_dict(self) -> Image.Exif:
         """Return a key/value list of exif tags where keys are integers."""
         return self.pillow_image_obj().getexif()
+
+    def printable_exif_dict(self, exif_data: Optional[dict] = None) -> dict:
+        """Return a dict of the exif tags with the unprintable values coerced to something printable."""
+        pprint(f"called with exif_data: {exif_data}")
+        exif_data = exif_data or self.exif_dict()
+        new_dict = {}
+
+        for k, v in exif_data.items():
+            if isinstance(v, bytes):
+                new_dict[k] = f"<{len(v)} raw bytes>"
+            elif isinstance(v, TiffImagePlugin.IFDRational):
+                new_dict[k] = float(v)
+            else:
+                new_dict[k] = v
+
+        return new_dict
 
     def pillow_image_obj(self) -> Image.Image:
         """Return the file as Pillow Image object."""
