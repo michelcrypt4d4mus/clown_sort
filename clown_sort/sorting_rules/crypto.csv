@@ -37,7 +37,7 @@ Bittrex,Bittrex|Ritchie[-\s_.]*Lai|Kiran[-\s_.]*Raj|John[-\s_.]*Roth\b|\bAquila\
 Bitzlato,Bitzlato
 Block,\b(SQ)\b
 Blockchain.com,\bblockchain\.com\b|@blockchain\b|@AskBlockchain\b|Patrick[-\s_.]*McHenry
-Blockchain8,Blockchain8|tom[-\s_.]*emmer|GOPMajorityWhip|ritchie[-\s_.]*torres|repritchie|Warren[-\s_.]*Davidson|Byron[-\s_.]*Donalds|Ted[-\s_.]*(Budd|Cruz)|Josh[-\s_.]*Gotheimer|Jake[-\s_.]*Auchincloss|Darren[-\s_.]*Soto|ro[-\s_.]*khanna|KMSmithDC|Kristin[-\s_.]*Smith\b|Warren[-\s_.]*Davidson|PerianneDC|Mi(ke|chael)[-\s_.]*Collins|Crypto[-\s_.]*Ball|\b(Sen)(Lummis|tTuberville)\b|BasedMikeLee|AndyOgles
+Blockchain8,Blockchain8|tom[-\s_.]*emmer|GOPMajorityWhip|ritchie[-\s_.]*torres|repritchie|Warren[-\s_.]*Davidson|Byron[-\s_.]*Donalds|Ted[-\s_.]*(Budd|Cruz)|Josh[-\s_.]*Gotheimer|Jake[-\s_.]*Auchincloss|Darren[-\s_.]*Soto|ro[-\s_.]*khanna|KMSmithDC|Kristin[-\s_.]*Smith\b|Warren[-\s_.]*Davidson|PerianneDC|Mi(ke|chael)[-\s_.]*Collins|Crypto[-\s_.]*Ball|\b(Sen)(Lummis|Tuberville)\b|BasedMikeLee|Andy[-\s_.]*Ogles|\bGillibrand\b
 Blockchain Capital,Blockchain[-\s_.]*Capital|\bbrock\b|brockpierce|Friedlander
 BlockFi,BlockFi|Zac[-\s_.]*Prince|Brian[-\s_.]*Oliver
 Blockstream,Blockstream
@@ -45,6 +45,7 @@ Bored Ape Yacht Club,\bBAYC\b|Bored[-\s_.]*Ape|yuga[-\s_.]*labs
 Brock Pierce,\b(Bywire|IGE|R3T|Ying)\b|brock[-\s_.]*pierce|Karla[-\s_.]*Ballard|Brittany[-\s_.]*Kaiser|Medici[-\s_.]*Bank|Yidel[-\s_.]*Perlstein
 Broettes,Nicole[-\s_.]*Behnam|natbrunell
 Bros,\bAnsem\b|ashcryptoreal|cryptomanran|gainzy|\bRan[-\s_.]*Neuner|trillionUSD|nic[-\s_.]*carter|bitboy|ben[-\s_.]*armstrong|basedkarbon|dotkrueger|julianhosp|thecryptolark|adam([-\s_.]*back|3us)|@DegenSp|APompliano|IIICapital|\bMeltem\b|algodtrading|whatbitcoindid|CryptoKaleo|Mike[-\s_.]*Alfred|natbrunell|natalie[-\s_.]*brunell|stackersatoshi|Max[-\s_.]*Keiser|Cowboy[-\s_.]*Crypto|minimalcsgo|\bParish\b|AP[-\s_.]*(Archpublic|Abacus)|greg16676935420|@Aridavidpaul|\bAri[-\s_.]*Paul\b|raoul(gmi|[-\s_.]*pal)|mccormack|andr3w|andrew[-\s_.]*wang|\b(JW)?[-\s_.]*Verret\b|@FlurETH\b|wolf[-\s_.]*of[-\s_.]*all[-\s_.]*streets|scott[-\s_.]*melker|\bKaleo\b|imperooterxbt|francis[-\s_.]*pouliot|ThinkingUSD
+BTC-e,\b(BTC-?e|Vinnik|Bilyuchenko)\b
 Bybit,\b(Ben[-\s_.]*Zhou|(Invest|Travel)?ByBit|Mirana|Time[-\s_.]*Research|Sean[-\s_.]*Tan|Germaine[-\s_.]*Tan|Weizheng[-\s_.]*Ye|Nashon[-\s_.]*Loo)\b
 Cambodia,Cambodia|\bkhmer\b|Prince[-\s_.]*Group
 Cardano,Cardano|[$\s]ADA[^\w]|Hoskinson|\bIOHK
@@ -77,6 +78,7 @@ DCG,DCG|digital[-\s_.]*currency[-\s_.]*group|sh?ill?bert|Grayscale|GBTC|\bkraine
 DeepSeek,DeepSeek|High[-\s_.]*Flyer|\bWenfeng
 DeFi,\b(1inch|Apex|Balancer|crvUSD|Curve|defi|DODO|dYdX|Egorov|Kine|MCDEX|Multichain|WOOFi)\b|decentralized[-\s_.]*finance|(Baby|Cro|Defi|IceCream|Leet|Pancake|Para|Quick|Sake|Shiba|Sushi|Sun|SWFT|Sync|Uni)Swap|(Apex|Maverick|Perpetual)[-\s_.]*Protocol|Trader[-\s_.]*Joe[^']|Compound[-\s_.]*Fi
 Deribit,deribit\b
+DOGE,\bglow[-\s_.]*(savings|yield)|Cole[-\s_.]*Killian|Coristine
 Dragonfly Capital,Dragonfly[-\s_.]*(xyz|Capital)|\bQureshi\b
 DWF,DWF|Andrey[-\s_.]*Grachev|\b(grachev|Eug_Ng|Eugene[-\s_.]*Ng)\b
 Effective Altruism,\bE\.?A\.?\b|effective[-\s_.]*altruism
@@ -119,6 +121,7 @@ Hela Labs,\b(Ting[-\s_.]*Shang[-\s_.]*Ping|Andy[-\s_.]*Ting)\b
 Hex,\bHex\b|[#$]Hex|Pulsechain|Richard[-\s_.]*Heart|Hexican
 Hoo,\bHoo[-\s_.]*(Research|Exchange|Smart)|\bHoo\b|Rexy[-\s_.]*(Hoo|Wang)
 Huobi,huobi|jiao_newlife|jiaojiao|Leon[-\s_.]*Li\b|\b(GoPlus|Walken|HTX)\b
+Huione Guarantee,\b(Huione|USDH)\b
 Internet Computer,\bICP\b|Dominic[-\s_.]*Williams
 Iran,\b(Iran|Iranian|Nobitex|CoinNik|Wallex|Sarmayex|Rabex)\b
 Islamic Coin,islamic[-\s_.]*coin
@@ -173,7 +176,7 @@ Ooki DAO,\bOoki(DAO)?\b
 OpenPayd,openpayd|CFD[-\s_.]*Team
 OpenSea,OpenSea\b
 PAG,\bpag\b|Weijian[-\s_.]*Shan
-Pantera Capital,\b(Morehead|Pantera)\b
+Pantera Capital,\b(Morehead|Pantera|Franklin[-\s_.]*Bi)\b
 Paradigm,Fred[-\s_.]*Ehrsam|paradigm\b|caitlinxyz
 Paul LeRoux,leroux
 Paxful,paxful|Ray[-\s_.]*(Youssef|Savant)|Artur[-\s_.]*Schaback
