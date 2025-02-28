@@ -8,7 +8,7 @@ from typing import Optional
 
 from PIL import Image
 from pypdf import PdfReader, PdfWriter
-from pypdf.errors import DependencyError, EmptyFileError
+from pypdf.errors import DependencyError, EmptyFileError, PdfStreamError
 from rich.console import Console
 from rich.markup import escape
 from rich.panel import Panel
@@ -89,7 +89,10 @@ class PdfFile(SortableFile):
         except DependencyError:
             log_optional_module_warning('pdf')
         except EmptyFileError:
-            log.warn("Skipping empty file!")
+            log.warning("Skipping empty file!")
+        except PdfStreamError as e:
+            print_error(f"Error parsing PDF file '{self.file_path}': {e}")
+            stderr_console.print_exception()
 
         self._extracted_text = "\n\n".join(extracted_pages).strip()
         self.text_extraction_attempted = True
@@ -105,10 +108,15 @@ class PdfFile(SortableFile):
             log.warning(f"Failed to get bytes for '{self.file_path}'")
             return None
 
-        # Resize the thumbnail to fit the screen
-        log.debug(f"Getting bytes for '{self.file_path}'...")
-        zoom_matrix = fitz.Matrix(fitz.Identity).prescale(SCALE_FACTOR, SCALE_FACTOR)
-        page = doc[0]
+        try:
+            # Resize the thumbnail to fit the screen
+            log.debug(f"Getting bytes for '{self.file_path}'...")
+            zoom_matrix = fitz.Matrix(fitz.Identity).prescale(SCALE_FACTOR, SCALE_FACTOR)
+            page = doc[0]
+        except IndexError as e:
+            print_error(f"Error getting thumbnail for PDF file '{self.file_path}': {e}")
+            return None
+
         bottom_right = page.rect.br
         page_height = bottom_right[1]
         page_width = bottom_right[0]
