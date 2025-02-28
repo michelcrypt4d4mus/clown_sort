@@ -1,5 +1,6 @@
 # NEXT RELEASE
 * Fix handling of `fitz.EmptyFileError`
+* New crypto sorting rules
 
 ### 1.13.1
 * Fix logging of EXIF data when there's an exception attempting to save an image
