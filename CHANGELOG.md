@@ -1,5 +1,6 @@
 # NEXT RELEASE
 * Fix handling of `fitz.EmptyFileError`
+* Fix handling of thumbnails for 0 page PDFs
 * New crypto sorting rules
 
 ### 1.13.1

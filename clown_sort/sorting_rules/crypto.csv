@@ -183,7 +183,7 @@ Paxful,paxful|Ray[-\s_.]*(Youssef|Savant)|Artur[-\s_.]*Schaback
 Paxos,\b(paxos|BUSD|USDP|PAXG|PYUSD)\b
 Paybis,\b(Paybis)\b
 Payrnet,Rails(r|bank)\b|\b(Wirex|Cryptopay|Payrnet)\b
-Pi,\$PI[^\w]|Pi[-\s_.]*Network
+Pi,\$PI[^\w]|Pi[-\s_.]*(co(in|re)|Network)
 Polygon Labs,polygon[-\s_.]*labs|ryan[-\s_.]*watt\b|@Fwiz|Rebecca[-\s_.]*Rettig|[#$]DOT\b
 Polymarket,polymarket
 Prime Trust,\bPrime[-\s]*(Trust|Core|IRA|Digital)\b|\b(anonalyx|Banq|Kasidie|PrimeX|Sroge|PrimeTrustCo)\b|Scott[-\s]*Purcell|(Planet|Fortress)[-\s]*(Xyz|Trust|NFT)|George[-\s]*Georgiades|Kevin[-\s]*Lehtiniitty|\bLODE(Pay)?\b
