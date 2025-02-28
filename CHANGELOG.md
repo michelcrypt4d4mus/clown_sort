@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Fix handling of `fitz.EmptyFileError`
 
 ### 1.13.1
 * Fix logging of EXIF data when there's an exception attempting to save an image

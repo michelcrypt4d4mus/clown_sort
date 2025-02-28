@@ -101,7 +101,7 @@ class PdfFile(SortableFile):
 
         try:
             doc = fitz.open(self.file_path)
-        except fitz.fitz.EmptyFileError:
+        except fitz.EmptyFileError:
             log.warning(f"Failed to get bytes for '{self.file_path}'")
             return None
 
