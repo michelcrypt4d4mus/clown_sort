@@ -58,6 +58,8 @@ def test_get_rule_matches():
     check_folders('fuck $CORZ it sucks', ['Miners'])
     check_folders('fuck CoreScientific it sucks', ['Miners'])
     check_folders('fuck Core Scientific it sucks', ['Miners'])
+    check_folders('fuck Michael Saylor he sucks', ['MSTR'])
+    check_folders('fuck MichaelSaylor he sucks', ['MSTR'])
     check_folders('fuck okx it sucks', ['OKX'])
     check_folders('fuck okcoin it sucks', ['OKX'])
     check_folders('fuck okex it sucks', ['OKX'])
