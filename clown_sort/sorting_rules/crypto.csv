@@ -37,7 +37,7 @@ Bittrex,Bittrex|Ritchie[-\s_.]*Lai|Kiran[-\s_.]*Raj|John[-\s_.]*Roth\b|\bAquila\
 Bitzlato,Bitzlato
 Block,\b(SQ)\b
 Blockchain.com,\bblockchain\.com\b|@blockchain\b|@AskBlockchain\b|Patrick[-\s_.]*McHenry
-Blockchain8,Blockchain8|tom[-\s_.]*emmer|GOPMajorityWhip|ritchie[-\s_.]*torres|repritchie|Warren[-\s_.]*Davidson|Byron[-\s_.]*Donalds|Ted[-\s_.]*(Budd|Cruz)|Josh[-\s_.]*Gotheimer|Jake[-\s_.]*Auchincloss|Darren[-\s_.]*Soto|ro[-\s_.]*khanna|KMSmithDC|Kristin[-\s_.]*Smith\b|Warren[-\s_.]*Davidson|PerianneDC|Mi(ke|chael)[-\s_.]*Collins|Crypto[-\s_.]*Ball|\b(Sen)(Lummis|Tuberville)\b|BasedMikeLee|Andy[-\s_.]*Ogles|\bGillibrand\b
+Blockchain8,Blockchain8|tom[-\s_.]*emmer|GOPMajorityWhip|ritchie[-\s_.]*torres|repritchie|Warren[-\s_.]*Davidson|Byron[-\s_.]*Donalds|Ted[-\s_.]*(Budd|Cruz)|Josh[-\s_.]*Gotheimer|Jake[-\s_.]*Auchincloss|Darren[-\s_.]*Soto|ro[-\s_.]*khanna|KMSmithDC|Kristin[-\s_.]*Smith\b|Warren[-\s_.]*Davidson|PerianneDC|Mi(ke|chael)[-\s_.]*Collins|Crypto[-\s_.]*Ball|\b(Sen)(Lummis|Tuberville)\b|BasedMikeLee|Andy[-\s_.]*Ogles|\bGillibrand\b|Ruben[-\s_.]*Gallego
 Blockchain Capital,Blockchain[-\s_.]*Capital|\bbrock\b|brockpierce|Friedlander
 BlockFi,BlockFi|Zac[-\s_.]*Prince|Brian[-\s_.]*Oliver
 Blockstream,Blockstream
@@ -153,6 +153,7 @@ Memes,\bmeme\b
 Mercantile Bank,Mercantile[-\s_.]*(Bank|Trust)|@MercantileBank
 Messari,Ryan[-\s_.]*Selkis|twobitidiot|messari|@robustus|Dan[-\s_.]*McArdle
 Metallicus,FBBT|Nauvoo|Metallicus|Bitcoinwalking|Bruce[-\s_.]*Stewart|\bHayner\b
+Metaplanet,metaplanet
 Metropolitan Commercial Bank,MCB\b|MCBankNY|Metropolitan[-\s_.]*(Bank|Commercial)|Mission[-\s_.]*Gateway|Aryeh[-\s_.]*Realty|MovoCash
 MEXC,MEXC|John[-\s_.]*Chen\b|Yichen[-\s_.]*Peng|Ljudmila[-\s_.]*Budnikova
 Michael Gastauer,\b(Gastauer|WB21)\b
@@ -226,7 +227,7 @@ Tornado Cash,tornado[-\s_.]*cash
 Transactive Systems UAB,Transactive[-\s_.]*Systems
 Tron,\btron\b|tron(block|[-\s_.]*)?chain|trondao|TRX\b
 TrueUSD,\b(TGBP|TUSD|TCNH|TAUD|TrueCoin|TrueUSD|TrueFi|TrustExplorer|Techteryx|Jaiyong|TrustLabs)\b
-Trump,\b((real)?(donald)?Trump|(J\.?D\.?)?Vance|9mm_?SMG|BehizyTweets|Cynical[-\s_.]*Publius|MattWalshBlog|ScottPresler|WLFI)\b|World[-\s_.]*Liberty[-\s_.]*Fi|FiveTimesAugust|CIC[-\s_.]*Digital|Fight[-\s_.]*Fight[-\s_.]*Fight|\b(Herro|Folkman|Melania|Witkoff)\b|realErikDPrince|John\s?Strand(USA)?\b|Zampolli
+Trump,\b(FBIDirectorKash|(real)?(donald)?Trump|(J\.?D\.?)?Vance|9mm_?SMG|BehizyTweets|Cynical[-\s_.]*Publius|MattWalshBlog|ScottPresler|WLFI)\b|World[-\s_.]*Liberty[-\s_.]*Fi|FiveTimesAugust|CIC[-\s_.]*Digital|Fight[-\s_.]*Fight[-\s_.]*Fight|\b(Herro|Folkman|Melania|Witkoff)\b|realErikDPrince|John\s?Strand(USA)?\b|Zampolli|Kash[-\s_.]*Patel|Cernovich
 Turkey,Turk(ey|ish|iye)|Istanbul|Ankara|Uzmancoin
 Uniswap,\b(Hayden[-\s_.]*Adams|UNI|Uniswap)\b
 Uzbekistan,Uzbekistan|UzNEX
