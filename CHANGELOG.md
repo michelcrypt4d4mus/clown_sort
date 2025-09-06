@@ -1,4 +1,7 @@
 # NEXT RELEASE
+* Upgrade `PyPDF` to 6.0.0
+* Upgrade `python-dotenv` to 1.1.1
+* Drop support for python 3.7 and 3.8
 
 ### 1.13.3
 * New crypto sorting rules
