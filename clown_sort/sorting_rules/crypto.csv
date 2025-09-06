@@ -46,7 +46,7 @@ Blockstream,Blockstream
 Bored Ape Yacht Club,\bBAYC\b|Bored[-\s_.]*Ape|yuga[-\s_.]*labs
 Brock Pierce,\b(Bywire|IGE|R3T|Ying)\b|brock[-\s_.]*pierce|Karla[-\s_.]*Ballard|Brittany[-\s_.]*Kaiser|Medici[-\s_.]*Bank|Yidel[-\s_.]*Perlstein
 Broettes,Nicole[-\s_.]*Behnam|natbrunell
-Bros,\bAnsem\b|ashcryptoreal|cryptomanran|gainzy|\bRan[-\s_.]*Neuner|trillionUSD|nic[-\s_.]*carter|bitboy|ben[-\s_.]*armstrong|basedkarbon|dotkrueger|julianhosp|thecryptolark|adam([-\s_.]*back|3us)|@DegenSp|APompliano|IIICapital|\bMeltem\b|algodtrading|whatbitcoindid|CryptoKaleo|Mike[-\s_.]*Alfred|natbrunell|natalie[-\s_.]*brunell|stackersatoshi|Max[-\s_.]*Keiser|Cowboy[-\s_.]*Crypto|minimalcsgo|\bParish\b|AP[-\s_.]*(Archpublic|Abacus)|greg16676935420|@Aridavidpaul|\bAri[-\s_.]*Paul\b|raoul(gmi|[-\s_.]*pal)|mccormack|andr3w|andrew[-\s_.]*wang|\b(JW)?[-\s_.]*Verret\b|@FlurETH\b|wolf[-\s_.]*of[-\s_.]*all[-\s_.]*streets|scott[-\s_.]*melker|\bKaleo\b|imperooterxbt|francis[-\s_.]*pouliot|ThinkingUSD|Tim[-\s_.]*Kotzman|Pompliano
+Bros,\b(Ansem|ashcryptoreal|cryptomanran|gainzy|Ran[-\s_.]*Neuner|trillionUSD|nic[-\s_.]*carter|bitboy|ben[-\s_.]*armstrong|basedkarbon|dotkrueger|julianhosp|thecryptolark|adam([-\s_.]*back|3us)|DegenSpartan|Joe[-\s_.]*Consorti|A?Pompliano|IIICapital|Meltem|algodtrading|whatbitcoindid|CryptoKaleo|Mike[-\s_.]*Alfred|nat(alie)?[-\s_.]*brunell|stackersatoshi|Max[-\s_.]*Keiser|Cowboy[-\s_.]*Crypto|minimalcsgo|AP[-\s_.]*(Archpublic|Abacus)|greg16676935420|Ari[-\s_.]*(David)[-\s_.]*Paul|raoul(gmi|[-\s_.]*pal)|mccormack|andr3w|andrew[-\s_.]*wang|(JW)?[-\s_.]*Verret|FlurETH\b|wolf[-\s_.]*of[-\s_.]*all[-\s_.]*streets|scott[-\s_.]*melker|Kaleo|imperooterxbt|francis[-\s_.]*pouliot|ThinkingUSD|Tim[-\s_.]*Kotzman)\b
 BTC-e,\b(BTC-?e|Vinnik|Bilyuchenko)\b
 Bybit,\b(Ben[-\s_.]*Zhou|(Invest|Travel)?ByBit|Mirana|Time[-\s_.]*Research|Sean[-\s_.]*Tan|Germaine[-\s_.]*Tan|Weizheng[-\s_.]*Ye|Nashon[-\s_.]*Loo)\b
 Cambodia,Cambodia|\bkhmer\b|Prince[-\s_.]*Group|Thaksin|Shinawatra|Mauerberger
@@ -126,7 +126,7 @@ Hoo,\bHoo[-\s_.]*(Research|Exchange|Smart)|\bHoo\b|Rexy[-\s_.]*(Hoo|Wang)
 Huobi,huobi|jiao_newlife|jiaojiao|Leon[-\s_.]*Li\b|\b(GoPlus|Walken|HTX)\b
 Huione Guarantee,\b(Huione|USDH|Haowang)\b
 Internet Computer,\bICP\b|Dominic[-\s_.]*Williams
-Iran,\b(babakzanjani3|Bitbank|CoinNik|Cryptoland|Estavi|Iran|Iranian|Majid[-\s_.]*Azami|Nobitex|Sarmayex|Rabex|Sepehr[-\s_.]*Energy|Wallex|Zanjani)\b|Zed(cex|pay|xion)
+Iran,\b(babakzanjani3|Bitbank|CoinNik|Cryptoland|Estavi|[Il]ran(ian)?|Majid[-\s_.]*Azami|Nobitex|Sarmayex|Rabex|Sepehr[-\s_.]*Energy|Wallex|Zanjani)\b|Zed(cex|pay|xion)
 Islamic Coin,islamic[-\s_.]*coin
 Israel,\b(Aryeh?|Bibi|Gvir|Netanyahu)\b
 Journalists,Eleanor[-\s_.]*Terrett
@@ -232,7 +232,7 @@ Tornado Cash,tornado[-\s_.]*cash
 Transactive Systems UAB,Transactive[-\s_.]*Systems
 Tron,\btron\b|tron(block|[-\s_.]*)?chain|trondao|TRX\b
 TrueUSD,\b(TGBP|TUSD|TCNH|TAUD|TrueCoin|TrueUSD|TrueFi|TrustExplorer|Techteryx|Jaiyong|TrustLabs)\b
-Trump,\b(FBIDirectorKash|(real)?(donald)?Trump|(J\.?D\.?)?Vance|9mm_?SMG|BehizyTweets|Cynical[-\s_.]*Publius|MattWalshBlog|ScottPresler|WLFI)\b|World[-\s_.]*Liberty[-\s_.]*Fi|FiveTimesAugust|CIC[-\s_.]*Digital|Fight[-\s_.]*Fight[-\s_.]*Fight|\b(Herro|Folkman|Melania|Witkoff)\b|realErikDPrince|John\s?Strand(USA)?\b|Zampolli|Kash[-\s_.]*Patel|Cernovich|LindellTV|SignalGate|Whiske?yLeaks|Kush[-\s_.]*Desai|Bill[-\s_.]*Ackman|Stephen[-\s_.]*Miller|Kash[-\s_.]*Patel|Mi(chael|ke)[-\s_.]*Benz
+Trump,\b(catturd2|FBIDirectorKash|(real)?(donald)?Trump|(J\.?D\.?)?Vance|9mm_?SMG|BehizyTweets|Cynical[-\s_.]*Publius|MattWalshBlog|ScottPresler|WLFI)\b|World[-\s_.]*Liberty[-\s_.]*Fi|FiveTimesAugust|CIC[-\s_.]*Digital|Fight[-\s_.]*Fight[-\s_.]*Fight|\b(Herro|Folkman|Melania|Witkoff)\b|realErikDPrince|John\s?Strand(USA)?\b|Zampolli|Kash[-\s_.]*Patel|Cernovich|LindellTV|SignalGate|Whiske?yLeaks|Kush[-\s_.]*Desai|Bill[-\s_.]*Ackman|Stephen[-\s_.]*Miller|Kash[-\s_.]*Patel|Mi(chael|ke)[-\s_.]*Benz
 Turkey,Turk(ey|ish|iye)|Istanbul|Ankara|Uzmancoin
 Uniswap,\b(Hayden[-\s_.]*Adams|UNI|Uniswap)\b
 Uzbekistan,Uzbekistan|UzNEX
