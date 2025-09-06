@@ -196,6 +196,7 @@ Pump.fun,Alon[-\s_.]*Cohen|Dylan[-\s_.]*(Kerler|Phoon)|Pump[-\s_.]*Fun|outdoteth
 PVBC,PVBC|BankProv
 Quadriga,Quadriga|Gerald[-\s_.]*Cotten|0xsifu\b|michael[-\s_.]*patryn|wonderland|daniele[-\s_.]*sesta\b
 Ransomware,lockbit|ransomware|sextortion
+Raydium,Raydium
 Remitano,Remitano
 Revolut,\bRevolut\b
 RIOT,[$#]RIOT\b|Riot[-\s_.]*(Block|Platform)|Bioptix|\bMidas[-\s_.]*Immersion|Whinstone
