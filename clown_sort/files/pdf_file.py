@@ -4,7 +4,7 @@ Wrapper for PDF files.
 import io
 import os
 from pathlib import Path
-from typing import Optional
+from typing import List, Optional
 
 from PIL import Image
 from pypdf import PdfReader, PdfWriter
@@ -31,6 +31,17 @@ SCALE_FACTOR = 0.4
 
 
 class PdfFile(SortableFile):
+    """
+    Wrapper for PDF files.
+
+    Attributes:
+        text_extraction_attempted (bool): Whether text extraction has been attempted.
+        _extracted_text (Optional[str]): The extracted text from the PDF.
+        _page_numbers_of_errors (List[int]): List of page numbers where errors occurred during extraction.
+        _is_presentable_in_popup (Optional[bool]): `[class variable]` Cached value indicating if the PDF
+            can be presented in a popup.
+    """
+
     _is_presentable_in_popup = None
 
     def extracted_text(self, page_range: Optional[PageRange] = None) -> Optional[str]:
@@ -39,7 +50,7 @@ class PdfFile(SortableFile):
             return self._extracted_text
 
         log.debug(f"Extracting text from '{self.file_path}'...")
-        self.page_numbers_of_errors = []
+        self._page_numbers_of_errors: List[int] = []
         extracted_pages = []
 
         try:
@@ -76,9 +87,9 @@ class PdfFile(SortableFile):
                     if 'JBIG2Decode' not in str(e):
                         stderr_console.print_exception()
 
-                        if page_number not in self.page_numbers_of_errors:
+                        if page_number not in self._page_numbers_of_errors:
                             self._handle_extraction_error(page_number, error_str)
-                            self.page_numbers_of_errors.append(page_number)
+                            self._page_numbers_of_errors.append(page_number)
 
                 page_text = page_buffer.file.getvalue()
                 extracted_pages.append(page_text)
