@@ -16,7 +16,7 @@ def test_sort_file(three_of_swords_file, turn_off_dry_run):
     sortable_file = SortableFile(three_of_swords_file)
     assert sortable_file.extracted_text() == three_of_swords_file.name
     sortable_file.sort_file()
-    new_file = ImageFile(Config.sorted_screenshots_dir.joinpath('Art', three_of_swords_file.name))
+    new_file = ImageFile(Config.sorted_screenshots_dir.joinpath('Arbitrum', three_of_swords_file.name))
     new_file.file_path.unlink()
     new_file.file_path.parent.rmdir()
 

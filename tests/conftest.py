@@ -44,7 +44,7 @@ def parrot_retweet():
 
 @pytest.fixture(scope='session')
 def three_of_swords_file():
-    return FIXTURES_DIR.joinpath('3 of swords occult.jpeg')
+    return FIXTURES_DIR.joinpath('3 of swords occult_arbitrum.jpeg')
 
 
 @pytest.fixture(scope='session')
