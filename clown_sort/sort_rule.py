@@ -49,6 +49,11 @@ class SortRule:
         return sort_rules
 
     @staticmethod
+    def default_rules_csv_paths() -> List[Path]:
+        """Check for RULES_CSV_PATHS in env vars otherwise return default crypto rules."""
+        return SortRule.sort_rules_csvs(environ.get(RULES_CSV_PATHS, CRYPTO_RULES_CSV_PATH))
+
+    @staticmethod
     def is_valid_row(row: str) -> bool:
         """Returns false for whitespace rows and those that start with '#'."""
         stripped_row = row.strip()
@@ -66,11 +71,6 @@ class SortRule:
             CRYPTO_RULES_CSV_PATH if csv_path == CRYPTO else Path(csv_path)
             for csv_path in csv_paths.split(':')
         ]
-
-    @staticmethod
-    def default_rules_csv_paths() -> List[Path]:
-        """Check for RULES_CSV_PATHS in env vars otherwise return default crypto rules."""
-        return SortRule.sort_rules_csvs(environ.get(RULES_CSV_PATHS, CRYPTO_RULES_CSV_PATH))
 
     def __eq__(self, other: 'SortRule') -> bool:
         return self.folder == other.folder and self.regex == other.regex
