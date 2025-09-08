@@ -14,7 +14,6 @@ Animoca Brands,\b(Animoca(brands)?|Yat[-\s_.]*Siu)\b
 AP Capital,AP[-\s_.]*Capital|\b(andyrcon|carrod|Mamoru|Zahl(an)?|Pintu[-\s_.]*Digital)\b
 Aptos,\bAptos\b
 Arbitrum,\b(Arbitrum|ARB)\b
-Art,\boccult\b
 Atomic Wallet,Atomic[-\s_.]*Wallet
 Avalanche,\b(AVAXc?|avalanche)\b|\bava[-\s_.]*labs
 Axos Financial,\b(AxPay|Axos|Bank[-\s_.]*of[-\s_.]*Internet|COR[-\s.]Clearing|Garrabrants|BOI)\b|\$AX\b
