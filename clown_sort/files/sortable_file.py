@@ -4,7 +4,6 @@ Base class for sortable files of any type.
 import re
 import platform
 import shutil
-from collections import namedtuple
 from glob import glob
 from os import path, remove
 from pathlib import Path

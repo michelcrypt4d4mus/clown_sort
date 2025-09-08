@@ -140,13 +140,14 @@ class PdfFile(SortableFile):
 
         return page.get_pixmap(matrix=zoom_matrix, clip= clip, alpha=False).tobytes()
 
+    # TODO: this has been ported over to pdfalyzer, consider removing
     def extract_page_range(
             self,
             page_range: PageRange,
             destination_dir: Optional[Path] = None,
             extra_file_suffix: Optional[str] = None
         ) -> Path:
-        """Extract a range of pages to a new PDF file (or 1 page if last_page_number not provided.)"""
+        """Extract a range of pages to a new PDF file."""
         destination_dir = destination_dir or DEFAULT_PDF_ERRORS_DIR
         create_dir_if_it_does_not_exist(destination_dir)
 

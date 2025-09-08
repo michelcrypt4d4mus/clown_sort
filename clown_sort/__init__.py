@@ -72,11 +72,6 @@ def extract_text_from_files() -> None:
         console.line(2)
 
 
-def extract_pages_from_pdf() -> None:
-    args = parse_pdf_page_extraction_args()
-    PdfFile(args.pdf_file).extract_page_range(args.page_range, destination_dir=args.destination_dir)
-
-
 def set_screenshot_timestamps_from_filenames():
     """Parse the filenames to reset the file creation timestamps."""
     Config.configure()

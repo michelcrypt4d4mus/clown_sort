@@ -1,18 +1,13 @@
 """
 Class to contain a text sorting rule.
-SortRule = namedtuple('SortRule', ['folder', 'regex'])
 """
 import csv
 import importlib.resources
 import re
-import sys
 from dataclasses import dataclass
 from os import environ
 from pathlib import Path
 from typing import List, Optional, Union
-
-from rich.console import Console
-from rich.text import Text
 
 from clown_sort.util.constants import CRYPTO, PACKAGE_NAME
 from clown_sort.util.rich_helper import print_error

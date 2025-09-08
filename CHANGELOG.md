@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Remove `extract_pages_from_pdf` command line tool (moved to `pdfalyzer`)
 
 ### 1.13.4
 * Upgrade `PyPDF` to 6.0.0
