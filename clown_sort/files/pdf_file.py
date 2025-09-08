@@ -2,7 +2,6 @@
 Wrapper for PDF files.
 """
 import io
-import os
 from pathlib import Path
 from typing import List, Optional
 
@@ -116,11 +115,11 @@ class PdfFile(SortableFile):
         try:
             doc = fitz.open(self.file_path)
         except fitz.EmptyFileError:
-            log.warning(f"Failed to get bytes for '{self.file_path}'")
+            log.warning(f"EmptyFileError: Failed to get bytes for '{self.file_path}'")
             return None
 
         try:
-            # Resize the thumbnail to fit the screen
+            # Attempt to resize the thumbnail to fit the screen
             log.debug(f"Getting bytes for '{self.file_path}'...")
             zoom_matrix = fitz.Matrix(fitz.Identity).prescale(SCALE_FACTOR, SCALE_FACTOR)
             page = doc[0]
