@@ -31,7 +31,7 @@ SCALE_FACTOR = 0.4
 
 
 class PdfFile(SortableFile):
-    is_presentable_in_popup = None
+    _is_presentable_in_popup = None
 
     def extracted_text(self, page_range: Optional[PageRange] = None) -> Optional[str]:
         """Use PyPDF to extract text page by page and use Tesseract to OCR any embedded images."""
@@ -164,16 +164,17 @@ class PdfFile(SortableFile):
         console.print(self._filename_panel())
         console.print(self.extracted_text(page_range=page_range))
 
-    def _can_be_presented_in_popup(self) -> bool:
-        if type(self).is_presentable_in_popup is None:
-            type(self).is_presentable_in_popup = check_for_pymupdf()
+    def can_be_presented_in_popup(self) -> bool:
+        """A PDF can be presented in a popup window if PyMuPDF is installed."""
+        if type(self)._is_presentable_in_popup is None:
+            type(self)._is_presentable_in_popup = check_for_pymupdf()
 
-        if not type(self).is_presentable_in_popup:
+        if not type(self)._is_presentable_in_popup:
             console.line()
             msg = WARNING.append(f"File '{self.basename}' is not displayable without pymupdf...\n")
             console.print(msg)
 
-        return type(self).is_presentable_in_popup
+        return bool(type(self)._is_presentable_in_popup)
 
     def _log_to_stderr(self, msg: str, style: Optional[str] = None) -> None:
         """When parsing very large PDFs it can be useful to log progress and other messages to STDERR."""

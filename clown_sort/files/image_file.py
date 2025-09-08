@@ -122,7 +122,7 @@ class ImageFile(SortableFile):
         """Return the file as Pillow Image object."""
         return Image.open(self.file_path)
 
-    def _can_be_presented_in_popup(self) -> bool:
+    def can_be_presented_in_popup(self) -> bool:
         return True
 
     def __repr__(self) -> str:

@@ -31,6 +31,7 @@ from clown_sort.util.rich_helper import console
 
 
 def sort_screenshots():
+    """Main entry point for sorting screenshots."""
     Config.configure()
 
     if Config.rescan_sorted:
@@ -39,7 +40,7 @@ def sort_screenshots():
 
     for file_to_sort in screenshot_paths(Config.screenshots_dir):
         if Config.manual_sort:
-            if file_to_sort._can_be_presented_in_popup():
+            if file_to_sort.can_be_presented_in_popup():
                 process_file_with_popup(file_to_sort)
             else:
                 print(f"'{file_to_sort.file_path}' is not suitable for manual sort, skipping...")

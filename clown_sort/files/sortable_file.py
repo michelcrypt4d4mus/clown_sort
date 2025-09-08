@@ -59,7 +59,7 @@ class SortableFile:
                 console.print(Panel('Extracted Text', expand=False))
                 console.print(self._extracted_text_panel())
 
-                if self._can_be_presented_in_popup():
+                if self.can_be_presented_in_popup():
                     process_file_with_popup(self)
                     return
 
@@ -182,6 +182,10 @@ class SortableFile:
         console.print(self._filename_panel())
         console.print(self._extracted_str())
 
+    def can_be_presented_in_popup(self) -> bool:
+        """Return True if file can be presented in a popup window for manual sorting (overriden in subclasses)."""
+        return False
+
     def file_size(self) -> int:
         """Returns file size in bytes."""
         return self.file_path.stat().st_size
@@ -256,9 +260,6 @@ class SortableFile:
             return
 
         remove(self.file_path)
-
-    def _can_be_presented_in_popup(self) -> bool:
-        return False
 
     def __str__(self) -> str:
         return str(self.file_path)
