@@ -25,7 +25,7 @@ Biconomy,\b(Biconomy|Omchain)\b
 Binance,bi(nance|conomy|llance|finity|naryx)|\b(AdvCash|Anndy|Biniverse|BNB|BSC|BSCN|BUSD|Ceffu|Commex|Cpz|CZ|Changpeng|joselito|Helio|keyway|Mandala|Med[aá]|Mercuryo|Monetley|MoneyAmber|MoneyMaple|MoneyTea|paysafe|Sigma\s*Chain|TrustWallet|Coley|nuvei|orum|PNK|Worldpay|Winind)\b|\bSwipe[-\s_.]*(IO|Wallet)|\bkey[-\s_.]*vision|\boztures|Kaiser[-\s_.]*Ng|InvestByBit|Swyftx|Guangying[-\s_.]*Chen|\bBAM[-\s_.]*(Trading|Management)\b|\bFlowbank|Bijie[-\s_.]*(Network|Tech)|Venus[-\s_.]*(Protocol|Community)|Merit[-\s_.]*Peak|(Optic|Blockone|Winind|Unison)[-\s_.]*Technolog|(Wombat|Sakura)[-\s_.]*Exchange|\$HAY\b|Synclub|Jasmine?[-\s_.]*Lee|Erik[-\s_.]*Kellogg|Sara[-\s_.]*Sisenwein|Tao[-\s_.]*Zhang|Matthew[-\s_.]*Beville|Tyrell[-\s_.]*Long|Katrina[-\s_.]*Fava|(Patrick|PR)[-\s_.]*Hillman
 Binary Options,binary[-\s_.]*options
 Bitcoin ETFs,\b(BITW|BTCM|BTCX|EBIT|EBTC|EBTCG|EBTH|EBTHC|EBTHG|EBTHI|EBTHJ|EBTHK|EBTHL|EBTHM|EBTHN|EBTHO|EBTHP|EBTHQ|EBTHR|EBTHS|EBTHT|EBTHU|EBTHV|EBTHW|EBTHX|EBTHY|EBTHZ|EBTC|EBTCG|EBTCH|EBTCI|EBTCJ|EBTCK|EBTCL|EBTCM|EBTCN|EBTCO|EBTCP|EBTCQ|EBTCR|EBTCS|EBTCT|EBTCU|EBTCV|EBTCW|EBTCX|EBTCY|EBTCZ|EBTD|EBTDC|EBTDD|EBTDE|EBTDF|EBTDG|EBTDH|EBTDI|EBTDJ|EBTDK|EBTDL|EBTDM|EBTDN|EBTDO|EBTDP|EBTDQ|EBTDR|EBTDS|EBTDT|EBTDU|EBTDV|EBTDW|EBTDX|EBTDY|EBTDZ|EBTE|EBTEC|EBTED|EBTEE|EBTEF|EBTEG|EBTEH|EBTEI|EBTEJ|EBTEK|EBTEL|EBTEM|EBTEN|EBTEO|EBTEP|EBTEQ|EBTER|EBTES|EBTET|EBTEU|EBTEV|EBTEW|EBTEX|EBTEY|EBTEZ|EBTF|EBTFC|EBTFD|EBTFE|EBTFF|EBTFG|EBTFH|EBTFI|EBTFJ|EBTFK|EBTFL|EBTFM|EBTFN|EBTFO|EBTFP|EBTFQ|EBTFR|EBTFS|EBTFT|EBTFU|EBTFV|EBTFW|EBTFX|EBTFY|EBTFZ|EBTG|EBTGC|EBTGD|EBTGE|EBTGF|EBTGG|Bitcoin[-\s_.]*ETFs?)\b
-Bitcoin Treasury Companies,Bitcoin[-\s_.]*Treasury|Smarter[-\s_.]*Web[-\s_.]*Company|Tim[-\s_.]*Kotzman|Tom[-\s_.]*Lee\b|Metaplanet|Bitcoin[-\s_.]*Treasur(y|ies)|\bSemler\b
+Bitcoin Treasury Companies,Bitcoin[-\s_.]*Treasury|Smarter[-\s_.]*Web[-\s_.]*Company|Tim[-\s_.]*Kotzman|Tom[-\s_.]*Lee\b|Metaplanet|Bitcoin[-\s_.]*Treasur(y|ies)|\bSemler\b|Forward[-\s_.]*Industries
 Bitdeer,Bitdeer|Blue[-\s_.]*Safari
 Bitforex,\bBitforex\b
 BitGet,\bBitget\b
@@ -109,7 +109,7 @@ Friedlander Group,Friedlander|Agro[-\s_.]*Bank|\ball[-\s_.]*year\b|\bbrock\b|bro
 Friend.tech,Friend\.tech|\$FRIEND\b
 FTX,FTX|\b(Bankman|FBH|FTT|SBF|Trabucco|Ellison|Nishad|Redline|Ryne|Tackett|Xuchong|ZUBR)\b|Moonstone|Friedberg|autism[-\s_.]*capital|clifton[-\s_.]*bay|Alameda|Luke[-\s_.]*Ting|Redline[-\s_.]*DAO|Jean[-\s_.]*Tallin|Tara[-\s_.]*MacAulay|rsalame
 Galaxy Digital,novogratz|Alex[-\s_.]*Thorn|Cryptology|angermayer|Galaxy[-\s_.]*Digital
-Garantex,Garantex
+Garantex,\b(a7a5|ABCEX|Aleksandr[-\s_.]*(Mira)?[-\s_.]*Serda|Arvix|Besciokov|Crypto360|Djimily.*Ferreira|Exved|Garantex|Grinex|Karavatsky|MKAN(Coin)?|Mendeleev|Ntifo[-\s_.]*Siao|Paysol|Sprintex(Pay)?)\b
 Gate.io,Gate[-\s_.]*IO
 Gelato Network,Gelato[-\s_.]*Network|\bSorbet[-\s_.]*Finance|@gitpusha|hilmar[-\s_.]*x|\bmistx\b|@_alchemistcoin|@ChaosLabs_NFT|Arrakis[-\s_.]*Finance|Dave[-\s_.]*Leibowitz|Hilmar[-\s_.]*Orth|joehquak
 Gemini,Gemini|winklev|@cameron
