@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+# 1.14.0
 * Remove `extract_pages_from_pdf` command line tool (moved to `pdfalyzer`)
 * Use `FreeSimpleGUI` instead of `PySimpleGUI`
 * New crypto sorting rules
