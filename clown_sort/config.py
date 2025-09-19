@@ -174,7 +174,7 @@ class Config:
 
 def _check_for_pysimplegui():
     try:
-        import PySimpleGUI as sg
+        import FreeSimpleGUI as sg
     except ModuleNotFoundError:
         msg = Text('ERROR', style='bright_red')
 

@@ -23,7 +23,7 @@ EXIT = 'Exit'
 
 def process_file_with_popup(image: Union['ImageFile', 'PdfFile']) -> None:
     # Do the import here so as to allow usage without installing PySimpleGUI
-    import PySimpleGUI as psg
+    import FreeSimpleGUI as psg
     psg.theme('SystemDefault1')
     suggested_filename = FilenameExtractor(image).filename()
     sort_dirs = [path.basename(dir) for dir in Config.get_sort_dirs()]

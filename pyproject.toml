@@ -35,16 +35,15 @@ Changelog = "https://github.com/michelcrypt4d4mus/clown_sort/blob/main/CHANGELOG
 
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.10"
 
 exif = "^1.5.0"
 filedate = "^2.0"
+FreeSimpleGUI = {optional = true, version = "^5.2"}
+pdfalyzer = {extras = ["extract"], version = "^1.17.0"}
 piexif = "^1.1.3"
 pillow = ">=9.5.0,<11.0.0"
-PySimpleGUI = {version = "^4.60.4", optional = true}
-pycryptodome = {version = "^3.17", optional = true}
 pyexiftool = "^0.5.5"
-PyMuPDF = {version = "^1.26.4", optional = true}
 pypdf = "^6.0.0"
 pytesseract = "^0.3.13"
 python-dotenv = "^1.1.1"
@@ -59,8 +58,7 @@ bpython = "^0.24"
 
 
 [tool.poetry.extras]
-pdf = ['pycryptodome', 'PyMuPDF']
-gui = ['PySimpleGUI']
+gui = ['FreeSimpleGUI']
 
 
 [tool.pytest.ini_options]
@@ -74,8 +72,6 @@ build-backend = "poetry.core.masonry.api"
 
 
 [tool.poetry.scripts]
-extract_pages_from_pdf = 'clown_sort:extract_pages_from_pdf'
-extract_text_from_files = 'clown_sort:extract_text_from_files'
 purge_non_images_from_dir = 'clown_sort:purge_non_images_from_dir'
 set_screenshot_timestamps_from_filenames = 'clown_sort:set_screenshot_timestamps_from_filenames'
 sort_screenshots = 'clown_sort:sort_screenshots'
