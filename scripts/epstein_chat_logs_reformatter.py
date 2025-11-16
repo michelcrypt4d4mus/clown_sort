@@ -116,9 +116,9 @@ for i, file_arg in enumerate(argv):
             # Fix multiline links
             if msg.startswith('http'):
                 if len(msg_lines) > 1 and not msg_lines[0].endswith('html'):
-                    msg = msg.replace('\n', '', 1)
-
                     if len(msg_lines) > 2 and msg_lines[1].endswith('-'):
+                        msg = msg.replace('\n', '', 2)
+                    else:
                         msg = msg.replace('\n', '', 1)
 
                 msg_lines = msg.split('\n')
