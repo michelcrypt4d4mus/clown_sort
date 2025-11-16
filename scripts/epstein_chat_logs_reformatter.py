@@ -7,8 +7,10 @@ Can handle being called on multiple filenames and/or wildcards.
 Install: 'pip install rich'
     Run: 'python epstein_chat_logs_reformatter.py [TEXT_MESSAGE_FILENAMES]'
 """
-
+import csv
+import json
 import re
+from io import StringIO
 from os import environ
 from pathlib import Path
 
@@ -18,6 +20,83 @@ from rich.text import Text
 from rich.theme import Theme
 from sys import argv
 
+#  of who is the counterparty in each file
+AI_COUNTERPARTY_DETERMINATION_TSV = StringIO("""
+filename	counterparty	source
+HOUSE_OVERSIGHT_025363.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_025368.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_025400.txt	Steve Bannon (likely)	Trump NYT article criticism; Hannity media strategy
+HOUSE_OVERSIGHT_025403.txt	Personal contact	Personal/social plans
+HOUSE_OVERSIGHT_025408.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_025423.txt	unclear	unclear
+HOUSE_OVERSIGHT_025426.txt	unclear	unclear
+HOUSE_OVERSIGHT_025429.txt	Stacey Plaskett	Michael Cohen congressional testimony coordination
+HOUSE_OVERSIGHT_025452.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_025479.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
+HOUSE_OVERSIGHT_025707.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_025734.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
+HOUSE_OVERSIGHT_025735.txt	Unidentified	unclear
+HOUSE_OVERSIGHT_027128.txt	Personal contact	Personal/social plans
+HOUSE_OVERSIGHT_027133.txt	Steve Bannon	Political strategy and international affairs
+HOUSE_OVERSIGHT_027141.txt	unclear	unclear
+HOUSE_OVERSIGHT_027148.txt	Steve Bannon	Middle East politics and business deals; Trump discussions
+HOUSE_OVERSIGHT_027165.txt	Michael Wolff	Trump book/journalism project
+HOUSE_OVERSIGHT_027184.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027214.txt	unclear	unclear
+HOUSE_OVERSIGHT_027217.txt	Business associate	Business discussions
+HOUSE_OVERSIGHT_027225.txt	Personal contact	Personal/social plans
+HOUSE_OVERSIGHT_027232.txt	Personal contact	Personal/social plans
+HOUSE_OVERSIGHT_027248.txt	unclear	unclear
+HOUSE_OVERSIGHT_027250.txt	Personal contact	Personal/social plans
+HOUSE_OVERSIGHT_027255.txt	Business associate	Business discussions
+HOUSE_OVERSIGHT_027257.txt	unclear	unclear
+HOUSE_OVERSIGHT_027260.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027275.txt	unclear	unclear
+HOUSE_OVERSIGHT_027278.txt	Personal contact	Personal/social plans
+HOUSE_OVERSIGHT_027281.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027307.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027330.txt	unclear	unclear
+HOUSE_OVERSIGHT_027333.txt	Personal contact	Personal/social plans
+HOUSE_OVERSIGHT_027346.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027365.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027374.txt	Steve Bannon	China strategy and geopolitics
+HOUSE_OVERSIGHT_027396.txt	Personal contact	Personal/social plans
+HOUSE_OVERSIGHT_027401.txt	unclear	unclear
+HOUSE_OVERSIGHT_027406.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027428.txt	unclear	unclear
+HOUSE_OVERSIGHT_027434.txt	Business associate	Business discussions
+HOUSE_OVERSIGHT_027440.txt	Michael Wolff	Trump book/journalism project
+HOUSE_OVERSIGHT_027445.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
+HOUSE_OVERSIGHT_027452.txt	unclear	unclear
+HOUSE_OVERSIGHT_027455.txt	Steve Bannon (likely)	China strategy and geopolitics; Trump discussions
+HOUSE_OVERSIGHT_027460.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027515.txt	Personal contact	Personal/social plans
+HOUSE_OVERSIGHT_027536.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
+HOUSE_OVERSIGHT_027568.txt	Personal contact	Personal/social plans
+HOUSE_OVERSIGHT_027576.txt	Michael Wolff	Trump book/journalism project
+HOUSE_OVERSIGHT_027583.txt	unclear	unclear
+HOUSE_OVERSIGHT_027585.txt	Business associate	Business discussions
+HOUSE_OVERSIGHT_027650.txt	unclear	unclear
+HOUSE_OVERSIGHT_027655.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027694.txt	unclear	unclear
+HOUSE_OVERSIGHT_027695.txt	Personal contact	Personal/social plans
+HOUSE_OVERSIGHT_027707.txt	Steve Bannon	Italian politics; Trump discussions
+HOUSE_OVERSIGHT_027720.txt	unclear	unclear
+HOUSE_OVERSIGHT_027722.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027735.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027762.txt	unclear	unclear
+HOUSE_OVERSIGHT_027764.txt	Michael Wolff	Trump book/journalism project
+HOUSE_OVERSIGHT_027774.txt	unclear	unclear
+HOUSE_OVERSIGHT_027777.txt	Michael Wolff	Trump book/journalism project
+HOUSE_OVERSIGHT_027792.txt	unclear	unclear
+HOUSE_OVERSIGHT_027794.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_029744.txt	Steve Bannon (likely)	Trump and New York Times coverage
+HOUSE_OVERSIGHT_031042.txt	Personal contact	Personal/social plans
+HOUSE_OVERSIGHT_031045.txt	Steve Bannon (likely)	Trump and New York Times coverage
+HOUSE_OVERSIGHT_031054.txt	Personal contact	Personal/social plans
+HOUSE_OVERSIGHT_031173.txt	unclear	unclear
+""".strip())
+
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\n(?=(Sender))', re.DOTALL)
 FILE_ID_REGEX = re.compile(r'.*HOUSE_OVERSIGHT_(\d+)\.txt')
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
@@ -25,15 +104,17 @@ PHONE_NUMBER = 'phone_number'
 BANNON = 'Bannon'
 DEFAULT = 'default'
 EPSTEIN = 'Epstein'
+PLASKETT = 'Stacey Plaskett'
 UNKNOWN = '(unknown)'
-HTML_WIDTH = 85
 
 # Color different counterparties differently
 COUNTERPARTY_COLORS = {
-    'Bannon': 'color(58)',
+    BANNON: 'color(58)',
     DEFAULT: 'yellow1',
     EPSTEIN: 'blue',  # Epstein
+    "Michael Wolff": 'grey54',
     PHONE_NUMBER: 'bright_green',
+    PLASKETT: 'medium_orchid3',
     UNKNOWN: 'cyan',
 }
 
@@ -42,6 +123,7 @@ KNOWN_COUNTERPARTY_FILE_IDS = {
     '025734': BANNON,
     '025452': BANNON,
     '025408': BANNON,
+    '025429': PLASKETT,
 }
 
 GUESSED_COUNTERPARTY_FILE_IDS = {
@@ -52,11 +134,42 @@ GUESSED_COUNTERPARTY_FILE_IDS = {
 for counterparty in COUNTERPARTY_COLORS:
     COUNTERPARTY_COLORS[counterparty] = f"{COUNTERPARTY_COLORS[counterparty]} bold"
 
+
+def extract_file_id(filename) -> str:
+    file_match = FILE_ID_REGEX.match(str(filename))
+
+    if file_match:
+        return file_match.group(1)
+    else:
+        raise RuntimeError(f"Failed to extract file ID from {filename}")
+
+
+for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
+    file_id = extract_file_id(row['filename'].strip())
+    counterparty = row['counterparty'].strip()
+    counterparty = BANNON if counterparty == 'Steve Bannon' else counterparty
+
+    if counterparty in ['unclear', 'Unidentified', 'Personal contact', 'Business associate']:
+        continue
+    elif 'likely' in counterparty:
+        GUESSED_COUNTERPARTY_FILE_IDS[file_id] = counterparty.replace(' (likely)', '').strip()
+    else:
+        KNOWN_COUNTERPARTY_FILE_IDS[file_id] = counterparty
+
+
 is_debug = len(environ.get('DEBUG') or '') > 0
 is_build = len(environ.get('BUILD') or '') > 0
-console = Console(color_system='256', theme=Theme(COUNTERPARTY_COLORS), width=HTML_WIDTH if is_build else 125)
+console = Console(color_system='256', theme=Theme(COUNTERPARTY_COLORS))
 console.record = True
 files_processed = 0
+msgs_processed = 0
+
+if is_debug:
+    console.print('KNOWN_COUNTERPARTY_FILE_IDS\n--------------')
+    console.print(json.dumps(KNOWN_COUNTERPARTY_FILE_IDS))
+    console.print('\n\n\nGUESSED_COUNTERPARTY_FILE_IDS\n--------------')
+    console.print_json(json.dumps(GUESSED_COUNTERPARTY_FILE_IDS))
+    console.line(2)
 
 
 for i, file_arg in enumerate(argv):
@@ -79,7 +192,7 @@ for i, file_arg in enumerate(argv):
             if is_debug:
                 if len(file_text) > 0 and file_text[0] == '{':
                     json_subdir_path = file_arg.parent.joinpath('json_files').joinpath(file_basename + '.json')
-                    console.print(f"'{file_arg}' looks like JSON, moving to '{json_subdir_path}'", style='yellow1 bold')
+                    console.print(f"'{file_arg}' looks like JSON, moving to '{json_subdir_path}'\n", style='yellow1 bold')
                     file_arg.rename(json_subdir_path)
                 else:
                     console.print(f"'iMessage' string not found in '{file_basename}', top lines:")
@@ -88,12 +201,11 @@ for i, file_arg in enumerate(argv):
             continue
 
         files_processed += 1
-        console.print('\n\n', Panel(file_basename, style='reverse', expand=False))
-        file_match = FILE_ID_REGEX.match(str(file_basename))
+        console.print(Panel(file_basename, style='reverse', expand=False))
+        file_id = extract_file_id(file_basename)
         counterparty = UNKNOWN
 
-        if file_match:
-            file_id = file_match.group(1)
+        if file_id:
             counterparty = KNOWN_COUNTERPARTY_FILE_IDS.get(file_id, UNKNOWN)
 
             if counterparty != UNKNOWN:
@@ -105,6 +217,7 @@ for i, file_arg in enumerate(argv):
                 console.print(txt.append(')\n'))
 
         for i, match in enumerate(MSG_REGEX.finditer(file_text)):
+            msgs_processed += 1
             sender = match.group(1).strip()
             timestamp = Text(f"[{match.group(2).strip()}] ", style='dim')
             msg = match.group(4).strip()
@@ -139,22 +252,18 @@ for i, file_arg in enumerate(argv):
             sender_txt = Text(sender, style=sender_style or COUNTERPARTY_COLORS.get(sender, DEFAULT))
             console.print(Text('').append(timestamp).append(sender_txt).append(': ').append(msg))
 
-    console.line()
+    console.line(2)
 
 
+console.print(f"\nProcessed {files_processed} iMessage log files with {msgs_processed} text messages.")
 output_basename = "epstein_text_messaged_colorized"
 output_html = f"{output_basename}.html"
 colored_text_filename = f"{output_basename}.ascii.txt"
 
-
-
 if is_build:
     console.save_html(output_html, inline_styles=True, clear=False)
     console.save_text(colored_text_filename, styles=True)
-    console.line(2)
     console.print(f"Wrote HTML to '{output_html}' (is_build={is_build})")
-    # console.print(f"Wrote colored ASCII to '{colored_text_filename}'")
+    console.print(f"Wrote colored ASCII to '{colored_text_filename}'")
 else:
     console.print(f"\nNot writing HTML because BUILD=true evn var is not set.")
-
-console.print(f"\nProcessed {files_processed} text message logs.")
