@@ -205,7 +205,7 @@ for i, file_arg in enumerate(argv):
             if counterparty != UNKNOWN:
                 hint_txt = Text(f"Found known counterparty ", style='dim')
                 hint_txt.append(counterparty, style=COUNTERPARTY_COLORS.get(counterparty, DEFAULT))
-                console.print(hint_txt.append(" for file ID {file_id}...\n"))
+                console.print(hint_txt.append(f" for file ID {file_id}...\n"))
             elif file_id in GUESSED_COUNTERPARTY_FILE_IDS:
                 counterparty_guess = GUESSED_COUNTERPARTY_FILE_IDS[file_id]
                 txt = Text("(This might be a conversation with ", style='grey')
@@ -226,8 +226,13 @@ for i, file_arg in enumerate(argv):
                 elif PHONE_NUMBER_REGEX.match(sender):
                     sender_style = PHONE_NUMBER
             else:
-                sender = counterparty_guess or UNKNOWN
-                sender_str = f"{sender} (??)" if sender != UNKNOWN else sender
+                if counterparty != UNKNOWN:
+                    sender = sender_str = counterparty
+                elif counterparty_guess is not None:
+                    sender = counterparty_guess
+                    sender_str = f"{counterparty_guess}?"
+                else:
+                    sender = sender_str = UNKNOWN
 
             sender_txt = Text(sender_str, style=sender_style or COUNTERPARTY_COLORS.get(sender, DEFAULT))
 
