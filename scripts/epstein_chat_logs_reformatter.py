@@ -41,6 +41,7 @@ KNOWN_COUNTERPARTY_FILE_IDS = {
     '025707': BANNON,
     '025734': BANNON,
     '025452': BANNON,
+    '025408': BANNON,
 }
 
 GUESSED_COUNTERPARTY_FILE_IDS = {
@@ -95,8 +96,13 @@ for i, file_arg in enumerate(argv):
             file_id = file_match.group(1)
             counterparty = KNOWN_COUNTERPARTY_FILE_IDS.get(file_id, UNKNOWN)
 
-            if counterparty != UNKNOWN and is_debug:
+            if counterparty != UNKNOWN:
                 console.print(f"Found known counterparty '{counterparty}' for file ID {file_id}...\n", style='dim')
+            elif file_id in GUESSED_COUNTERPARTY_FILE_IDS:
+                sender_guess = GUESSED_COUNTERPARTY_FILE_IDS[file_id]
+                txt = Text("(This might be a conversation with ", style='grey')
+                txt.append(sender_guess, style=f"{COUNTERPARTY_COLORS.get(sender_guess, DEFAULT)} underline")
+                console.print(txt.append(')\n'))
 
         for i, match in enumerate(MSG_REGEX.finditer(file_text)):
             sender = match.group(1).strip()
