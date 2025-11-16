@@ -40,7 +40,6 @@ HOUSE_OVERSIGHT_027128.txt	Personal contact	Personal/social plans
 HOUSE_OVERSIGHT_027133.txt	Steve Bannon	Political strategy and international affairs
 HOUSE_OVERSIGHT_027141.txt	unclear	unclear
 HOUSE_OVERSIGHT_027148.txt	Steve Bannon	Middle East politics and business deals; Trump discussions
-HOUSE_OVERSIGHT_027165.txt	Michael Wolff	Trump book/journalism project
 HOUSE_OVERSIGHT_027184.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_027214.txt	unclear	unclear
 HOUSE_OVERSIGHT_027217.txt	Business associate	Business discussions
@@ -96,6 +95,7 @@ PHONE_NUMBER = 'phone_number'
 BANNON = 'Bannon'
 DEFAULT = 'default'
 EPSTEIN = 'Epstein'
+MELANIE_WALKER = 'Melanie Walker'
 PLASKETT = 'Stacey Plaskett'
 SUMMERS = 'Larry Summers'
 UNKNOWN = '(unknown)'
@@ -105,6 +105,7 @@ COUNTERPARTY_COLORS = {
     BANNON: 'color(58)',
     DEFAULT: 'yellow1',
     EPSTEIN: 'blue',  # Epstein
+    MELANIE_WALKER: 'light_salmon3',
     "Michael Wolff": 'grey54',
     PHONE_NUMBER: 'bright_green',
     PLASKETT: 'medium_orchid3',
@@ -119,6 +120,7 @@ KNOWN_COUNTERPARTY_FILE_IDS = {
     '025408': BANNON,
     '025429': PLASKETT,
     '027777': SUMMERS,
+    '027165': MELANIE_WALKER,  # https://www.wired.com/story/jeffrey-epstein-claimed-intimate-knowledge-of-donald-trumps-views-in-texts-with-bill-gates-adviser/
 }
 
 GUESSED_COUNTERPARTY_FILE_IDS = {
@@ -210,7 +212,7 @@ for i, file_arg in enumerate(argv):
                 counterparty_guess = GUESSED_COUNTERPARTY_FILE_IDS[file_id]
                 txt = Text("(This might be a conversation with ", style='grey')
                 txt.append(counterparty_guess, style=f"{COUNTERPARTY_COLORS.get(counterparty_guess, DEFAULT)}")
-                console.print(txt.append(')\n'))
+                console.print(txt.append(' according to AI)\n'))
 
         for i, match in enumerate(MSG_REGEX.finditer(file_text)):
             msgs_processed += 1
