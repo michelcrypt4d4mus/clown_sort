@@ -74,21 +74,13 @@ HOUSE_OVERSIGHT_027515.txt	Personal contact	Personal/social plans
 HOUSE_OVERSIGHT_027536.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
 HOUSE_OVERSIGHT_027568.txt	Personal contact	Personal/social plans
 HOUSE_OVERSIGHT_027576.txt	Michael Wolff	Trump book/journalism project
-HOUSE_OVERSIGHT_027583.txt	unclear	unclear
 HOUSE_OVERSIGHT_027585.txt	Business associate	Business discussions
-HOUSE_OVERSIGHT_027650.txt	unclear	unclear
 HOUSE_OVERSIGHT_027655.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027694.txt	unclear	unclear
 HOUSE_OVERSIGHT_027695.txt	Personal contact	Personal/social plans
 HOUSE_OVERSIGHT_027707.txt	Steve Bannon	Italian politics; Trump discussions
-HOUSE_OVERSIGHT_027720.txt	unclear	unclear
 HOUSE_OVERSIGHT_027722.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_027735.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027762.txt	unclear	unclear
 HOUSE_OVERSIGHT_027764.txt	Michael Wolff	Trump book/journalism project
-HOUSE_OVERSIGHT_027774.txt	unclear	unclear
-HOUSE_OVERSIGHT_027777.txt	Michael Wolff	Trump book/journalism project
-HOUSE_OVERSIGHT_027792.txt	unclear	unclear
 HOUSE_OVERSIGHT_027794.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_029744.txt	Steve Bannon (likely)	Trump and New York Times coverage
 HOUSE_OVERSIGHT_031042.txt	Personal contact	Personal/social plans
@@ -105,6 +97,7 @@ BANNON = 'Bannon'
 DEFAULT = 'default'
 EPSTEIN = 'Epstein'
 PLASKETT = 'Stacey Plaskett'
+SUMMERS = 'Larry Summers'
 UNKNOWN = '(unknown)'
 
 # Color different counterparties differently
@@ -115,6 +108,7 @@ COUNTERPARTY_COLORS = {
     "Michael Wolff": 'grey54',
     PHONE_NUMBER: 'bright_green',
     PLASKETT: 'medium_orchid3',
+    SUMMERS: 'bright_red',
     UNKNOWN: 'cyan',
 }
 
@@ -124,6 +118,7 @@ KNOWN_COUNTERPARTY_FILE_IDS = {
     '025452': BANNON,
     '025408': BANNON,
     '025429': PLASKETT,
+    '027777': SUMMERS,
 }
 
 GUESSED_COUNTERPARTY_FILE_IDS = {
@@ -147,14 +142,12 @@ def extract_file_id(filename) -> str:
 for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
     file_id = extract_file_id(row['filename'].strip())
     counterparty = row['counterparty'].strip()
-    counterparty = BANNON if counterparty == 'Steve Bannon' else counterparty
+    counterparty = BANNON if counterparty.startswith('Steve Bannon') else counterparty
 
     if counterparty in ['unclear', 'Unidentified', 'Personal contact', 'Business associate']:
         continue
-    elif 'likely' in counterparty:
-        GUESSED_COUNTERPARTY_FILE_IDS[file_id] = counterparty.replace(' (likely)', '').strip()
     else:
-        KNOWN_COUNTERPARTY_FILE_IDS[file_id] = counterparty
+        GUESSED_COUNTERPARTY_FILE_IDS[file_id] = counterparty.replace(' (likely)', '').strip()
 
 
 is_debug = len(environ.get('DEBUG') or '') > 0
@@ -204,33 +197,39 @@ for i, file_arg in enumerate(argv):
         console.print(Panel(file_basename, style='reverse', expand=False))
         file_id = extract_file_id(file_basename)
         counterparty = UNKNOWN
+        counterparty_guess = None
 
         if file_id:
             counterparty = KNOWN_COUNTERPARTY_FILE_IDS.get(file_id, UNKNOWN)
 
             if counterparty != UNKNOWN:
-                console.print(f"Found known counterparty '{counterparty}' for file ID {file_id}...\n", style='dim')
+                hint_txt = Text(f"Found known counterparty ", style='dim')
+                hint_txt.append(counterparty, style=COUNTERPARTY_COLORS.get(counterparty, DEFAULT))
+                console.print(hint_txt.append(" for file ID {file_id}...\n"))
             elif file_id in GUESSED_COUNTERPARTY_FILE_IDS:
-                sender_guess = GUESSED_COUNTERPARTY_FILE_IDS[file_id]
+                counterparty_guess = GUESSED_COUNTERPARTY_FILE_IDS[file_id]
                 txt = Text("(This might be a conversation with ", style='grey')
-                txt.append(sender_guess, style=f"{COUNTERPARTY_COLORS.get(sender_guess, DEFAULT)} underline")
+                txt.append(counterparty_guess, style=f"{COUNTERPARTY_COLORS.get(counterparty_guess, DEFAULT)}")
                 console.print(txt.append(')\n'))
 
         for i, match in enumerate(MSG_REGEX.finditer(file_text)):
             msgs_processed += 1
-            sender = match.group(1).strip()
+            sender = sender_str = match.group(1).strip()
+            sender_style = None
             timestamp = Text(f"[{match.group(2).strip()}] ", style='dim')
             msg = match.group(4).strip()
             msg_lines = msg.split('\n')
-            sender_style = None
 
             if len(sender) > 0:
                 if sender == 'e:jeeitunes@gmail.com':
-                    sender = EPSTEIN
+                    sender = sender_str = EPSTEIN
                 elif PHONE_NUMBER_REGEX.match(sender):
                     sender_style = PHONE_NUMBER
             else:
-                sender = counterparty or UNKNOWN
+                sender = counterparty_guess or UNKNOWN
+                sender_str = f"{sender} (??)" if sender != UNKNOWN else sender
+
+            sender_txt = Text(sender_str, style=sender_style or COUNTERPARTY_COLORS.get(sender, DEFAULT))
 
             # Fix multiline links
             if msg.startswith('http'):
@@ -249,7 +248,6 @@ for i, file_arg in enumerate(argv):
             else:
                 msg = msg.replace('\n', ' ')  # remove newlines
 
-            sender_txt = Text(sender, style=sender_style or COUNTERPARTY_COLORS.get(sender, DEFAULT))
             console.print(Text('').append(timestamp).append(sender_txt).append(': ').append(msg))
 
     console.line(2)
