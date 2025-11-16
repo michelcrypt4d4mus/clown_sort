@@ -5,7 +5,7 @@ For use with iMessage log files from https://drive.google.com/drive/folders/1hTN
 Can handle being called on multiple filenames and/or wildcards.
 
 Install: 'pip install rich'
-    Run: 'python colorize_epstein_text_messages.py [TEXT_MESSAGE_FILENAMES]'
+    Run: 'python epstein_chat_logs_reformatter.py [TEXT_MESSAGE_FILENAMES]'
 """
 
 import re
@@ -43,6 +43,11 @@ KNOWN_COUNTERPARTY_FILE_IDS = {
     '025452': BANNON,
 }
 
+GUESSED_COUNTERPARTY_FILE_IDS = {
+    '025363': BANNON,
+    '025368': BANNON,
+}
+
 for counterparty in COUNTERPARTY_COLORS:
     COUNTERPARTY_COLORS[counterparty] = f"{COUNTERPARTY_COLORS[counterparty]} bold"
 
@@ -50,6 +55,7 @@ is_debug = len(environ.get('DEBUG') or '') > 0
 is_build = len(environ.get('BUILD') or '') > 0
 console = Console(color_system='256', theme=Theme(COUNTERPARTY_COLORS), width=HTML_WIDTH if is_build else 125)
 console.record = True
+files_processed = 0
 
 
 for i, file_arg in enumerate(argv):
@@ -80,6 +86,7 @@ for i, file_arg in enumerate(argv):
 
             continue
 
+        files_processed += 1
         console.print('\n\n', Panel(file_basename, style='reverse', expand=False))
         file_match = FILE_ID_REGEX.match(str(file_basename))
         counterparty = UNKNOWN
@@ -106,9 +113,13 @@ for i, file_arg in enumerate(argv):
             else:
                 sender = counterparty or UNKNOWN
 
+            # Fix multiline links
             if msg.startswith('http'):
-                if len(msg_lines) > 1 and not msg_lines[0].endswith('html'):  # Fix multiline links
+                if len(msg_lines) > 1 and not msg_lines[0].endswith('html'):
                     msg = msg.replace('\n', '', 1)
+
+                    if len(msg_lines) > 2 and msg_lines[1].endswith('-'):
+                        msg = msg.replace('\n', '', 1)
 
                 msg_lines = msg.split('\n')
                 link_text = msg_lines.pop()
@@ -139,3 +150,5 @@ if is_build:
     # console.print(f"Wrote colored ASCII to '{colored_text_filename}'")
 else:
     console.print(f"\nNot writing HTML because BUILD=true evn var is not set.")
+
+console.print(f"\nProcessed {files_processed} text message logs.")
