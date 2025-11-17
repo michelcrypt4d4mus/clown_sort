@@ -95,6 +95,7 @@ BANNON = 'Bannon'
 DEFAULT = 'default'
 EPSTEIN = 'Epstein'
 MELANIE_WALKER = 'Melanie Walker'
+MIROSLAV = 'Miroslav Lajčák'
 PLASKETT = 'Stacey Plaskett'
 SUMMERS = 'Larry Summers'
 UNKNOWN = '(unknown)'
@@ -105,6 +106,7 @@ COUNTERPARTY_COLORS = {
     DEFAULT: 'yellow1',
     EPSTEIN: 'blue',  # Epstein
     MELANIE_WALKER: 'light_salmon3',
+    MIROSLAV: 'slate_blue3',
     "Michael Wolff": 'grey54',
     PHONE_NUMBER: 'bright_green',
     PLASKETT: 'medium_orchid3',
@@ -117,6 +119,7 @@ KNOWN_COUNTERPARTY_FILE_IDS = {
     '025734': BANNON,
     '025452': BANNON,
     '025408': BANNON,
+    '027515': MIROSLAV,
     '025429': PLASKETT,
     '027777': SUMMERS,
     '027165': MELANIE_WALKER,  # https://www.wired.com/story/jeffrey-epstein-claimed-intimate-knowledge-of-donald-trumps-views-in-texts-with-bill-gates-adviser/
