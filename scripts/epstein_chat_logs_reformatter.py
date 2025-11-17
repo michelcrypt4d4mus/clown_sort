@@ -72,14 +72,12 @@ HOUSE_OVERSIGHT_027460.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_027515.txt	Personal contact	Personal/social plans
 HOUSE_OVERSIGHT_027536.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
 HOUSE_OVERSIGHT_027568.txt	Personal contact	Personal/social plans
-HOUSE_OVERSIGHT_027576.txt	Michael Wolff	Trump book/journalism project
 HOUSE_OVERSIGHT_027585.txt	Business associate	Business discussions
 HOUSE_OVERSIGHT_027655.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_027695.txt	Personal contact	Personal/social plans
 HOUSE_OVERSIGHT_027707.txt	Steve Bannon	Italian politics; Trump discussions
 HOUSE_OVERSIGHT_027722.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_027735.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027764.txt	Michael Wolff	Trump book/journalism project
 HOUSE_OVERSIGHT_027794.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_029744.txt	Steve Bannon (likely)	Trump and New York Times coverage
 HOUSE_OVERSIGHT_031042.txt	Personal contact	Personal/social plans
@@ -87,6 +85,7 @@ HOUSE_OVERSIGHT_031045.txt	Steve Bannon (likely)	Trump and New York Times covera
 HOUSE_OVERSIGHT_031054.txt	Personal contact	Personal/social plans
 HOUSE_OVERSIGHT_031173.txt	unclear	unclear
 """.strip())
+# HOUSE_OVERSIGHT_027764.txt	Michael Wolff	Trump book/journalism project
 
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\n(?=(Sender))', re.DOTALL)
 FILE_ID_REGEX = re.compile(r'.*HOUSE_OVERSIGHT_(\d+)\.txt')
@@ -126,6 +125,8 @@ KNOWN_COUNTERPARTY_FILE_IDS = {
 GUESSED_COUNTERPARTY_FILE_IDS = {
     '025363': BANNON,
     '025368': BANNON,
+    '027568': BANNON,
+    '027576': MELANIE_WALKER,  # https://www.ahajournals.org/doi/full/10.1161/STROKEAHA.118.023700
 }
 
 for counterparty in COUNTERPARTY_COLORS:
@@ -232,7 +233,7 @@ for i, file_arg in enumerate(argv):
                     sender = sender_str = counterparty
                 elif counterparty_guess is not None:
                     sender = counterparty_guess
-                    sender_str = f"{counterparty_guess}?"
+                    sender_str = f"{counterparty_guess} (?)"
                 else:
                     sender = sender_str = UNKNOWN
 
@@ -255,7 +256,7 @@ for i, file_arg in enumerate(argv):
             else:
                 msg = msg.replace('\n', ' ')  # remove newlines
 
-            console.print(Text('').append(timestamp).append(sender_txt).append(': ').append(msg))
+            console.print(Text('').append(timestamp).append(sender_txt).append(': ', style='dim').append(msg))
 
     console.line(2)
 
