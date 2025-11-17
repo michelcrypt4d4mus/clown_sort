@@ -99,8 +99,10 @@ EPSTEIN = 'Epstein'
 MELANIE_WALKER = 'Melanie Walker'
 MIROSLAV = 'Miroslav Lajčák'
 PLASKETT = 'Stacey Plaskett'
+SCARAMUCCI = 'The Mooch'
 SOON_YI = 'Soon-Yi Previn'
 SUMMERS = 'Larry Summers'
+TERJE = 'Terje Rød-Larsen'
 UNKNOWN = '(unknown)'
 
 # Color different counterparties differently
@@ -113,8 +115,10 @@ COUNTERPARTY_COLORS = {
     "Michael Wolff": 'grey54',
     PHONE_NUMBER: 'bright_green',
     PLASKETT: 'medium_orchid3',
+    SCARAMUCCI: 'orange1',
     SOON_YI: 'hot_pink',
     SUMMERS: 'bright_red',
+    TERJE: 'light_slate_blue',
     UNKNOWN: 'cyan',
 }
 
@@ -130,6 +134,8 @@ KNOWN_COUNTERPARTY_FILE_IDS = {
     '027128': SOON_YI,         # https://x.com/ImDrinknWyn/status/1990227281101434923
     '027217': SOON_YI,         # refs marriage to woody allen
     '027257': SOON_YI,         # refs woody
+    '027333': SCARAMUCCI,      # unredacted phone number
+    '027278': TERJE,
 }
 
 GUESSED_COUNTERPARTY_FILE_IDS = {
@@ -272,6 +278,10 @@ for file_arg in get_imessage_log_files():
             if len(sender) > 0:
                 if sender == 'e:jeeitunes@gmail.com':
                     sender = sender_str = EPSTEIN
+                elif sender == '+19174393646':
+                    sender = SCARAMUCCI
+                elif sender == '+13109906526':
+                    sender = BANNON
                 elif PHONE_NUMBER_REGEX.match(sender):
                     sender_style = PHONE_NUMBER
             else:
