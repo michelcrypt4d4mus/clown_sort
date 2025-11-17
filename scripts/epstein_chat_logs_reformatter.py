@@ -318,7 +318,7 @@ for file_arg in get_imessage_log_files():
 
 
 console.print(f"\nProcessed {files_processed} log files with {msgs_processed} text messages ({convos_labeled} IDs).")
-output_basename = "epstein_text_messaged_colorized"
+output_basename = "epstein_text_messages_colorized"
 output_html = f"{output_basename}.html"
 colored_text_filename = f"{output_basename}.ascii.txt"
 
