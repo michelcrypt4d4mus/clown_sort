@@ -297,7 +297,7 @@ for file_arg in get_imessage_log_files():
                 else:
                     sender = sender_str = UNKNOWN
 
-            if re.match('[-_1]+', sender):
+            if re.match('[-_1]+|[4Ide]', sender):
                 sender_counts[UNKNOWN] += 1
             else:
                 sender_counts[sender] += 1
