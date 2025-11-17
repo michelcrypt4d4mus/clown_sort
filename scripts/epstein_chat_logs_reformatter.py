@@ -10,6 +10,7 @@ Install: 'pip install rich'
 import csv
 import json
 import re
+from collections import defaultdict
 from datetime import datetime
 from io import StringIO
 from os import environ
@@ -48,20 +49,16 @@ HOUSE_OVERSIGHT_027225.txt	Personal contact	Personal/social plans
 HOUSE_OVERSIGHT_027232.txt	Personal contact	Personal/social plans
 HOUSE_OVERSIGHT_027248.txt	unclear	unclear
 HOUSE_OVERSIGHT_027250.txt	Personal contact	Personal/social plans
-HOUSE_OVERSIGHT_027255.txt	Business associate	Business discussions
-HOUSE_OVERSIGHT_027257.txt	unclear	unclear
 HOUSE_OVERSIGHT_027260.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_027275.txt	unclear	unclear
 HOUSE_OVERSIGHT_027278.txt	Personal contact	Personal/social plans
 HOUSE_OVERSIGHT_027281.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027307.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_027330.txt	unclear	unclear
 HOUSE_OVERSIGHT_027333.txt	Personal contact	Personal/social plans
 HOUSE_OVERSIGHT_027346.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_027365.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_027374.txt	Steve Bannon	China strategy and geopolitics
 HOUSE_OVERSIGHT_027396.txt	Personal contact	Personal/social plans
-HOUSE_OVERSIGHT_027401.txt	unclear	unclear
 HOUSE_OVERSIGHT_027406.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_027428.txt	unclear	unclear
 HOUSE_OVERSIGHT_027434.txt	Business associate	Business discussions
@@ -80,10 +77,8 @@ HOUSE_OVERSIGHT_027722.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_027735.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_027794.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_029744.txt	Steve Bannon (likely)	Trump and New York Times coverage
-HOUSE_OVERSIGHT_031042.txt	Personal contact	Personal/social plans
 HOUSE_OVERSIGHT_031045.txt	Steve Bannon (likely)	Trump and New York Times coverage
 HOUSE_OVERSIGHT_031054.txt	Personal contact	Personal/social plans
-HOUSE_OVERSIGHT_031173.txt	unclear	unclear
 """.strip())
 # HOUSE_OVERSIGHT_027764.txt	Michael Wolff	Trump book/journalism project
 
@@ -126,15 +121,17 @@ KNOWN_COUNTERPARTY_FILE_IDS = {
     '025734': BANNON,
     '025452': BANNON,
     '025408': BANNON,
+    '027307': BANNON,
     '027515': MIROSLAV,        # https://x.com/ImDrinknWyn/status/1990210266114789713
     '025429': PLASKETT,
     '027777': SUMMERS,
     '027165': MELANIE_WALKER,  # https://www.wired.com/story/jeffrey-epstein-claimed-intimate-knowledge-of-donald-trumps-views-in-texts-with-bill-gates-adviser/
     '027128': SOON_YI,         # https://x.com/ImDrinknWyn/status/1990227281101434923
     '027217': SOON_YI,         # refs marriage to woody allen
-    '027257': SOON_YI,         # refs woody
+    '027257': 'Woody Allen',   # Participants: field
     '027333': SCARAMUCCI,      # unredacted phone number
     '027278': TERJE,
+    '027255': TERJE,
 }
 
 GUESSED_COUNTERPARTY_FILE_IDS = {
@@ -145,6 +142,10 @@ GUESSED_COUNTERPARTY_FILE_IDS = {
     '027576': MELANIE_WALKER,  # https://www.ahajournals.org/doi/full/10.1161/STROKEAHA.118.023700
     '027141': MELANIE_WALKER,
     '027232': MELANIE_WALKER,
+    '031042': 'Anil Ambani',   # Participants: field
+    '031173': 'Ards',          # Participants: field
+    '027401': 'Eva',           # Participants: field
+    '027650': 'Joi Ito',       # Participants: field
 }
 
 for counterparty in COUNTERPARTY_COLORS:
@@ -178,6 +179,7 @@ console.record = True
 files_processed = 0
 convos_labeled = 0
 msgs_processed = 0
+sender_counts = defaultdict(int)
 
 if is_debug:
     console.print('KNOWN_COUNTERPARTY_FILE_IDS\n--------------')
@@ -295,6 +297,11 @@ for file_arg in get_imessage_log_files():
                 else:
                     sender = sender_str = UNKNOWN
 
+            if re.match('[-_1]+', sender):
+                sender_counts[UNKNOWN] += 1
+            else:
+                sender_counts[sender] += 1
+
             sender_txt = Text(sender_str, style=sender_style or COUNTERPARTY_COLORS.get(sender, DEFAULT))
 
             # Fix multiline links
@@ -319,8 +326,10 @@ for file_arg in get_imessage_log_files():
     console.line(2)
 
 
-console.print(f"\nProcessed {files_processed} log files with {msgs_processed} text messages ({convos_labeled} deanonymized conversations)")
-output_basename = "epstein_text_messages_colorized"
+console.line(2)
+console.print_json(json.dumps(sender_counts, indent=4, sort_keys=True))
+console.print(f"\n\nProcessed {files_processed} log files with {msgs_processed} text messages ({convos_labeled} deanonymized conversations)")
+output_basename = "epstein_text_msgs_7th_production_colorized_and_deanonymized"
 output_html = f"{output_basename}.html"
 colored_text_filename = f"{output_basename}.ascii.txt"
 
