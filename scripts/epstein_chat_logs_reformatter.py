@@ -288,6 +288,8 @@ for file_arg in get_imessage_log_files():
                     sender = BANNON
                 elif PHONE_NUMBER_REGEX.match(sender):
                     sender_style = PHONE_NUMBER
+                elif re.match('[ME]+', sender):
+                    sender = MELANIE_WALKER
             else:
                 if counterparty != UNKNOWN:
                     sender = sender_str = counterparty
