@@ -99,6 +99,7 @@ EPSTEIN = 'Epstein'
 MELANIE_WALKER = 'Melanie Walker'
 MIROSLAV = 'Miroslav Lajčák'
 PLASKETT = 'Stacey Plaskett'
+SOON_YI = 'Soon-Yi Previn'
 SUMMERS = 'Larry Summers'
 UNKNOWN = '(unknown)'
 
@@ -112,6 +113,7 @@ COUNTERPARTY_COLORS = {
     "Michael Wolff": 'grey54',
     PHONE_NUMBER: 'bright_green',
     PLASKETT: 'medium_orchid3',
+    SOON_YI: 'hot_pink',
     SUMMERS: 'bright_red',
     UNKNOWN: 'cyan',
 }
@@ -125,6 +127,9 @@ KNOWN_COUNTERPARTY_FILE_IDS = {
     '025429': PLASKETT,
     '027777': SUMMERS,
     '027165': MELANIE_WALKER,  # https://www.wired.com/story/jeffrey-epstein-claimed-intimate-knowledge-of-donald-trumps-views-in-texts-with-bill-gates-adviser/
+    '027128': SOON_YI,         # https://x.com/ImDrinknWyn/status/1990227281101434923
+    '027217': SOON_YI,         # refs marriage to woody allen
+    '027257': SOON_YI,         # refs woody
 }
 
 GUESSED_COUNTERPARTY_FILE_IDS = {
