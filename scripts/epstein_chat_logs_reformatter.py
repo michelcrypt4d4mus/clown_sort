@@ -75,7 +75,6 @@ HOUSE_OVERSIGHT_027536.txt	Steve Bannon	China strategy and geopolitics; Trump di
 HOUSE_OVERSIGHT_027568.txt	Personal contact	Personal/social plans
 HOUSE_OVERSIGHT_027585.txt	Business associate	Business discussions
 HOUSE_OVERSIGHT_027655.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027695.txt	Personal contact	Personal/social plans
 HOUSE_OVERSIGHT_027707.txt	Steve Bannon	Italian politics; Trump discussions
 HOUSE_OVERSIGHT_027722.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_027735.txt	Steve Bannon	Trump and New York Times coverage
@@ -142,8 +141,10 @@ GUESSED_COUNTERPARTY_FILE_IDS = {
     '025363': BANNON,
     '025368': BANNON,
     '027568': BANNON,
+    '027695': BANNON,
     '027576': MELANIE_WALKER,  # https://www.ahajournals.org/doi/full/10.1161/STROKEAHA.118.023700
     '027141': MELANIE_WALKER,
+    '027232': MELANIE_WALKER,
 }
 
 for counterparty in COUNTERPARTY_COLORS:
@@ -318,7 +319,7 @@ for file_arg in get_imessage_log_files():
     console.line(2)
 
 
-console.print(f"\nProcessed {files_processed} log files with {msgs_processed} text messages ({convos_labeled} IDs).")
+console.print(f"\nProcessed {files_processed} log files with {msgs_processed} text messages ({convos_labeled} deanonymized conversations)")
 output_basename = "epstein_text_messages_colorized"
 output_html = f"{output_basename}.html"
 colored_text_filename = f"{output_basename}.ascii.txt"
