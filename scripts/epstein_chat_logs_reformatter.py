@@ -39,13 +39,10 @@ HOUSE_OVERSIGHT_025707.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_025734.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
 HOUSE_OVERSIGHT_025735.txt	Unidentified	unclear
 HOUSE_OVERSIGHT_027128.txt	Personal contact	Personal/social plans
-HOUSE_OVERSIGHT_027141.txt	unclear	unclear
 HOUSE_OVERSIGHT_027148.txt	Steve Bannon	Middle East politics and business deals; Trump discussions
-HOUSE_OVERSIGHT_027184.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_027214.txt	unclear	unclear
 HOUSE_OVERSIGHT_027217.txt	Business associate	Business discussions
 HOUSE_OVERSIGHT_027225.txt	Personal contact	Personal/social plans
-HOUSE_OVERSIGHT_027232.txt	Personal contact	Personal/social plans
 HOUSE_OVERSIGHT_027248.txt	unclear	unclear
 HOUSE_OVERSIGHT_027250.txt	Personal contact	Personal/social plans
 HOUSE_OVERSIGHT_027260.txt	Steve Bannon	Trump and New York Times coverage
@@ -131,6 +128,8 @@ KNOWN_COUNTERPARTY_FILE_IDS = {
     '027333': SCARAMUCCI,      # unredacted phone number
     '027278': TERJE,
     '027255': TERJE,
+    '031042': 'Anil Ambani',   # Participants: field
+    '027650': 'Joi Ito',       # Participants: field
 }
 
 GUESSED_COUNTERPARTY_FILE_IDS = {
@@ -142,10 +141,9 @@ GUESSED_COUNTERPARTY_FILE_IDS = {
     '027141': MELANIE_WALKER,
     '027232': MELANIE_WALKER,
     '027133': MELANIE_WALKER,
-    '031042': 'Anil Ambani',   # Participants: field
+    '027184': MELANIE_WALKER,
     '031173': 'Ards',          # Participants: field
     '027401': 'Eva',           # Participants: field
-    '027650': 'Joi Ito',       # Participants: field
 }
 
 for counterparty in COUNTERPARTY_COLORS:
