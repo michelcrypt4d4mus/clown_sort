@@ -143,6 +143,7 @@ GUESSED_COUNTERPARTY_FILE_IDS = {
     '025368': BANNON,
     '027568': BANNON,
     '027576': MELANIE_WALKER,  # https://www.ahajournals.org/doi/full/10.1161/STROKEAHA.118.023700
+    '027141': MELANIE_WALKER,
 }
 
 for counterparty in COUNTERPARTY_COLORS:
