@@ -196,7 +196,6 @@ def first_timestamp_in_file(file_arg: Path):
                 continue
 
 
-
 def get_imessage_log_files() -> list[Path]:
     log_files = []
 
