@@ -10,6 +10,7 @@ Install: 'pip install rich'
 import csv
 import json
 import re
+from datetime import datetime
 from io import StringIO
 from os import environ
 from pathlib import Path
@@ -90,6 +91,7 @@ HOUSE_OVERSIGHT_031173.txt	unclear	unclear
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\n(?=(Sender))', re.DOTALL)
 FILE_ID_REGEX = re.compile(r'.*HOUSE_OVERSIGHT_(\d+)\.txt')
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
+DATE_FORMAT = "%m/%d/%y %I:%M:%S %p"
 PHONE_NUMBER = 'phone_number'
 BANNON = 'Bannon'
 DEFAULT = 'default'
@@ -119,7 +121,7 @@ KNOWN_COUNTERPARTY_FILE_IDS = {
     '025734': BANNON,
     '025452': BANNON,
     '025408': BANNON,
-    '027515': MIROSLAV,
+    '027515': MIROSLAV,        # https://x.com/ImDrinknWyn/status/1990210266114789713
     '025429': PLASKETT,
     '027777': SUMMERS,
     '027165': MELANIE_WALKER,  # https://www.wired.com/story/jeffrey-epstein-claimed-intimate-knowledge-of-donald-trumps-views-in-texts-with-bill-gates-adviser/
@@ -161,6 +163,7 @@ is_build = len(environ.get('BUILD') or '') > 0
 console = Console(color_system='256', theme=Theme(COUNTERPARTY_COLORS))
 console.record = True
 files_processed = 0
+convos_labeled = 0
 msgs_processed = 0
 
 if is_debug:
@@ -171,33 +174,66 @@ if is_debug:
     console.line(2)
 
 
-for i, file_arg in enumerate(argv):
-    file_arg = Path(file_arg)
-
-    if i == 0 or file_arg.is_dir():
-        continue
+def first_timestamp_in_file(file_arg: Path):
+    if is_debug:
+        console.log(f"Getting timestamp from {file_arg}")
 
     with open(file_arg) as f:
-        file_basename = file_arg.name
-        file_lines = [l.strip() for l in f.read().split('\n') if not l.startswith('HOUSE OVERSIGHT')]
+        for match in MSG_REGEX.finditer(f.read()):
+            timestamp_str = match.group(2).strip()
 
-        # Strip 1st char if it's the BOM "\ufeff"
-        if file_lines[0][0] == '\ufeff':
-            file_lines[0] = file_lines[0][1:]
+            try:
+                timestamp = datetime.strptime(timestamp_str, DATE_FORMAT)
 
-        file_text = '\n'.join(file_lines)
+                if is_debug:
+                    console.log(f"   -> Parsed first timestamp '{timestamp_str}' to {timestamp}'")
 
-        if 'iMessage' not in file_text:
+                return timestamp
+            except ValueError as e:
+                if is_debug:
+                    console.print(f"   -> FAILED to parse '{timestamp_str}' to datetime! Error: {e}'", style='red')
+
+                continue
+
+
+
+def get_imessage_log_files() -> list[Path]:
+    log_files = []
+
+    for i, file_arg in enumerate(argv):
+        file_arg = Path(file_arg)
+        file_text = ''
+
+        if i == 0 or file_arg.is_dir():
+            continue
+
+        with open(file_arg) as f:
+            file_text = f.read()
+
+        if 'iMessage' in file_text:
+            log_files.append(file_arg)
+        else:
             if is_debug:
-                if len(file_text) > 0 and file_text[0] == '{':
-                    json_subdir_path = file_arg.parent.joinpath('json_files').joinpath(file_basename + '.json')
+                if len(file_text) > 1 and file_text[1] == '{':
+                    json_subdir_path = file_arg.parent.joinpath('json_files').joinpath(file_arg.name + '.json')
                     console.print(f"'{file_arg}' looks like JSON, moving to '{json_subdir_path}'\n", style='yellow1 bold')
                     file_arg.rename(json_subdir_path)
                 else:
-                    console.print(f"'iMessage' string not found in '{file_basename}', top lines:")
+                    file_lines = file_text.split('\n')
+                    console.print(f"'iMessage' string not found in '{file_arg.name}', top lines:")
                     console.print('\n'.join(file_lines[0:4]) + '\n', style='dim')
 
             continue
+
+    # Sort by first timestamp
+    return sorted(log_files, key=lambda f: first_timestamp_in_file(f))
+
+
+for file_arg in get_imessage_log_files():
+    with open(file_arg) as f:
+        file_basename = file_arg.name
+        file_lines = [l.strip() for l in f.read().split('\n') if not l.startswith('HOUSE OVERSIGHT')]
+        file_text = '\n'.join(file_lines)
 
         files_processed += 1
         console.print(Panel(file_basename, style='reverse', expand=False))
@@ -217,6 +253,9 @@ for i, file_arg in enumerate(argv):
                 txt = Text("(This might be a conversation with ", style='grey')
                 txt.append(counterparty_guess, style=f"{COUNTERPARTY_COLORS.get(counterparty_guess, DEFAULT)}")
                 console.print(txt.append(' according to AI)\n'))
+
+        if counterparty != UNKNOWN or counterparty_guess is not None:
+            convos_labeled += 1
 
         for i, match in enumerate(MSG_REGEX.finditer(file_text)):
             msgs_processed += 1
@@ -264,7 +303,7 @@ for i, file_arg in enumerate(argv):
     console.line(2)
 
 
-console.print(f"\nProcessed {files_processed} iMessage log files with {msgs_processed} text messages.")
+console.print(f"\nProcessed {files_processed} log files with {msgs_processed} text messages ({convos_labeled} IDs).")
 output_basename = "epstein_text_messaged_colorized"
 output_html = f"{output_basename}.html"
 colored_text_filename = f"{output_basename}.ascii.txt"
