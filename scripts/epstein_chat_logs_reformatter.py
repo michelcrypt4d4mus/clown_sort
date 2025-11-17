@@ -39,7 +39,6 @@ HOUSE_OVERSIGHT_025707.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_025734.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
 HOUSE_OVERSIGHT_025735.txt	Unidentified	unclear
 HOUSE_OVERSIGHT_027128.txt	Personal contact	Personal/social plans
-HOUSE_OVERSIGHT_027133.txt	Steve Bannon	Political strategy and international affairs
 HOUSE_OVERSIGHT_027141.txt	unclear	unclear
 HOUSE_OVERSIGHT_027148.txt	Steve Bannon	Middle East politics and business deals; Trump discussions
 HOUSE_OVERSIGHT_027184.txt	Steve Bannon	Trump and New York Times coverage
@@ -142,6 +141,7 @@ GUESSED_COUNTERPARTY_FILE_IDS = {
     '027576': MELANIE_WALKER,  # https://www.ahajournals.org/doi/full/10.1161/STROKEAHA.118.023700
     '027141': MELANIE_WALKER,
     '027232': MELANIE_WALKER,
+    '027133': MELANIE_WALKER,
     '031042': 'Anil Ambani',   # Participants: field
     '031173': 'Ards',          # Participants: field
     '027401': 'Eva',           # Participants: field
@@ -337,8 +337,8 @@ colored_text_filename = f"{output_basename}.ascii.txt"
 
 if is_build:
     console.save_html(output_html, inline_styles=True, clear=False)
-    console.save_text(colored_text_filename, styles=True)
     console.print(f"Wrote HTML to '{output_html}' (is_build={is_build})")
-    console.print(f"Wrote colored ASCII to '{colored_text_filename}'")
+    # console.save_text(colored_text_filename, styles=True)
+    # console.print(f"Wrote colored ASCII to '{colored_text_filename}'")
 else:
     console.print(f"\nNot writing HTML because BUILD=true evn var is not set.")
