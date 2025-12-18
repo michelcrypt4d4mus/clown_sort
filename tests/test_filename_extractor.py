@@ -304,7 +304,13 @@ def test_retweet_filenames(parrot_retweet):
     extractor = FilenameExtractor(ImageFile(parrot_retweet))
     assert extractor._is_retweet()
     assert extractor._retweeter() == 'Jack'
-    assert extractor.filename() == 'Retweeted by Jack - Tweet by @ParrotCapital - "A_IMPORTANT A Check the following hashtags: #CrossRiver #CrossRiverBank @MikeBurgersburg _ @Cryptadamist have been digging in, as #Coinbase $COIN uses this bank," parrot_retweet.png'
+
+    # Tesseract on github actions (linux) changes the "IMPORTANT A" to "IMPORTANT _"
+    assert extractor.filename() in [
+        'Retweeted by Jack - Tweet by @ParrotCapital - "A_IMPORTANT A Check the following hashtags: #CrossRiver #CrossRiverBank @MikeBurgersburg _ @Cryptadamist have been digging in, as #Coinbase $COIN uses this bank," parrot_retweet.png',
+        'Retweeted by Jack - Tweet by @ParrotCapital - "A_IMPORTANT _ Check the following hashtags: #CrossRiver #CrossRiverBank @MikeBurgersburg _ @Cryptadamist have been digging in, as #Coinbase $COIN uses this bank," parrot_retweet.png',
+    ]
+
 
 
 def test_reddit_filenames(ocr_image):
