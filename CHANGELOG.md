@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Upgrade `pillow` to 12.0
 
 ### 1.14.1
 * Upgrade `pdfalyzer` to 1.17.11
