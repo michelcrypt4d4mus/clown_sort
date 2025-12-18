@@ -1,7 +1,9 @@
 # NEXT RELEASE
 * Extract PDF pages causing PyPDF exceptions to `./pdf_errors/` dir instead of `./PDF Errors/`
+* include `.clown_sort.example` in production package
 * Upgrade `pillow` to 12.0
 * Remove used `exif` package
+* New crypto sorting rules
 
 ### 1.14.1
 * Upgrade `pdfalyzer` to 1.17.11
