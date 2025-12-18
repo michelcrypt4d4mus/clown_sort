@@ -6,6 +6,7 @@ authors = ["Michel de Cryptadamus <michel@cryptadamus.com>"]
 readme = "README.md"
 packages = [{include = "clown_sort"}]
 homepage = "https://github.com/michelcrypt4d4mus/clown_sort"
+license = "GPL-3.0-or-later"
 
 include = [
     "CHANGELOG.md",
@@ -23,6 +24,14 @@ keywords = [
 ]
 
 classifiers = [
+    "Environment :: Console",
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Information Technology",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
     "Topic :: Desktop Environment :: File Managers",
     "Topic :: Multimedia :: Graphics :: Capture :: Screen Capture",
     "Topic :: Multimedia :: Graphics :: Capture",
