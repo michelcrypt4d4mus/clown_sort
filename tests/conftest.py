@@ -1,4 +1,3 @@
-import importlib.resources
 from os import environ, path, pardir
 from pathlib import Path
 
@@ -9,7 +8,11 @@ from clown_sort.config import Config
 from clown_sort.sort_rule import CRYPTO_RULES_CSV_PATH
 from clown_sort.util.constants import PACKAGE_NAME
 
-PROJECT_DIR = path.join(str(importlib.resources.files(PACKAGE_NAME)), pardir)
+# TODO: importlib doesn't play nice with running tests via GitHub actions
+# import importlib.resources
+# PROJECT_DIR = path.join(str(importlib.resources.files(PACKAGE_NAME)), pardir)
+PYTESTS_DIR = path.dirname(__file__)
+PROJECT_DIR = path.join(PYTESTS_DIR, pardir)
 TESTS_DIR = Path(PROJECT_DIR).joinpath('tests')
 FIXTURES_DIR = TESTS_DIR.joinpath('fixtures')
 TMP_DIR = TESTS_DIR.joinpath('tmp')
