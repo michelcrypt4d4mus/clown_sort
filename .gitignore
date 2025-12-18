@@ -131,4 +131,4 @@ dmypy.json
 tests/tmp/
 .clown_sort
 custom_sort_rules.csv
-PDF Errors/
+pdf_errors/
