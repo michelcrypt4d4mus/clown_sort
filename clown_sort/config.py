@@ -17,7 +17,7 @@ from rich.text import Text
 from clown_sort.sort_rule import SortRule, SortRuleParseError
 from clown_sort.util import rich_helper
 from clown_sort.util.argument_parser import parser
-from clown_sort.util.constants import PACKAGE_NAME
+from clown_sort.util.constants import PACKAGE_NAME, PDF_ERRORS
 from clown_sort.util.filesystem_helper import create_dir_if_it_does_not_exist, subdirs_of_dir
 from clown_sort.util.logging import log, set_log_level
 
@@ -126,7 +126,7 @@ class Config:
         cls.destination_dir: Path = Path(destination_dir or screenshots_dir)
         cls.sorted_screenshots_dir = cls.destination_dir.joinpath('Sorted')
         cls.processed_screenshots_dir = cls.destination_dir.joinpath('Processed')
-        cls.pdf_errors_dir = cls.destination_dir.joinpath('PDF Errors')
+        cls.pdf_errors_dir = cls.destination_dir.joinpath(PDF_ERRORS)
 
         for dir in [cls.destination_dir, cls.sorted_screenshots_dir, cls.processed_screenshots_dir]:
             create_dir_if_it_does_not_exist(dir)

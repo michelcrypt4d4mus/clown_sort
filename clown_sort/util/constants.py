@@ -10,7 +10,7 @@ MAC_DEFAULT_SCREENSHOTS_DIR = Path.home().joinpath('Pictures', 'Screenshots')
 
 # Miscellaneous strings
 CRYPTO = 'crypto'
-PDF_ERRORS = 'PDF Errors'
+PDF_ERRORS = 'pdf_errors'
 
 
 ### Environment variables

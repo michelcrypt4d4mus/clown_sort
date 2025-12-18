@@ -1,6 +1,7 @@
 # NEXT RELEASE
 * Upgrade `pillow` to 12.0
 * Remove used `exif` package
+* Extract PDF pages causing exceptions to `./pdf_errors/` dir instead of `./PDF Errors/`
 
 ### 1.14.1
 * Upgrade `pdfalyzer` to 1.17.11
