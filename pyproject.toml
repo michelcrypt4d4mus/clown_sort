@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "clown_sort"
 version = "1.14.1"
-description = "Sort screenshots based on rules or through individual review."
+description = "Sort screenshots based on text matching rules or through GUI review."
 authors = ["Michel de Cryptadamus <michel@cryptadamus.com>"]
 readme = "README.md"
 packages = [{include = "clown_sort"}]
@@ -41,15 +41,10 @@ exif = "^1.5.0"
 filedate = "^2.0"
 FreeSimpleGUI = {optional = true, version = "^5.2"}
 pdfalyzer = {extras = ["extract"], version = "^1.17.11"}
-# pdfalyzer = {extras = ["extract"], path = "../pdfalyzer", develop = true}
+# local dev: pdfalyzer = {extras = ["extract"], path = "../pdfalyzer", develop = true}
 piexif = "^1.1.3"
-pillow = ">=9.5.0,<11.0.0"
+# pillow = ">=9.5.0,<11.0.0"
 pyexiftool = "^0.5.5"
-pypdf = "^6.0.0"
-pytesseract = "^0.3.13"
-python-dotenv = "^1.1.1"
-rich = "^14.1.0"
-rich-argparse-plus = "^0.3.1.4"
 unidecode = "^1.3.8"
 
 
