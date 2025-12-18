@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.14.1
 * Upgrade `pdfalyzer` to 1.17.11
 * New crypto sorting rules
 
