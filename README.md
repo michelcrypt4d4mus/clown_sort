@@ -172,9 +172,14 @@ This package is managed with [Python Poetry](http://python-poetry.org/). To get 
 
 Only requirement is that tests should pass before you open it which you can check by running `pytest`.
 
+
+
 ### Running Tests
 Test suite can be launched with `pytest`. If you do some development and something goes weird and you're continually running into errors about non-empty directories try clearing out the test suite's temp directory by deleting the contents of `tests/tmp/` (`rm -fr tests/tmp/*` on Linux or macOS etc.).
 
 [^1]: The name `clown_sort` was suggested by [ParrotCapital](http://twitter.com/ParrotCapital) and while the tool can work on any kind of screenshot it was too good not to use.
 
 [^2]: Perhaps notable that the "reporter" in question for years maintained a private list of the blockchain addresses of Sam Bankman-Fried's various scams as part of his commitment to "unrivaled transparency".
+
+#### If Tests Fail Half Way Through
+Sometimes cruft gets left behind in the temp dir for fixtures that should have been cleaned up.

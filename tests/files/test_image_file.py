@@ -1,3 +1,5 @@
+from shutil import rmtree
+
 from clown_sort.config import Config
 from clown_sort.files.image_file import IMAGE_DESCRIPTION, ImageFile
 
@@ -17,4 +19,4 @@ def test_extracted_text_and_move(do_kwon_tweet, turn_off_dry_run):
     # Check that it doesn't try to re-rename the file
     assert(new_file.new_basename() == SORTED_FILENAME)
     new_file.file_path.unlink()
-    new_file.file_path.parent.rmdir()
+    rmtree(new_file.file_path.parent)
