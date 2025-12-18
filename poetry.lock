@@ -472,26 +472,24 @@ files = [
 
 [[package]]
 name = "pdfalyzer"
-version = "1.17.10"
+version = "1.17.11"
 description = "Analyze PDFs with colors (and YARA). Visualize a PDF's inner tree-like data structure, check it against a library of YARA rules, force decodes of suspicious font binaries, and more."
 optional = false
-python-versions = "^3.11.14"
-files = []
-develop = true
+python-versions = "<4.0.0,>=3.11.14"
+files = [
+    {file = "pdfalyzer-1.17.11-py3-none-any.whl", hash = "sha256:6dfdef6839cf5800d8e61a92796bf0a9a0bb935f8976b9a52f3fab6f8ab361b6"},
+    {file = "pdfalyzer-1.17.11.tar.gz", hash = "sha256:2083e7321e01f07555de076c40e1b0bc3ad422873bc644672a65b8edddb960dd"},
+]
 
 [package.dependencies]
-anytree = "~=2.13"
-PyMuPDF = {version = "^1.26.5", optional = true}
-pypdf = "^6.4.2"
-pytesseract = {version = "^0.3.13", optional = true}
-yaralyzer = "^1.0.9"
+anytree = ">=2.13,<3.0"
+PyMuPDF = {version = ">=1.26.5,<2.0.0", optional = true, markers = "extra == \"extract\""}
+pypdf = ">=6.4.2,<7.0.0"
+pytesseract = {version = ">=0.3.13,<0.4.0", optional = true, markers = "extra == \"extract\""}
+yaralyzer = ">=1.0.9,<2.0.0"
 
 [package.extras]
 extract = ["PyMuPDF (>=1.26.5,<2.0.0)", "pytesseract (>=0.3.13,<0.4.0)"]
-
-[package.source]
-type = "directory"
-url = "../pdfalyzer"
 
 [[package]]
 name = "piexif"
@@ -968,4 +966,4 @@ gui = ["FreeSimpleGUI"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11.14"
-content-hash = "38427908fe5306c11f145c54e218aa17e9acb6b37bf8f03ecb3a4ea41ca36ec2"
+content-hash = "e98bbd69b1fa5f9d67d811ae20ae346edbfd09e91eba772d7b450d6aefdca4a4"
