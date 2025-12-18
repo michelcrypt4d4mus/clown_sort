@@ -29,7 +29,7 @@ Binary Options,binary[-\s_.]*options
 Bitcoin ETFs,\b(BITW|BTCM|BTCX|EBIT|EBTC|EBTCG|EBTH|EBTHC|EBTHG|EBTHI|EBTHJ|EBTHK|EBTHL|EBTHM|EBTHN|EBTHO|EBTHP|EBTHQ|EBTHR|EBTHS|EBTHT|EBTHU|EBTHV|EBTHW|EBTHX|EBTHY|EBTHZ|EBTC|EBTCG|EBTCH|EBTCI|EBTCJ|EBTCK|EBTCL|EBTCM|EBTCN|EBTCO|EBTCP|EBTCQ|EBTCR|EBTCS|EBTCT|EBTCU|EBTCV|EBTCW|EBTCX|EBTCY|EBTCZ|EBTD|EBTDC|EBTDD|EBTDE|EBTDF|EBTDG|EBTDH|EBTDI|EBTDJ|EBTDK|EBTDL|EBTDM|EBTDN|EBTDO|EBTDP|EBTDQ|EBTDR|EBTDS|EBTDT|EBTDU|EBTDV|EBTDW|EBTDX|EBTDY|EBTDZ|EBTE|EBTEC|EBTED|EBTEE|EBTEF|EBTEG|EBTEH|EBTEI|EBTEJ|EBTEK|EBTEL|EBTEM|EBTEN|EBTEO|EBTEP|EBTEQ|EBTER|EBTES|EBTET|EBTEU|EBTEV|EBTEW|EBTEX|EBTEY|EBTEZ|EBTF|EBTFC|EBTFD|EBTFE|EBTFF|EBTFG|EBTFH|EBTFI|EBTFJ|EBTFK|EBTFL|EBTFM|EBTFN|EBTFO|EBTFP|EBTFQ|EBTFR|EBTFS|EBTFT|EBTFU|EBTFV|EBTFW|EBTFX|EBTFY|EBTFZ|EBTG|EBTGC|EBTGD|EBTGE|EBTGF|EBTGG|Bitcoin[-\s_.]*ETFs?)\b
 Bitcoin Treasury Companies,Bitcoin[-\s_.]*Treasury|Smarter[-\s_.]*Web[-\s_.]*Company|Tim[-\s_.]*Kotzman|Tom[-\s_.]*Lee\b|Metaplanet|Bitcoin[-\s_.]*Treasur(y|ies)|\b(MTPLFE?|NAKA|SBET|Semler|Sharplink|SQNS|SWC)\b|Forward[-\s_.]*Industries
 Bitdeer,Bitdeer|Blue[-\s_.]*Safari
-Bitforex,\b(Bitforex|Parler|Wernick|ZB\s*(Exchange|.?com)|ZB)\b
+Bitforex,\b(aurora[-\s_.]*wong|Bitforex|Parler|Wernick|ZB\s*(Exchange|.?com)|ZB)\b
 BitGet,\bBitget\b
 Bithumb,\bbithumb
 Bitmain,\b(Bitmain|Xinran)\b
@@ -67,6 +67,7 @@ Coinflex,Mark[-\s_.]*Lamb|Roger[-\s_.]*Ver|coinflex|Doug[-\s_.]*Polk|OPNX|flexus
 CoinLoan,coinloan|Faliushin\b
 CompoundFi,compoundfi|leshner|\bgonen\b
 ConsenSys,ConsenSys
+Crime,Elizabeth[-\s_.]*Holmes
 Cross River Bank,\bCRB|Cross[-\s_.]*River|Prestige[-\s_.]*Capital|\bbae[-\s_.]*communications|Zenfi\b|\bBrix|PeerIQ|\bupstart\b|\bUPST\b|\bLeumi\b|Hapoalim|BetterFin|\bMANTL\b|\bLvnv|\bKabbage|\bAFRM\b|\bMomnt
 Crypto Capital,Global[-\s_.]*Transaction[-\s_.]*Services|Crypto[-\s_.]*Capital\b
 Crypto Markets,Overview\s*Markets\s*Platforms\s*News|7D\s*Open\s*7D\s*High\s*7D\s*Low|24H Open 24H High 24H Low 24H|Jan 2016 Jan 2017 Jan 2018 Jan 2019 Jan 2020 Jan 2021
@@ -78,7 +79,7 @@ Custodia,custodia\b|caitlin[-\s_.]*long
 dalle,craiyon|midjourney|\bdall[-\s_.]*e\b
 DAOs,\b(aragon(project)?|augur(project)?|gopartyparrot|nounsdao|ParrotDAO|Spartacus_Fi)\b|\$(PRT|REP|ROOK|SPA)\b
 Darknet Markets,\b(Alphabay|DNM|darknet)\b|(Dream|Empire|Evolution|Hansa)[-\s_.]*Market
-DCG,DCG|digital[-\s_.]*currency[-\s_.]*group|sh?ill?bert|Grayscale|GBTC|\bkraines\b|hq[-\s_.]*digital|Alana[-\s_.]*Ackerson|Jennifer[-\s_.]*Mitrenga|Emily[-\s_.]*(Heather[-\s_.]*)?Goodman|Founders[-\s_.]*Liquidity[-\s_.]*Fund|Zcash|\bYuma\b
+DCG,\b(Bittensor|DCG)\b|digital[-\s_.]*currency[-\s_.]*group|sh?ill?bert|Grayscale|GBTC|\bkraines\b|hq[-\s_.]*digital|Alana[-\s_.]*Ackerson|Jennifer[-\s_.]*Mitrenga|Emily[-\s_.]*(Heather[-\s_.]*)?Goodman|Founders[-\s_.]*Liquidity[-\s_.]*Fund|Zcash|\bYuma\b
 DeepSeek,DeepSeek|High[-\s_.]*Flyer|\bWenfeng
 DeFi,\b(1inch|Apex|Balancer|crvUSD|Curve|defi|DODO|dYdX|Egorov|Kine|MCDEX|Multichain|WOOFi)\b|decentralized[-\s_.]*finance|(Baby|Cro|Defi|IceCream|Leet|Pancake|Para|Quick|Sake|Shiba|Sushi|Sun|SWFT|Sync|Uni)Swap|(Apex|Maverick|Perpetual)[-\s_.]*Protocol|Trader[-\s_.]*Joe[^']|Compound[-\s_.]*Fi
 Deribit,deribit\b
