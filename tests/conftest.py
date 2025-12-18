@@ -11,6 +11,7 @@ from clown_sort.sort_rule import CRYPTO_RULES_CSV_PATH
 # import importlib.resources
 # from clown_sort.util.constants import PACKAGE_NAME
 # PROJECT_DIR = path.join(str(importlib.resources.files(PACKAGE_NAME)), pardir)
+
 PYTESTS_DIR = path.dirname(__file__)
 PROJECT_DIR = path.join(PYTESTS_DIR, pardir)
 TESTS_DIR = Path(PROJECT_DIR).joinpath('tests')
