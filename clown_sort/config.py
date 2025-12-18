@@ -179,7 +179,7 @@ def _check_for_pysimplegui():
         msg = Text('ERROR', style='bright_red')
 
         msg.append(
-            ': PySimpleGUI package must be installed before you can use the manual selector. Try running:',
+            ': FreeSimpleGUI package must be installed before you can use the manual selector. Try running:',
             style='bright_white'
         )
 

@@ -35,12 +35,13 @@ Changelog = "https://github.com/michelcrypt4d4mus/clown_sort/blob/main/CHANGELOG
 
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.11.14"
 
 exif = "^1.5.0"
 filedate = "^2.0"
 FreeSimpleGUI = {optional = true, version = "^5.2"}
-pdfalyzer = {extras = ["extract"], version = "^1.17.0"}
+#pdfalyzer = {extras = ["extract"], version = "^1.17.0"}
+pdfalyzer = {extras = ["extract"], path = "../pdfalyzer", develop = true}
 piexif = "^1.1.3"
 pillow = ">=9.5.0,<11.0.0"
 pyexiftool = "^0.5.5"

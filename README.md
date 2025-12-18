@@ -128,7 +128,7 @@ If you run with the `--manual-sort` command line the behavior is quite different
 
 A related command line option is `--manual-fallback` which will popup a window only when the file is an image and has not matched any of the configured sorting rules.
 
-To use this feature you must install the optional `PySimpleGUI` package which can be accomplished like this:
+To use this feature you must install the optional `FreeSimpleGUI` package which can be accomplished like this:
 ```sh
 pipx install clown_sort[gui]
 ```
