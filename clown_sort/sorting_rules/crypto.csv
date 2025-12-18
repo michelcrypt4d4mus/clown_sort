@@ -246,9 +246,9 @@ Turkey,Turk(ey|ish|iye)|Istanbul|Ankara|Uzmancoin
 Uniswap,\b(Hayden[-\s_.]*Adams|UNI|Uniswap)\b
 Uzbekistan,Uzbekistan|UzNEX
 Vauld,Vauld
-VCs,\b(amy(tong|[-\s_.]*)Wu|Calacanis|Chamath|(Katherine[-\s_.]*|KTm)Boyle|Maguire|Northzone|sequoia|sjdedic|thiel|VCs?)\b|venture[-\s_.]*capital|@jason\b|david[-\s_.]*sacks|founders[-\s_.]*fund|Valar[-\s_.]*Ventures|6th[-\s_.]*Man[-\s_.]*Ventures|Warburg[-\s_.]*Serres|Alan[-\s_.]*Howard|Tiger[-\s_.]*Global|Variant[-\s_.]*Fund|JTLonsdale|Joe[-\s_.]*Lonsdale|VanEck[-\s_.]*Ventures|Moonrock[-\s_.]*Capital|MollySOShea|Trevor\s*Milton|Nikola\s*Motors
+VCs,@jason\b|\b(6th[-\s_.]*Man[-\s_.]*Ventures|Alan[-\s_.]*Howard|Amy(tong|[-\s_.]*)Wu|Calacanis|Chamath|David[-\s_.]*Sacks|Founders[-\s_.]*Fund|J(oe|T)[-\s_.]*Lonsdale|(Katherine[-\s_.]*|KTm)Boyle|Maguire|Molly[-\s_.]*S?[-\s_.]*O.?Shea|Moonrock[-\s_.]*Capital|Northzone|Sequoia|sjdedic|Sourcery|Thiel|Tiger[-\s_.]*Global|Valar[-\s_.]*Ventures|VanEck[-\s_.]*Ventures|Variant[-\s_.]*Fund|Warburg[-\s_.]*Serres|VCs?)\b|venture[-\s_.]*capital|Nikola\s*Motors|Trevor\s*Milton
 Vietnam,\b(Vietnam|Hanoi|Ho[-\s_.]*Chi[-\s_.]*Minh)
-Vitalik Buterin,\bvitalik\b
+Vitalik Buterin,\b(buterin|vitalik)\b
 Voyager,\b(Voyagers?|InvestVoyager|Ehrlich|VGX)\b
 Wallet Addresses BCH,bitcoincash:q.*\b
 Wallet Addresses Bitcoin,\b(bc1|[13])[a-zA-HJ-NP-Z0-9]{25,39}\b
@@ -263,10 +263,10 @@ Wallet Addresses Ripple,\br[0-9a-zA-Z]{33}
 Wallet Addresses Stellar,\bG[0-9A-Z]{40,60}\b
 Wallet Addresses Tron,\bT[a-zA-Z0-9]{33}\b
 Wanxiang Group,wanxiang|\bFeng[-\s_.]*Xiao
-Waves,sasha[-\s_.]*(35625|ivanov|\.waves)|\bVires\b|boris[-\s_.]*titov|[$#]WAVES\b|USDN
-WazirX,WazirX|\bShetty\b
-Wintermute,Wintermute|\b(Bebop|Evgeny(Gaevoy)?)\b|Wishful[-\s_.]*Cynic
-Wirecard,\b(Aktif[-\s_.]*Bank|Bafin|Bellenhaus|Buchholz|DISTEFORA|e\-devinvent|G(ö|o)rres|Marsalek|Paygea|Paysafe|Trautmann|Wirecard)\b|Markus[-\s_.]*Braun
+Waves,[$#]WAVES\b|\b(Boris[-\s_.]*Titov|Sasha[-\s_.]*(35625|Ivanov|\.?waves)|Vires)\b
+WazirX,\b(Shetty|WazirX)\b
+Wintermute,\b(Bebop|Evgeny(Gaevoy)?|Wintermute|Wishful[-\s_.]*Cynic)\b
+Wirecard,\b(Aktif[-\s_.]*Bank|Bafin|Bellenhaus|Buchholz|DISTEFORA|e\-devinvent|G(ö|o)rres|Marsalek|Markus[-\s_.]*Braun|Paygea|Paysafe|Trautmann|Wirecard)\b
 Worldcoin,\b(orb|Worldcoin)\b
 Wyoming,Wyoming
-Wyre,\bwyre|sendwyre|\bLead[-\s_.]*Bank\b|Steven[-\s_.]*Huynh
+Wyre,\b(Lead[-\s_.]*Bank|(Send)?Wyre|Steven[-\s_.]*Huynh)\b
