@@ -1,5 +1,3 @@
-from typing import List
-
 from clown_sort.config import Config
 from clown_sort.files.image_file import ImageFile
 from clown_sort.files.sortable_file import SortableFile
@@ -9,7 +7,6 @@ from tests.test_config import *
 SIGNATURE = """Signature
 
 Bank"""
-
 
 
 def test_sort_file(three_of_swords_file, turn_off_dry_run):

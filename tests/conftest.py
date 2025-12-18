@@ -1,3 +1,11 @@
+# TODO: importlib is a cleaner way of pathing in a package once its installed on someone's
+# machine but unfortunately importlib doesn't play nice with running tests via GitHub actions.
+#
+# Code used to be like this:
+#     import importlib.resources
+#     from clown_sort.util.constants import PACKAGE_NAME
+#     PROJECT_DIR = path.join(str(importlib.resources.files(PACKAGE_NAME)), pardir)
+
 from os import environ, path, pardir
 from pathlib import Path
 environ['INVOKED_BY_PYTEST'] = 'True'
@@ -6,11 +14,6 @@ import pytest
 
 from clown_sort.config import Config
 from clown_sort.sort_rule import CRYPTO_RULES_CSV_PATH
-
-# TODO: importlib doesn't play nice with running tests via GitHub actions
-# import importlib.resources
-# from clown_sort.util.constants import PACKAGE_NAME
-# PROJECT_DIR = path.join(str(importlib.resources.files(PACKAGE_NAME)), pardir)
 
 PYTESTS_DIR = path.dirname(__file__)
 PROJECT_DIR = path.join(PYTESTS_DIR, pardir)

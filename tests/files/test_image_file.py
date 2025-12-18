@@ -15,8 +15,6 @@ def test_extracted_text_and_move(do_kwon_tweet, turn_off_dry_run):
     image_file.sort_file()
     new_file = ImageFile(Config.sorted_screenshots_dir.joinpath('TerraLuna', SORTED_FILENAME))
     assert(new_file.exif_dict()[IMAGE_DESCRIPTION].startswith(DO_KWON_TEXT))
-
-    # Check that it doesn't try to re-rename the file
-    assert(new_file.new_basename() == SORTED_FILENAME)
+    assert(new_file.new_basename() == SORTED_FILENAME)  # Check that it doesn't try to re-rename the file
     new_file.file_path.unlink()
     rmtree(new_file.file_path.parent)

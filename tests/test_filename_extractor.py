@@ -312,7 +312,6 @@ def test_retweet_filenames(parrot_retweet):
     ]
 
 
-
 def test_reddit_filenames(ocr_image):
     ocr_image._extracted_text = REDDIT_POST
     assert FilenameExtractor(ocr_image).filename() == 'Reddit post by TheLostWander_er in binance - "send cash feature is temporarily disable. I was trying to withdraw cash since last week and I am seeing this message every time I try the send cash fea" do_kwon_debate_the_poor.jpeg'
