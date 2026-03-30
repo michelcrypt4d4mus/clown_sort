@@ -92,7 +92,7 @@ El Salvador,Bukele|El[-\s_.]*Salvador|eNor[-\s_.]*Securities|IBenorsecuritiesMak
 Electric Capital,@avichal(garg)?|@curtisspencer|@electriccapital|@nearprotocol|@near(protocol)?\b|Avichal[-\s_.]*Garg|Curtis[-\s_.]*Spencer|Electric[-\s_.]*Capital|NEAR[-\s_.]*Protocol
 Elon Musk,\b(Elmo|elon(musk)?|Grok|SpaceX|Tesla|TSLA)\b|Michael[-\s_.]*Grimes
 EOS,\b(Bitshares|EOS|(Brendan)?Blumer|Larimer|Block[-.\s]?One|Northern[-.\s]*Data|Steemit)\b|@B1\b
-Epstein,\b(Barak|Bolotova|Crypto[-\s_.]*PR[-\s_.]*Labs|Dershowitz|Ehud\s*Barak|Epstein|Ghislaine|Giuffre|International[-\s_.]*Peace[-\s_.]*Institute|InvestmentDouble|jee(itunes|vacation)|Joi[-\s_.]*Ito|Junkermann|Kuhtarska|Lesley[-\s_.]*Groff|Madars|Maxwell|Mindshift|Pozhidaeva|Prince[-\s_.]*Andrew|Prusakova|Radtke|Richard[-\s_.]*Kah|Seckel|Svetlana|Zubair)\b
+Epstein,\b(Barak|Bolotova|Crypto[-\s_.]*PR[-\s_.]*Lab|Dershowitz|Ehud\s*Barak|Epstein|Ghislaine|Giuffre|International[-\s_.]*Peace[-\s_.]*Institute|InvestmentDouble|jee(itunes|vacation)|Jeremy[-\s_.]*Rubin|Joi(chi)?[-\s_.]*Ito|Junkermann|Kuhtarska|Lesley[-\s_.]*Groff|Madars|Maxwell|Mindshift|Pozhidaeva|Prince[-\s_.]*Andrew|Prusakova|Radtke|Richard[-\s_.]*Kah|Seckel|Svetlana|Zubair)\b
 EqiFi,\b(SHRM|Eqi(Fi|Prime))\b
 Eric Adams,(Abbasova|Eric|Mayor)[-\s_.]*Adams|Mermelstein|Brianna[-\s_.]*Suggs|Felipe\-Adams|David[-\s_.]*Greenfield|Oaktree|Molly[-\s_.]*Schaeffer|Tusk[-\s_.]*Strategies|One[-\s_.]*&[-\s_.]*Only[-\s_.]*(Realty|Holdings)|Ryan[-\s_.]*Lynch|Dawn[-\s_.]*Miller|Madeline[-\s_.]*Labadie|Eric[-\s_.]*Ulrich|Tania[-\s_.]*Kinsella|Fabien[-\s_.]*Levy|Menashe[-\s_.]*Shapiro|Tiffany[-\s_.]*Raspberry|Tatiana[-\s_.]*Kudina|Richie[-\s_.]*Taylor|Ezras[-\s_.]*Yisroel|\b(Caban|Carone|Eisdorfer|Kreizman|NYCMayor|Tamaqua)\b
 Euler Finance,\bEuler\b
@@ -247,7 +247,7 @@ Turkey,Ankara|Istanbul|Turk(ey|ish|iye)|Uzmancoin
 Uniswap,\b(Hayden[-\s_.]*Adams|UNI|Uniswap)\b
 Uzbekistan,Tashkent|Uzbekistan|UzNEX
 Vauld,Vauld
-VCs,@jason\b|\b(6th[-\s_.]*Man[-\s_.]*Ventures|Alan[-\s_.]*Howard|Amy(tong|[-\s_.]*)Wu|Calacanis|Chamath|David[-\s_.]*Sacks|Founders[-\s_.]*Fund|J(oe|T)[-\s_.]*Lonsdale|(Katherine[-\s_.]*|KTm)Boyle|Maguire|Molly[-\s_.]*S?[-\s_.]*O.?Shea|Moonrock[-\s_.]*Capital|Northzone|Sequoia|sjdedic|Sourcery|Thiel|Tiger[-\s_.]*Global|Valar[-\s_.]*Ventures|VanEck[-\s_.]*Ventures|Variant[-\s_.]*Fund|Warburg[-\s_.]*Serres|VCs?)\b|venture[-\s_.]*capital|Nikola\s*Motors|Trevor\s*Milton
+VCs,@jason\b|\b(6th[-\s_.]*Man[-\s_.]*Ventures|Alan[-\s_.]*Howard|Amy(tong|[-\s_.]*)Wu|Calacanis|Chamath|David[-\s_.]*Sacks|Founders[-\s_.]*Fund|J(oe|T)[-\s_.]*Lonsdale|(Katherine[-\s_.]*|KTm)Boyle|Maguire|Molly[-\s_.]*S?[-\s_.]*O.?Shea|Moonrock[-\s_.]*Capital|Northzone|Sequoia|sjdedic|Sourcery|Thiel|Tiger[-\s_.]*Global|Valar[-\s_.]*Ventures|VanEck[-\s_.]*Ventures|Variant[-\s_.]*Fund|Warburg[-\s_.]*Serres|VCs?)\b|venture[-\s_.]*capital|Nikola\s*Motors|Trevor\s*Milton|Valar[-\s_.]*Ventures
 Vietnam,\b(Hanoi|Ho[-\s_.]*Chi[-\s_.]*Minh|Vietnam)
 Vitalik Buterin,\b(buterin|vitalik)\b
 Voyager,\b(Ehrlich|(Invest)?Voyagers?|VGX)\b
