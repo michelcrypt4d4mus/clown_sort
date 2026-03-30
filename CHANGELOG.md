@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Fix failure to escape text with brackets in `Panel` text
 * Extract PDF pages causing PyPDF exceptions to `./pdf_errors/` dir instead of `./PDF Errors/`
 * Include `.clown_sort.example` in production package
 * New crypto sorting rules

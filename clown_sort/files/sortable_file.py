@@ -12,6 +12,7 @@ from typing import List, Optional, Union
 
 from exiftool import ExifToolHelper
 from rich.console import Console, ConsoleOptions, RenderResult
+from rich.markup import escape
 from rich.panel import Panel
 from rich.prompt import Confirm
 from rich.text import Text
@@ -203,7 +204,7 @@ class SortableFile:
 
     def _extracted_text_panel(self) -> Panel:
         """Panelized version of the extracted text for display."""
-        return Panel(self._extracted_str(MAX_EXTRACTION_LENGTH), expand=True, style='dim')
+        return Panel(escape(self._extracted_str(MAX_EXTRACTION_LENGTH)), expand=True, style='dim')
 
     def _filename_panel(self) -> Panel:
         """Panelized version of the filename for display."""
